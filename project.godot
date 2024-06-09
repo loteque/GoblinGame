@@ -12,6 +12,10 @@ config_version=5
 
 config/features=PackedStringArray("4.2")
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 up={

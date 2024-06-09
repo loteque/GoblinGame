@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnj8oqycjiqah"]
+
+[ext_resource type="Script" path="res://Actor.gd" id="1_5a1ut"]
+[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="2_iuy1e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
+size = Vector2(55, 55)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
+radius = 131.0
+
+[node name="Agent" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent")]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_5a1ut")
+move_speed = 320.0
+nav_agent = NodePath("NavigationAgent2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_moct4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.823529, 0, 0.729412, 1)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_iuy1e")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 50.0
+path_max_distance = 200.0
+
+[node name="FollowArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
+shape = SubResource("CircleShape2D_v1do6")
+
+[connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
+[connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
