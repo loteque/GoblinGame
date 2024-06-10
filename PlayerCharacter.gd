@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 400
+@export var throw_target: Marker2D
 
 func get_input():
     var input_direction = Input.get_vector("left", "right", "up", "down")
