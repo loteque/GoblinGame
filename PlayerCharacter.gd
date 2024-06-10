@@ -2,9 +2,12 @@ extends CharacterBody2D
 
 @export var speed = 400
 @export var throw_target: Marker2D
+@export var cursor: Area2D
 
 var base = preload("res://static_unit.tscn").instantiate()
 var base_placer = BasePlacer.new(1)
+var selected: Node2D
+
 
 func get_input():
     var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -21,6 +24,18 @@ func _physics_process(_delta):
 func _input(event):
     if event.is_action("place"):
         base_placer.place(base, get_parent(), throw_target.global_transform.origin)
+    if event.is_action("select") and selected:
+        if selected.is_in_group("Upgradable"):
+            selected.upgrader.upgrade()
+
+
+func _on_cursor_body_entered(body:Node2D):
+        selected = body
+
+
+func _on_cursor_body_exited(_body:Node2D):
+    selected = null
+
 
 class BasePlacer:
     var num_bases
@@ -33,4 +48,3 @@ class BasePlacer:
 
     func _init(max_bases: int):
         num_bases = max_bases
-

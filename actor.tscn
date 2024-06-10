@@ -9,7 +9,7 @@ size = Vector2(55, 55)
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
 radius = 131.0
 
-[node name="aw" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area", "collision")]
+[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area")]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_5a1ut")
@@ -17,7 +17,6 @@ move_speed = 320.0
 throw_multiplier = 2.3
 nav_agent = NodePath("NavigationAgent2D")
 follow_area = NodePath("FollowArea")
-collision = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_moct4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://78j5k0a24wsl"]
+[gd_scene load_steps=5 format=3 uid="uid://78j5k0a24wsl"]
 
 [ext_resource type="Script" path="res://PlayerCharacter.gd" id="1_k6ex4"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="2_2qsjb"]
@@ -6,9 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qeufm"]
 size = Vector2(41, 41)
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fe2m7"]
+
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target", "cursor")]
 script = ExtResource("1_k6ex4")
 throw_target = NodePath("Marker2D")
+cursor = NodePath("Marker2D/Cursor")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
@@ -35,3 +38,11 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0, 0.6)
+
+[node name="Cursor" type="Area2D" parent="Marker2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/Cursor"]
+shape = SubResource("RectangleShape2D_fe2m7")
+
+[connection signal="body_entered" from="Marker2D/Cursor" to="." method="_on_cursor_body_entered"]
+[connection signal="body_exited" from="Marker2D/Cursor" to="." method="_on_cursor_body_exited"]

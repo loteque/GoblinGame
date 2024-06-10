@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var throw_multiplier: float
 @export var nav_agent: NavigationAgent2D
 @export var follow_area: Area2D
-@export var collision: CollisionShape2D
 
 var has_target: bool = false
 var target: Node2D

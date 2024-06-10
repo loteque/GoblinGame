@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://byn4m4upb43ss"]
+[gd_scene load_steps=3 format=3 uid="uid://byn4m4upb43ss"]
+
+[ext_resource type="Script" path="res://static_unit.gd" id="1_o2la3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3cdd"]
 size = Vector2(42.25, 42.75)
 
-[node name="StaticUnit" type="StaticBody2D"]
-position = Vector2(216, 414)
+[node name="StaticUnit" type="StaticBody2D" node_paths=PackedStringArray("upgrada_name_label", "upgrade_value_label") groups=["Upgradable"]]
 scale = Vector2(4, 4)
+script = ExtResource("1_o2la3")
+upgrada_name_label = NodePath("ColorRect/HBoxContainer/UpgradeLabel")
+upgrade_value_label = NodePath("ColorRect/HBoxContainer/UpgradeValue")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.125, -0.125)
@@ -22,8 +26,9 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Name" type="Label" parent="ColorRect"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -41,3 +46,32 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "Base"
 uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="UpgradeLabel" type="Label" parent="ColorRect/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Level"
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeValue" type="Label" parent="ColorRect/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "0"
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
