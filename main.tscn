@@ -10,13 +10,14 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-562, -301, 555, -301, 
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node2D"]
+y_sort_enabled = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(577, 322)
 navigation_polygon = SubResource("NavigationPolygon_ocatk")
 
 [node name="Actor" parent="." instance=ExtResource("2_7cfec")]
-position = Vector2(393, 223)
+position = Vector2(505, 294)
 
 [node name="PlayerCharacter" parent="." groups=["Player"] instance=ExtResource("1_rjx7k")]
-position = Vector2(545, 339)
+position = Vector2(502, 345)
