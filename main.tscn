@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=5 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
 [ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="2_7cfec"]
+[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="3_olnyg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
 vertices = PackedVector2Array(543, 279, -545, 288, -552, -291, 545, -291)
@@ -21,3 +22,17 @@ position = Vector2(505, 294)
 
 [node name="PlayerCharacter" parent="." groups=["Player"] instance=ExtResource("1_rjx7k")]
 position = Vector2(502, 345)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(370, 336)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_olnyg")
+offset = Vector2(0, -350)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-3.33333, 0)
+scale = Vector2(1, 0.3)
+texture = ExtResource("3_olnyg")

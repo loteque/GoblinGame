@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2")
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/inputgroxler/plugin.cfg")
+
 [input]
 
 up={

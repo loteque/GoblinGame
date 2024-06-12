@@ -28,6 +28,8 @@ func _physics_process(_delta):
             set_collision_layer(1)
             set_collision_mask(1)
             target = self
+        
+        velocity = Vector2.ZERO
         return
 
     var next_path_position: Vector2 = nav_agent.get_next_path_position()

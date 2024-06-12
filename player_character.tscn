@@ -50,9 +50,9 @@ shape = SubResource("RectangleShape2D_fe2m7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("3_e5xby")
-animation = &"idle_front"
+animation = &"run_side"
 autoplay = "idle_front"
-frame_progress = 0.263636
+frame_progress = 0.287639
 offset = Vector2(0, -175)
 
 [connection signal="body_entered" from="Marker2D/Cursor" to="." method="_on_cursor_body_entered"]

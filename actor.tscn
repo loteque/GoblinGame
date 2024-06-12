@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnj8oqycjiqah"]
+[gd_scene load_steps=7 format=3 uid="uid://bnj8oqycjiqah"]
 
 [ext_resource type="Script" path="res://Actor.gd" id="1_5a1ut"]
 [ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="2_fkt2u"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="2_iuy1e"]
+[ext_resource type="Script" path="res://AnimationController.gd" id="4_2l62u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
 size = Vector2(55, 55)
@@ -41,10 +42,14 @@ shape = SubResource("CircleShape2D_v1do6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("2_fkt2u")
-animation = &"idle_front"
+animation = &"run_side_0"
 autoplay = "idle_front"
-frame_progress = 0.419319
 offset = Vector2(0, -165)
+
+[node name="AnimationController" type="Node" parent="." node_paths=PackedStringArray("actor", "sprite")]
+script = ExtResource("4_2l62u")
+actor = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
