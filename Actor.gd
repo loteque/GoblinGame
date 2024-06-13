@@ -31,7 +31,7 @@ func _physics_process(_delta):
         if (
             player_inside_follow_area 
             and self.global_transform.origin.distance_to(
-                    player.global_transform.origin
+                    player.follow_target.global_transform.origin
                 ) < nav_agent.target_desired_distance
         ):
             velocity = Vector2.ZERO
@@ -40,10 +40,10 @@ func _physics_process(_delta):
         if (
             player_inside_follow_area 
             and self.global_transform.origin.distance_to(
-                    player.global_transform.origin
+                    player.follow_target.global_transform.origin
                 ) > nav_agent.target_desired_distance
         ):
-            target = player
+            target = player.follow_target
             has_target = true
             _set_movement_target(target.global_transform.origin)
             
@@ -80,7 +80,7 @@ func _on_follow_area_body_entered(body:Node2D):
     if body.is_in_group("Player"):
         has_target = true
         player = body
-        target = player
+        target = player.follow_target
         player_inside_follow_area = true
         throw_target = body.throw_target
         _set_movement_target(body.global_transform.origin)

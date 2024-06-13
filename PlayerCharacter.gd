@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var speed = 400
 @export var throw_target: Marker2D
 @export var cursor: Area2D
+@export var follow_target: Marker2D
+
 
 var base = preload("res://static_unit.tscn").instantiate()
 var base_placer = BasePlacer.new(1)
