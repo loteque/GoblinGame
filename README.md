@@ -149,7 +149,7 @@ Pikmin, but goblins with more war
 - Tiling Ground texture
 - Tiling lava rivers
 
-## Sprites
+### Sprites
 - NPC Goblins
   - Idle animation (1 directions)(forward)
   - Running animation (4 directions)
@@ -195,7 +195,7 @@ Pikmin, but goblins with more war
     - Damaged
   - Destroyed
 
-- Command center
+- Corupted Command center
   - Initial state
     - Damaged
   - Upgraded state 1
@@ -215,25 +215,25 @@ Pikmin, but goblins with more war
   - Health bar for npc goblins
   - Destructibles health bar
 
-- Code
-  - Character Scripts (Player Pawn/Player Controller)
-    - Controller
-    - Stats
-    - State
-    - animation
+### Code
+- Character Scripts (Player Pawn/Player Controller)
+  - Controller
+  - Stats
+  - State
+  - animation
 
-  - NPC Scripts
-    - controller
-    - Stats
-    - State
-    - animation
+- NPC Scripts
+  - controller
+  - Stats
+  - State
+  - animation
 
-  - Base Scripts
-    - Base State
-    - Army Manager
+- Base Scripts
+  - Base State
+  - Army Manager
 
-  - Ambient Scripts (Runs in the background)
-    - Game state Manager
-    - Level Manager
-    - HID Manager
-    - Audio Manager
+- Ambient Scripts (Runs in the background)
+  - Game state Manager
+  - Level Manager
+  - HID Manager
+  - Audio Manager
