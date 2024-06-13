@@ -10,27 +10,6 @@ License
 Copyright © Loteque, maeve 2024 - Present
 
 
-
-
-- ![Overview](#overview)
-  - ![Theme / Setting / Genre](#theme--setting--genre)
-  - ![Targeted platforms](#targeted-platforms)
-  - ![Project Scope](#project-scope)
-  - ![influences](#influences)
-  - ![The Elevator Pitch](#the-elevator-pitch)
-  - ![Project Description](#project-description)
-  - ![What sets this project apart?](#what-sets-this-project-apart)
-- ![Story and Gameplay](#story-and-gameplay)
-  - ![Story](story)
-  - ![Core Gameplay Mechanics Brief](#core-gameplay-mechanics-brief)
-  - ![Gameplay Brief](gameplay-brief)
-  - ![Core Gameplay Mechanics](#core-gameplay-mechanics)
-  - ![Gameplay](gameplay)
-- ![Assets](Assets)
-  - ![2D](2D)
-  - ![Code](code)
-
-
 ## Overview
 ### Theme / Setting / Genre
 - Themes: Environmental conservation
@@ -43,16 +22,16 @@ Copyright © Loteque, maeve 2024 - Present
 - Linux
 
 
-### Project Scope 
-**Game Time Scale**
-- Time Scale 2 weeks total
+### Project _**scope**_ 
+- **Game Time Scale**
+  - Time Scale 2 weeks total
 
-**2 Core team members**
-- Maeve - Art
-- Loteque - Programming, Else
+- **2 Core team members**
+  - Maeve - Art
+  - Loteque - Programming, Else
 
-**Aditional team members**
-- Jonah Bloom - Composer/Recording
+- **Aditional team members**
+  - Jonah Bloom - Composer/Recording
 
 
 ### Influences
@@ -95,9 +74,9 @@ Pikmin, but goblins with more war
 - Player collects goblins
 - Attackables:
   - Enemy Goblins
-  - Breakables:
+- Breakables:
   - Enemy Goblin Camps
-  - Crate
+  - ~~Crate~~ :_**scope**_
 - Collectables:
   - Scrap
 - Player has health
@@ -119,118 +98,137 @@ Pikmin, but goblins with more war
   - Upgrades cost scrap
   - When they upgrade the base:
     - Increases Goblin production rate.
+    - increases 'green' on the map
 
 ### Gameplay Brief
 - The player starts with a player goblin. 
-- They must wander the land, collecting npc goblins, build an army and build up their base in order to destroy the corrupted goblin army.
+- They must wander the land, collecting npc goblins, build an army and build up their base in order to destroy the corrupted goblin army and restore the land.
 
 ### Gameplay
-- Player starts with Player character.
-- Player explores the map.
-- Player locates and collects goblins.
-- Player locates breakables.
-- Player finds a corrupted goblin.
-- NPC Goblins break breakables and collect scrap
-- NPC Goblins fight corrupted goblins.
-- Player creates a Command center
-- Player sends NPC goblins to collect scrap.
-- Player upgrades command center
-- Corrupted goblins attack command center.
-- Player attacks corrupted command center.
-- When player defeats corrupted goblin base (corrupted command center) they win the map.
+- [ ] Player starts with Player character.
+- [ ] Player explores the map.
+- [ ] Player locates and collects goblins.
+- [x] ~~Player locates breakables.~~ :_**scope**_
+- [ ] Player finds a corrupted goblin.
+- [x] ~~NPC Goblins break breakables and collect scrap~~ :_**scope**_
+- [ ] Player uses NPCs to Collects Scrap
+- [ ] Player uses NPC Goblins to fight corrupted goblins.
+- [ ] Player creates a Command center
+- [ ] Enemy Command center spawns in
+- [ ] Enemy goblins collect scrap
+- [ ] Player sends NPC goblins to collect scrap.
+- [ ] player and enemy return scrap to their command center
+- [ ] Command center increases upgrade meter
+- [ ] when upgrade meter is full comand center upgrades
+- [ ] when command center upgrades green tiles spread
+- [ ] Corrupted goblins attack command center.
+- [ ] Player attacks corrupted command center.
+- [ ] When player defeats corrupted goblin base (corrupted command center) they win the map.
 
 
 ## Assets
 ### 2D
 ### Textures
-- Tiling Ground texture
-- Tiling lava rivers
+- [ ] Tiling Ground textures
+  - [ ] green ground
+  - [ ] grey ground
+  - [ ] corrupted ground
+- [x] ~~Tiling lava rivers~~ :_**scope**_
+- [ ] Tiling Toxic Sludge Rivers
 
 ### Sprites
-- NPC Goblins
-  - Idle animation (1 directions)(forward)
-  - Running animation (4 directions)
-  - Attacking animation (4 directions)
-  - Hurt animation (1 direction)(forward)
-  - Collection sprite for basic particle effect
-  - Thrown animation (goblin flying through air)
-  - Dying animation (1 direction, spin into forward direction)
+- [ ] NPC Goblins
+  - [ ] Idle animation (1 directions)(forward)
+  - [ ] Running animation (4 directions)
+  - [ ] Attacking animation (4 directions)
+  - [ ] Hurt animation (1 direction)(forward)
+  - [ ] Collection sprite for basic particle effect
+  - [ ] Thrown animation (goblin flying through air)
+  - [ ] Dying animation (1 direction, spin into forward direction)
 
-- Player Goblin
-  - Idle animation (1 directions)(forward)
-  - Walking animation (4 directions)
-  - Attacking animation (4 directions)
-  - Hurt animation (1 direction)(forward)
-  - Dying animation (1 direction, spin into forward direction)
+- [ ] Player Goblin
+  - [ ] Idle animation (1 directions)(forward)
+  - [ ] Walking animation (4 directions)
+  - [ ] Attacking animation (4 directions)
+  - [ ] Hurt animation (1 direction)(forward)
+  - [ ] Dying animation (1 direction, spin into forward direction)
 
-- Corrupted Goblin (medium size)
-  - Idle animation (1 directions)(forward)
-  - Running animation (4 directions)
-  - Attacking animation (4 directions)
-  - Hurt animation (1 direction)(forward)
-  - Collection sprite for basic particle effect
-  - Thrown animation (goblin flying through air)
-  - Dying animation (1 direction, spin into forward direction)
+- [ ] Corrupted Goblin (medium size)
+  - [ ] Idle animation (1 directions)(forward)
+  - [ ] Running animation (4 directions)
+  - [ ] Attacking animation (4 directions)
+  - [ ] Hurt animation (1 direction)(forward)
+  - [ ] Collection sprite for basic particle effect
+  - [ ] Thrown animation (goblin flying through air)
+  - [ ] Dying animation (1 direction, spin into forward direction)
 
-- Environment
-  - Dead trees
-  - Cliff faces
-    - West and South are the faces
-  - Cliff edges
-    - East and north are the edges
-  - Lava Plumes
-  - Healing pool
+- [x] Environment
+  - [x] ~~Dead trees~~ :_**scope**_
+  - [x] ~~Cliff faces~~ :_**scope**_
+    - [x] ~~West and South are the faces~~ :_**scope**_
+  - [x] ~~Cliff edges~~ :_**scope**_
+    - [x] ~~East and north are the edges~~ :_**scope**_
+  - [x] ~~Lava Plumes~~
+  - [ ] Toxic Plumes
+  - [x] ~~Healing pool~~ :_**scope**_
 
-- Command center
-  - Initial state
-    - Damaged
-  - Upgraded state 1
-    - Damaged
-  - Upgraded state 2
-    - Damaged
-  - Upgraded state 3
-    - Damaged
-  - Destroyed
+- [ ] Player Goblin Base
+  - [ ] Initial state
+    - [ ] Damaged
+  - [ ] Upgraded state 1
+    - [ ] Damaged
+  - [ ] Upgraded state 2
+    - [ ] Damaged
+  - ~~Upgraded state 3~~ :_**scope**_
+    - ~~Damaged~~ :_**scope**_
+  - ~~Destroyed~~ :_**scope**_
 
-- Corupted Command center
-  - Initial state
-    - Damaged
-  - Upgraded state 1
-    - Damaged
-  - Upgraded state 2
-    - Damaged
-  - Upgraded state 3
-    - Damaged
-  - Destroyed
+- [ ] Enemy Goblin Base
+  - [ ] Initial state
+    - [ ] Damaged
+  - [ ] Upgraded state 1
+    - [ ] Damaged
+  - [ ] Upgraded state 2
+    - [ ] Damaged
+  - [x] ~~Upgraded state 3~~ :_**scope**_
+    - [x] ~~Damaged~~ :_**scope**_
+  - [x] ~~Destroyed~~ :_**scope**_
 
-- HUD Elements
-  - Health bar for player
-  - Health bar for NPC goblins
-  - Scrap counter
-  - Base upgrade status
-  - Base health bar
-  - Health bar for npc goblins
-  - Destructibles health bar
+- [ ] HUD Elements
+  - [ ] Health bar for player
+  - [ ] Health bar for NPC goblins
+  - [ ] Scrap counter
+  - [ ] Base upgrade status
+  - [ ] Base health bar
+  - [ ] Health bar for npc goblins
+  - [x] ~~Destructibles health bar~~ :_**scope**_
 
 ### Code
-- Character Scripts (Player Pawn/Player Controller)
-  - Controller
-  - Stats
-  - State
-  - animation
+- [ ] Character Scripts (Player Pawn/Player Controller)
+  - [ ] Controller
+  - [ ] Stats
+  - [ ] State
+  - [ ] animation
 
-- NPC Scripts
-  - controller
-  - Stats
-  - State
-  - animation
+- [ ] NPC Scripts
+  - [ ] controller
+  - [ ] Stats
+  - [ ] State
+  - [ ] animation
 
-- Base Scripts
-  - Base State
-  - Army Manager
+- [ ] Base Scripts
+  - [ ] Base State
+  - [ ] Army Manager
 
-- Ambient Scripts (Runs in the background)
-  - Game state Manager
-  - Level Manager
-  - HID Manager
-  - Audio Manager
+- [ ] Collectables Scripts
+  - [ ] Scrap
+
+- [ ] Breakables Script
+  - [ ] Bases
+
+- [ ] Ambient Scripts (Runs in the background)
+  - [ ] Game state Manager
+  - [ ] Level Manager
+  - [ ] HID Manager
+  - [ ] Audio Manager
+  - [ ] Environemnt Manager (ground tiles)
