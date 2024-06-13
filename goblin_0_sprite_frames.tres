@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://b1tde2jhy8sfh"]
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://b1tde2jhy8sfh"]
 
 [ext_resource type="Texture2D" uid="uid://dy51xirriiq2d" path="res://goblin_sprite_sheet_wip_update_with_updated_roll.png" id="1_xvd8n"]
 
@@ -41,6 +41,14 @@ region = Rect2(1314, 445, 181, 359)
 [sub_resource type="AtlasTexture" id="AtlasTexture_i8ehj"]
 atlas = ExtResource("1_xvd8n")
 region = Rect2(1496, 445, 181, 359)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y037e"]
+atlas = ExtResource("1_xvd8n")
+region = Rect2(50, 1179, 164, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stmkw"]
+atlas = ExtResource("1_xvd8n")
+region = Rect2(102, 912, 142, 254)
 
 [resource]
 animations = [{
@@ -92,5 +100,16 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_up",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_y037e")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_stmkw")
+}],
+"loop": true,
+"name": &"thrown_down",
 "speed": 15.0
 }]

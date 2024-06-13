@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_ij8ar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qeufm"]
-size = Vector2(41, 21)
+size = Vector2(26, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe2m7"]
 
@@ -17,7 +17,7 @@ throw_target = NodePath("Marker2D")
 cursor = NodePath("Marker2D/Cursor")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -10.5)
+position = Vector2(-7, -11.5)
 shape = SubResource("RectangleShape2D_qeufm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

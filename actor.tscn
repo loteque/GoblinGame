@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_sdsx6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
-size = Vector2(55, 55)
+size = Vector2(19, 21)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
-radius = 131.0
+radius = 136.015
 
-[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area")]
+[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area") groups=["throwable"]]
 z_index = 1
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -22,6 +22,7 @@ nav_agent = NodePath("NavigationAgent2D")
 follow_area = NodePath("FollowArea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -12.5)
 shape = SubResource("RectangleShape2D_moct4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -31,8 +32,7 @@ scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_iuy1e")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-target_desired_distance = 50.0
-path_max_distance = 200.0
+target_desired_distance = 40.0
 
 [node name="FollowArea" type="Area2D" parent="."]
 
@@ -42,8 +42,9 @@ shape = SubResource("CircleShape2D_v1do6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("2_fkt2u")
-animation = &"run_down"
+animation = &"thrown_down"
 autoplay = "idle_front"
+frame_progress = 0.336775
 offset = Vector2(0, -165)
 
 [node name="AnimationController" parent="." node_paths=PackedStringArray("actor", "sprite") instance=ExtResource("4_sdsx6")]
