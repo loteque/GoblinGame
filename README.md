@@ -12,34 +12,30 @@ Copyright © Loteque, maeve 2024 - Present
 
 
 
-### Overview
-![](Theme / Setting / Genre)
-![](Core Gameplay Mechanics Brief)
-![](Targeted platforms)
-![](Monetization model (Brief/Document))
-![](Project Scope)
-![](Influences (Brief))
-![](The Elevator Pitch)
-![](Project Description (Brief))
-![](What sets this project apart?)
-![](Core Gameplay Mechanics (Detailed))
-![](Story and Gameplay)
-![](Story (Brief))
-![](Gameplay (Brief))
-![](Assets)
-![](2D)
-![](Code)
+- ![Overview](#overview)
+  - ![Theme / Setting / Genre](#theme--setting--genre)
+  - ![Targeted platforms](#targeted-platforms)
+  - ![Project Scope](#project-scope)
+  - ![influences](#influences)
+  - ![The Elevator Pitch](#the-elevator-pitch)
+  - ![Project Description](#project-description)
+  - ![What sets this project apart?](#what-sets-this-project-apart)
+- ![Story and Gameplay](#story-and-gameplay)
+  - ![Story](story)
+  - ![Core Gameplay Mechanics Brief](#core-gameplay-mechanics-brief)
+  - ![Gameplay Brief](gameplay-brief)
+  - ![Core Gameplay Mechanics](#core-gameplay-mechanics)
+  - ![Gameplay](gameplay)
+- ![Assets](Assets)
+  - ![2D](2D)
+  - ![Code](code)
 
 
-
+## Overview
 ### Theme / Setting / Genre
 - Themes: Environmental conservation
 - Goblin army in a Fantasy Mad Max style wasteland.
 - Genre: Console Real Time Strategy
-
-### Core Gameplay Mechanics Brief
-- Goblins are a primary resource.
-- Player must build goblin army up to defeat the coruption
 
 ### Targeted platforms
 - Web
@@ -59,7 +55,7 @@ Copyright © Loteque, maeve 2024 - Present
 - Jonah Bloom - Composer/Recording
 
 
-### Influences (Brief)
+### Influences
 - Disgaea
   - Video Game
   - Noted for its turn-based strategy and character-throwing mechanics.
@@ -81,7 +77,17 @@ Pikmin, but goblins with more war
 - It has Thematic elements of Environmental Conservation through teamwork
 - If give a unique perspective of goblins as protectors of the land
 
-### Core Gameplay Mechanics (Detailed)
+
+## Story and Gameplay
+### Story Brief
+- Corrupted goblins have taken over the lands and are taking all they can!
+- Player’s goblin group are among the last uncorrupted and must save the land by defeating the corrupted goblins
+
+### Core Gameplay Mechanics Brief
+- Goblins are a primary resource.
+- Player must build goblin army up to defeat the coruption
+
+### Core Gameplay Mechanics
 - Goblins are a primary resource.
 - Special goblins (e.g., big goblins who throw smaller goblins).
 - Character movement
@@ -114,20 +120,11 @@ Pikmin, but goblins with more war
   - When they upgrade the base:
     - Increases Goblin production rate.
 
-
-
-
-
-## Story and Gameplay
-### Story (Brief)
-- Corrupted goblins have taken over the lands and are taking all they can!
-- Player’s goblin group are among the last uncorrupted and must save the land by defeating the corrupted goblins
-
-### Gameplay (Brief)
+### Gameplay Brief
 - The player starts with a player goblin. 
 - They must wander the land, collecting npc goblins, build an army and build up their base in order to destroy the corrupted goblin army.
 
-### Gameplay (Detailed)
+### Gameplay
 - Player starts with Player character.
 - Player explores the map.
 - Player locates and collects goblins.
