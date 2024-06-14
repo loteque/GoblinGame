@@ -19,6 +19,8 @@ navigation_polygon = SubResource("NavigationPolygon_ocatk")
 
 [node name="Actor" parent="." instance=ExtResource("2_7cfec")]
 position = Vector2(505, 294)
+burst_speed = null
+burst_duration = 1.7
 
 [node name="PlayerCharacter" parent="." groups=["Player"] instance=ExtResource("1_rjx7k")]
 position = Vector2(502, 345)

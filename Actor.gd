@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @export var move_speed: float
+@export var burst_speed: float
+@export var burst_duration: float
 @export var throw_multiplier: float
 @export var nav_agent: NavigationAgent2D
 @export var follow_area: Area2D
@@ -53,12 +55,16 @@ func _physics_process(_delta):
     if has_target or throw_target:
         _set_movement_target(target.global_transform.origin)
     
-
-
+    var new_velocity: Vector2
     var next_path_position: Vector2 = nav_agent.get_next_path_position()
-    var new_velocity: Vector2 = global_position.direction_to(next_path_position) * move_speed
+    if !is_burst():
+        new_velocity = global_position.direction_to(next_path_position) * move_speed
+    else:
+        new_velocity = global_position.direction_to(next_path_position) * burst_speed
+
     if !follow_area.monitoring:
         new_velocity = new_velocity * throw_multiplier
+
 
     _on_velocity_computed(new_velocity)
 
@@ -75,15 +81,41 @@ func _on_velocity_computed(safe_velocity: Vector2):
     move_and_slide()
 
 
+var _is_burst: bool = false
+func is_burst():
+    if _is_burst:
+        return true
+    return false
+
+func boost_speed():
+        _is_burst = true
+        burst_speed = player.speed
+        await get_tree().create_timer(burst_duration).timeout
+        _is_burst = false
+
 func _on_follow_area_body_entered(body:Node2D):
     
     if body.is_in_group("Player"):
-        has_target = true
+        # make actor aware of player
         player = body
-        target = player.follow_target
-        player_inside_follow_area = true
-        throw_target = body.throw_target
-        _set_movement_target(body.global_transform.origin)
+
+        # set up nav targets on player.called_goblins()
+        # so that the actor will go to player
+        if !player.called_goblins.is_connected(_on_player_called_goblins):
+            player.called_goblins.connect(_on_player_called_goblins)
+
+
+func _on_player_called_goblins():
+    # set up navigation targets
+    target = player.follow_target
+    has_target = true
+    player_inside_follow_area = true
+    throw_target = player.throw_target
+    _set_movement_target(player.global_transform.origin)
+    
+    # set and unset actor speed burst
+    boost_speed()
+        
 
 func _on_follow_area_body_exited(body:Node2D):
     
@@ -99,4 +131,3 @@ func _on_target_reached():
     set_collision_layer(1)
     set_collision_mask(1)
     target = self
-    

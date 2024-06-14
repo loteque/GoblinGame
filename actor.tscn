@@ -17,6 +17,8 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_5a1ut")
 move_speed = 320.0
+burst_speed = 350.0
+burst_duration = 0.5
 throw_multiplier = 2.3
 nav_agent = NodePath("NavigationAgent2D")
 follow_area = NodePath("FollowArea")
@@ -42,9 +44,8 @@ shape = SubResource("CircleShape2D_v1do6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("2_fkt2u")
-animation = &"thrown_down"
+animation = &"idle_front"
 autoplay = "idle_front"
-frame_progress = 0.336775
 offset = Vector2(0, -165)
 
 [node name="AnimationController" parent="." node_paths=PackedStringArray("actor", "sprite") instance=ExtResource("4_sdsx6")]

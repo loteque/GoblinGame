@@ -10,6 +10,7 @@ var base = preload("res://static_unit.tscn").instantiate()
 var base_placer = BasePlacer.new(1)
 var selected: Node2D
 
+signal called_goblins()
 
 func get_input():
     var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -20,6 +21,9 @@ func update_body():
     velocity = input_direction * speed
     move_and_slide()
 
+func call_goblins():
+    called_goblins.emit()
+
 func _physics_process(_delta):
     update_body()
 
@@ -29,10 +33,12 @@ func _input(event):
     if event.is_action("select") and selected:
         if selected.is_in_group("Upgradable"):
             selected.upgrader.upgrade()
+    if event.is_action("call"):
+        call_goblins()
 
 
 func _on_cursor_body_entered(body:Node2D):
-        selected = body
+    selected = body
 
 
 func _on_cursor_body_exited(_body:Node2D):
