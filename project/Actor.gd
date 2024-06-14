@@ -100,6 +100,10 @@ func target_is_self():
 
 func _on_follow_area_body_entered(body:Node2D):
 	
+	if self.is_in_group("Enemy"):
+		return
+
+
 	if body.is_in_group("Player"):
 		# make actor aware of player
 		player = body
@@ -134,7 +138,7 @@ func _on_follow_area_body_exited(body:Node2D):
 		throw_target = null
 		print("body exited")
 
-		if player.called_goblins.is_connected(_on_player_called_goblins):
+		if player and player.called_goblins.is_connected(_on_player_called_goblins):
 			player.called_goblins.disconnect(_on_player_called_goblins)
 
 func _on_target_reached():

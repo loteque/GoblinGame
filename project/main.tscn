@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=6 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
 [ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="2_7cfec"]
 [ext_resource type="Texture2D" uid="uid://j2qs2abkomav" path="res://icon-bot.png" id="3_olnyg"]
+[ext_resource type="PackedScene" uid="uid://b81yek0dpdukm" path="res://enemy_actor.tscn" id="4_oxvpf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
 vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)
@@ -28,11 +29,6 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="." instance=ExtResource("2_7cfec")]
-position = Vector2(360, -328)
-burst_speed = null
-burst_duration = 1.7
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -47,8 +43,10 @@ position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
 texture = ExtResource("3_olnyg")
 
-[node name="Actor2" parent="." instance=ExtResource("2_7cfec")]
-position = Vector2(384, 1000)
+[node name="Actor" parent="." instance=ExtResource("2_7cfec")]
+position = Vector2(732, 208)
+burst_speed = 0.0
+burst_duration = 1.7
 
-[node name="Actor3" parent="." instance=ExtResource("2_7cfec")]
-position = Vector2(1568, 304)
+[node name="EnemyActor" parent="." instance=ExtResource("4_oxvpf")]
+position = Vector2(256, 144)

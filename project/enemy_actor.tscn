@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnj8oqycjiqah"]
+[gd_scene load_steps=7 format=3 uid="uid://b81yek0dpdukm"]
 
-[ext_resource type="Script" path="res://Actor.gd" id="1_5a1ut"]
-[ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="2_fkt2u"]
-[ext_resource type="Texture2D" uid="uid://j2qs2abkomav" path="res://icon-bot.png" id="2_iuy1e"]
-[ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_sdsx6"]
+[ext_resource type="Script" path="res://Actor.gd" id="1_nbwaw"]
+[ext_resource type="Texture2D" uid="uid://j2qs2abkomav" path="res://icon-bot.png" id="2_p63u7"]
+[ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="3_06vp7"]
+[ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_hcnlc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
 size = Vector2(19, 21)
@@ -11,11 +11,12 @@ size = Vector2(19, 21)
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
 radius = 136.015
 
-[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area") groups=["Throwable"]]
+[node name="EnemyActor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area") groups=["Enemy", "Throwable"]]
+modulate = Color(0.784314, 0.113725, 0.8, 1)
 z_index = 1
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_5a1ut")
+script = ExtResource("1_nbwaw")
 move_speed = 320.0
 burst_speed = 350.0
 burst_duration = 0.5
@@ -31,7 +32,7 @@ shape = SubResource("RectangleShape2D_moct4")
 visible = false
 modulate = Color(0.823529, 0, 0.729412, 1)
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("2_iuy1e")
+texture = ExtResource("2_p63u7")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 40.0
@@ -44,14 +45,12 @@ shape = SubResource("CircleShape2D_v1do6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
-sprite_frames = ExtResource("2_fkt2u")
+sprite_frames = ExtResource("3_06vp7")
 animation = &"idle_front"
 autoplay = "idle_front"
 offset = Vector2(0, -165)
 
-[node name="AnimationController" parent="." node_paths=PackedStringArray("actor", "sprite") instance=ExtResource("4_sdsx6")]
-actor = NodePath("..")
-sprite = NodePath("../AnimatedSprite2D")
+[node name="AnimationController" parent="." instance=ExtResource("4_hcnlc")]
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
