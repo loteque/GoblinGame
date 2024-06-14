@@ -29,8 +29,8 @@ jobs:
         run: |
           mkdir -v -p build/web
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "HTML5" ../build/web/index.html
-          cd ../build/web && zip -r ../../web.zip ./* && cd -
+          godot --headless --verbose --export-release "HTML5" build/web/index.html
+          cd build/web && zip -r ../web.zip ./* && cd -
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
