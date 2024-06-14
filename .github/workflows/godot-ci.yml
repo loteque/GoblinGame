@@ -1,6 +1,5 @@
 name: "godot-ci export"
 on:
-  workflow_dispatch:
   push:
     tags:
       - "v*"
@@ -8,7 +7,7 @@ on:
 env:
   GODOT_VERSION: 4.2.2
   EXPORT_NAME: godot_test_framework
-  PROJECT_PATH: .
+  PROJECT_PATH: project/
 
 jobs:
   export-web:
@@ -20,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          lfs: false
+          lfs: true
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates
@@ -29,8 +28,8 @@ jobs:
         run: |
           mkdir -v -p build/web
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "HTML5" build/web/index.html
-          cd build/web && zip -r ../web.zip ./* && cd -
+          godot --headless --verbose --export-release "HTML5" ../build/web/index.html
+          cd ../build/web && zip -r ../../web.zip ./* && cd -
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
