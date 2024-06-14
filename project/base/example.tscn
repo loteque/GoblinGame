@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://blnqmsyjwncp6"]
 
-[ext_resource type="Texture2D" uid="uid://c46d1w5p54tjy" path="res://camp-example.png" id="1_l6gxi"]
+[ext_resource type="Texture2D" uid="uid://c46d1w5p54tjy" path="res://base/camp-example.png" id="1_woa4f"]
 
 [node name="Example" type="Node2D"]
 
 [node name="Camp-example" type="Sprite2D" parent="."]
 position = Vector2(166, 133)
-texture = ExtResource("1_l6gxi")
+texture = ExtResource("1_woa4f")
