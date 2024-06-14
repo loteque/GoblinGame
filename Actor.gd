@@ -93,6 +93,11 @@ func boost_speed():
         await get_tree().create_timer(burst_duration).timeout
         _is_burst = false
 
+func target_is_self():
+    if target == self:
+        return true
+    return false
+
 func _on_follow_area_body_entered(body:Node2D):
     
     if body.is_in_group("Player"):
@@ -104,6 +109,10 @@ func _on_follow_area_body_entered(body:Node2D):
         if !player.called_goblins.is_connected(_on_player_called_goblins):
             player.called_goblins.connect(_on_player_called_goblins)
 
+    #this must be the last check
+    if !target_is_self():
+        set_collision_mask(0)
+        set_collision_layer(0)
 
 func _on_player_called_goblins():
     # set up navigation targets
@@ -111,19 +120,22 @@ func _on_player_called_goblins():
     has_target = true
     player_inside_follow_area = true
     throw_target = player.throw_target
-    _set_movement_target(player.global_transform.origin)
+    _set_movement_target(player.follow_target.global_transform.origin)
     
     # set and unset actor speed burst
     boost_speed()
         
 
 func _on_follow_area_body_exited(body:Node2D):
-    
     if body.is_in_group("Player"):
         has_target = false
         target = self
         player_inside_follow_area = false
+        throw_target = null
         print("body exited")
+
+        if player.called_goblins.is_connected(_on_player_called_goblins):
+            player.called_goblins.disconnect(_on_player_called_goblins)
 
 func _on_target_reached():
     _is_thrown = false

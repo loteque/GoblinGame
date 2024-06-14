@@ -35,6 +35,7 @@ texture = ExtResource("2_iuy1e")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 40.0
+avoidance_enabled = true
 
 [node name="FollowArea" type="Area2D" parent="."]
 
