@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
 [ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="2_7cfec"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="3_olnyg"]
+[ext_resource type="Texture2D" uid="uid://j2qs2abkomav" path="res://icon-bot.png" id="3_olnyg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
 vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)

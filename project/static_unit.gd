@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name StaticUnit
 
 @export var upgrada_name_label: Label
 @export var upgrade_value_label: Label
