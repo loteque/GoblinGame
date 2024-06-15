@@ -1,6 +1,6 @@
 *.import
 
-docs/
+docs/idea*
 
 .godot/
 
