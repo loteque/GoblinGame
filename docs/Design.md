@@ -257,6 +257,11 @@ Pikmin, but goblins with more war
   - [ ] Audio Manager
     - [ ] SFX Manager
     - [ ] Music Manager
+    <details>
+      <summary>Detailed View</summary>
+    
+    - [ ] SFX Manager
+    - [ ] Music Manager
       - [ ] tracks which layers of music are playing 
       - [ ] plays calm music at the beginning of the game
       - [ ] listens for player_left_base_signal
@@ -271,5 +276,6 @@ Pikmin, but goblins with more war
         - [ ] starts silence timer
         - [ ] on silence_timer_timeout
           - [ ] if base::player_in_base=true and combat=false: fadein calm layer
-          - [ ] else: fadein calm layer and exploration layer     
+          - [ ] else: fadein calm layer and exploration layer
+      </details>    
   - [ ] Environemnt Manager (ground tiles)
