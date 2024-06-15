@@ -18,17 +18,6 @@ y_sort_enabled = true
 position = Vector2(577, 322)
 navigation_polygon = SubResource("NavigationPolygon_ocatk")
 
-[node name="PlayerCharacter" parent="." groups=["Player"] instance=ExtResource("1_rjx7k")]
-position = Vector2(502, 345)
-
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_horizontal_offset = 0.32
-drag_vertical_offset = -0.46
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -43,6 +32,17 @@ position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
 texture = ExtResource("3_olnyg")
 
+[node name="PlayerCharacter" parent="." groups=["Player"] instance=ExtResource("1_rjx7k")]
+position = Vector2(502, 345)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 0.32
+drag_vertical_offset = -0.46
+
 [node name="Actor" parent="." instance=ExtResource("2_7cfec")]
 position = Vector2(732, 208)
 burst_speed = 0.0
@@ -50,3 +50,9 @@ burst_duration = 1.7
 
 [node name="EnemyActor" parent="." instance=ExtResource("4_oxvpf")]
 position = Vector2(256, 144)
+
+[node name="Actor2" parent="." instance=ExtResource("2_7cfec")]
+position = Vector2(577, 322)
+
+[node name="Actor3" parent="." instance=ExtResource("2_7cfec")]
+position = Vector2(867, 304)
