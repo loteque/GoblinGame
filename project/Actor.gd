@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var health: int
+@export var damage: int
 @export var move_speed: float
 @export var burst_speed: float
 @export var burst_duration: float
@@ -81,7 +83,8 @@ func throw_actor():
 	set_collision_mask(0)
 	target = throw_target
 	_is_thrown = true
-	_set_movement_target(target.global_transform.origin)
+	if target:
+		_set_movement_target(target.global_transform.origin)
 
 func _input(event):
 	if event.is_action("throw") and has_target:
@@ -104,6 +107,9 @@ func _on_follow_area_body_entered(body:Node2D):
 	
 	if self.is_in_group("Enemy"):
 		return
+
+	if body.is_in_group("Enemy"):
+		set_up_nav_target(body)
 
 	if body.is_in_group("Player"):
 		# make actor aware of player
@@ -134,11 +140,16 @@ func boost_speed(speed):
 
 func set_up_nav_target(nav_target: Node2D):
 	if nav_target.is_in_group("Player"):
-		target = player.follow_target
-		has_target = true
+		target = nav_target.follow_target
 		player_inside_follow_area = true
-		throw_target = player.throw_target
-		_set_movement_target(player.follow_target.global_transform.origin)
+		throw_target = nav_target.throw_target
+	
+	if nav_target.is_in_group("Enemy"):
+		target = nav_target
+		throw_target = null
+
+	has_target = true
+	_set_movement_target(target.global_transform.origin)	
 
 func _on_player_called_goblins():
 	# set up navigation targets
@@ -167,10 +178,38 @@ func unset_nav_target(nav_target):
 func _on_follow_area_body_exited(body:Node2D):
 	unset_nav_target(body)
 
+# can die
+func die():
+	queue_free()
+
+# can take damage
+signal health_updated(body)
+
+func take_damage(amount: int):
+	health = health - amount
+	health_updated.emit(health)
+	print(
+		str(self.name) 
+		+ " took damage. health: " 
+		+ str(health)
+	)
+
+func attack(attack_target):
+	print(str(attack_target))
+	await get_tree().create_timer(.5).timeout
+	attack_target.call_deferred("take_damage", damage)
+	
+	target = self
+
 # handle exit of nav loop
 func _on_target_reached():
-	_is_thrown = false
-	follow_area.monitoring = true
-	set_collision_layer(1)
-	set_collision_mask(1)
-	target = self
+	if self.is_in_group("NPC") and target.is_in_group("Enemy"):
+		attack(target)
+		if target.health < 0:
+			target.die()
+	else:
+		_is_thrown = false
+		follow_area.monitoring = true
+		set_collision_layer(1)
+		set_collision_mask(1)
+		target = self

@@ -52,7 +52,7 @@ burst_duration = 1.7
 position = Vector2(256, 144)
 
 [node name="Actor2" parent="." instance=ExtResource("2_7cfec")]
-position = Vector2(577, 322)
+position = Vector2(361, 144)
 
 [node name="Actor3" parent="." instance=ExtResource("2_7cfec")]
 position = Vector2(867, 304)
