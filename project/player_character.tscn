@@ -10,7 +10,7 @@ size = Vector2(26, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe2m7"]
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target", "cursor", "follow_target")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target", "cursor", "follow_target") groups=["Player"]]
 z_index = 1
 script = ExtResource("1_k6ex4")
 throw_target = NodePath("Marker2D")

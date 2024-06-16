@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6c1r2u67hv5y"]
+[gd_scene load_steps=6 format=3 uid="uid://b6c1r2u67hv5y"]
 
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="1_fxf3w"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="2_wya63"]
 [ext_resource type="PackedScene" uid="uid://cm83wuwxqwmtn" path="res://collectables/collector_component.tscn" id="3_2c4i6"]
+[ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="4_81knk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_orr01"]
 size = Vector2(31, 19)
@@ -38,3 +39,6 @@ position = Vector2(324, 334)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter/CollectorComponent"]
 position = Vector2(-6.5, -13.5)
 shape = SubResource("RectangleShape2D_orr01")
+
+[node name="Actor" parent="." instance=ExtResource("4_81knk")]
+position = Vector2(397, 327)
