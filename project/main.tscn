@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
 [ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="2_7cfec"]
-[ext_resource type="AudioStream" path="res://assets/music/calm.mp3" id="2_piiot"]
+[ext_resource type="AudioStream" uid="uid://cl3ddeukhtea8" path="res://assets/music/calm.mp3" id="2_piiot"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="3_olnyg"]
 [ext_resource type="PackedScene" uid="uid://b81yek0dpdukm" path="res://enemy_actor.tscn" id="4_oxvpf"]
 
@@ -38,7 +38,7 @@ position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
 texture = ExtResource("3_olnyg")
 
-[node name="PlayerCharacter" parent="." groups=["Player"] instance=ExtResource("1_rjx7k")]
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_rjx7k")]
 position = Vector2(502, 345)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]

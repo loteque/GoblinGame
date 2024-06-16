@@ -13,7 +13,7 @@ var has_target: bool = false
 var target: Node2D
 var throw_target: Marker2D
 var player: Node2D
-var player_inside_follow_area: bool = false
+var should_follow_player: bool = false
 
 var _is_thrown: bool = false
 func is_thrown():
@@ -39,23 +39,23 @@ func follow_player():
         has_target = true
         _set_movement_target(target.global_transform.origin)
 
-func player_is_within_nav_target_distance():
+func player_is_within_max_target_distance():
     if not player:
         return false
     return self.global_transform.origin.distance_to(
     player.follow_target.global_transform.origin
 ) < nav_agent.target_desired_distance
 
-func _physics_process(_delta):
-
-    if nav_agent.is_navigation_finished():
-        var player_is_close_enough = player_is_within_nav_target_distance()
-        
-        if player_inside_follow_area:
-            if !player_is_close_enough:
+func handle_new_navigation():
+    if should_follow_player:
+            if !player_is_within_max_target_distance():
                 follow_player()
+            else: # Close enough
+                stop_moving()
+    else: # Nothing to be done.
         stop_moving()
 
+func handle_current_navigation():
     if has_target or throw_target:
         _set_movement_target(target.global_transform.origin)
     
@@ -70,6 +70,13 @@ func _physics_process(_delta):
         new_velocity = new_velocity * throw_multiplier
 
     _on_velocity_computed(new_velocity)
+
+func _physics_process(_delta):
+
+    if nav_agent.is_navigation_finished():
+        handle_new_navigation()
+    else:
+        handle_current_navigation()
 
 func _on_velocity_computed(safe_velocity: Vector2):
     velocity = safe_velocity
@@ -138,7 +145,7 @@ func boost_speed(speed):
 func set_up_nav_target(nav_target: Node2D):
     if nav_target.is_in_group("Player"):
         target = nav_target.follow_target
-        player_inside_follow_area = true
+        should_follow_player = true
         throw_target = nav_target.throw_target
     
     if nav_target.is_in_group("Enemy"):
@@ -164,7 +171,7 @@ func unset_nav_target(nav_target):
     if nav_target.is_in_group("Player"):
         has_target = false
         target = self
-        player_inside_follow_area = false
+        should_follow_player = false
         throw_target = null
         print("body exited")
         disconnect_called_goblins()
