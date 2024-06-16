@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=8 format=3 uid="uid://c4fb2nyi3hcyx"]
 
+[ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
 [ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="2_7cfec"]
+[ext_resource type="AudioStream" uid="uid://bvhn2r1uvclt4" path="res://assets/music/calm.mp3" id="2_piiot"]
 [ext_resource type="Texture2D" uid="uid://j2qs2abkomav" path="res://icon-bot.png" id="3_olnyg"]
 [ext_resource type="PackedScene" uid="uid://b81yek0dpdukm" path="res://enemy_actor.tscn" id="4_oxvpf"]
 
@@ -13,6 +15,10 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
+
+[node name="MusicManager" type="AudioStreamPlayer" parent="."]
+script = ExtResource("1_51uy5")
+calm_layer = ExtResource("2_piiot")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(577, 322)
