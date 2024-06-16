@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u84gf"]
 size = Vector2(24, 20)
 
-[node name="Scrap" type="Node2D"]
+[node name="Scrap" type="Node2D" groups=["scrap"]]
 script = ExtResource("1_a2bdl")
 
 [node name="Scrap" type="Sprite2D" parent="."]
@@ -18,3 +18,6 @@ texture = ExtResource("1_8uq5o")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableComponent"]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_u84gf")
+
+[node name="CollectionTimer" type="Timer" parent="."]
+one_shot = true
