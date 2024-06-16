@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://hehsosy8cwdc"]
+
+[ext_resource type="Texture2D" uid="uid://kuktjxvnjemo" path="res://collectables/scrap/scrap.png" id="1_8uq5o"]
+[ext_resource type="Script" path="res://collectables/scrap/scrap.gd" id="1_a2bdl"]
+[ext_resource type="PackedScene" uid="uid://dr73ojaoy2sxa" path="res://collectables/collectable_component.tscn" id="2_d0hgs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u84gf"]
+size = Vector2(24, 20)
+
+[node name="Scrap" type="Node2D" groups=["scrap"]]
+script = ExtResource("1_a2bdl")
+
+[node name="Scrap" type="Sprite2D" parent="."]
+texture = ExtResource("1_8uq5o")
+
+[node name="CollectableComponent" parent="." instance=ExtResource("2_d0hgs")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableComponent"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_u84gf")
+
+[node name="CollectionTimer" type="Timer" parent="."]
+one_shot = true
