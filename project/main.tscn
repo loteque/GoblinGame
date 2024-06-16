@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=9 format=3 uid="uid://c4fb2nyi3hcyx"]
 
+[ext_resource type="PackedScene" uid="uid://c88ln5od7o8ge" path="res://ui/TouchUI.tscn" id="1_7a154"]
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
 [ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="2_7cfec"]
@@ -15,6 +16,8 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
+
+[node name="TouchUI" parent="." instance=ExtResource("1_7a154")]
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
 script = ExtResource("1_51uy5")
