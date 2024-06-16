@@ -13,7 +13,7 @@ var has_target: bool = false
 var target: Node2D
 var throw_target: Marker2D
 var player: Node2D
-var player_inside_follow_area: bool = false
+var should_follow_player: bool = false
 
 var _is_thrown: bool = false
 func is_thrown():
@@ -30,32 +30,32 @@ func _ready() -> void:
 func _set_movement_target(movement_target: Vector2):
     nav_agent.set_target_position(movement_target)
 
-func _physics_process(_delta):
+func stop_moving():
+    velocity = Vector2.ZERO
 
-    if nav_agent.is_navigation_finished(): 
-        
-        if (
-            player_inside_follow_area 
-            and self.global_transform.origin.distance_to(
-                    player.follow_target.global_transform.origin
-                ) < nav_agent.target_desired_distance
-        ):
-            velocity = Vector2.ZERO
-            return
+func follow_player():
+    if player:
+        target = player.follow_target
+        has_target = true
+        _set_movement_target(target.global_transform.origin)
 
-        if (
-            player_inside_follow_area 
-            and self.global_transform.origin.distance_to(
-                    player.follow_target.global_transform.origin
-                ) > nav_agent.target_desired_distance
-        ):
-            target = player.follow_target
-            has_target = true
-            _set_movement_target(target.global_transform.origin)
-            
-        velocity = Vector2.ZERO
-        return
+func player_is_within_max_target_distance():
+    if not player:
+        return false
+    return self.global_transform.origin.distance_to(
+    player.follow_target.global_transform.origin
+) < nav_agent.target_desired_distance
 
+func handle_new_navigation():
+    if should_follow_player:
+            if !player_is_within_max_target_distance():
+                follow_player()
+            else: # Close enough
+                stop_moving()
+    else: # Nothing to be done.
+        stop_moving()
+
+func handle_current_navigation():
     if has_target or throw_target:
         _set_movement_target(target.global_transform.origin)
     
@@ -69,8 +69,14 @@ func _physics_process(_delta):
     if !follow_area.monitoring:
         new_velocity = new_velocity * throw_multiplier
 
-
     _on_velocity_computed(new_velocity)
+
+func _physics_process(_delta):
+
+    if nav_agent.is_navigation_finished():
+        handle_new_navigation()
+    else:
+        handle_current_navigation()
 
 func _on_velocity_computed(safe_velocity: Vector2):
     velocity = safe_velocity
@@ -90,7 +96,6 @@ func _input(event):
     if event.is_action("throw") and has_target:
         throw_actor()
 
-
 # body proximity detection
 func target_is_self():
     if target == self:
@@ -103,7 +108,7 @@ func connect_called_goblins():
     if !player.called_goblins.is_connected(_on_player_called_goblins):
         player.called_goblins.connect(_on_player_called_goblins)
 
-func _on_follow_area_body_entered(body:Node2D):
+func _on_follow_area_body_entered(body: Node2D):
     
     if self.is_in_group("Enemy"):
         return
@@ -123,7 +128,6 @@ func _on_follow_area_body_entered(body:Node2D):
         set_collision_mask(0)
         set_collision_layer(0)
 
-
 # handle connecting actors to player
 # actors get a speed boost on connection
 var _is_burst: bool = false
@@ -141,7 +145,7 @@ func boost_speed(speed):
 func set_up_nav_target(nav_target: Node2D):
     if nav_target.is_in_group("Player"):
         target = nav_target.follow_target
-        player_inside_follow_area = true
+        should_follow_player = true
         throw_target = nav_target.throw_target
     
     if nav_target.is_in_group("Enemy"):
@@ -149,7 +153,7 @@ func set_up_nav_target(nav_target: Node2D):
         throw_target = null
 
     has_target = true
-    _set_movement_target(target.global_transform.origin)	
+    _set_movement_target(target.global_transform.origin)
 
 func _on_player_called_goblins():
     # set up navigation targets
@@ -157,7 +161,6 @@ func _on_player_called_goblins():
     
     # set and unset actor speed burst
     boost_speed(player.speed)
-
 
 # handle disconecting actors from player
 func disconnect_called_goblins():
@@ -168,14 +171,14 @@ func unset_nav_target(nav_target):
     if nav_target.is_in_group("Player"):
         has_target = false
         target = self
-        player_inside_follow_area = false
+        should_follow_player = false
         throw_target = null
         print("body exited")
         disconnect_called_goblins()
 
 # actor will disconnect from player when player leaves their
 # detection radius
-func _on_follow_area_body_exited(body:Node2D):
+func _on_follow_area_body_exited(body: Node2D):
     unset_nav_target(body)
 
 # can die
@@ -189,8 +192,8 @@ func take_damage(amount: int):
     health = health - amount
     health_updated.emit(health)
     print(
-        str(self.name) 
-        + " took damage. health: " 
+        str(self.name)
+        + " took damage. health: "
         + str(health)
     )
 
