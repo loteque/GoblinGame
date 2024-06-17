@@ -9,6 +9,10 @@ extends CharacterBody2D
 @export var nav_agent: NavigationAgent2D
 @export var follow_area: Area2D
 
+@onready var target_tracker_component: TargetTrackerComponent = $TargetTrackerComponent
+
+@export var scrap_collect_distance: float = 100
+
 var has_target: bool = false
 var target: Node2D
 var throw_target: Marker2D
@@ -30,6 +34,27 @@ func _ready() -> void:
 func _set_movement_target(movement_target: Vector2):
     nav_agent.set_target_position(movement_target)
 
+func should_collect_scrap():
+    if target:
+        print(global_position.distance_to(target.global_position))
+        if target.is_in_group("Scrap") and global_position.distance_to(target.global_position) <= scrap_collect_distance:
+            return true
+    return false
+
+func collect_scrap():
+    pass
+
+func is_close_to_scrap():
+    return target_tracker_component.is_tracking_group("Scrap")
+
+func go_to_scrap():
+    # find closest scrap.
+    var closest_scrap = target_tracker_component.get_closest_in_group("Scrap")
+    if closest_scrap:
+        set_up_nav_target(closest_scrap)
+        _set_movement_target(target.global_transform.origin)
+    pass
+
 func stop_moving():
     velocity = Vector2.ZERO
 
@@ -47,12 +72,17 @@ func player_is_within_max_target_distance():
 ) < nav_agent.target_desired_distance
 
 func handle_new_navigation():
+        
     if should_follow_player:
             if !player_is_within_max_target_distance():
                 follow_player()
             else: # Close enough
                 stop_moving()
-    else: # Nothing to be done.
+    elif should_collect_scrap():
+        collect_scrap()
+    elif is_close_to_scrap():
+        go_to_scrap()
+    else:
         stop_moving()
 
 func handle_current_navigation():
@@ -89,6 +119,7 @@ func throw_actor():
     set_collision_mask(0)
     target = throw_target
     _is_thrown = true
+    should_follow_player = false
     if target:
         _set_movement_target(target.global_transform.origin)
 
@@ -151,6 +182,10 @@ func set_up_nav_target(nav_target: Node2D):
     if nav_target.is_in_group("Enemy"):
         target = nav_target
         throw_target = null
+    
+    if nav_target.is_in_group("Scrap"):
+        target = nav_target
+        throw_target = null
 
     has_target = true
     _set_movement_target(target.global_transform.origin)
@@ -179,7 +214,8 @@ func unset_nav_target(nav_target):
 # actor will disconnect from player when player leaves their
 # detection radius
 func _on_follow_area_body_exited(body: Node2D):
-    unset_nav_target(body)
+    if target == body:
+        unset_nav_target(body)
 
 # can die
 func die():
