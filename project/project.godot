@@ -14,6 +14,10 @@ config/name="Goblin Armies"
 run/main_scene="res://tests/test_new_actor.tscn"
 config/features=PackedStringArray("4.2")
 
+[autoload]
+
+ResourceManager="*res://resource_manager.gd"
+
 [display]
 
 window/stretch/mode="viewport"

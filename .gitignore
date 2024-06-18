@@ -5,3 +5,5 @@ docs/idea*
 .godot/
 
 releases/
+
+*.tmp

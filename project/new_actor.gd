@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Actor
+
 @export var health: int
 @export var damage: int
 @export var move_speed: float
@@ -8,12 +10,13 @@ extends CharacterBody2D
 @export var throw_multiplier: float
 @export var nav_agent: NavigationAgent2D
 @export var follow_area: Area2D
+@export var team: TeamManager.Team = TeamManager.Team.PLAYER
+@export var should_follow_player: bool = false
+@export var player: Node2D
 
 var has_target: bool = false
 var target: Node2D
 var throw_target: Marker2D
-var player: Node2D
-var should_follow_player: bool = false
 
 var _is_thrown: bool = false
 func is_thrown():
@@ -73,6 +76,7 @@ func handle_current_navigation():
     _on_velocity_computed(new_velocity)
 
 func _physics_process(_delta):
+    move_and_slide()
     return
     if nav_agent.is_navigation_finished():
         handle_new_navigation()
@@ -180,6 +184,7 @@ func unset_nav_target(nav_target):
 # actor will disconnect from player when player leaves their
 # detection radius
 func _on_follow_area_body_exited(body: Node2D):
+    return
     unset_nav_target(body)
 
 # can die

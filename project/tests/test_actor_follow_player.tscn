@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://da2hj70517rwj"]
+
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="1_nkoc0"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="2_ahk25"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_u887b"]
+vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-577, -834, 3967, -834, 3967, 1662, -577, 1654)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="TestActorFollowPlayer" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(577, 322)
+navigation_polygon = SubResource("NavigationPolygon_u887b")
+
+[node name="NewActor" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_nkoc0")]
+position = Vector2(202, 167)
+should_follow_player = true
+player = NodePath("../PlayerCharacter")
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_ahk25")]
+position = Vector2(311, 173)

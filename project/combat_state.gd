@@ -1,6 +1,6 @@
 extends State
 
-class_name Combat
+class_name CombatState
 # Createure is "in_combat"
 
 var target: Node2D # Some other thing

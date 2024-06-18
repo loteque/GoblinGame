@@ -3,30 +3,19 @@ extends State
 class_name NeutralState
 
 @onready var animated_sprite = %AnimatedSprite2D
+@onready var actor_core = %ActorCore
 
+@onready var follow = %Follow
 @onready var idle: State = $Idle
-@onready var collect = %Collect
+@onready var scavange: State = %Scavange
+@onready var target_tracker_component: TargetTrackerComponent = %TargetTrackerComponent
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
-
-
-func enter_state():
-    pass
-    # set idle state?
+func enter_state(data: Dictionary = {}):
+    super.enter_state()
+    machine.change_state(idle)
 
 func update(delta):
-    # if enemy, combat.
-    if tracked_objects.includes("Scrap"):
-        machine.change_state(collect)
-        
-    # If scrap, scavange.
-    machine.change_state(idle)
     pass
-    
-    
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-    pass
+func exit_state():
+    super.exit_state()

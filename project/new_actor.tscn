@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=20 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="2_dx5gv"]
 [ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="3_xmqe5"]
+[ext_resource type="Script" path="res://target_tracker_component.gd" id="4_cu521"]
 [ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_rs5bg"]
 [ext_resource type="Script" path="res://actor_core.gd" id="5_fjmgl"]
 [ext_resource type="Script" path="res://state_machine.gd" id="5_tfddv"]
@@ -11,12 +12,19 @@
 [ext_resource type="Script" path="res://combat_state.gd" id="8_gevwj"]
 [ext_resource type="Script" path="res://collect_state.gd" id="10_t20ij"]
 [ext_resource type="Script" path="res://follow_state.gd" id="11_wpftk"]
+[ext_resource type="Script" path="res://scavange_state.gd" id="12_cbokb"]
+[ext_resource type="Script" path="res://navigate_state.gd" id="12_yilmy"]
+[ext_resource type="Script" path="res://state_debugger.gd" id="15_c4pn6"]
+[ext_resource type="Script" path="res://thrown_state.gd" id="15_nmn2w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
 size = Vector2(19, 21)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
 radius = 136.015
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ueshs"]
+radius = 200.0
 
 [node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area") groups=["NPC", "Throwable"]]
 z_index = 1
@@ -37,6 +45,7 @@ scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_dx5gv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
 target_desired_distance = 40.0
 avoidance_enabled = true
 
@@ -49,21 +58,34 @@ shape = SubResource("CircleShape2D_v1do6")
 unique_name_in_owner = true
 scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("3_xmqe5")
-animation = &"idle_front"
+animation = &"collect_scrap"
 offset = Vector2(0, -165)
 
-[node name="AnimationController" parent="." instance=ExtResource("4_rs5bg")]
-script = null
+[node name="TargetTrackerComponent" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("4_cu521")
 
-[node name="ActorCore" type="Node" parent="." node_paths=PackedStringArray("animated_sprite")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetTrackerComponent"]
+shape = SubResource("CircleShape2D_ueshs")
+
+[node name="AnimationController" parent="." node_paths=PackedStringArray("actor", "sprite") instance=ExtResource("4_rs5bg")]
+actor = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="ActorCore" type="Node" parent="." node_paths=PackedStringArray("actor", "animated_sprite", "machine")]
 unique_name_in_owner = true
 script = ExtResource("5_fjmgl")
+actor = NodePath("..")
 animated_sprite = NodePath("../AnimatedSprite2D")
+machine = NodePath("StateMachine")
 
 [node name="StateMachine" type="Node" parent="ActorCore"]
 script = ExtResource("5_tfddv")
 
 [node name="Neutral" type="Node" parent="ActorCore/StateMachine"]
+unique_name_in_owner = true
 script = ExtResource("7_6mnjv")
 
 [node name="Idle" type="Node" parent="ActorCore/StateMachine/Neutral"]
@@ -82,26 +104,42 @@ script = ExtResource("8_gevwj")
 
 [node name="Run" type="Node" parent="ActorCore/StateMachine/Combat/Chase/Navigate"]
 
-[node name="Collect" type="Node" parent="ActorCore/StateMachine"]
+[node name="Scavange" type="Node" parent="ActorCore/StateMachine"]
 unique_name_in_owner = true
+script = ExtResource("12_cbokb")
+
+[node name="Collect" type="Node" parent="ActorCore/StateMachine/Scavange"]
 script = ExtResource("10_t20ij")
 
-[node name="Scavange" type="Node" parent="ActorCore/StateMachine/Collect"]
-
-[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Collect"]
+[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Scavange" node_paths=PackedStringArray("nav_agent")]
+script = ExtResource("12_yilmy")
+nav_agent = NodePath("../../../../NavigationAgent2D")
 
 [node name="Follow" type="Node" parent="ActorCore/StateMachine"]
+unique_name_in_owner = true
 script = ExtResource("11_wpftk")
 
-[node name="NavigateToward" type="Node" parent="ActorCore/StateMachine/Follow"]
+[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Follow"]
+script = ExtResource("12_yilmy")
 
 [node name="Thrown" type="Node" parent="ActorCore/StateMachine/Follow"]
+script = ExtResource("15_nmn2w")
 
 [node name="Idle" type="Node" parent="ActorCore/StateMachine/Follow"]
+script = ExtResource("7_yxy6a")
 
 [node name="Passive" type="Node" parent="ActorCore/StateMachine"]
 
 [node name="Idle" type="Node" parent="ActorCore/StateMachine/Passive"]
+
+[node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("follow_target")]
+unique_name_in_owner = true
+top_level = true
+offset_right = 176.0
+offset_bottom = 23.0
+text = "State label default text"
+script = ExtResource("15_c4pn6")
+follow_target = NodePath("..")
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
