@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://t3udaxv6fag4"]
+
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="1_t411p"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="2_v212g"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="3_d7f37"]
+
+[node name="TestNewActor" type="Node2D"]
+
+[node name="NewActor" parent="." instance=ExtResource("1_t411p")]
+position = Vector2(202, 167)
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_v212g")]
+position = Vector2(548, 286)
+
+[node name="Scrap" parent="." instance=ExtResource("3_d7f37")]
+position = Vector2(275, 233)

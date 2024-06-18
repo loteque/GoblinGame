@@ -1,0 +1,107 @@
+[gd_scene load_steps=14 format=3 uid="uid://b3f3e2snpptm"]
+
+[ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
+[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="2_dx5gv"]
+[ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="3_xmqe5"]
+[ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_rs5bg"]
+[ext_resource type="Script" path="res://actor_core.gd" id="5_fjmgl"]
+[ext_resource type="Script" path="res://state_machine.gd" id="5_tfddv"]
+[ext_resource type="Script" path="res://neutral_state.gd" id="7_6mnjv"]
+[ext_resource type="Script" path="res://idle_state.gd" id="7_yxy6a"]
+[ext_resource type="Script" path="res://combat_state.gd" id="8_gevwj"]
+[ext_resource type="Script" path="res://collect_state.gd" id="10_t20ij"]
+[ext_resource type="Script" path="res://follow_state.gd" id="11_wpftk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
+size = Vector2(19, 21)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
+radius = 136.015
+
+[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area") groups=["NPC", "Throwable"]]
+z_index = 1
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_j6rqw")
+nav_agent = NodePath("NavigationAgent2D")
+follow_area = NodePath("FollowArea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -12.5)
+shape = SubResource("RectangleShape2D_moct4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.823529, 0, 0.729412, 1)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_dx5gv")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 40.0
+avoidance_enabled = true
+
+[node name="FollowArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
+shape = SubResource("CircleShape2D_v1do6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("3_xmqe5")
+animation = &"idle_front"
+offset = Vector2(0, -165)
+
+[node name="AnimationController" parent="." instance=ExtResource("4_rs5bg")]
+script = null
+
+[node name="ActorCore" type="Node" parent="." node_paths=PackedStringArray("animated_sprite")]
+unique_name_in_owner = true
+script = ExtResource("5_fjmgl")
+animated_sprite = NodePath("../AnimatedSprite2D")
+
+[node name="StateMachine" type="Node" parent="ActorCore"]
+script = ExtResource("5_tfddv")
+
+[node name="Neutral" type="Node" parent="ActorCore/StateMachine"]
+script = ExtResource("7_6mnjv")
+
+[node name="Idle" type="Node" parent="ActorCore/StateMachine/Neutral"]
+script = ExtResource("7_yxy6a")
+
+[node name="Hurt" type="Node" parent="ActorCore/StateMachine"]
+
+[node name="Combat" type="Node" parent="ActorCore/StateMachine"]
+script = ExtResource("8_gevwj")
+
+[node name="Attack" type="Node" parent="ActorCore/StateMachine/Combat"]
+
+[node name="Chase" type="Node" parent="ActorCore/StateMachine/Combat"]
+
+[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Combat/Chase"]
+
+[node name="Run" type="Node" parent="ActorCore/StateMachine/Combat/Chase/Navigate"]
+
+[node name="Collect" type="Node" parent="ActorCore/StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("10_t20ij")
+
+[node name="Scavange" type="Node" parent="ActorCore/StateMachine/Collect"]
+
+[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Collect"]
+
+[node name="Follow" type="Node" parent="ActorCore/StateMachine"]
+script = ExtResource("11_wpftk")
+
+[node name="NavigateToward" type="Node" parent="ActorCore/StateMachine/Follow"]
+
+[node name="Thrown" type="Node" parent="ActorCore/StateMachine/Follow"]
+
+[node name="Idle" type="Node" parent="ActorCore/StateMachine/Follow"]
+
+[node name="Passive" type="Node" parent="ActorCore/StateMachine"]
+
+[node name="Idle" type="Node" parent="ActorCore/StateMachine/Passive"]
+
+[connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
+[connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
