@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3 uid="uid://c88ln5od7o8ge"]
+
+[ext_resource type="Gradient" path="res://ui/button_gradient_down.tres" id="1"]
+[ext_resource type="Gradient" path="res://ui/button_gradient_up.tres" id="2"]
+
+[sub_resource type="GradientTexture1D" id="1"]
+gradient = ExtResource("2")
+
+[sub_resource type="GradientTexture1D" id="2"]
+gradient = ExtResource("1")
+
+[node name="TouchUI" type="CanvasLayer"]
+
+[node name="TouchController" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(1, 1, 1, 0)
+
+[node name="DPad" type="Node2D" parent="TouchController"]
+position = Vector2(165, -160)
+scale = Vector2(2, 2)
+
+[node name="Left" type="TouchScreenButton" parent="TouchController/DPad"]
+position = Vector2(-36, -10)
+scale = Vector2(0.1, 20.273)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+action = "left"
+
+[node name="Down" type="TouchScreenButton" parent="TouchController/DPad"]
+position = Vector2(-10, 36)
+rotation = -1.5708
+scale = Vector2(0.1, 20.273)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+action = "down"
+
+[node name="Right" type="TouchScreenButton" parent="TouchController/DPad"]
+position = Vector2(36, 10)
+rotation = 3.14159
+scale = Vector2(0.1, 20.273)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+action = "right"
+
+[node name="Up" type="TouchScreenButton" parent="TouchController/DPad"]
+position = Vector2(10, -36)
+rotation = 1.5708
+scale = Vector2(0.1, 20.273)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+action = "up"
+
+[node name="ActionButtons" type="Node2D" parent="TouchController"]
+position = Vector2(987, -167)
+scale = Vector2(2, 2)
+
+[node name="A" type="TouchScreenButton" parent="TouchController/ActionButtons"]
+position = Vector2(-35.5, -18.2639)
+scale = Vector2(0.1, 19.868)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+action = "select"
+
+[node name="X" type="TouchScreenButton" parent="TouchController/ActionButtons"]
+position = Vector2(-35.5, 19.2362)
+scale = Vector2(0.1, 19.868)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+action = "call"
+
+[node name="B" type="TouchScreenButton" parent="TouchController/ActionButtons"]
+position = Vector2(34.8999, -12.1319)
+rotation = -3.14159
+scale = Vector2(0.1, 19.868)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+action = "throw"
+
+[node name="Y" type="TouchScreenButton" parent="TouchController/ActionButtons"]
+position = Vector2(34.8999, 25.8681)
+rotation = -3.14159
+scale = Vector2(0.1, 19.868)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+action = "place"
+
+[node name="SystemButtons" type="Node2D" parent="TouchController"]
+position = Vector2(542, -69)
+scale = Vector2(2, 2)
+
+[node name="Select" type="TouchScreenButton" parent="TouchController/SystemButtons"]
+position = Vector2(-24.8125, -19.5)
+scale = Vector2(0.05, 30)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
+
+[node name="Start" type="TouchScreenButton" parent="TouchController/SystemButtons"]
+position = Vector2(25.375, 9.99997)
+rotation = -3.14159
+scale = Vector2(0.05, 30)
+texture_normal = SubResource("1")
+texture_pressed = SubResource("2")
