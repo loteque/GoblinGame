@@ -2,13 +2,16 @@ extends Area2D
 
 class_name TargetTrackerComponent
 
+@export var actor: Node2D
+
+
 var tracked_nodes: Array[Node2D] = []
 
 func _ready():
     area_entered.connect(_on_area_entered)
     area_exited.connect(_on_area_exited)
-    var areas = get_overlapping_areas()
-    areas
+    body_entered.connect(_on_body_entered)
+    body_exited.connect(_on_body_exited)
 
 func _on_area_entered(area: Area2D):
     if area.is_in_group("Scrap"):
@@ -18,8 +21,39 @@ func _on_area_exited(area: Area2D):
     if area.is_in_group("Scrap"):
         tracked_nodes.erase(area)
 
+func _on_body_entered(body: Node2D):
+    if body.is_in_group("Actor"):
+        tracked_nodes.append(body)
+
+func _on_body_exited(body: Node2D):
+    if body.is_in_group("Actor"):
+        tracked_nodes.erase(body)
+
+func is_not_same_team(npc: Actor):
+    var diff_team = npc.team != actor.team
+    #print(diff_team)
+    return diff_team
+
+func get_enemies_of(team: TeamManager.Team):
+    var npcs = get_tracked_in_group("Actor")
+    var enemies: Array[Node2D] = []
+    for npc in npcs:
+        #print (npc.team == team)
+        if npc.team != team:
+            enemies.append(npc)
+    #var enemies = npcs.filter(is_not_same_team)
+    return enemies
+
+func get_closest_enemy_of(team: TeamManager.Team):
+    var enemies = get_enemies_of(team)
+    var closest = sort_nodes_by_distance(enemies)[0]
+    return closest
+
+func has_enemies_of(team: TeamManager.Team):
+    return len(get_enemies_of(team)) > 0
+
 func _process(_delta):
-    print(tracked_nodes)
+    pass
     #var areas = get_overlapping_areas()
     #if len(areas) > len(tracked_nodes):
         #tracked_nodes = areas.duplicate()

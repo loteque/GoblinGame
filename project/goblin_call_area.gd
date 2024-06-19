@@ -1,40 +1,52 @@
 extends Area2D
 
-var goblins = []
-
 # Who the goblins will follow
 @export var leader: Node2D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
+var followers: Array[Node2D] = []
+var is_leading: bool = false
 
+@onready var call_range_indicator = %CallRangeIndicator
+@onready var call_range_indicator_timer = %CallRangeIndicatorTimer
+
+func _ready():
+    call_range_indicator.visible = false
+
+func _input(event):
+    if event.is_action_pressed("call"):
+        if is_leading:
+            release_goblins()
+        else:
+            call_goblins()
 
 func call_goblins():
-    #get colliding golins
     var bodies = get_overlapping_bodies()
     var goblins = bodies.filter(func(node: Node2D): return node.is_in_group("NPC"))
     var allied_goblins = goblins.filter(func(node: Node2D): return node.team == leader.team)
-    goblins.assign(allied_goblins)
-    make_follow(goblins)
-    #on same team
-    #Seta ll should_follow_player
-    pass
+    if len(allied_goblins) > 0:
+        lead(allied_goblins)
+
+func show_call_indicator():
+    call_range_indicator_timer.start()
+    call_range_indicator.visible = true
+    await call_range_indicator_timer.timeout
+    call_range_indicator.visible = false
+
+func lead(new_followers: Array[Node2D]):
+    is_leading = true
+    followers.assign(new_followers)
+    make_follow(followers)
+    show_call_indicator()
 
 func make_follow(targets: Array[Node2D]):
     for target in targets:
         target.follow(leader)
 
-func _input(event):
-    if event.is_action("call"):
-        call_goblins()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-    pass
+func make_unfollow(targets: Array[Node2D]):
+    for target in targets:
+        target.unfollow(leader)
 
 func release_goblins():
-    #get colliding golins
-    #on same team
-    #Seta ll should_follow_player
-    pass
+    make_unfollow(followers)
+    followers.assign([])
+    is_leading = false

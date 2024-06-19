@@ -38,3 +38,7 @@ position = Vector2(494, 281)
 follow_target = NodePath("../PlayerCharacter")
 
 [node name="LevelUI" parent="FollowCamera" instance=ExtResource("4_7xcfe")]
+
+[node name="Actor" parent="." instance=ExtResource("1_t411p")]
+position = Vector2(918, 459)
+team = 1

@@ -6,12 +6,17 @@ extends CharacterBody2D
 @export var follow_target: Marker2D
 @export var team: TeamManager.Team = TeamManager.Team.PLAYER
 
+@onready var health_component = $HealthComponent
+
 
 var base = preload("res://static_unit.tscn").instantiate()
 var base_placer = BasePlacer.new(1)
 var selected: Node2D
 
 signal called_goblins()
+
+func receive_attack(attack: Attack):
+    health_component.receive_attack(attack)
 
 func get_input():
     var input_direction = Input.get_vector("left", "right", "up", "down")

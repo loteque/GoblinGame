@@ -46,7 +46,9 @@ func update(delta):
     if not target:
         machine.change_state(null)
     elif is_close_enough(target):
-            machine.change_state(collect, {"target": target})
+        machine.change_state(collect, {"target": target})
+    else:
+        machine.change_state(navigate, {"position": target.global_position, "position_tolorance": scavange_range})
     #machine.state.update(delta)
 
 # EXIT

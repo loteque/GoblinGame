@@ -26,11 +26,11 @@ func change_state(new_state: State, data: Dictionary = {}, force: bool = false):
         state.exit_state()
         state = new_state
         state.enter_state(data)
-    elif not state and new_state:    
+    elif not state and new_state:
         state = new_state
         state.enter_state(data)
     #elif JSON.stringify(data) != JSON.stringify(prev_data) and new_state == state:
-    elif data != prev_data and new_state == state:
+    elif data != prev_data and new_state == state and not new_state == null:
         state.exit_state()
         state = new_state
         state.enter_state(data)

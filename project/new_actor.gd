@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 class_name Actor
 
-@export var health: int
 @export var damage: int
 @export var move_speed: float
 @export var burst_speed: float
@@ -14,6 +13,9 @@ class_name Actor
 @export var should_follow_player: bool = false
 @export var player: Node2D
 
+@onready var health_component = $HealthComponent
+
+
 var has_target: bool = false
 var target: Node2D
 var throw_target: Marker2D
@@ -24,6 +26,10 @@ func is_thrown():
         return true
     return false
 
+func _ready():
+    if team == TeamManager.Team.CPU:
+        set_modulate(Color(0.784, 0.114, 0.8))
+
 func follow(target: Node2D):
     should_follow_player = true
     player = target
@@ -32,6 +38,9 @@ func unfollow(target: Node2D):
     should_follow_player = false
     player = null
 
+func receive_attack(attack: Attack):
+    health_component.receive_attack(attack)
+    
 
 func _physics_process(_delta):
     move_and_slide()
@@ -55,7 +64,7 @@ func connect_called_goblins():
         player.called_goblins.connect(_on_player_called_goblins)
 
 func _on_follow_area_body_entered(body: Node2D):
-    
+    return
     if self.is_in_group("Enemy"):
         return
 
@@ -111,14 +120,7 @@ func die():
 # can take damage
 signal health_updated(body)
 
-func take_damage(amount: int):
-    health = health - amount
-    health_updated.emit(health)
-    print(
-        str(self.name)
-        + " took damage. health: "
-        + str(health)
-    )
+
 
 func attack(attack_target):
     print(str(attack_target))

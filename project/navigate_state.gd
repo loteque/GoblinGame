@@ -34,6 +34,7 @@ func enter_state(data: Dictionary = {}):
 func update(delta):
     if nav_agent.is_navigation_finished():
         _on_velocity_computed(Vector2.ZERO)
+        nav_agent.set_target_position(target_position)
         return
     movement_delta = speed * delta
     #nav_agent.set_target_position(target.global_position)
