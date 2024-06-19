@@ -4,7 +4,6 @@ extends State
 class_name AttackState
 
 @onready var animated_sprite = %AnimatedSprite2D
-
 @onready var actor_core = %ActorCore
 
 var target: Scrap
@@ -18,8 +17,6 @@ func enter_state(data: Dictionary = {}):
     super.enter_state()
     target = data.get("target")
     animated_sprite.play("collect_scrap")
-    #if target:
-        #animated_sprite.play("collect_scrap")
 
 func exit_state():
     super.exit_state()

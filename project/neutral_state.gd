@@ -14,8 +14,5 @@ func enter_state(data: Dictionary = {}):
     super.enter_state()
     machine.change_state(idle)
 
-func update(delta):
-    pass
-
 func exit_state():
     super.exit_state()

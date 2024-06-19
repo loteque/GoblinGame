@@ -7,8 +7,6 @@ class_name HealthComponent
 
 func receive_attack(attack: Attack):
     current_health -= attack.damage
-    #health_updated.emit(health)
-    # signal attacked
     print(
         str(self.get_parent().name)
         + " took damage. health: "
@@ -18,7 +16,4 @@ func receive_attack(attack: Attack):
         die()
 
 func die():
-    # Handle death state
     get_parent().queue_free()
-    pass
-    #signal death

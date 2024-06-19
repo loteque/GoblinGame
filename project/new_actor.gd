@@ -15,7 +15,6 @@ class_name Actor
 
 @onready var health_component = $HealthComponent
 
-
 var has_target: bool = false
 var target: Node2D
 var throw_target: Marker2D
@@ -63,29 +62,6 @@ func connect_called_goblins():
     if !player.called_goblins.is_connected(_on_player_called_goblins):
         player.called_goblins.connect(_on_player_called_goblins)
 
-func _on_follow_area_body_entered(body: Node2D):
-    return
-    if self.is_in_group("Enemy"):
-        return
-
-    if body.is_in_group("Enemy"):
-        pass
-        #set_up_nav_target(body)
-
-    if body.is_in_group("Player"):
-        # make actor aware of player
-        player = body
-        # connect signal called_goblins
-        connect_called_goblins()
-
-    # !this must be the last check
-    # turn off actor collisions when they are targeting
-    #if target != self:
-        #set_collision_mask(0)
-        #set_collision_layer(0)
-
-# handle connecting actors to player
-# actors get a speed boost on connection
 var _is_burst: bool = false
 func is_burst():
     if _is_burst:
@@ -99,15 +75,9 @@ func boost_speed(speed):
         _is_burst = false
 
 func _on_player_called_goblins():
-    # set up navigation targets
-    #set_up_nav_target(player)
-    
-    # set and unset actor speed burst
+
     boost_speed(player.speed)
 
-# handle disconecting actors from player
-
-# actor will disconnect from player when player leaves their
 # detection radius
 func _on_follow_area_body_exited(body: Node2D):
     return
@@ -120,12 +90,8 @@ func die():
 # can take damage
 signal health_updated(body)
 
-
-
 func attack(attack_target):
     print(str(attack_target))
     await get_tree().create_timer(.5).timeout
     attack_target.call_deferred("take_damage", damage)
-    
     target = self
-

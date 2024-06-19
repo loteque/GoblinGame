@@ -10,12 +10,9 @@ func _init():
     machine = StateMachine.new()
     add_child(machine)
 
-func _ready():
-    pass
-
 func enter_state(data: Dictionary = {}):
-    debugger.states.append(self)
-    pass
+    if debugger:
+        debugger.states.append(self)
 
 func update(delta):
     if not machine.state == null:
@@ -23,4 +20,5 @@ func update(delta):
 
 func exit_state():
     machine.change_state(null)
-    debugger.states.erase(self)
+    if debugger:
+        debugger.states.erase(self)

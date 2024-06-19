@@ -11,14 +11,7 @@ class_name ActorCore
 @onready var scavange = %Scavange
 @onready var follow = %Follow
 @onready var combat = %Combat
-
 @onready var target_tracker_component = %TargetTrackerComponent
-
-
-
-
-func _ready():
-    pass 
 
 func _physics_process(delta):
     if actor.should_follow_player:

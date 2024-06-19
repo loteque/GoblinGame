@@ -4,7 +4,6 @@ class_name TargetTrackerComponent
 
 @export var actor: Node2D
 
-
 var tracked_nodes: Array[Node2D] = []
 
 func _ready():
@@ -31,7 +30,6 @@ func _on_body_exited(body: Node2D):
 
 func is_not_same_team(npc: Actor):
     var diff_team = npc.team != actor.team
-    #print(diff_team)
     return diff_team
 
 func get_enemies_of(team: TeamManager.Team):
@@ -52,12 +50,6 @@ func get_closest_enemy_of(team: TeamManager.Team):
 func has_enemies_of(team: TeamManager.Team):
     return len(get_enemies_of(team)) > 0
 
-func _process(_delta):
-    pass
-    #var areas = get_overlapping_areas()
-    #if len(areas) > len(tracked_nodes):
-        #tracked_nodes = areas.duplicate()
-    
 func get_tracked_in_group(group_name: String):
     return tracked_nodes.filter(func (node: Node2D): return node.is_in_group(group_name))
 
