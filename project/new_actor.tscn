@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=21 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="2_dx5gv"]
 [ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="3_xmqe5"]
 [ext_resource type="Script" path="res://target_tracker_component.gd" id="4_cu521"]
-[ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_rs5bg"]
 [ext_resource type="Script" path="res://actor_core.gd" id="5_fjmgl"]
 [ext_resource type="Script" path="res://state_machine.gd" id="5_tfddv"]
 [ext_resource type="Script" path="res://neutral_state.gd" id="7_6mnjv"]
@@ -74,10 +73,6 @@ actor = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TargetTrackerComponent"]
 shape = SubResource("CircleShape2D_ueshs")
-
-[node name="AnimationController" parent="." node_paths=PackedStringArray("actor", "sprite") instance=ExtResource("4_rs5bg")]
-actor = NodePath("..")
-sprite = NodePath("../AnimatedSprite2D")
 
 [node name="ActorCore" type="Node" parent="." node_paths=PackedStringArray("actor", "animated_sprite", "machine")]
 unique_name_in_owner = true

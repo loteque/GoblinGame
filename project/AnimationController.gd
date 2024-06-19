@@ -8,7 +8,6 @@ func play_thrown_animation(rotation_deg: float):
     sprite.rotation_degrees = rotation_deg
 
 func _physics_process(_delta):
-    return
     if !actor:
         return
     
