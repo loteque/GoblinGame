@@ -1,8 +1,8 @@
 extends Area2D
 class_name Scrap
 
-var max_amount: int = 1
-var current_amount: int = 1
+var max_amount: int = 10
+var current_amount: int = 10
 @onready var collection_timer: Timer = $CollectionTimer
 
 enum CollectableType {

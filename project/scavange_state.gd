@@ -45,7 +45,7 @@ func enter_state(data: Dictionary = {}):
 func update(delta):
     if not target:
         machine.change_state(null)
-    if is_close_enough(target):
+    elif is_close_enough(target):
             machine.change_state(collect, {"target": target})
     machine.state.update(delta)
 

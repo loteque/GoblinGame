@@ -13,7 +13,7 @@ var animation_player
 var player_input
 var state: State
 
-func change_state(new_state: State, data: Dictionary = {}, force: bool = true):
+func change_state(new_state: State, data: Dictionary = {}, force: bool = false):
     if state != null and new_state != null and force == true:
         state.exit_state()
         state = new_state

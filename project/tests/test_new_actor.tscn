@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://t3udaxv6fag4"]
+[gd_scene load_steps=7 format=3 uid="uid://t3udaxv6fag4"]
 
 [ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="1_t411p"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="2_v212g"]
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="3_d7f37"]
-[ext_resource type="PackedScene" uid="uid://f0ew721jc7xl" path="res://src/ui/components/scrap_counter.tscn" id="4_ja8pm"]
+[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="4_7xcfe"]
+[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="4_olnkl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4xp5u"]
 vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)
@@ -26,7 +27,14 @@ position = Vector2(548, 286)
 [node name="Scrap" parent="." instance=ExtResource("3_d7f37")]
 position = Vector2(275, 233)
 
-[node name="ScrapCounter" parent="." instance=ExtResource("4_ja8pm")]
+[node name="Scrap2" parent="." instance=ExtResource("3_d7f37")]
+position = Vector2(343, 315)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Scrap3" parent="." instance=ExtResource("3_d7f37")]
+position = Vector2(177, 311)
+
+[node name="FollowCamera" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("4_olnkl")]
 position = Vector2(494, 281)
+follow_target = NodePath("../PlayerCharacter")
+
+[node name="LevelUI" parent="FollowCamera" instance=ExtResource("4_7xcfe")]

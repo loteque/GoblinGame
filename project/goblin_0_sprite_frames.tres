@@ -1,14 +1,15 @@
-[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://b1tde2jhy8sfh"]
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://b1tde2jhy8sfh"]
 
+[ext_resource type="Texture2D" uid="uid://dghfr0rh5pah6" path="res://assets/art/sprite_collect_scrap.png" id="1_r84qb"]
 [ext_resource type="Texture2D" uid="uid://bduj512knrmjp" path="res://goblin_sprite_sheet_wip_update_with_updated_roll.png" id="1_xvd8n"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a6qc8"]
-atlas = ExtResource("1_xvd8n")
-region = Rect2(55, 1172, 162, 436)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rwwp"]
+atlas = ExtResource("1_r84qb")
+region = Rect2(0, 0, 517, 682)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mk3s3"]
-atlas = ExtResource("1_xvd8n")
-region = Rect2(401, 1172, 162, 436)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag1tb"]
+atlas = ExtResource("1_r84qb")
+region = Rect2(517, 0, 517, 682)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wxu2l"]
 atlas = ExtResource("1_xvd8n")
@@ -61,11 +62,11 @@ region = Rect2(102, 912, 142, 254)
 [resource]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a6qc8")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_1rwwp")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mk3s3")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ag1tb")
 }],
 "loop": true,
 "name": &"collect_scrap",
