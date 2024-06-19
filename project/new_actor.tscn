@@ -135,6 +135,7 @@ script = ExtResource("7_yxy6a")
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
 top_level = true
+z_index = 1
 offset_right = 176.0
 offset_bottom = 23.0
 text = "State label default text"

@@ -7,6 +7,8 @@ class_name NavigateState
 @onready var actor_core = %ActorCore
 @onready var animated_sprite = %AnimatedSprite2D
 
+
+@onready var actor = actor_core.actor
 var target_position: Vector2
 var speed = 6000
 var movement_delta: float
@@ -39,6 +41,7 @@ func update(delta):
     var new_velocity: Vector2 = actor_core.actor.global_position.direction_to(next_path_position) * movement_delta
 
     _on_velocity_computed(new_velocity)
+    handle_animation(delta)
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
     actor_core.actor.velocity = safe_velocity
@@ -47,3 +50,20 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 func exit_state():
     _on_velocity_computed(Vector2.ZERO)
     super.exit_state()
+
+func handle_animation(delta):
+    if actor.velocity.x < 0:
+        if actor.velocity.y > 0 and abs(actor.velocity.x) < abs(actor.velocity.y):
+            animated_sprite.play("run_down")
+        else:
+            animated_sprite.play("run_side_0")
+            actor.global_transform.x.x = -1
+    if actor.velocity.x >= 0:
+        if actor.velocity.y > 0 and abs(actor.velocity.x) < abs(actor.velocity.y):
+            animated_sprite.play("run_down")
+        
+        if actor.velocity.y < 0 and abs(actor.velocity.x) <= abs(actor.velocity.y):
+            animated_sprite.play("run_up") 
+        else:
+            animated_sprite.play("run_side_0")
+            actor.global_transform.x.x = 1

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var throw_target: Marker2D
 @export var cursor: Area2D
 @export var follow_target: Marker2D
+@export var team: TeamManager.Team = TeamManager.Team.PLAYER
 
 
 var base = preload("res://static_unit.tscn").instantiate()
@@ -33,8 +34,8 @@ func _input(event):
     if event.is_action("select") and selected:
         if selected.is_in_group("Upgradable"):
             selected.upgrader.upgrade()
-    if event.is_action("call"):
-        call_goblins()
+    #if event.is_action("call"):
+        #call_goblins()
 
 
 func _on_cursor_body_entered(body:Node2D):

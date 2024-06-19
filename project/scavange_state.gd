@@ -47,7 +47,7 @@ func update(delta):
         machine.change_state(null)
     elif is_close_enough(target):
             machine.change_state(collect, {"target": target})
-    machine.state.update(delta)
+    #machine.state.update(delta)
 
 # EXIT
 func exit_state():
