@@ -11,7 +11,7 @@ size = Vector2(19, 21)
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
 radius = 136.015
 
-[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area") groups=["NPC", "Throwable"]]
+[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area") groups=["Actor", "NPC", "Throwable"]]
 z_index = 1
 motion_mode = 1
 wall_min_slide_angle = 0.0

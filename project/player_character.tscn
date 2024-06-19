@@ -1,21 +1,38 @@
-[gd_scene load_steps=7 format=3 uid="uid://78j5k0a24wsl"]
+[gd_scene load_steps=12 format=3 uid="uid://78j5k0a24wsl"]
 
 [ext_resource type="Script" path="res://PlayerCharacter.gd" id="1_k6ex4"]
+[ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_1fc7m"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="2_2qsjb"]
 [ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="3_e5xby"]
 [ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_ij8ar"]
+[ext_resource type="Script" path="res://goblin_call_area.gd" id="5_ennj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qeufm"]
 size = Vector2(26, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe2m7"]
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target", "cursor", "follow_target") groups=["Player"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pp7l4"]
+radius = 227.247
+
+[sub_resource type="Gradient" id="Gradient_1565b"]
+offsets = PackedFloat32Array(0, 0.318447, 0.413592, 0.483495, 0.883495, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.0941176, 0.0941176, 0.0941176, 0, 3.60981e-08, 0.256465, 0.214997, 1, 0, 0.807843, 0.733333, 0, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_72leo"]
+gradient = SubResource("Gradient_1565b")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target", "cursor", "follow_target") groups=["Actor", "Player"]]
 z_index = 1
+motion_mode = 1
 script = ExtResource("1_k6ex4")
 throw_target = NodePath("Marker2D")
 cursor = NodePath("Marker2D/Cursor")
 follow_target = NodePath("FollowMarker2D")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_1fc7m")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, -11.5)
@@ -62,6 +79,24 @@ offset = Vector2(0, -175)
 [node name="AnimationController" parent="." node_paths=PackedStringArray("actor", "sprite") instance=ExtResource("4_ij8ar")]
 actor = NodePath("..")
 sprite = NodePath("../AnimatedSprite2D")
+
+[node name="GoblinCallComponent" type="Area2D" parent="." node_paths=PackedStringArray("leader")]
+script = ExtResource("5_ennj5")
+leader = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoblinCallComponent"]
+position = Vector2(-4, -49)
+shape = SubResource("CircleShape2D_pp7l4")
+
+[node name="CallRangeIndicator" type="Sprite2D" parent="GoblinCallComponent/CollisionShape2D"]
+unique_name_in_owner = true
+scale = Vector2(10.7188, 10.7188)
+texture = SubResource("GradientTexture2D_72leo")
+
+[node name="CallRangeIndicatorTimer" type="Timer" parent="GoblinCallComponent/CollisionShape2D/CallRangeIndicator"]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
 
 [connection signal="body_entered" from="Marker2D/Cursor" to="." method="_on_cursor_body_entered"]
 [connection signal="body_exited" from="Marker2D/Cursor" to="." method="_on_cursor_body_exited"]

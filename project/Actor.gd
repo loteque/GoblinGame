@@ -25,7 +25,6 @@ func is_thrown():
 func _ready() -> void:
     nav_agent.velocity_computed.connect(Callable(_on_velocity_computed))
     nav_agent.target_reached.connect(_on_target_reached)
-
 # nav loop
 func _set_movement_target(movement_target: Vector2):
     nav_agent.set_target_position(movement_target)
