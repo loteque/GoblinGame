@@ -5,6 +5,8 @@ class_name HealthComponent
 @export var max_health: int = 10
 @export var current_health: int = 10
 
+signal health_changed(new_val: int)
+
 func receive_attack(attack: Attack):
     current_health -= attack.damage
     print(
@@ -12,6 +14,7 @@ func receive_attack(attack: Attack):
         + " took damage. health: "
         + str(current_health)
     )
+    health_changed.emit(current_health)
     if current_health <= 0:
         die()
 
