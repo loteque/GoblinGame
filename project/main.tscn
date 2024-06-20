@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=10 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
-[ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="2_7cfec"]
 [ext_resource type="AudioStream" uid="uid://cl3ddeukhtea8" path="res://assets/music/calm.mp3" id="2_piiot"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="3_olnyg"]
-[ext_resource type="PackedScene" uid="uid://b81yek0dpdukm" path="res://enemy_actor.tscn" id="4_oxvpf"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="5_qmkqn"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="6_ax147"]
+[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="7_sg7t6"]
+[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
 vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)
@@ -49,16 +51,40 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="." instance=ExtResource("2_7cfec")]
-position = Vector2(732, 208)
-burst_speed = 0.0
-burst_duration = 1.7
+[node name="Actor" parent="." instance=ExtResource("5_qmkqn")]
+position = Vector2(160, 117)
 
-[node name="EnemyActor" parent="." instance=ExtResource("4_oxvpf")]
-position = Vector2(256, 144)
+[node name="Actor4" parent="." node_paths=PackedStringArray("nav_agent", "follow_area") instance=ExtResource("5_qmkqn")]
+position = Vector2(806, 550)
+nav_agent = NodePath("../Actor/NavigationAgent2D")
+follow_area = NodePath("../Actor/FollowArea")
 
-[node name="Actor2" parent="." instance=ExtResource("2_7cfec")]
-position = Vector2(361, 144)
+[node name="Actor5" parent="." node_paths=PackedStringArray("nav_agent", "follow_area") instance=ExtResource("5_qmkqn")]
+position = Vector2(124, 267)
+nav_agent = NodePath("../Actor/NavigationAgent2D")
+follow_area = NodePath("../Actor/FollowArea")
 
-[node name="Actor3" parent="." instance=ExtResource("2_7cfec")]
-position = Vector2(867, 304)
+[node name="Scrap" parent="." instance=ExtResource("6_ax147")]
+position = Vector2(275, 233)
+
+[node name="Scrap2" parent="." instance=ExtResource("6_ax147")]
+position = Vector2(343, 315)
+
+[node name="Scrap3" parent="." instance=ExtResource("6_ax147")]
+position = Vector2(177, 311)
+
+[node name="Scrap4" parent="." instance=ExtResource("6_ax147")]
+position = Vector2(978, 491)
+
+[node name="FollowCamera" parent="." instance=ExtResource("7_sg7t6")]
+position = Vector2(494, 281)
+
+[node name="LevelUI" parent="FollowCamera" instance=ExtResource("8_8fyn6")]
+
+[node name="CorruptedActor" parent="." instance=ExtResource("5_qmkqn")]
+position = Vector2(918, 459)
+team = 1
+
+[node name="CorruptedActor2" parent="." instance=ExtResource("5_qmkqn")]
+position = Vector2(1001, 365)
+team = 1
