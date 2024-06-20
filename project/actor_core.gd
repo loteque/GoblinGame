@@ -11,10 +11,25 @@ class_name ActorCore
 @onready var scavange = %Scavange
 @onready var follow = %Follow
 @onready var combat = %Combat
+@onready var thrown = %Thrown
+
 @onready var target_tracker_component = %TargetTrackerComponent
 
+var is_thrown = false
+var target: Vector2
+
+func _ready():
+    actor.thrown_to.connect(_on_thrown_to)
+
+func _on_thrown_to(position: Vector2):
+    is_thrown = true
+    target = position
+
+
 func _physics_process(delta):
-    if actor.should_follow_player:
+    if is_thrown:
+        machine.change_state(thrown, {"position": target})
+    elif actor.should_follow_player:
         var target = actor.player
         machine.change_state(follow, {"target": target})
     elif target_tracker_component.has_enemies_of(actor.team):

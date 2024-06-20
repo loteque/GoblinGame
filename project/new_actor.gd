@@ -15,6 +15,8 @@ class_name Actor
 
 @onready var health_component = $HealthComponent
 
+signal thrown_to(position: Vector2)
+
 var has_target: bool = false
 var target: Node2D
 var throw_target: Marker2D
@@ -44,17 +46,14 @@ func receive_attack(attack: Attack):
 func _physics_process(_delta):
     move_and_slide()
 
-# actor can be thrown if player is detected
-# and player engages throw action
-func throw_actor():
-    set_collision_layer(0)
-    set_collision_mask(0)
-    target = throw_target
-    _is_thrown = true
 
-func _input(event):
-    if event.is_action("throw") and has_target:
-        throw_actor()
+
+func get_thrown_to(position: Vector2):
+    stop_following()
+    queue_free()
+
+func stop_following():
+    should_follow_player = false
 
 func connect_called_goblins():
     # set up nav targets on player.called_goblins()

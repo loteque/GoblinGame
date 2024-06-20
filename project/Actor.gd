@@ -91,10 +91,6 @@ func throw_actor():
     if target:
         _set_movement_target(target.global_transform.origin)
 
-func _input(event):
-    if event.is_action("throw") and has_target:
-        throw_actor()
-
 # body proximity detection
 func target_is_self():
     if target == self:

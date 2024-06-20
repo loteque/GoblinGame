@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://78j5k0a24wsl"]
+[gd_scene load_steps=13 format=3 uid="uid://78j5k0a24wsl"]
 
 [ext_resource type="Script" path="res://PlayerCharacter.gd" id="1_k6ex4"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_1fc7m"]
@@ -6,6 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="3_e5xby"]
 [ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://animation_controller.tscn" id="4_ij8ar"]
 [ext_resource type="Script" path="res://goblin_call_area.gd" id="5_ennj5"]
+[ext_resource type="Script" path="res://src/character/components/throw_goblin_component.gd" id="7_uvm8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qeufm"]
 size = Vector2(26, 17)
@@ -97,6 +98,11 @@ texture = SubResource("GradientTexture2D_72leo")
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
+
+[node name="ThrowGoblinComponent" type="Node" parent="." node_paths=PackedStringArray("goblin_command_component", "target")]
+script = ExtResource("7_uvm8g")
+goblin_command_component = NodePath("../GoblinCallComponent")
+target = NodePath("../Marker2D")
 
 [connection signal="body_entered" from="Marker2D/Cursor" to="." method="_on_cursor_body_entered"]
 [connection signal="body_exited" from="Marker2D/Cursor" to="." method="_on_cursor_body_exited"]
