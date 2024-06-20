@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=22 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://navigate_state.gd" id="12_yilmy"]
 [ext_resource type="Script" path="res://state_debugger.gd" id="15_c4pn6"]
 [ext_resource type="Script" path="res://thrown_state.gd" id="15_nmn2w"]
+[ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="18_b3fct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
 size = Vector2(19, 21)
@@ -145,6 +146,14 @@ offset_bottom = 23.0
 text = "State label default text"
 script = ExtResource("15_c4pn6")
 follow_target = NodePath("..")
+
+[node name="HealthBarUi" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("18_b3fct")]
+z_index = 1
+offset_left = 2.0
+offset_top = -100.0
+offset_right = 2.0
+offset_bottom = -100.0
+health_component = NodePath("../HealthComponent")
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
