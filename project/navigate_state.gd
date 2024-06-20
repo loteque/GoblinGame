@@ -35,7 +35,7 @@ func update(delta):
     if nav_agent.is_navigation_finished():
         _on_velocity_computed(Vector2.ZERO)
         nav_agent.set_target_position(target_position)
-        return
+        #return
     movement_delta = speed * delta
     #nav_agent.set_target_position(target.global_position)
     var next_path_position: Vector2 = nav_agent.get_next_path_position()
