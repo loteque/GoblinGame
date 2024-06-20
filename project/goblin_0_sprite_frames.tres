@@ -1,7 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://b1tde2jhy8sfh"]
+[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://b1tde2jhy8sfh"]
 
-[ext_resource type="Texture2D" uid="uid://2f0h6lf5br38" path="res://assets/art/sprite_collect_scrap.png" id="1_r84qb"]
-[ext_resource type="Texture2D" uid="uid://c7wfeg6buylm8" path="res://goblin_sprite_sheet_wip_update_with_updated_roll.png" id="1_xvd8n"]
+[ext_resource type="Texture2D" uid="uid://dghfr0rh5pah6" path="res://assets/art/sprite_collect_scrap.png" id="1_r84qb"]
+[ext_resource type="Texture2D" uid="uid://bduj512knrmjp" path="res://goblin_sprite_sheet_wip_update_with_updated_roll.png" id="1_xvd8n"]
+[ext_resource type="Texture2D" uid="uid://bt0i8gk68bwup" path="res://assets/art/npc-hit-sprite.png" id="2_4gm7y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1rwwp"]
 atlas = ExtResource("1_r84qb")
@@ -10,6 +11,10 @@ region = Rect2(0, 0, 517, 682)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ag1tb"]
 atlas = ExtResource("1_r84qb")
 region = Rect2(517, 0, 517, 682)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkvsd"]
+atlas = ExtResource("2_4gm7y")
+region = Rect2(0, 0, 263, 337)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wxu2l"]
 atlas = ExtResource("1_xvd8n")
@@ -70,6 +75,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"collect_scrap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_hkvsd")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{

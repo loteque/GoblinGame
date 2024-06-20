@@ -12,22 +12,30 @@ class_name ActorCore
 @onready var follow = %Follow
 @onready var combat = %Combat
 @onready var thrown = %Thrown
-
+@onready var hurt = %Hurt
+@onready var auto_advance = $StateMachine/AutoAdvance
+@onready var patrol_auto_advance = %PatrolAutoAdvance
 @onready var target_tracker_component = %TargetTrackerComponent
 
 var is_thrown = false
 var target: Vector2
+var is_hurt = false
 
 func _ready():
     actor.thrown_to.connect(_on_thrown_to)
+    actor.hurt.connect(_on_hurt)
 
 func _on_thrown_to(position: Vector2):
     is_thrown = true
     target = position
 
+func _on_hurt():
+    is_hurt = true
 
 func _physics_process(delta):
-    if is_thrown:
+    if is_hurt:
+        machine.change_state(hurt, {"position": target})
+    elif is_thrown:
         machine.change_state(thrown, {"position": target})
     elif actor.should_follow_player:
         var target = actor.player
@@ -38,5 +46,7 @@ func _physics_process(delta):
     elif target_tracker_component.includes("Scrap"):
         var target = target_tracker_component.get_closest_in_group("Scrap")
         machine.change_state(scavange, {"target": target})
+    elif actor.team == TeamManager.Team.CPU:
+        machine.change_state(patrol_auto_advance)
     else:
         machine.change_state(neutral)
