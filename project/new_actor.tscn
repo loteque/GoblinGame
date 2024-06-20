@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="2_dx5gv"]
+[ext_resource type="Texture2D" uid="uid://j2qs2abkomav" path="res://icon-bot.png" id="2_dx5gv"]
 [ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://goblin_0_sprite_frames.tres" id="3_xmqe5"]
 [ext_resource type="Script" path="res://target_tracker_component.gd" id="4_cu521"]
 [ext_resource type="Script" path="res://actor_core.gd" id="5_fjmgl"]
@@ -33,13 +33,14 @@ radius = 136.015
 [sub_resource type="CircleShape2D" id="CircleShape2D_ueshs"]
 radius = 200.0
 
-[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area") groups=["Actor", "NPC", "Throwable"]]
+[node name="Actor" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area", "player") groups=["Actor", "NPC", "Throwable"]]
 z_index = 1
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_j6rqw")
 nav_agent = NodePath("NavigationAgent2D")
 follow_area = NodePath("FollowArea")
+player = NodePath(".")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_3ypmk")]
 

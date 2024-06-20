@@ -12,7 +12,9 @@ class_name Actor
 @export var team: TeamManager.Team = TeamManager.Team.PLAYER
 @export var should_follow_player: bool = false
 @export var player: Node2D
+@export var music_manager: MusicManager
 
+@onready var music_connector = MusicManager.MusicConnector.new(music_manager, self)
 @onready var health_component = $HealthComponent
 
 signal thrown_to(position: Vector2)
@@ -43,6 +45,8 @@ func unfollow(target: Node2D):
 func receive_attack(attack: Attack):
     health_component.receive_attack(attack)
     hurt.emit()
+    if self.is_in_group("Enemy"):
+        music_connector._manager.damage_taken.emit()
     
 
 func _physics_process(_delta):

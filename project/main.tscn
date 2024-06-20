@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=12 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
-[ext_resource type="AudioStream" uid="uid://cl3ddeukhtea8" path="res://assets/music/calm.mp3" id="2_piiot"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="3_olnyg"]
+[ext_resource type="AudioStream" uid="uid://crgermvs1qf0u" path="res://assets/audio/music/Calm.wav" id="2_yg8ca"]
+[ext_resource type="AudioStream" uid="uid://c8dja2qaopjk6" path="res://assets/audio/music/Exploration.wav" id="3_3xj8b"]
+[ext_resource type="Texture2D" uid="uid://j2qs2abkomav" path="res://icon-bot.png" id="3_olnyg"]
+[ext_resource type="AudioStream" uid="uid://50nx1bokdfie" path="res://assets/audio/music/Combat.wav" id="4_rfcqa"]
 [ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="5_qmkqn"]
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="6_ax147"]
 [ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="7_sg7t6"]
@@ -19,8 +21,14 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 y_sort_enabled = true
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
+bus = &"music"
 script = ExtResource("1_51uy5")
-calm_layer = ExtResource("2_piiot")
+calm_layer = ExtResource("2_yg8ca")
+explore_layer = ExtResource("3_3xj8b")
+combat_layer = ExtResource("4_rfcqa")
+max_vol = -12
+min_vol = -60
+fade_time = 14.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(577, 322)
@@ -51,18 +59,31 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="." instance=ExtResource("5_qmkqn")]
+[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
 position = Vector2(160, 117)
+music_manager = NodePath("../MusicManager")
 
-[node name="Actor4" parent="." node_paths=PackedStringArray("nav_agent", "follow_area") instance=ExtResource("5_qmkqn")]
-position = Vector2(806, 550)
+[node name="Actor4" parent="." node_paths=PackedStringArray("nav_agent", "follow_area", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+position = Vector2(340, 122)
 nav_agent = NodePath("../Actor/NavigationAgent2D")
 follow_area = NodePath("../Actor/FollowArea")
+music_manager = NodePath("../MusicManager")
 
-[node name="Actor5" parent="." node_paths=PackedStringArray("nav_agent", "follow_area") instance=ExtResource("5_qmkqn")]
-position = Vector2(124, 267)
+[node name="Actor5" parent="." node_paths=PackedStringArray("nav_agent", "follow_area", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+position = Vector2(119, 362)
 nav_agent = NodePath("../Actor/NavigationAgent2D")
 follow_area = NodePath("../Actor/FollowArea")
+music_manager = NodePath("../MusicManager")
+
+[node name="CorruptedActor" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+position = Vector2(918, 459)
+team = 1
+music_manager = NodePath("../MusicManager")
+
+[node name="CorruptedActor2" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+position = Vector2(1001, 365)
+team = 1
+music_manager = NodePath("../MusicManager")
 
 [node name="Scrap" parent="." instance=ExtResource("6_ax147")]
 position = Vector2(275, 233)
@@ -80,11 +101,3 @@ position = Vector2(978, 491)
 position = Vector2(494, 281)
 
 [node name="LevelUI" parent="FollowCamera" instance=ExtResource("8_8fyn6")]
-
-[node name="CorruptedActor" parent="." instance=ExtResource("5_qmkqn")]
-position = Vector2(918, 459)
-team = 1
-
-[node name="CorruptedActor2" parent="." instance=ExtResource("5_qmkqn")]
-position = Vector2(1001, 365)
-team = 1
