@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=27 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -8,9 +8,9 @@
 [ext_resource type="Script" path="res://actor_core.gd" id="5_fjmgl"]
 [ext_resource type="Script" path="res://state_machine.gd" id="5_tfddv"]
 [ext_resource type="Script" path="res://neutral_state.gd" id="7_6mnjv"]
-[ext_resource type="Script" path="res://idle_state.gd" id="7_yxy6a"]
 [ext_resource type="Script" path="res://combat_state.gd" id="8_gevwj"]
 [ext_resource type="Script" path="res://collect_state.gd" id="10_t20ij"]
+[ext_resource type="Script" path="res://src/character/state/idle_state.gd" id="10_wb6dc"]
 [ext_resource type="Script" path="res://src/character/hurt_state.gd" id="11_3270s"]
 [ext_resource type="Script" path="res://attack_state.gd" id="11_oqg7b"]
 [ext_resource type="Script" path="res://follow_state.gd" id="11_wpftk"]
@@ -19,6 +19,10 @@
 [ext_resource type="Script" path="res://state_debugger.gd" id="15_c4pn6"]
 [ext_resource type="Script" path="res://thrown_state.gd" id="15_nmn2w"]
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="18_b3fct"]
+[ext_resource type="Script" path="res://src/character/state/explore_patrol_state.gd" id="18_mvjs0"]
+[ext_resource type="Script" path="res://src/character/state/patrol_state.gd" id="19_7nyu6"]
+[ext_resource type="Script" path="res://src/character/state/explore_state.gd" id="19_advg2"]
+[ext_resource type="Script" path="res://src/character/state/auto_idle_state.gd" id="21_tb60m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
 size = Vector2(19, 21)
@@ -95,7 +99,7 @@ unique_name_in_owner = true
 script = ExtResource("7_6mnjv")
 
 [node name="Idle" type="Node" parent="ActorCore/StateMachine/Neutral"]
-script = ExtResource("7_yxy6a")
+script = ExtResource("10_wb6dc")
 
 [node name="Hurt" type="Node" parent="ActorCore/StateMachine"]
 unique_name_in_owner = true
@@ -137,11 +141,39 @@ script = ExtResource("11_wpftk")
 script = ExtResource("12_yilmy")
 
 [node name="Idle" type="Node" parent="ActorCore/StateMachine/Follow"]
-script = ExtResource("7_yxy6a")
+script = ExtResource("10_wb6dc")
 
 [node name="Passive" type="Node" parent="ActorCore/StateMachine"]
 
 [node name="Idle" type="Node" parent="ActorCore/StateMachine/Passive"]
+
+[node name="PatrolAutoAdvance" type="Node" parent="ActorCore/StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("18_mvjs0")
+
+[node name="AutoExplore" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance"]
+script = ExtResource("19_advg2")
+
+[node name="Navigate" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoExplore"]
+script = ExtResource("12_yilmy")
+
+[node name="AutoIdleState" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance"]
+script = ExtResource("21_tb60m")
+
+[node name="AutoPatrol" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState"]
+script = ExtResource("19_7nyu6")
+
+[node name="Marker2D" type="Marker2D" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState/AutoPatrol"]
+position = Vector2(4, 1)
+
+[node name="Marker2D2" type="Marker2D" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState/AutoPatrol"]
+position = Vector2(232, 8)
+
+[node name="Marker2D3" type="Marker2D" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState/AutoPatrol"]
+position = Vector2(232, 206)
+
+[node name="Marker2D4" type="Marker2D" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState/AutoPatrol"]
+position = Vector2(0, 206)
 
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true

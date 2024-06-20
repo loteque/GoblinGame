@@ -13,7 +13,8 @@ class_name ActorCore
 @onready var combat = %Combat
 @onready var thrown = %Thrown
 @onready var hurt = %Hurt
-
+@onready var auto_advance = $StateMachine/AutoAdvance
+@onready var patrol_auto_advance = %PatrolAutoAdvance
 @onready var target_tracker_component = %TargetTrackerComponent
 
 var is_thrown = false
@@ -45,5 +46,7 @@ func _physics_process(delta):
     elif target_tracker_component.includes("Scrap"):
         var target = target_tracker_component.get_closest_in_group("Scrap")
         machine.change_state(scavange, {"target": target})
+    elif actor.team == TeamManager.Team.CPU:
+        machine.change_state(patrol_auto_advance)
     else:
         machine.change_state(neutral)
