@@ -84,6 +84,10 @@ machine = NodePath("StateMachine")
 [node name="StateMachine" type="Node" parent="ActorCore"]
 script = ExtResource("5_tfddv")
 
+[node name="Thrown" type="Node" parent="ActorCore/StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("15_nmn2w")
+
 [node name="Neutral" type="Node" parent="ActorCore/StateMachine"]
 unique_name_in_owner = true
 script = ExtResource("7_6mnjv")
@@ -124,9 +128,6 @@ script = ExtResource("11_wpftk")
 
 [node name="Navigate" type="Node" parent="ActorCore/StateMachine/Follow"]
 script = ExtResource("12_yilmy")
-
-[node name="Thrown" type="Node" parent="ActorCore/StateMachine/Follow"]
-script = ExtResource("15_nmn2w")
 
 [node name="Idle" type="Node" parent="ActorCore/StateMachine/Follow"]
 script = ExtResource("7_yxy6a")
