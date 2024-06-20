@@ -8,7 +8,7 @@ var target: Node2D
 @onready var collect = $Collect
 @onready var actor_core: ActorCore = %ActorCore
 
-var scavange_range = 20
+@export var scavange_range: float = 40.0
 
 func is_close_enough(target: Node2D):
     var distance = actor_core.actor.global_position.distance_to(target.global_position)
