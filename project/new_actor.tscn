@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=23 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://idle_state.gd" id="7_yxy6a"]
 [ext_resource type="Script" path="res://combat_state.gd" id="8_gevwj"]
 [ext_resource type="Script" path="res://collect_state.gd" id="10_t20ij"]
+[ext_resource type="Script" path="res://src/character/hurt_state.gd" id="11_3270s"]
 [ext_resource type="Script" path="res://attack_state.gd" id="11_oqg7b"]
 [ext_resource type="Script" path="res://follow_state.gd" id="11_wpftk"]
 [ext_resource type="Script" path="res://scavange_state.gd" id="12_cbokb"]
@@ -97,6 +98,11 @@ script = ExtResource("7_6mnjv")
 script = ExtResource("7_yxy6a")
 
 [node name="Hurt" type="Node" parent="ActorCore/StateMachine"]
+unique_name_in_owner = true
+script = ExtResource("11_3270s")
+
+[node name="HurtTimer" type="Timer" parent="ActorCore/StateMachine/Hurt"]
+wait_time = 0.2
 
 [node name="Combat" type="Node" parent="ActorCore/StateMachine"]
 unique_name_in_owner = true

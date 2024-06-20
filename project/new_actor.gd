@@ -16,6 +16,7 @@ class_name Actor
 @onready var health_component = $HealthComponent
 
 signal thrown_to(position: Vector2)
+signal hurt
 
 var has_target: bool = false
 var target: Node2D
@@ -41,6 +42,7 @@ func unfollow(target: Node2D):
 
 func receive_attack(attack: Attack):
     health_component.receive_attack(attack)
+    hurt.emit()
     
 
 func _physics_process(_delta):
