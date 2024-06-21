@@ -11,7 +11,7 @@ var target: Node2D
 @onready var idle = $Idle
 @onready var navigate = $Navigate
 
-func is_close_enough(target: Node2D):
+func is_close_enough():
     var distance = actor_core.actor.global_position.distance_to(target.global_position)
     return distance <= follow_distance
 
@@ -19,9 +19,9 @@ func enter_state(data: Dictionary = {}):
     super.enter_state()
     target = data.get("target")
 
-func update(delta):
+func update(_delta):
     if target and not target == null:
-        if is_close_enough(target):
+        if is_close_enough():
             machine.change_state(idle)
         else:
             machine.change_state(navigate, {"position": target.global_position, "position_tolorance": follow_distance}, true)

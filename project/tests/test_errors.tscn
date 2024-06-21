@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwjd4yu4q077x"]
+
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="1_aphdv"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wymig"]
+vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-577, -834, 3967, -834, 3967, 1662, -577, 1654)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="TestErrors" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(577, 322)
+navigation_polygon = SubResource("NavigationPolygon_wymig")
+
+[node name="NewActor" parent="." instance=ExtResource("1_aphdv")]
+position = Vector2(202, 167)

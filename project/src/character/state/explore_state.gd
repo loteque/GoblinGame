@@ -10,7 +10,6 @@ var destination: Vector2
 @export var range_max: float = 300.0
 
 @onready var actor_core = %ActorCore
-@onready var idle = $Idle
 @onready var navigate = $Navigate
 @onready var end_signal: Signal = get_parent().state_complete 
 
@@ -38,11 +37,11 @@ func is_close_enough(target: Vector2):
     var distance = actor_core.actor.global_position.distance_to(target)
     return distance <= position_tolorance
 
-func enter_state(data: Dictionary = {}):
+func enter_state(_delta: Dictionary = {}):
     super.enter_state()
     destination = get_random_destination()
 
-func update(delta):
+func update(_delta):
     if destination and not destination == null:
         if is_close_enough(destination):
             end_signal.emit()

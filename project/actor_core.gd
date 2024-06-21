@@ -13,9 +13,10 @@ class_name ActorCore
 @onready var combat = %Combat
 @onready var thrown = %Thrown
 @onready var hurt = %Hurt
-@onready var auto_advance = $StateMachine/AutoAdvance
-@onready var patrol_auto_advance = %PatrolAutoAdvance
 @onready var target_tracker_component = %TargetTrackerComponent
+@onready var patrol_auto_advance = %PatrolAutoAdvance
+
+
 
 var is_thrown = false
 var target: Vector2
@@ -32,20 +33,20 @@ func _on_thrown_to(position: Vector2):
 func _on_hurt():
     is_hurt = true
 
-func _physics_process(delta):
+func _physics_process(_delta):
     if is_hurt:
         machine.change_state(hurt, {"position": target})
     elif is_thrown:
         machine.change_state(thrown, {"position": target})
     elif actor.should_follow_player:
-        var target = actor.player
-        machine.change_state(follow, {"target": target})
+        var new_target = actor.player
+        machine.change_state(follow, {"target": new_target})
     elif target_tracker_component.has_enemies_of(actor.team):
-        var target = target_tracker_component.get_closest_enemy_of(actor.team)
-        machine.change_state(combat, {"target": target})
+        var new_target = target_tracker_component.get_closest_enemy_of(actor.team)
+        machine.change_state(combat, {"target": new_target})
     elif target_tracker_component.includes("Scrap"):
-        var target = target_tracker_component.get_closest_in_group("Scrap")
-        machine.change_state(scavange, {"target": target})
+        var new_target = target_tracker_component.get_closest_in_group("Scrap")
+        machine.change_state(scavange, {"target": new_target})
     elif actor.team == TeamManager.Team.CPU:
         machine.change_state(patrol_auto_advance)
     else:

@@ -22,5 +22,5 @@ func exit_state():
     super.exit_state()
     animated_sprite.stop()
 
-func update(delta):
+func update(_delta):
     collect()

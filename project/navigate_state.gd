@@ -52,7 +52,7 @@ func exit_state():
     _on_velocity_computed(Vector2.ZERO)
     super.exit_state()
 
-func handle_animation(delta):
+func handle_animation(_delta):
     if actor.velocity.x < 0:
         if actor.velocity.y > 0 and abs(actor.velocity.x) < abs(actor.velocity.y):
             animated_sprite.play("run_down")

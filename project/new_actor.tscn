@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=26 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -20,7 +20,6 @@
 [ext_resource type="Script" path="res://thrown_state.gd" id="15_nmn2w"]
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="18_b3fct"]
 [ext_resource type="Script" path="res://src/character/state/explore_patrol_state.gd" id="18_mvjs0"]
-[ext_resource type="Script" path="res://src/character/state/patrol_state.gd" id="19_7nyu6"]
 [ext_resource type="Script" path="res://src/character/state/explore_state.gd" id="19_advg2"]
 [ext_resource type="Script" path="res://src/character/state/auto_idle_state.gd" id="21_tb60m"]
 
@@ -160,21 +159,6 @@ script = ExtResource("12_yilmy")
 
 [node name="AutoIdleState" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance"]
 script = ExtResource("21_tb60m")
-
-[node name="AutoPatrol" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState"]
-script = ExtResource("19_7nyu6")
-
-[node name="Marker2D" type="Marker2D" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState/AutoPatrol"]
-position = Vector2(4, 1)
-
-[node name="Marker2D2" type="Marker2D" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState/AutoPatrol"]
-position = Vector2(232, 8)
-
-[node name="Marker2D3" type="Marker2D" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState/AutoPatrol"]
-position = Vector2(232, 206)
-
-[node name="Marker2D4" type="Marker2D" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoIdleState/AutoPatrol"]
-position = Vector2(0, 206)
 
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true

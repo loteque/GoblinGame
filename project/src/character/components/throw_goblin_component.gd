@@ -20,6 +20,6 @@ func throw_a_goblin():
     var goblin = select_goblin()
     throw_goblin(goblin)
 
-func _process(delta):
+func _process(_delta):
     if Input.is_action_just_pressed("throw"):
         throw_a_goblin()

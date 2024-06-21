@@ -24,7 +24,7 @@ func _on_idle_timeout():
 func get_random_delay():
     return randf_range(idle_time_min, idle_time_max)
 
-func enter_state(data: Dictionary = {}):
+func enter_state(_data: Dictionary = {}):
     super.enter_state()
     animated_sprite.play("idle_front")
     var delay = get_random_delay()

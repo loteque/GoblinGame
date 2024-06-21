@@ -10,7 +10,7 @@ func _init():
     machine = StateMachine.new()
     add_child(machine)
 
-func enter_state(data: Dictionary = {}):
+func enter_state(_data: Dictionary = {}):
     if debugger:
         debugger.states.append(self)
 
