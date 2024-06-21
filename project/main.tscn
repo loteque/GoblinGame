@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=30 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://background.gdshader" id="5_n4qge"]
 [ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="5_qmkqn"]
 [ext_resource type="Texture2D" uid="uid://cp5kq0krwa628" path="res://assets/art/river-tiles.png" id="5_spagt"]
+[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="5_x38i0"]
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="6_ax147"]
 [ext_resource type="Texture2D" uid="uid://34mnibg6rfuw" path="res://assets/art/tilesets/river-edges-tileset.png" id="6_g0v38"]
 [ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="6_g25cc"]
@@ -17,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
 [ext_resource type="Texture2D" uid="uid://bqli464yb3nh0" path="res://assets/art/tilesets/gay_poison_tiles_v1-64px.png" id="10_rqdfg"]
 [ext_resource type="Script" path="res://fog_of_war_tiles.gd" id="11_n1ijd"]
-[ext_resource type="Texture2D" path="res://assets/art/tilesets/for-of-war-tiles.png" id="18_owx3r"]
+[ext_resource type="Texture2D" uid="uid://ch38ida0awtyc" path="res://assets/art/tilesets/for-of-war-tiles.png" id="18_owx3r"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
 vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)
@@ -334,12 +335,16 @@ y_sort_enabled = true
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
 bus = &"music"
 script = ExtResource("1_51uy5")
+fade_in_speed = 20.0
+fade_out_speed = 15.0
+combat_in_speed = 20.0
+combat_out_speed = 10.0
 calm_layer = ExtResource("2_yg8ca")
 explore_layer = ExtResource("3_3xj8b")
 combat_layer = ExtResource("4_rfcqa")
-max_vol = -12
+lead_layer = ExtResource("5_x38i0")
+max_vol = -18
 min_vol = -60
-fade_time = 14.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(577, 322)
