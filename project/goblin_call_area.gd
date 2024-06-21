@@ -16,10 +16,7 @@ func _ready():
 
 func _input(event):
     if event.is_action_pressed("call"):
-        if is_leading:
-            release_goblins()
-        else:
-            call_goblins()
+        call_goblins()
 
 func get_followers():
     return followers
@@ -62,12 +59,3 @@ func lead(new_followers: Array):
 func make_follow(targets: Array[Actor]):
     for target in targets:
         target.follow(leader)
-
-func make_unfollow(targets: Array[Actor]):
-    for target in targets:
-        target.unfollow(leader)
-
-func release_goblins():
-    make_unfollow(followers)
-    followers.assign([])
-    is_leading = false

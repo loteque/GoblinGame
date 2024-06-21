@@ -3,9 +3,7 @@ extends CharacterBody2D
 class_name Actor
 
 @export var damage: int
-@export var move_speed: float
-@export var burst_speed: float
-@export var burst_duration: float
+@export var move_speed: float = 360.0
 @export var throw_multiplier: float
 @export var nav_agent: NavigationAgent2D
 @export var follow_area: Area2D
@@ -13,9 +11,14 @@ class_name Actor
 @export var should_follow_player: bool = false
 @export var player: Node2D
 @export var music_manager: MusicManager
+@export var boost_speed_multiplier := 1.05
+@export var burst_duration: float = 2.0
+var is_boosted:= false
+var current_move_speed: float
 
 @onready var music_connector = MusicManager.MusicConnector.new(music_manager, self)
 @onready var health_component = $HealthComponent
+@onready var boost_timer = $BoostTimer
 
 signal thrown_to(position: Vector2)
 signal hurt
@@ -34,7 +37,21 @@ func _ready():
     if team == TeamManager.Team.CPU:
         set_modulate(Color(0.784, 0.114, 0.8))
 
+func unboost():
+    current_move_speed = move_speed
+    is_boosted = false
+
+func boost_speed(base_speed: float):
+    var boosted_speed = boost_speed_multiplier * base_speed
+    is_boosted = true
+    current_move_speed = boosted_speed
+    await get_tree().create_timer(burst_duration).timeout
+    unboost()
+
 func follow(follow_target: Node2D):
+    if not is_boosted:
+        is_boosted = true
+        boost_speed(follow_target.speed)
     should_follow_player = true
     player = follow_target
 
@@ -47,36 +64,12 @@ func receive_attack(attack_obj: Attack):
     hurt.emit()
     if self.is_in_group("Enemy"):
         music_connector._manager.damage_taken.emit()
-    
 
 func _physics_process(_delta):
     move_and_slide()
 
-
 func stop_following():
     should_follow_player = false
-
-func connect_called_goblins():
-    # set up nav targets on player.called_goblins()
-    # so that the actor will go to player
-    if !player.called_goblins.is_connected(_on_player_called_goblins):
-        player.called_goblins.connect(_on_player_called_goblins)
-
-var _is_burst: bool = false
-func is_burst():
-    if _is_burst:
-        return true
-    return false
-
-func boost_speed(speed):
-        _is_burst = true
-        burst_speed = speed
-        await get_tree().create_timer(burst_duration).timeout
-        _is_burst = false
-
-func _on_player_called_goblins():
-
-    boost_speed(player.speed)
 
 # can die
 func die():

@@ -4,7 +4,7 @@ extends State
 class_name FollowState
 
 var target: Node2D
-@export var follow_distance: float = 40.0
+@export var follow_distance: float = 100.0
 @export var throw_distance: float = 300.0
 
 @onready var actor_core = %ActorCore
