@@ -1,5 +1,3 @@
-*.import
-
 docs/idea*
 
 .godot/
