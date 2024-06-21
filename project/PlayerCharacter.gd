@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 400
 @export var throw_target: Marker2D
+@export var marker_range: float = 250
 @export var cursor: Area2D
 @export var follow_target: Marker2D
 @export var team: TeamManager.Team = TeamManager.Team.PLAYER
@@ -14,6 +15,12 @@ var selected: Node2D
 
 signal called_goblins()
 
+func update_marker_position(player_direction: Vector2):
+    if player_direction.length() == 0:
+        return
+    var marker_position = global_position + player_direction * marker_range
+    throw_target.global_position = marker_position
+
 func receive_attack(attack: Attack):
     health_component.receive_attack(attack)
 
@@ -23,6 +30,7 @@ func get_input():
 
 func update_body():    
     var input_direction = get_input()
+    update_marker_position(input_direction)
     velocity = input_direction * speed
     move_and_slide()
 
