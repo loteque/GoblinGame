@@ -31,6 +31,13 @@ shader = ExtResource("5_n4qge")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u4m3w"]
 
+[sub_resource type="Gradient" id="Gradient_enkf7"]
+offsets = PackedFloat32Array(0, 0.154122, 0.856631, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.20989, 0.20989, 0.20989, 1, 0.28485, 0.28485, 0.28485, 1, 0.458405, 0.458405, 0.458405, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mpkqw"]
+gradient = SubResource("Gradient_enkf7")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_37y22"]
 texture = ExtResource("5_spagt")
 texture_region_size = Vector2i(64, 64)
@@ -359,7 +366,7 @@ texture = ExtResource("6_g25cc")
 [node name="WorldBoundery" type="StaticBody2D" parent="."]
 
 [node name="Bottom" type="CollisionShape2D" parent="WorldBoundery"]
-position = Vector2(551, 2019)
+position = Vector2(551, 1973)
 shape = SubResource("WorldBoundaryShape2D_u4m3w")
 
 [node name="Left" type="CollisionShape2D" parent="WorldBoundery"]
@@ -376,6 +383,28 @@ shape = SubResource("WorldBoundaryShape2D_u4m3w")
 position = Vector2(4535, 99)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_u4m3w")
+
+[node name="CaveWallLeft" type="Sprite2D" parent="WorldBoundery"]
+position = Vector2(-206, 796.5)
+scale = Vector2(6.59375, 62.2344)
+texture = SubResource("GradientTexture2D_mpkqw")
+
+[node name="CaveWallRight" type="Sprite2D" parent="WorldBoundery"]
+position = Vector2(4743, 797)
+scale = Vector2(6.59375, 62.2344)
+texture = SubResource("GradientTexture2D_mpkqw")
+
+[node name="CaveWallTop" type="Sprite2D" parent="WorldBoundery"]
+position = Vector2(2159.74, -709)
+rotation = 1.5708
+scale = Vector2(6.59375, 93.605)
+texture = SubResource("GradientTexture2D_mpkqw")
+
+[node name="CaveWallBottom" type="Sprite2D" parent="WorldBoundery"]
+position = Vector2(2170, 2181)
+rotation = 1.5708
+scale = Vector2(6.59375, 93.605)
+texture = SubResource("GradientTexture2D_mpkqw")
 
 [node name="TileMap64" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4ynmb")
