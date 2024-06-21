@@ -211,12 +211,14 @@ func _on_game_started():
 
 
 func _on_player_entered_base():
+    push_warning("player entered base")
     if !is_combat:
         start_fade(Source.SOURCE_1, FadeType.OUT, fade_out_speed)
 
 
 func _on_player_left_base():
     if !is_combat:
+        push_warning("player exited base")
         start_fade(Source.SOURCE_1, FadeType.IN, fade_in_speed)
 
 func _on_damage_taken():
@@ -244,6 +246,7 @@ func _on_combat_finished():
 func _ready():
     
     game_started.connect(_on_game_started)
+    player_entered_base.connect(_on_player_entered_base)
     player_left_base.connect(_on_player_left_base)
     damage_taken.connect(_on_damage_taken)
     combat_finished.connect(_on_combat_finished)
