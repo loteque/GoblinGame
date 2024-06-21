@@ -5,10 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3cdd"]
 size = Vector2(42.25, 42.75)
 
-[node name="StaticUnit" type="StaticBody2D" node_paths=PackedStringArray("upgrada_name_label", "upgrade_value_label") groups=["Upgradable"]]
+[node name="StaticUnit" type="StaticBody2D" node_paths=PackedStringArray("upgrade_value_label") groups=["Upgradable"]]
 scale = Vector2(4, 4)
 script = ExtResource("1_o2la3")
-upgrada_name_label = NodePath("ColorRect/HBoxContainer/UpgradeLabel")
 upgrade_value_label = NodePath("ColorRect/HBoxContainer/UpgradeValue")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
