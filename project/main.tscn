@@ -621,6 +621,7 @@ position = Vector2(497, 1440)
 position = Vector2(295, 1343)
 
 [node name="TileMap" type="TileMap" parent="." node_paths=PackedStringArray("player")]
+visible = false
 tile_set = SubResource("TileSet_o6ybg")
 format = 2
 layer_0/z_index = 2
