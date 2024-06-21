@@ -7,14 +7,24 @@ class_name MusicManager extends AudioStreamPlayer
 ## objects that need to send signals to your
 ## MusicManager Node.
 ## ie: music_manager.player_left_base.emit()
+@export_category("Fade Speed")
+@export var fade_in_speed: float
+@export var fade_out_speed: float
+@export var combat_in_speed: float
+@export var combat_out_speed: float
 
+@export_category("Audio Streams")
 @export var calm_layer: AudioStream
 @export var explore_layer: AudioStream
 @export var combat_layer: AudioStream
 @export var lead_layer: AudioStream
+
+@export_category("Target Volumes")
 @export var max_vol: int
 @export var min_vol: int
-@export var fade_time: float
+
+
+var fade_time
 
 class MusicConnector:
 
@@ -27,13 +37,22 @@ class MusicConnector:
         _client = client
 
 signal game_started
+signal player_entered_base
 signal player_left_base
 signal damage_taken
 signal combat_finished
+signal fade_finished(sources)
+signal bus_assigned(sources, bus_idx)
 
 const music_bus_str: StringName = "music"
 const in_bus_str: StringName = "fadein"
 const out_bus_str: StringName = "fadeout"
+const null_bus_str: StringName = "null"
+
+var in_idx
+var out_idx
+var music_idx
+var null_idx
 
 var source_0 = AudioStreamPlayer.new()
 var source_1 = AudioStreamPlayer.new()
@@ -60,23 +79,33 @@ enum FadeType{
 var combat_timer = Timer.new()
 var is_combat: bool
 
-func start_fade(sources: int, type: FadeType):
+func start_fade(sources: int, type: FadeType, time: float):
     match type:
         FadeType.IN:
             fade_in_sources = sources
+            assign_bus(sources, in_bus_str)
         FadeType.OUT:
             fade_out_sources = sources
+            assign_bus(sources, out_bus_str)
         _:
             push_warning("Fade type: " + str(type) + ", not supported")
             return
-            
+
+    fade_time = time
     fade = type
 
-func end_fade():
-    fade_in_sources = 0
-    fade_out_sources = 0
+func end_fade(sources, fade_type: FadeType):
     fade = FadeType.NONE
+    fade_finished.emit(sources, fade_type)
 
+func _on_fade_finished(sources, fade_type):
+    push_warning("fade finished")
+    
+    if fade_type == FadeType.IN:
+        assign_bus(sources, music_bus_str)
+    
+    if fade_type == FadeType.OUT:
+        assign_bus(sources, null_bus_str)
 
 func set_fadein_vol(db):
     AudioServer.set_bus_volume_db(
@@ -89,6 +118,10 @@ func set_fadeout_vol(db):
         AudioServer.get_bus_index(out_bus_str),
         db
     )
+
+func reset_fade_busses():
+    set_fadein_vol(min_vol)
+    set_fadeout_vol(max_vol)
 
 func assign_bus(sources: int, bus_name: StringName):
     match sources:
@@ -128,83 +161,104 @@ func assign_bus(sources: int, bus_name: StringName):
             source_1.bus = music_bus_str
             source_2.bus = music_bus_str
 
+    bus_assigned.emit(sources, AudioServer.get_bus_index(bus_name))
+
+func _on_bus_assigned(sources, bus_idx):
+    push_warning("sources: " + str(sources) + "; assigned to bus: " + str(AudioServer.get_bus_name(bus_idx)) + "; vol: " + str(AudioServer.get_bus_volume_db(bus_idx)))
+    if fade == FadeType.NONE:
+        reset_fade_busses() 
+
 func fade_in(sources: int, speed: float, delta: float):
     var bus_idx = AudioServer.get_bus_index(in_bus_str)
 
     if AudioServer.get_bus_volume_db(bus_idx) > max_vol:
         AudioServer.set_bus_volume_db(bus_idx, max_vol)
-        assign_bus(sources, music_bus_str)
-        end_fade()
+        end_fade(sources, FadeType.IN)
+        
     
-    assign_bus(sources, in_bus_str)
     AudioServer.set_bus_volume_db(
         bus_idx,
         AudioServer.get_bus_volume_db(bus_idx) + speed * delta
     )
 
 
-
 func fade_out(sources: int, speed: float, delta: float):
     var bus_idx = AudioServer.get_bus_index(out_bus_str)
 
     if AudioServer.get_bus_volume_db(bus_idx) < min_vol:
-        assign_bus(sources, music_bus_str)
-        end_fade()
+        end_fade(sources, FadeType.OUT)
 
-    assign_bus(sources, out_bus_str)
+
     AudioServer.set_bus_volume_db(
         bus_idx,
         AudioServer.get_bus_volume_db(bus_idx) - speed * delta
     )
 
-# func cross_fade(in_player: AudioStreamPlayer, out_player: AudioStreamPlayer, speed: float, delta: float):
-#     fade_in(in_player, speed, delta)
-#     fade_out(out_player, speed, delta)
 
 func _on_game_started():
-    source_0.stream = explore_layer
+    source_2.stream = combat_layer
+    source_2.bus = null_bus_str
+    source_2.play()
+    source_3.stream = lead_layer
+    source_3.bus = null_bus_str
+    source_3.play()
+
+    source_0.stream = calm_layer
     source_0.play()
-    source_1.stream = calm_layer
+    source_1.stream = explore_layer
     source_1.play()
-    start_fade(Source.SOURCE_0 + Source.SOURCE_1, FadeType.IN)
+    start_fade(Source.SOURCE_0 + Source.SOURCE_1, FadeType.IN, fade_in_speed)
+
+
+func _on_player_entered_base():
+    push_warning("player entered base")
+    if !is_combat:
+        start_fade(Source.SOURCE_1, FadeType.OUT, fade_out_speed)
+
 
 func _on_player_left_base():
-    pass
+    if !is_combat:
+        push_warning("player exited base")
+        start_fade(Source.SOURCE_1, FadeType.IN, fade_in_speed)
 
 func _on_damage_taken():
-
-    combat_timer.paused = false
-    combat_timer.start(3)
+    
+    combat_timer.start(10)
 
     if is_combat:
         await combat_timer.timeout
         is_combat = false
         combat_finished.emit()
         return
-    else:
-        source_2.stream = combat_layer
-        source_2.bus = in_bus_str
-        source_2.play(source_0.get_playback_position())
-        start_fade(Source.SOURCE_2, FadeType.IN)
+
+    if fade == FadeType.NONE:
+        start_fade(Source.SOURCE_2, FadeType.IN, combat_in_speed)
     
     is_combat = true
-
+    push_warning("Combat Started")
 
 func _on_combat_finished():
-        start_fade(Source.SOURCE_0 + Source.SOURCE_1 + Source.SOURCE_2, FadeType.OUT)
-        print("combat finished")
+        start_fade(Source.SOURCE_2, FadeType.OUT, combat_out_speed)
+        push_warning("Combat Finished") 
+        
 
 
 func _ready():
     
     game_started.connect(_on_game_started)
+    player_entered_base.connect(_on_player_entered_base)
     player_left_base.connect(_on_player_left_base)
     damage_taken.connect(_on_damage_taken)
     combat_finished.connect(_on_combat_finished)
     
-    var in_idx = AudioServer.get_bus_index(in_bus_str)
-    var out_idx = AudioServer.get_bus_index(out_bus_str)
-    var music_idx = AudioServer.get_bus_index(music_bus_str)
+    fade_finished.connect(_on_fade_finished)
+    bus_assigned.connect(_on_bus_assigned)
+
+    in_idx = AudioServer.get_bus_index(in_bus_str)
+    out_idx = AudioServer.get_bus_index(out_bus_str)
+    music_idx = AudioServer.get_bus_index(music_bus_str)
+    null_idx = AudioServer.get_bus_index(null_bus_str)
+
     AudioServer.set_bus_volume_db(in_idx, min_vol)
     AudioServer.set_bus_volume_db(out_idx, max_vol)
     AudioServer.set_bus_volume_db(music_idx, max_vol)
@@ -232,8 +286,9 @@ func _process(delta):
             fade_in(fade_in_sources, fade_time, delta)
         FadeType.OUT:
             fade_out(fade_out_sources, fade_time, delta)
-        # FadeType.CROSS: 
-        #    cross_fade(in_bus_str, self, 20, delta)
+        FadeType.CROSS: 
+           fade_in(fade_in_sources, fade_time, delta)
+           fade_out(fade_out_sources, fade_time, delta)
         _:
             return
 
