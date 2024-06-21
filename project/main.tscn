@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=25 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
@@ -12,11 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="6_ax147"]
 [ext_resource type="Texture2D" uid="uid://34mnibg6rfuw" path="res://assets/art/tilesets/river-edges-tileset.png" id="6_g0v38"]
 [ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="6_g25cc"]
-[ext_resource type="Shader" path="res://make_white_invis.gdshader" id="7_dc8af"]
 [ext_resource type="Texture2D" uid="uid://cdebc26yxfwlb" path="res://assets/art/dirt-tile.png" id="7_pmk3h"]
 [ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="7_sg7t6"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
-[ext_resource type="Texture2D" uid="uid://ima8pkdopxs4" path="res://assets/art/design-temp/demo_level_layout.png" id="8_u00vs"]
 [ext_resource type="Texture2D" uid="uid://bqli464yb3nh0" path="res://assets/art/tilesets/gay_poison_tiles_v1-64px.png" id="10_rqdfg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
@@ -27,9 +25,6 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbto2"]
 shader = ExtResource("5_n4qge")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ee3sh"]
-shader = ExtResource("7_dc8af")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u4m3w"]
 
@@ -344,12 +339,6 @@ material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
 texture = ExtResource("6_g25cc")
-
-[node name="LevelDesign" type="Sprite2D" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_ee3sh")
-position = Vector2(2282, 741)
-texture = ExtResource("8_u00vs")
 
 [node name="WorldBoundery" type="StaticBody2D" parent="."]
 
