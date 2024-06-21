@@ -34,16 +34,16 @@ func _ready():
     if team == TeamManager.Team.CPU:
         set_modulate(Color(0.784, 0.114, 0.8))
 
-func follow(target: Node2D):
+func follow(follow_target: Node2D):
     should_follow_player = true
-    player = target
+    player = follow_target
 
-func unfollow(target: Node2D):
+func unfollow(_unfollow_target: Node2D):
     should_follow_player = false
     player = null
 
-func receive_attack(attack: Attack):
-    health_component.receive_attack(attack)
+func receive_attack(attack_obj: Attack):
+    health_component.receive_attack(attack_obj)
     hurt.emit()
     if self.is_in_group("Enemy"):
         music_connector._manager.damage_taken.emit()
@@ -52,11 +52,6 @@ func receive_attack(attack: Attack):
 func _physics_process(_delta):
     move_and_slide()
 
-
-
-func get_thrown_to(position: Vector2):
-    stop_following()
-    queue_free()
 
 func stop_following():
     should_follow_player = false
@@ -82,11 +77,6 @@ func boost_speed(speed):
 func _on_player_called_goblins():
 
     boost_speed(player.speed)
-
-# detection radius
-func _on_follow_area_body_exited(body: Node2D):
-    return
-    #unset_nav_target(body)
 
 # can die
 func die():

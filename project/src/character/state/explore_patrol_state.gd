@@ -8,10 +8,6 @@ var target: Node2D
 @export var throw_distance: float = 300.0
 
 @onready var actor_core = %ActorCore
-@onready var idle = $Idle
-@onready var navigate = $Navigate
-@onready var explore = $Explore
-@onready var patrol = $Patrol
 @onready var state_list: Array[Node] = get_children().filter(func(node: Node): return node.has_method("enter_state"))
 
 signal state_complete
@@ -28,18 +24,17 @@ func advance_next_state():
     is_first = true
     if state_list.size() == 0:
         return null  # Return null if the sequence is empty
-    var next_num = state_list[state_index]
-    state_index = (state_index + 1) % state_list.size()
     current_state = state_list[state_index]
+    state_index = (state_index + 1) % state_list.size()
 
 func _on_state_complete():
     advance_next_state()
 
-func enter_state(data: Dictionary = {}):
+func enter_state(_data: Dictionary = {}):
     super.enter_state()
     #target = data.get("target")
 
-func update(delta):
+func update(_delta):
     for state in state_list:
         if state == current_state:
             machine.change_state(state, {}, is_first)

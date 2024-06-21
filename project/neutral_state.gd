@@ -10,7 +10,7 @@ class_name NeutralState
 @onready var scavange: State = %Scavange
 @onready var target_tracker_component: TargetTrackerComponent = %TargetTrackerComponent
 
-func enter_state(data: Dictionary = {}):
+func enter_state(_data: Dictionary = {}):
     super.enter_state()
     machine.change_state(idle)
 

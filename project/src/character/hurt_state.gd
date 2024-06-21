@@ -15,7 +15,7 @@ func _on_hurt_timeout():
 func _ready():
     hurt_timer.timeout.connect(_on_hurt_timeout)
 
-func enter_state(data: Dictionary = {}):
+func enter_state(_data: Dictionary = {}):
     super.enter_state()
     animated_sprite.play("hurt")
     hurt_timer.start()
