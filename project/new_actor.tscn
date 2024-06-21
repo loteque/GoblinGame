@@ -24,13 +24,13 @@
 [ext_resource type="Script" path="res://src/character/state/auto_idle_state.gd" id="21_tb60m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
-size = Vector2(19, 21)
+size = Vector2(47, 26)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
-radius = 136.015
+radius = 272.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ueshs"]
-radius = 200.0
+radius = 400.0
 
 [node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area", "player") groups=["Actor", "NPC", "Throwable"]]
 z_index = 1
@@ -44,7 +44,7 @@ player = NodePath(".")
 [node name="HealthComponent" parent="." instance=ExtResource("2_3ypmk")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3.5, -12.5)
+position = Vector2(-8.5, 44)
 shape = SubResource("RectangleShape2D_moct4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -65,7 +65,7 @@ shape = SubResource("CircleShape2D_v1do6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_xmqe5")
 animation = &"collect_scrap"
 offset = Vector2(0, -165)

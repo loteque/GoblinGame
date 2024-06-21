@@ -11,7 +11,7 @@ var target_position: Vector2
 var movement_delta: float
 
 @export var speed = 8000
-@export var position_tolorance: float = 40
+@export var position_tolorance: float = 10
 
 func is_close_enough():
     var distance = actor.global_position.distance_to(target_position)
