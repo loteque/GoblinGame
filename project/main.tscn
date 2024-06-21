@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=32 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
