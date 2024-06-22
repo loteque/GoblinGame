@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Actor
 
 @export var damage: int
-@export var move_speed: float = 360.0
+@export var move_speed: float = 300.0
 @export var throw_multiplier: float
 @export var nav_agent: NavigationAgent2D
 @export var follow_area: Area2D
@@ -14,7 +14,7 @@ class_name Actor
 @export var boost_speed_multiplier := 1.05
 @export var burst_duration: float = 2.0
 var is_boosted:= false
-var current_move_speed: float
+var current_move_speed: float = move_speed
 
 @onready var music_connector = MusicManager.MusicConnector.new(music_manager, self)
 @onready var health_component = $HealthComponent
