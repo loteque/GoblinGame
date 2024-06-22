@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=27 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -31,6 +31,9 @@ radius = 272.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ueshs"]
 radius = 400.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3763u"]
+polygon = PackedVector2Array(-26, 109, -12, 115, 14, 115, 28, 111, 24, 122, -23, 121)
 
 [node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area", "player") groups=["Actor", "NPC", "Throwable"]]
 z_index = 1
@@ -67,7 +70,7 @@ shape = SubResource("CircleShape2D_v1do6")
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_xmqe5")
-animation = &"collect_scrap"
+animation = &"idle_front"
 offset = Vector2(0, -165)
 
 [node name="TargetTrackerComponent" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
@@ -177,6 +180,12 @@ offset_top = -100.0
 offset_right = 2.0
 offset_bottom = -100.0
 health_component = NodePath("../HealthComponent")
+
+[node name="Lights" type="Node2D" parent="."]
+position = Vector2(0, -56)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Lights"]
+occluder = SubResource("OccluderPolygon2D_3763u")
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
