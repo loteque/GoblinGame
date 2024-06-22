@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
 [ext_resource type="Texture2D" uid="uid://bqli464yb3nh0" path="res://assets/art/tilesets/gay_poison_tiles_v1-64px.png" id="10_rqdfg"]
 [ext_resource type="Script" path="res://fog_of_war_tiles.gd" id="11_n1ijd"]
-[ext_resource type="Texture2D" path="res://assets/art/tilesets/for-of-war-tiles.png" id="18_owx3r"]
+[ext_resource type="Texture2D" uid="uid://ch38ida0awtyc" path="res://assets/art/tilesets/for-of-war-tiles.png" id="18_owx3r"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
 vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)

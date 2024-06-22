@@ -67,7 +67,8 @@ shape = SubResource("CircleShape2D_v1do6")
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_xmqe5")
-animation = &"collect_scrap"
+animation = &"hurt"
+frame_progress = 0.98585
 offset = Vector2(0, -165)
 
 [node name="TargetTrackerComponent" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
