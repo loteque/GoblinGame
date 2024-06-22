@@ -1,10 +1,84 @@
-[gd_scene load_steps=3 format=3 uid="uid://blnqmsyjwncp6"]
+[gd_scene load_steps=11 format=3 uid="uid://blnqmsyjwncp6"]
 
 [ext_resource type="Script" path="res://base/base.gd" id="1_eyfgn"]
-[ext_resource type="Texture2D" uid="uid://c46d1w5p54tjy" path="res://base/base-temp.png" id="2_khsh8"]
+[ext_resource type="Texture2D" uid="uid://c724x0xw1mdwh" path="res://assets/art/gay_camp_0_spritesheet_v2-1.png" id="2_xaon2"]
+[ext_resource type="Script" path="res://health_component.gd" id="3_ibguq"]
+[ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="3_mcleq"]
+[ext_resource type="PackedScene" uid="uid://cnwy1ywhhnjib" path="res://spawner.tscn" id="5_iewlk"]
+[ext_resource type="Script" path="res://base/CircularProgressBar.gd" id="6_xylyr"]
+[ext_resource type="Shader" path="res://base/spawn_progress.gdshader" id="7_k3ig4"]
 
-[node name="Base" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubkic"]
+shader = ExtResource("7_k3ig4")
+shader_parameter/primary_color = Color(4.57242e-07, 0.41793, 6.73831e-07, 1)
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/unfilled_color = Color(0, 0, 0, 1)
+shader_parameter/value = 0.35
+shader_parameter/smooth_ = 0.005
+shader_parameter/width_in = 0.5
+shader_parameter/width_out = 0.95
+shader_parameter/border_width = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ckhms"]
+width = 10
+height = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4c57"]
+size = Vector2(150, 119)
+
+[node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite")]
 script = ExtResource("1_eyfgn")
+base_sprite = NodePath("BaseSprite")
 
 [node name="BaseSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_khsh8")
+visible = false
+texture = ExtResource("2_xaon2")
+region_enabled = true
+region_rect = Rect2(2144, 1088, 632, 488)
+
+[node name="BaseDataUI" type="HBoxContainer" parent="."]
+offset_left = -79.0
+offset_top = -101.0
+offset_right = -35.0
+offset_bottom = -61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CircularProgressBar" type="HBoxContainer" parent="BaseDataUI" node_paths=PackedStringArray("spawner")]
+z_index = 2
+layout_mode = 2
+script = ExtResource("6_xylyr")
+spawner = NodePath("../../Spawner")
+
+[node name="CircularProgress" type="TextureRect" parent="BaseDataUI/CircularProgressBar"]
+material = SubResource("ShaderMaterial_ubkic")
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_ckhms")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="HealthBarUi" parent="BaseDataUI" node_paths=PackedStringArray("health_component") instance=ExtResource("3_mcleq")]
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 3
+health_component = NodePath("../../HealthComponent")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_ibguq")
+max_health = 50
+current_health = 49
+
+[node name="Spawner" parent="." instance=ExtResource("5_iewlk")]
+unique_name_in_owner = true
+position = Vector2(2, 95)
+
+[node name="BaseSprite2" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_xaon2")
+region_enabled = true
+region_rect = Rect2(2144, 1088, 632, 488)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_u4c57")

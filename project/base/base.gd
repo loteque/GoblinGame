@@ -1,4 +1,3 @@
-@tool
 extends StaticUnit
 
 const ENEMY_BASE_TEXTURE = preload ("res://base/enemy-base-temp.png")
