@@ -20,7 +20,7 @@ func attack():
 func enter_state(data: Dictionary = {}):
     super.enter_state()
     target = data.get("target")
-    animated_sprite.play("collect_scrap")
+    animated_sprite.play("attack_side")
 
 func exit_state():
     super.exit_state()
