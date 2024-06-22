@@ -336,7 +336,7 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_dg2ni")
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" groups=["Map"]]
 y_sort_enabled = true
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]

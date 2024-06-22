@@ -1,14 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://byn4m4upb43ss"]
+[gd_scene load_steps=3 format=3 uid="uid://byn4m4upb43ss"]
 
 [ext_resource type="Script" path="res://static_unit.gd" id="1_o2la3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3cdd"]
 size = Vector2(42.25, 42.75)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_56wrj"]
-radius = 271.045
-
-[node name="StaticUnit" type="StaticBody2D" node_paths=PackedStringArray("upgrade_value_label") groups=["Upgradable"]]
+[node name="StaticUnit2" type="StaticBody2D" node_paths=PackedStringArray("upgrade_value_label") groups=["Upgradable"]]
 scale = Vector2(4, 4)
 script = ExtResource("1_o2la3")
 upgrade_value_label = NodePath("ColorRect/HBoxContainer/UpgradeValue")
@@ -77,11 +74,3 @@ theme_override_font_sizes/font_size = 10
 text = "0"
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_56wrj")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
