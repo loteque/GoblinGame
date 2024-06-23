@@ -13,7 +13,7 @@ class_name ActorCore
 @onready var combat = %Combat
 @onready var thrown = %Thrown
 @onready var hurt = %Hurt
-@onready var target_tracker_component = %TargetTrackerComponent
+@onready var target_tracker_component: TargetTrackerComponent = %TargetTrackerComponent
 @onready var patrol_auto_advance = %PatrolAutoAdvance
 @onready var collector: CollectorComponent = %Collector
 

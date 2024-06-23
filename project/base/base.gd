@@ -10,6 +10,22 @@ var Team = TeamManager.Team
 @export var team: TeamManager.Team
 @export var base_sprite = Sprite2D
 @onready var spawner = %Spawner
+@onready var health_component = $HealthComponent
+@export var game_manager: GameManager
+
+signal hurt
+signal died
+
+func _on_died():
+    if team == TeamManager.Team.PLAYER:
+        game_manager.game_over.emit(GameManager.GameResult.LOSE)
+    else:
+        game_manager.game_over.emit(GameManager.GameResult.WIN)
+    visible = false
+
+func receive_attack(attack_obj: Attack):
+    health_component.receive_attack(attack_obj)
+    hurt.emit()
 
 func display_base_sprite():
     if base_sprite:
@@ -19,9 +35,7 @@ func display_base_sprite():
             base_sprite.texture = ENEMY_BASE_TEXTURE
 
 func _ready():
+    died.connect(_on_died)
     display_base_sprite()
     if spawner:
         spawner.team = team
-
-func receive_scrap():
-    pass

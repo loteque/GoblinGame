@@ -23,9 +23,11 @@ var current_move_speed: float = move_speed
 @onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var actor_core = %ActorCore
 
-
+# can take damage
+signal health_updated(body)
 signal thrown_to(position: Vector2)
 signal hurt
+signal died
 
 var has_target: bool = false
 var target: Node2D
@@ -38,9 +40,17 @@ func is_thrown():
     return false
 
 func _ready():
+    died.connect(die)
     nav_agent.velocity_computed.connect(_on_velocity_computed)
     if team == TeamManager.Team.CPU:
         set_modulate(Color(0.784, 0.114, 0.8))
+
+func _on_died():
+    die()
+
+# can die
+func die():
+    queue_free()
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
     if !actor_core.is_thrown:
@@ -82,12 +92,7 @@ func _physics_process(_delta):
 func stop_following():
     should_follow_player = false
 
-# can die
-func die():
-    queue_free()
 
-# can take damage
-signal health_updated(body)
 
 func attack(attack_target):
     print(str(attack_target))
