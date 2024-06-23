@@ -17,6 +17,7 @@ func _ready():
 
 func enter_state(_data: Dictionary = {}):
     super.enter_state()
+    actor_core.actor.sfx_manager.play_rand("hit")
     animated_sprite.play("hurt")
     hurt_timer.start()
 

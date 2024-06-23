@@ -36,7 +36,8 @@ func enter_state(data: Dictionary = {}):
     set_thrown_collisions()
     handle_animation()
     throw_velocity = actor.global_position.direction_to(target_position) * speed
-
+    actor.sfx_manager.play_rand("throw")
+    
 func update(delta):
     if is_close_enough():
         actor_core.is_thrown = false

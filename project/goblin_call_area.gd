@@ -38,6 +38,7 @@ func _sort_by_distance(a: Node2D, b: Node2D) -> bool:
     return distance_a < distance_b
 
 func call_goblins():
+    leader.sfx_manager.play_rand("recruit")
     var bodies = get_overlapping_bodies()
     var goblins = bodies.filter(func(node: Node2D): return node.is_in_group("NPC"))
     var allied_goblins = goblins.filter(func(node: Actor): return node.team == leader.team) as Array[Actor]
