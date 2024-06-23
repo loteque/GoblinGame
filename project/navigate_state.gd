@@ -15,35 +15,39 @@ var movement_delta: float
 
 func _ready():
     if nav_agent == null:
+        pass
         nav_agent = %NavigationAgent2D
 
 func enter_state(data: Dictionary={}):
     var new_target_position = data.get("position")
     super.enter_state()
     if new_target_position == target_position:
-        return # Do not setup again, already navigating
+        pass
+        #return # Do not setup again, already navigating
     target_position = new_target_position
     position_tolorance = data.get("position_tolorance")
     nav_agent.path_desired_distance = position_tolorance
     if target_position:
-        var distance = actor_core.actor.global_position.distance_to(target_position)
-        print(distance)
+        #var distance = actor_core.actor.global_position.distance_to(target_position)
+        #print(distance)
         nav_agent.set_target_position(target_position)
 
 func update(delta):
-    if nav_agent.is_navigation_finished():
-        _on_velocity_computed(Vector2.ZERO)
-        nav_agent.set_target_position(target_position)
+    #if nav_agent.is_navigation_finished():
+        ##_on_velocity_computed(Vector2.ZERO)
+        ##nav_agent.set_velocity(Vector2.ZERO)
+    var tolorance = nav_agent.target_desired_distance
+    nav_agent.set_target_position(target_position)
+    var distance_remaining = (target_position - actor.global_position).length()
     var next_path_position: Vector2 = nav_agent.get_next_path_position()
     var new_velocity: Vector2 = actor_core.actor.global_position.direction_to(next_path_position).normalized() * speed
-    _on_velocity_computed(new_velocity) # 99, -13
+    #_on_velocity_computed(new_velocity) # 99, -13
+    nav_agent.set_velocity(new_velocity)
     handle_animation(delta)
 
-func _on_velocity_computed(safe_velocity: Vector2) -> void:
-    actor_core.actor.set_velocity(safe_velocity)
-
 func exit_state():
-    _on_velocity_computed(Vector2.ZERO)
+    #_on_velocity_computed(Vector2.ZERO)
+    nav_agent.set_velocity(Vector2.ZERO)
     super.exit_state()
 
 func handle_animation(_delta):

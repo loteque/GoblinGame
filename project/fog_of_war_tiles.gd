@@ -1,6 +1,6 @@
 extends TileMap
 
-@export var reveal_radius : int = 5
+@export var reveal_radius : int = 40
 @export var fog_tile_id : int = 0 # Replace with your fog tile ID
 @export var revealed_tile_id : int = 1 # Replace with your revealed tile ID
 @export var partially_revealed_tile_id : int = 2 # Replace with your partially revealed tile ID

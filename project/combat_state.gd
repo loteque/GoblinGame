@@ -8,7 +8,7 @@ var target: Node2D
 @onready var actor_core: ActorCore = %ActorCore
 @onready var attack = $Attack
 
-@export var attack_range: float = 40.0
+@export var attack_range: float = 75.0
 
 func is_close_enough():
     var distance = actor_core.actor.global_position.distance_to(target.global_position)
@@ -22,10 +22,7 @@ func enter_state(data: Dictionary={}):
             machine.change_state(attack, {"target": target})
         else:
             machine.change_state(navigate, {"position": target.global_position, "position_tolorance": attack_range})
-        
-    # Setup this state
-    
-# DO
+
 func update(_delta):
     if not target:
         machine.change_state(null)
@@ -33,8 +30,6 @@ func update(_delta):
         machine.change_state(attack, {"target": target})
     else:
         machine.change_state(navigate, {"position": target.global_position, "position_tolorance": attack_range})
-    #machine.state.update(delta)
 
-# EXIT
 func exit_state():
     super.exit_state()

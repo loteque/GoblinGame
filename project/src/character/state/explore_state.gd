@@ -8,10 +8,13 @@ var destination: Vector2
 @export var position_tolorance: float = 40.0
 @export var range_min: float = 100.0
 @export var range_max: float = 300.0
+@export var stuck_distance: float = 1
 
 @onready var actor_core = %ActorCore
 @onready var navigate = $Navigate
 @onready var end_signal: Signal = get_parent().state_complete 
+
+@onready var previous_position: Vector2 = actor_core.actor.global_position
 
 func get_random_destination() -> Vector2:
     # Determine a random distance within the range
@@ -33,6 +36,9 @@ func get_random_destination() -> Vector2:
     # Return the global point as a Vector2
     return global_target
 
+func is_actor_stuck():
+    return (previous_position - actor_core.actor.global_position).length() < stuck_distance
+
 func is_close_enough(target: Vector2):
     var distance = actor_core.actor.global_position.distance_to(target)
     return distance <= position_tolorance
@@ -45,8 +51,12 @@ func update(_delta):
     if destination and not destination == null:
         if is_close_enough(destination):
             end_signal.emit()
+        elif is_actor_stuck():
+            destination = get_random_destination()
+            machine.change_state(navigate, {"position": destination, "position_tolorance": position_tolorance}, true)
         else:
             machine.change_state(navigate, {"position": destination, "position_tolorance": position_tolorance}, true)
+    previous_position = actor_core.actor.global_position
 
 func exit_state():
     super.exit_state()

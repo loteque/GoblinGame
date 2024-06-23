@@ -23,8 +23,16 @@ func _init():
     player = TeamResources.new()
     cpu = TeamResources.new()
 
+func change_scrap(team: Team, delta: int):
+    match team:
+        Team.PLAYER:
+            player.scrap += delta
+            scrap_updated.emit(team, player.scrap)
+        Team.CPU:
+            cpu.scrap += delta
+            scrap_updated.emit(team, cpu.scrap)
+
 func _on_scrap_collected(team: Team):
-    
     match team:
         Team.PLAYER:
             print("player collected scrap")

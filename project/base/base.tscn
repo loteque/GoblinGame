@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c724x0xw1mdwh" path="res://assets/art/gay_camp_0_spritesheet_v2-1.png" id="2_xaon2"]
 [ext_resource type="Script" path="res://health_component.gd" id="3_ibguq"]
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="3_mcleq"]
-[ext_resource type="PackedScene" uid="uid://cnwy1ywhhnjib" path="res://spawner.tscn" id="5_iewlk"]
+[ext_resource type="PackedScene" uid="uid://35pilvifscno" path="res://spawner.tscn" id="5_iewlk"]
 [ext_resource type="Script" path="res://base/CircularProgressBar.gd" id="6_xylyr"]
 [ext_resource type="Shader" path="res://base/spawn_progress.gdshader" id="7_k3ig4"]
 
@@ -23,10 +23,10 @@ shader_parameter/border_width = 0.05
 width = 10
 height = 10
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4c57"]
-size = Vector2(150, 119)
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7b5u"]
+radius = 73.1095
 
-[node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite")]
+[node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite") groups=["Base"]]
 script = ExtResource("1_eyfgn")
 base_sprite = NodePath("BaseSprite")
 
@@ -80,5 +80,6 @@ region_enabled = true
 region_rect = Rect2(2144, 1088, 632, 488)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0.5)
-shape = SubResource("RectangleShape2D_u4c57")
+position = Vector2(1, 40)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_m7b5u")

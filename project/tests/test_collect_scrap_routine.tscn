@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddlgbmws4pwyv"]
+
+[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="1_8gnvv"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="2_sa2n1"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="3_xd616"]
+[ext_resource type="Script" path="res://src/ui/debug/debug_name_label.gd" id="5_84ku4"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="5_t072y"]
+[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="5_vwx1r"]
+[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="6_astev"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_s8wgm"]
+vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-577, -834, 3967, -834, 3967, 1662, -577, 1654)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="TestCollectScrapRoutine" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(577, 322)
+navigation_polygon = SubResource("NavigationPolygon_s8wgm")
+
+[node name="Scrap" parent="." instance=ExtResource("2_sa2n1")]
+position = Vector2(618, 143)
+
+[node name="PlayerBase" parent="." instance=ExtResource("1_8gnvv")]
+position = Vector2(107, -218)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(570, 110)
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_xd616")]
+position = Vector2(324, 334)
+
+[node name="Actor3" parent="." instance=ExtResource("5_t072y")]
+position = Vector2(865, -36)
+
+[node name="NameLabel2" type="Label" parent="Actor3"]
+offset_left = 10.0
+offset_top = -161.0
+offset_right = 50.0
+offset_bottom = -138.0
+script = ExtResource("5_84ku4")
+
+[node name="FollowCamera" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("5_vwx1r")]
+position = Vector2(494, 281)
+follow_target = NodePath("../PlayerCharacter")
+
+[node name="LevelUI" parent="FollowCamera" instance=ExtResource("6_astev")]

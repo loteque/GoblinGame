@@ -23,9 +23,13 @@ func _on_area_exited(area: Area2D):
 func _on_body_entered(body: Node2D):
     if body.is_in_group("Actor"):
         tracked_nodes.append(body)
+    if body.is_in_group("Scrap"):
+        tracked_nodes.append(body)
 
 func _on_body_exited(body: Node2D):
     if body.is_in_group("Actor"):
+        tracked_nodes.erase(body)
+    if body.is_in_group("Scrap"):
         tracked_nodes.erase(body)
 
 func is_not_same_team(npc: Actor):
