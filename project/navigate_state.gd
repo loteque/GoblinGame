@@ -21,7 +21,8 @@ func enter_state(data: Dictionary={}):
     var new_target_position = data.get("position")
     super.enter_state()
     if new_target_position == target_position:
-        return # Do not setup again, already navigating
+        pass
+        #return # Do not setup again, already navigating
     target_position = new_target_position
     position_tolorance = data.get("position_tolorance")
     nav_agent.path_desired_distance = position_tolorance

@@ -27,7 +27,6 @@ func despawn():
 
 func get_collected():
     collection_timer.start()
-    await collection_timer.timeout
     if current_amount > 0:
         current_amount -= 1
     if current_amount <= 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=28 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -16,12 +16,14 @@
 [ext_resource type="Script" path="res://follow_state.gd" id="11_wpftk"]
 [ext_resource type="Script" path="res://scavange_state.gd" id="12_cbokb"]
 [ext_resource type="Script" path="res://navigate_state.gd" id="12_yilmy"]
-[ext_resource type="Script" path="res://state_debugger.gd" id="15_c4pn6"]
 [ext_resource type="Script" path="res://thrown_state.gd" id="15_nmn2w"]
+[ext_resource type="Script" path="res://src/character/state/deliver_scrap_state.gd" id="18_11e7t"]
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="18_b3fct"]
 [ext_resource type="Script" path="res://src/character/state/explore_patrol_state.gd" id="18_mvjs0"]
 [ext_resource type="Script" path="res://src/character/state/explore_state.gd" id="19_advg2"]
 [ext_resource type="Script" path="res://src/character/state/auto_idle_state.gd" id="21_tb60m"]
+[ext_resource type="Script" path="res://src/ui/debug/state_debugger.gd" id="22_rd18m"]
+[ext_resource type="Script" path="res://CollectorComponent.gd" id="25_w71ht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
 size = Vector2(47, 26)
@@ -38,7 +40,6 @@ polygon = PackedVector2Array(-26, 109, -12, 115, 14, 115, 28, 111, 24, 122, -23,
 [node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area", "player") groups=["Actor", "NPC", "Throwable"]]
 z_index = 1
 motion_mode = 1
-wall_min_slide_angle = 0.0
 script = ExtResource("1_j6rqw")
 nav_agent = NodePath("NavigationAgent2D")
 follow_area = NodePath("FollowArea")
@@ -72,6 +73,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_xmqe5")
 animation = &"idle_front"
 offset = Vector2(0, -165)
+
 
 [node name="TargetTrackerComponent" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
 unique_name_in_owner = true
@@ -132,9 +134,18 @@ script = ExtResource("12_cbokb")
 [node name="Collect" type="Node" parent="ActorCore/StateMachine/Scavange"]
 script = ExtResource("10_t20ij")
 
-[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Scavange" node_paths=PackedStringArray("nav_agent")]
+[node name="NavigateToNode" type="Node" parent="ActorCore/StateMachine/Scavange" node_paths=PackedStringArray("nav_agent")]
 script = ExtResource("12_yilmy")
 nav_agent = NodePath("../../../../NavigationAgent2D")
+
+[node name="ReturnToBase" type="Node" parent="ActorCore/StateMachine/Scavange"]
+script = ExtResource("12_yilmy")
+
+[node name="DeliverScrap" type="Node" parent="ActorCore/StateMachine/Scavange"]
+script = ExtResource("18_11e7t")
+
+[node name="Idle" type="Node" parent="ActorCore/StateMachine/Scavange/DeliverScrap"]
+script = ExtResource("10_wb6dc")
 
 [node name="Follow" type="Node" parent="ActorCore/StateMachine"]
 unique_name_in_owner = true
@@ -170,7 +181,7 @@ z_index = 1
 offset_right = 176.0
 offset_bottom = 23.0
 text = "State label default text"
-script = ExtResource("15_c4pn6")
+script = ExtResource("22_rd18m")
 follow_target = NodePath("..")
 
 [node name="HealthBarUi" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("18_b3fct")]
@@ -186,6 +197,10 @@ position = Vector2(0, -56)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Lights"]
 occluder = SubResource("OccluderPolygon2D_3763u")
+
+[node name="Collector" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("25_w71ht")
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]

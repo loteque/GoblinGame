@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://hehsosy8cwdc"]
+[gd_scene load_steps=6 format=3 uid="uid://hehsosy8cwdc"]
 
 [ext_resource type="Script" path="res://collectables/scrap/scrap.gd" id="1_a2bdl"]
 [ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="2_2xjhb"]
+[ext_resource type="Script" path="res://src/ui/debug/scrap_debug.gd" id="3_yc37h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5nvid"]
 radius = 61.0
@@ -24,7 +25,15 @@ position = Vector2(-8, -39)
 texture = ExtResource("2_2xjhb")
 
 [node name="CollectionTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6vgki")
+
+[node name="Label" type="Label" parent="."]
+z_index = 2
+offset_right = 40.0
+offset_bottom = 23.0
+text = "scrab debug"
+script = ExtResource("3_yc37h")

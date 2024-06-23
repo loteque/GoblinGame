@@ -1,7 +1,7 @@
 extends State
 
 ## Collect target
-class_name CollectState
+class_name AttackState
 
 @onready var animated_sprite = %AnimatedSprite2D
 @onready var actor_core = %ActorCore

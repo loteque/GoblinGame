@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c724x0xw1mdwh" path="res://assets/art/gay_camp_0_spritesheet_v2-1.png" id="2_xaon2"]
 [ext_resource type="Script" path="res://health_component.gd" id="3_ibguq"]
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="3_mcleq"]
-[ext_resource type="PackedScene" uid="uid://cnwy1ywhhnjib" path="res://spawner.tscn" id="5_iewlk"]
+[ext_resource type="PackedScene" path="res://spawner.tscn" id="5_iewlk"]
 [ext_resource type="Script" path="res://base/CircularProgressBar.gd" id="6_xylyr"]
 [ext_resource type="Shader" path="res://base/spawn_progress.gdshader" id="7_k3ig4"]
 
@@ -26,7 +26,7 @@ height = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4c57"]
 size = Vector2(150, 119)
 
-[node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite")]
+[node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite") groups=["Base"]]
 script = ExtResource("1_eyfgn")
 base_sprite = NodePath("BaseSprite")
 
