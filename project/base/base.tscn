@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://blnqmsyjwncp6"]
+[gd_scene load_steps=14 format=3 uid="uid://blnqmsyjwncp6"]
 
 [ext_resource type="Script" path="res://base/base.gd" id="1_eyfgn"]
 [ext_resource type="Texture2D" uid="uid://c724x0xw1mdwh" path="res://assets/art/gay_camp_0_spritesheet_v2-1.png" id="2_xaon2"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://35pilvifscno" path="res://spawner.tscn" id="5_iewlk"]
 [ext_resource type="Script" path="res://base/CircularProgressBar.gd" id="6_xylyr"]
 [ext_resource type="Shader" path="res://base/spawn_progress.gdshader" id="7_k3ig4"]
+[ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="8_4vgup"]
+[ext_resource type="AudioStream" uid="uid://bc8imry1mbcve" path="res://assets/audio/build1.wav" id="9_6c6ur"]
+[ext_resource type="AudioStream" uid="uid://csp4yed7uv34d" path="res://assets/audio/build2.wav" id="10_ma2c3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ubkic"]
 shader = ExtResource("7_k3ig4")
@@ -26,9 +29,10 @@ height = 10
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7b5u"]
 radius = 73.1095
 
-[node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite") groups=["Base"]]
+[node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite", "sfx_manager") groups=["Base"]]
 script = ExtResource("1_eyfgn")
 base_sprite = NodePath("BaseSprite")
+sfx_manager = NodePath("SfxManager")
 
 [node name="BaseSprite" type="Sprite2D" parent="."]
 visible = false
@@ -83,3 +87,8 @@ region_rect = Rect2(2144, 1088, 632, 488)
 position = Vector2(1, 40)
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_m7b5u")
+
+[node name="SfxManager" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("8_4vgup")
+bank_names = Array[StringName]([&"build", &"empty", &"empty", &"empty", &"empty", &"empty", &"empty", &"empty"])
+bank_0 = Array[AudioStream]([ExtResource("9_6c6ur"), ExtResource("10_ma2c3")])

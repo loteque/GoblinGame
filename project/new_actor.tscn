@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=51 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -25,6 +25,25 @@
 [ext_resource type="Script" path="res://src/ui/debug/state_debugger.gd" id="22_rd18m"]
 [ext_resource type="Script" path="res://src/ui/debug/debug_velocity_label.gd" id="25_vpkrl"]
 [ext_resource type="Script" path="res://CollectorComponent.gd" id="25_w71ht"]
+[ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="26_5dvql"]
+[ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="27_qsd1q"]
+[ext_resource type="AudioStream" uid="uid://bmtftsp36ylhy" path="res://assets/audio/hit2.wav" id="28_fplje"]
+[ext_resource type="AudioStream" uid="uid://da546wjhxhlu3" path="res://assets/audio/hit3.wav" id="29_cyli8"]
+[ext_resource type="AudioStream" uid="uid://c8xb3f18kclth" path="res://assets/audio/hit4.wav" id="30_u31ed"]
+[ext_resource type="AudioStream" uid="uid://dkjbf0o48joj8" path="res://assets/audio/hit5.wav" id="31_wvxi7"]
+[ext_resource type="AudioStream" uid="uid://bk4du1dxn5ndw" path="res://assets/audio/impact2.wav" id="32_yw0u1"]
+[ext_resource type="AudioStream" uid="uid://tbb7jegq8jj0" path="res://assets/audio/impact3.wav" id="33_eo4f7"]
+[ext_resource type="AudioStream" uid="uid://caotkgjn2mh4a" path="res://assets/audio/impact4.wav" id="34_bppj8"]
+[ext_resource type="AudioStream" uid="uid://c1ofbot5arfeq" path="res://assets/audio/impact5.wav" id="35_5yf7r"]
+[ext_resource type="AudioStream" uid="uid://b2eyibc2d0xs3" path="res://assets/audio/scrap1.wav" id="36_6682j"]
+[ext_resource type="AudioStream" uid="uid://b7pki1fq6jsav" path="res://assets/audio/scrap2.wav" id="37_1kj1u"]
+[ext_resource type="AudioStream" uid="uid://crus28ps4wj1a" path="res://assets/audio/scrap3.wav" id="38_g3vxx"]
+[ext_resource type="AudioStream" uid="uid://bgd1g0313gmul" path="res://assets/audio/scrap4.wav" id="39_ttqg1"]
+[ext_resource type="AudioStream" uid="uid://b3bmh4m5a5wfq" path="res://assets/audio/throw1.wav" id="40_jy4ob"]
+[ext_resource type="AudioStream" uid="uid://tfxp3t1sr3bq" path="res://assets/audio/throw2.wav" id="41_6qu3w"]
+[ext_resource type="AudioStream" uid="uid://d4ceyrcvkgma1" path="res://assets/audio/throw3.wav" id="42_jqshp"]
+[ext_resource type="AudioStream" uid="uid://dga457mlya4h" path="res://assets/audio/throw4.wav" id="43_puc0p"]
+[ext_resource type="AudioStream" uid="uid://dbuxdutckxwmk" path="res://assets/audio/throw5.wav" id="44_m0tq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bxck"]
 radius = 17.5
@@ -44,13 +63,14 @@ polygon = PackedVector2Array(-26, 109, -12, 115, 14, 115, 28, 111, 24, 122, -23,
 [sub_resource type="CircleShape2D" id="CircleShape2D_yrhv1"]
 radius = 37.054
 
-[node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("follow_area", "player") groups=["Actor", "NPC", "Throwable"]]
+[node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("follow_area", "player", "sfx_manager") groups=["Actor", "NPC", "Throwable"]]
 z_index = 1
 motion_mode = 1
 wall_min_slide_angle = 3.14159
 script = ExtResource("1_j6rqw")
 follow_area = NodePath("FollowArea")
 player = NodePath(".")
+sfx_manager = NodePath("SfxManager")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_3ypmk")]
 
@@ -234,6 +254,15 @@ position = Vector2(0, -63.75)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
 position = Vector2(0, 61)
 shape = SubResource("CircleShape2D_yrhv1")
+
+[node name="SfxManager" type="AudioStreamPlayer2D" parent="."]
+max_distance = 1500.0
+script = ExtResource("26_5dvql")
+bank_names = Array[StringName]([&"hit", &"impact", &"scrap", &"throw", &"empty", &"empty", &"empty", &"empty"])
+bank_0 = Array[AudioStream]([ExtResource("27_qsd1q"), ExtResource("28_fplje"), ExtResource("29_cyli8"), ExtResource("30_u31ed"), ExtResource("31_wvxi7")])
+bank_1 = Array[AudioStream]([ExtResource("32_yw0u1"), ExtResource("33_eo4f7"), ExtResource("34_bppj8"), ExtResource("35_5yf7r")])
+bank_2 = Array[AudioStream]([ExtResource("36_6682j"), ExtResource("37_1kj1u"), ExtResource("38_g3vxx"), ExtResource("39_ttqg1")])
+bank_3 = Array[AudioStream]([ExtResource("40_jy4ob"), ExtResource("41_6qu3w"), ExtResource("42_jqshp"), ExtResource("43_puc0p"), ExtResource("44_m0tq1")])
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]

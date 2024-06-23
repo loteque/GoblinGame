@@ -31,6 +31,7 @@ func enter_state(data: Dictionary = {}):
     collect_timer.start(collection_time)
     await collect_timer.timeout
     collect()
+    actor_core.actor.sfx_manager.play_rand("scrap")
 
 func exit_state():
     super.exit_state()

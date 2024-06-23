@@ -16,6 +16,7 @@ func deliver():
 
 func enter_state(data: Dictionary = {}):
     super.enter_state()
+    actor_core.actor.sfx_manager.play_rand("scrap")
     animated_sprite.play("collect_scrap")
     deliver()
 

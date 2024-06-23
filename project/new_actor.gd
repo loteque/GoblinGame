@@ -12,7 +12,7 @@ class_name Actor
 @export var music_manager: MusicManager
 @export var boost_speed_multiplier := 1.05
 @export var burst_duration: float = 2.0
-
+@export var sfx_manager: SfxManager
 
 var is_boosted:= false
 var current_move_speed: float = move_speed

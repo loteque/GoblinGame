@@ -12,6 +12,7 @@ var Team = TeamManager.Team
 @onready var spawner = %Spawner
 @onready var health_component = $HealthComponent
 @export var game_manager: GameManager
+@export var sfx_manager: SfxManager
 
 signal hurt
 signal died
@@ -35,6 +36,7 @@ func display_base_sprite():
             base_sprite.texture = ENEMY_BASE_TEXTURE
 
 func _ready():
+    sfx_manager.play_rand("build")
     died.connect(_on_died)
     display_base_sprite()
     if spawner:

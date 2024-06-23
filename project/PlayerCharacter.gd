@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var health_component = $HealthComponent
 
 @export var game_manager: GameManager
+@export var sfx_manager: SfxManager
 
 var base_placer = BasePlacer.new(1)
 var selected: Node2D
@@ -36,6 +37,7 @@ func update_marker_position(player_direction: Vector2):
     throw_target.global_position = marker_position
 
 func receive_attack(attack: Attack):
+    sfx_manager.play_rand("hit")
     health_component.receive_attack(attack)
 
 func get_input():
@@ -57,7 +59,7 @@ func _physics_process(_delta):
 func _input(event):
     if event.is_action("place"):
         base_placer.place(get_parent(), throw_target.global_transform.origin)
-    if event.is_action("select") and selected:
+    if event.is_action("place") and selected:
         if selected.is_in_group("Upgradable"):
             selected.upgrader.upgrade()
 
