@@ -1,18 +1,9 @@
-extends Area2D
+extends StaticBody2D
 class_name Scrap
 
-var max_amount: int = 10
-var current_amount: int = 10
+@export var max_amount: int = 50
+@export var current_amount: int = 50
 @onready var collection_timer: Timer = $CollectionTimer
-
-enum CollectableType {
-    SCRAP
-}
-
-func _ready():
-    area_entered.connect(_on_collectable_collected)
-    pass
-    
 
 func _on_collectable_collected(collector: Node2D):
     if collector.has_method("collect"):

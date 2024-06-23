@@ -9,6 +9,7 @@ var Team = TeamManager.Team
 
 @export var team: TeamManager.Team
 @export var base_sprite = Sprite2D
+@onready var spawner = %Spawner
 
 func display_base_sprite():
     if base_sprite:
@@ -19,6 +20,8 @@ func display_base_sprite():
 
 func _ready():
     display_base_sprite()
+    if spawner:
+        spawner.team = team
 
 func receive_scrap():
     pass

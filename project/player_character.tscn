@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://src/character/components/throw_goblin_component.gd" id="7_uvm8g"]
 [ext_resource type="Texture2D" uid="uid://d04bgi5pe4150" path="res://src/character/lights/player_character.tres" id="8_c4qkd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qeufm"]
-size = Vector2(52, 34)
+[sub_resource type="CircleShape2D" id="CircleShape2D_u2vdy"]
+radius = 21.0535
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe2m7"]
 
@@ -42,8 +42,8 @@ follow_target = NodePath("FollowMarker2D")
 [node name="HealthComponent" parent="." instance=ExtResource("2_1fc7m")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, -11.5)
-shape = SubResource("RectangleShape2D_qeufm")
+position = Vector2(-1, 39)
+shape = SubResource("CircleShape2D_u2vdy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

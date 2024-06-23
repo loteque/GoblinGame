@@ -5,7 +5,6 @@ class_name Actor
 @export var damage: int
 @export var move_speed: float = 300.0
 @export var throw_multiplier: float
-@export var nav_agent: NavigationAgent2D
 @export var follow_area: Area2D
 @export var team: TeamManager.Team = TeamManager.Team.PLAYER
 @export var should_follow_player: bool = false
@@ -13,12 +12,17 @@ class_name Actor
 @export var music_manager: MusicManager
 @export var boost_speed_multiplier := 1.05
 @export var burst_duration: float = 2.0
+
+
 var is_boosted:= false
 var current_move_speed: float = move_speed
 
 @onready var music_connector = MusicManager.MusicConnector.new(music_manager, self)
 @onready var health_component = $HealthComponent
 @onready var boost_timer = $BoostTimer
+@onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
+@onready var actor_core = %ActorCore
+
 
 signal thrown_to(position: Vector2)
 signal hurt
@@ -34,8 +38,15 @@ func is_thrown():
     return false
 
 func _ready():
+    nav_agent.velocity_computed.connect(_on_velocity_computed)
     if team == TeamManager.Team.CPU:
         set_modulate(Color(0.784, 0.114, 0.8))
+
+func _on_velocity_computed(safe_velocity: Vector2) -> void:
+    if !actor_core.is_thrown:
+        set_velocity(safe_velocity)
+    else:
+        pass
 
 func unboost():
     current_move_speed = move_speed

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=32 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -23,10 +23,11 @@
 [ext_resource type="Script" path="res://src/character/state/explore_state.gd" id="19_advg2"]
 [ext_resource type="Script" path="res://src/character/state/auto_idle_state.gd" id="21_tb60m"]
 [ext_resource type="Script" path="res://src/ui/debug/state_debugger.gd" id="22_rd18m"]
+[ext_resource type="Script" path="res://src/ui/debug/debug_velocity_label.gd" id="25_vpkrl"]
 [ext_resource type="Script" path="res://CollectorComponent.gd" id="25_w71ht"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_moct4"]
-size = Vector2(47, 26)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bxck"]
+radius = 17.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1do6"]
 radius = 272.0
@@ -34,22 +35,28 @@ radius = 272.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ueshs"]
 radius = 400.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_pthek"]
+font_size = 22
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3763u"]
 polygon = PackedVector2Array(-26, 109, -12, 115, 14, 115, 28, 111, 24, 122, -23, 121)
 
-[node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent", "follow_area", "player") groups=["Actor", "NPC", "Throwable"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yrhv1"]
+radius = 37.054
+
+[node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("follow_area", "player") groups=["Actor", "NPC", "Throwable"]]
 z_index = 1
 motion_mode = 1
+wall_min_slide_angle = 3.14159
 script = ExtResource("1_j6rqw")
-nav_agent = NodePath("NavigationAgent2D")
 follow_area = NodePath("FollowArea")
 player = NodePath(".")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_3ypmk")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8.5, 44)
-shape = SubResource("RectangleShape2D_moct4")
+position = Vector2(1, -2.75)
+shape = SubResource("CircleShape2D_1bxck")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -59,16 +66,22 @@ texture = ExtResource("2_dx5gv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
-target_desired_distance = 40.0
+target_desired_distance = 60.0
+path_max_distance = 20.0
 avoidance_enabled = true
+radius = 30.0
+max_speed = 400.0
+debug_enabled = true
 
 [node name="FollowArea" type="Area2D" parent="."]
+position = Vector2(0, -63.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
 shape = SubResource("CircleShape2D_v1do6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -63.75)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_xmqe5")
 animation = &"idle_front"
@@ -76,6 +89,7 @@ offset = Vector2(0, -165)
 
 [node name="TargetTrackerComponent" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
 unique_name_in_owner = true
+position = Vector2(0, -63.75)
 collision_layer = 0
 collision_mask = 257
 script = ExtResource("4_cu521")
@@ -123,8 +137,9 @@ script = ExtResource("11_oqg7b")
 wait_time = 0.5
 one_shot = true
 
-[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Combat"]
+[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Combat" node_paths=PackedStringArray("nav_agent")]
 script = ExtResource("12_yilmy")
+nav_agent = NodePath("../../../../NavigationAgent2D")
 
 [node name="Scavange" type="Node" parent="ActorCore/StateMachine"]
 unique_name_in_owner = true
@@ -150,8 +165,9 @@ script = ExtResource("10_wb6dc")
 unique_name_in_owner = true
 script = ExtResource("11_wpftk")
 
-[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Follow"]
+[node name="Navigate" type="Node" parent="ActorCore/StateMachine/Follow" node_paths=PackedStringArray("nav_agent")]
 script = ExtResource("12_yilmy")
+nav_agent = NodePath("../../../../NavigationAgent2D")
 
 [node name="Idle" type="Node" parent="ActorCore/StateMachine/Follow"]
 script = ExtResource("10_wb6dc")
@@ -167,32 +183,36 @@ script = ExtResource("18_mvjs0")
 [node name="AutoExplore" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance"]
 script = ExtResource("19_advg2")
 
-[node name="Navigate" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoExplore"]
+[node name="Navigate" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance/AutoExplore" node_paths=PackedStringArray("nav_agent")]
 script = ExtResource("12_yilmy")
+nav_agent = NodePath("../../../../../NavigationAgent2D")
 
 [node name="AutoIdleState" type="Node" parent="ActorCore/StateMachine/PatrolAutoAdvance"]
 script = ExtResource("21_tb60m")
 
 [node name="StateDebugger" type="Label" parent="." node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
+visible = false
 top_level = true
 z_index = 1
-offset_right = 176.0
-offset_bottom = 23.0
+offset_top = -63.75
+offset_right = 246.0
+offset_bottom = -32.75
 text = "State label default text"
+label_settings = SubResource("LabelSettings_pthek")
 script = ExtResource("22_rd18m")
 follow_target = NodePath("..")
 
 [node name="HealthBarUi" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("18_b3fct")]
 z_index = 1
 offset_left = 2.0
-offset_top = -100.0
+offset_top = -163.75
 offset_right = 2.0
-offset_bottom = -100.0
+offset_bottom = -163.75
 health_component = NodePath("../HealthComponent")
 
 [node name="Lights" type="Node2D" parent="."]
-position = Vector2(0, -56)
+position = Vector2(0, -119.75)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Lights"]
 occluder = SubResource("OccluderPolygon2D_3763u")
@@ -200,6 +220,21 @@ occluder = SubResource("OccluderPolygon2D_3763u")
 [node name="Collector" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("25_w71ht")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_top = -63.75
+offset_right = 40.0
+offset_bottom = -40.75
+script = ExtResource("25_vpkrl")
+
+[node name="InteractArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -63.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 61)
+shape = SubResource("CircleShape2D_yrhv1")
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]

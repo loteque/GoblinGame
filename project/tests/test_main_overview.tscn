@@ -1,27 +1,27 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=29 format=3 uid="uid://dt0qkd6q40npc"]
 
-[ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
-[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
-[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="2_yg8ca"]
-[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="3_3xj8b"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="3_olnyg"]
-[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="4_rfcqa"]
-[ext_resource type="Shader" path="res://background.gdshader" id="5_n4qge"]
-[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="5_qmkqn"]
-[ext_resource type="Texture2D" uid="uid://cp5kq0krwa628" path="res://assets/art/river-tiles.png" id="5_spagt"]
-[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="5_x38i0"]
-[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="6_ax147"]
-[ext_resource type="Texture2D" uid="uid://34mnibg6rfuw" path="res://assets/art/tilesets/river-edges-tileset.png" id="6_g0v38"]
-[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="6_g25cc"]
-[ext_resource type="Texture2D" uid="uid://cdebc26yxfwlb" path="res://assets/art/dirt-tile.png" id="7_pmk3h"]
-[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="7_sg7t6"]
-[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
-[ext_resource type="Texture2D" uid="uid://bqli464yb3nh0" path="res://assets/art/tilesets/gay_poison_tiles_v1-64px.png" id="10_rqdfg"]
-[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="20_clio4"]
+[ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_e8f5n"]
+[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="2_jx5xy"]
+[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="3_ujk5e"]
+[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="4_3h3ko"]
+[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="5_ryftt"]
+[ext_resource type="Texture2D" uid="uid://cp5kq0krwa628" path="res://assets/art/river-tiles.png" id="6_avlh2"]
+[ext_resource type="Texture2D" uid="uid://34mnibg6rfuw" path="res://assets/art/tilesets/river-edges-tileset.png" id="7_227lf"]
+[ext_resource type="Texture2D" uid="uid://cdebc26yxfwlb" path="res://assets/art/dirt-tile.png" id="8_lcqkm"]
+[ext_resource type="Texture2D" uid="uid://bqli464yb3nh0" path="res://assets/art/tilesets/gay_poison_tiles_v1-64px.png" id="9_ba8vy"]
+[ext_resource type="Shader" path="res://background.gdshader" id="10_44vws"]
+[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="11_o2i8g"]
+[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="12_ei8nf"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="13_wfbos"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="14_3jgcw"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="15_hrti6"]
+[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="16_as6fg"]
+[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="17_h2jmk"]
+[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="18_co4tn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
-vertices = PackedVector2Array(505, 1528, 3957, 1651, -567, 1644, 325, 1528, 3957, -824, 3449, 888, 3449, -380, 1913, -824, 2309, -380, 1913, -136, 2309, -200, 3269, -184, 3269, 888, 2873, 248, 2873, 68, 3253, -184, 1081, 1400, -567, -824, 325, -508, 1797, -824, 505, -508, 1797, -136, 901, 68, 3253, -200, 901, 1400, 1081, 264, 1097, 264, 1097, 248)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 5, 6), PackedInt32Array(7, 4, 6, 8), PackedInt32Array(9, 7, 8, 10), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(5, 1, 0, 16), PackedInt32Array(3, 2, 17, 18), PackedInt32Array(18, 17, 19, 20), PackedInt32Array(20, 19, 21, 22), PackedInt32Array(10, 23, 15, 14, 22, 9), PackedInt32Array(21, 9, 22), PackedInt32Array(0, 20, 22, 24), PackedInt32Array(16, 25, 26), PackedInt32Array(26, 27, 13), PackedInt32Array(16, 26, 13, 12), PackedInt32Array(0, 24, 16), PackedInt32Array(5, 16, 12)])
+vertices = PackedVector2Array(901, 68, 828, 815, 819, 780, 780, 612, 751, 343, 505, 1528, 3957, 1651, -567, 1644, 325, 1528, 901, 1400, 3456, -679, 3421, -670, 2098, -675, 2089, -711, 2844, -46, 3253, -184, 3269, -184, 2873, 68, 2835, -11, 771, 577, 742, 379, 819, 851, -80, 1047, -115, 1056, -211, 1021, -220, 986, -337, 141, -310, 115, 771, 648, 793, 753, 745, 550, 716, 405, 3394, -573, 3421, -546, 3399, -549, 3390, -585, 3385, -608, 3364, -611, 325, -508, -9, 1118, -18, 1083, -301, 79, -310, 44, -45, 1056, 3269, 888, 3101, 687, 3092, 652, 2873, 248, 3066, 625, 1268, 452, 1298, 430, 1325, 456, 1259, 488, 3581, -406, 3715, -561, 3957, -824, 3572, -371, 742, 308, 2089, -640, 3394, -644, 3328, -620, 3293, -611, 3449, 888, 3449, -370, 3475, -344, 3030, 616, -18, 1154, 793, 877, 3092, 723, 3546, -344, 745, 674, 757, 744, 3724, -596, 3715, -632, -247, 959, 709, 541, 680, 414, -142, 1083, -220, 1057, 1259, 417, 1289, 394, -282, 950, -372, 150, 2809, 16, 3439, -406, 3446, -380, 2309, -380, 3510, -335, 1431, 394, 1467, 357, 1476, 393, 1422, 430, 1422, 359, 1476, 322, 716, 281, -45, 1180, -223, 1322, -214, 1286, -80, 1189, 2995, 625, 1609, 357, 1600, 322, 709, 683, 722, 753, 2835, -81, 1081, 1400, 757, 886, -116, 1180, -223, 1251, -142, 1154, -250, 1224, 2309, -200, 3253, -200, 2773, -117, 1081, 264, 1097, 264, 1126, 452, 1097, 248, 1538, 286, -567, -824, 1797, -824, 1797, -136, 505, -508, 674, 550, 645, 405, 3527, -608, 3591, -632, 3582, -596, 3518, -573, 3518, -644, 3618, -658, 3066, 749, 3591, -561, 3492, -546, -337, 17, -247, 1083, -151, 1118, 1233, 390, 1298, 359, 3689, -658, 3390, -514, 3456, -537, 3475, -468, -318, 959, -408, 141, 2968, 652, 2959, 687, 1600, 393, 1777, -57, 2711, -82, 2702, -46, 1768, -22, 1768, -92, 2711, -10, 1742, 5, 1503, 419, 1396, 456, 3448, -442, 1396, 332, 1503, 295, -282, 1092, -285, 1215, -318, 1083, -321, 1224, 674, 674, 695, 780, -250, 1348, -285, 1357, -321, 1348, -347, 1322, 2968, 723, 1574, 419, 680, 272, 3266, -585, 3257, -549, 3266, -514, 2063, -613, 722, 877, 2809, -108, 647, 577, 618, 379, 3618, -534, 3572, -442, 3546, -468, 2773, 25, 2738, 16, 1706, 14, 3492, -670, 3653, -667, -372, 8, -344, 986, -434, 115, 1574, 295, 3030, 758, -356, 1286, -353, 1021, -347, 1251, -443, 79, -344, 1057, 1913, -824, 1742, -119, 2738, -108, 2063, -737, 3328, -478, 3293, -487, 2027, -604, 1360, 465, 1233, 514, 1325, 332, 1197, 381, 647, 648, 686, 815, 1538, 428, 1360, 323, 2995, 749, 3689, -534, 3653, -525, 3510, -477, 3364, -487, 645, 281, 695, 851, 1992, -613, 1913, -136, 638, 612, 609, 343, -408, 17, 1197, 523, 1162, 390, 1135, 417, 1135, 488, 1162, 514, 1706, -128, 1671, 5, 1644, -21, 1635, -57, 1644, -93, 1671, -119, 2027, -746, 1992, -737, 1965, -711, 1956, -675, 1965, -640, 618, 308, -434, 43)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(0, 9, 1), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17, 18), PackedInt32Array(4, 3, 19, 20), PackedInt32Array(21, 1, 9), PackedInt32Array(22, 23, 24, 25, 26, 27), PackedInt32Array(28, 3, 2, 29), PackedInt32Array(20, 19, 30, 31), PackedInt32Array(32, 33, 34), PackedInt32Array(32, 34, 35, 36), PackedInt32Array(36, 35, 37), PackedInt32Array(38, 8, 39, 40), PackedInt32Array(41, 42, 38, 40, 43), PackedInt32Array(27, 41, 43, 22), PackedInt32Array(16, 44, 45, 46), PackedInt32Array(47, 17, 16, 46, 48), PackedInt32Array(49, 50, 51, 52), PackedInt32Array(53, 54, 55, 6, 56), PackedInt32Array(0, 4, 57), PackedInt32Array(58, 12, 11, 59, 60, 61), PackedInt32Array(62, 63, 64), PackedInt32Array(47, 48, 65), PackedInt32Array(66, 39, 8), PackedInt32Array(67, 21, 9), PackedInt32Array(68, 45, 44), PackedInt32Array(69, 56, 6), PackedInt32Array(70, 28, 29, 71), PackedInt32Array(55, 72, 73), PackedInt32Array(26, 25, 74), PackedInt32Array(31, 30, 75, 76), PackedInt32Array(24, 23, 77, 78), PackedInt32Array(50, 49, 79, 80), PackedInt32Array(26, 74, 81, 82), PackedInt32Array(83, 18, 17), PackedInt32Array(84, 85, 86), PackedInt32Array(62, 64, 87, 6), PackedInt32Array(88, 89, 90, 91), PackedInt32Array(89, 88, 92, 93), PackedInt32Array(0, 57, 94), PackedInt32Array(95, 8, 96, 97, 98), PackedInt32Array(47, 65, 99, 100, 101), PackedInt32Array(102, 70, 71, 103), PackedInt32Array(15, 14, 104), PackedInt32Array(87, 69, 6), PackedInt32Array(62, 6, 5, 105), PackedInt32Array(106, 67, 9), PackedInt32Array(95, 66, 8), PackedInt32Array(107, 98, 97, 108), PackedInt32Array(109, 107, 108, 110), PackedInt32Array(111, 112, 15, 113), PackedInt32Array(105, 114, 115, 116), PackedInt32Array(115, 117, 47, 118), PackedInt32Array(119, 120, 121, 122), PackedInt32Array(76, 75, 123, 124), PackedInt32Array(125, 126, 127, 128), PackedInt32Array(126, 125, 129, 130), PackedInt32Array(131, 68, 44), PackedInt32Array(128, 127, 132, 133), PackedInt32Array(38, 42, 134), PackedInt32Array(135, 78, 77, 136, 110), PackedInt32Array(59, 36, 37, 60), PackedInt32Array(80, 79, 137, 138), PackedInt32Array(55, 73, 139), PackedInt32Array(140, 34, 33, 141, 142), PackedInt32Array(82, 81, 143, 144), PackedInt32Array(100, 99, 145), PackedInt32Array(100, 145, 146, 147), PackedInt32Array(148, 149, 150, 151), PackedInt32Array(149, 148, 152), PackedInt32Array(151, 150, 153, 154), PackedInt32Array(91, 90, 155, 156), PackedInt32Array(157, 84, 86), PackedInt32Array(93, 92, 158, 159), PackedInt32Array(136, 109, 110), PackedInt32Array(160, 135, 110, 161), PackedInt32Array(162, 160, 161, 163), PackedInt32Array(164, 102, 103, 165), PackedInt32Array(166, 96, 8), PackedInt32Array(166, 8, 7, 167), PackedInt32Array(168, 167, 7), PackedInt32Array(169, 168, 7), PackedInt32Array(147, 146, 170, 171), PackedInt32Array(0, 94, 172), PackedInt32Array(58, 61, 173), PackedInt32Array(58, 173, 174), PackedInt32Array(58, 174, 175, 176), PackedInt32Array(177, 106, 9), PackedInt32Array(15, 104, 178), PackedInt32Array(124, 123, 179, 180), PackedInt32Array(133, 132, 181, 182, 183), PackedInt32Array(184, 83, 17), PackedInt32Array(184, 17, 0, 185), PackedInt32Array(153, 185, 0, 186), PackedInt32Array(130, 129, 187, 188), PackedInt32Array(38, 134, 189), PackedInt32Array(144, 143, 190, 191), PackedInt32Array(47, 101, 192), PackedInt32Array(193, 131, 44, 105), PackedInt32Array(194, 169, 7), PackedInt32Array(195, 196, 194, 7, 119, 197), PackedInt32Array(198, 162, 163, 196), PackedInt32Array(55, 139, 188), PackedInt32Array(199, 55, 188, 10), PackedInt32Array(149, 152, 200, 201), PackedInt32Array(10, 13, 202), PackedInt32Array(142, 157, 86, 203), PackedInt32Array(176, 175, 204, 86, 205), PackedInt32Array(52, 51, 206, 207), PackedInt32Array(208, 138, 137, 209, 115), PackedInt32Array(210, 164, 165, 211), PackedInt32Array(156, 155, 212), PackedInt32Array(159, 158, 213), PackedInt32Array(171, 170, 214, 212), PackedInt32Array(54, 72, 55), PackedInt32Array(215, 54, 53), PackedInt32Array(216, 215, 53, 182), PackedInt32Array(181, 216, 182), PackedInt32Array(133, 183, 217), PackedInt32Array(133, 217, 142, 141), PackedInt32Array(218, 140, 142), PackedInt32Array(0, 172, 219, 122), PackedInt32Array(220, 177, 9, 5), PackedInt32Array(203, 218, 142), PackedInt32Array(204, 203, 86), PackedInt32Array(221, 205, 86, 111, 222), PackedInt32Array(15, 178, 113), PackedInt32Array(111, 113, 201, 222), PackedInt32Array(206, 156, 212, 214, 207), PackedInt32Array(180, 179, 223, 224), PackedInt32Array(38, 189, 225, 119), PackedInt32Array(105, 226, 207, 214, 193), PackedInt32Array(191, 190, 195, 197), PackedInt32Array(47, 192, 118), PackedInt32Array(115, 118, 159, 213), PackedInt32Array(115, 213, 208), PackedInt32Array(115, 209, 227), PackedInt32Array(115, 227, 228), PackedInt32Array(115, 228, 116), PackedInt32Array(105, 116, 229), PackedInt32Array(105, 229, 230), PackedInt32Array(105, 230, 226), PackedInt32Array(195, 198, 196), PackedInt32Array(222, 201, 200, 231, 121), PackedInt32Array(105, 44, 62), PackedInt32Array(9, 105, 5), PackedInt32Array(211, 220, 5), PackedInt32Array(210, 211, 5, 223), PackedInt32Array(223, 5, 122, 224), PackedInt32Array(186, 154, 153), PackedInt32Array(232, 186, 0), PackedInt32Array(233, 232, 0), PackedInt32Array(234, 233, 0), PackedInt32Array(235, 234, 0), PackedInt32Array(236, 235, 0, 122), PackedInt32Array(188, 187, 10), PackedInt32Array(199, 10, 202, 237), PackedInt32Array(199, 237, 238), PackedInt32Array(199, 238, 239), PackedInt32Array(199, 239, 240), PackedInt32Array(222, 199, 240, 241), PackedInt32Array(222, 241, 221), PackedInt32Array(242, 224, 122), PackedInt32Array(219, 242, 122), PackedInt32Array(231, 236, 122), PackedInt32Array(121, 231, 122), PackedInt32Array(119, 122, 38), PackedInt32Array(119, 225, 243), PackedInt32Array(119, 243, 197)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-577, -834, 3967, -834, 3967, 1662, -577, 1654)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
@@ -35,7 +35,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.20989, 0.20989, 0.20989, 1, 0.28485, 0.2
 gradient = SubResource("Gradient_enkf7")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_37y22"]
-texture = ExtResource("5_spagt")
+texture = ExtResource("6_avlh2")
 texture_region_size = Vector2i(64, 64)
 0:0/animation_columns = 8
 0:0/animation_speed = 10.0
@@ -55,7 +55,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vbmkp"]
-texture = ExtResource("6_g0v38")
+texture = ExtResource("7_227lf")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -254,7 +254,7 @@ texture_region_size = Vector2i(64, 64)
 4:2/0/terrains_peering_bit/top_right_corner = 1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_085ba"]
-texture = ExtResource("7_pmk3h")
+texture = ExtResource("8_lcqkm")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -271,7 +271,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/terrains_peering_bit/top_right_corner = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_70gck"]
-texture = ExtResource("10_rqdfg")
+texture = ExtResource("9_ba8vy")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -324,22 +324,22 @@ sources/2 = SubResource("TileSetAtlasSource_085ba")
 sources/4 = SubResource("TileSetAtlasSource_70gck")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbto2"]
-shader = ExtResource("5_n4qge")
+shader = ExtResource("10_44vws")
 
 [node name="Main" type="Node2D" groups=["Map"]]
 y_sort_enabled = true
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
 bus = &"music"
-script = ExtResource("1_51uy5")
+script = ExtResource("1_e8f5n")
 fade_in_speed = 20.0
 fade_out_speed = 15.0
 combat_in_speed = 20.0
 combat_out_speed = 10.0
-calm_layer = ExtResource("2_yg8ca")
-explore_layer = ExtResource("3_3xj8b")
-combat_layer = ExtResource("4_rfcqa")
-lead_layer = ExtResource("5_x38i0")
+calm_layer = ExtResource("2_jx5xy")
+explore_layer = ExtResource("3_ujk5e")
+combat_layer = ExtResource("4_3h3ko")
+lead_layer = ExtResource("5_ryftt")
 max_vol = -18
 min_vol = -60
 
@@ -401,11 +401,65 @@ layer_0/tile_data = PackedInt32Array(-196594, 4, 0, -196593, 65540, 0, -196592, 
 visible = false
 vertices = PackedVector2Array(332, -512, 506, -510, 509, 1522, 323, 1526)
 
+[node name="Scrap" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(-372, 79)
+
+[node name="Scrap2" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(1706, -57)
+
+[node name="Scrap3" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(680, 343)
+
+[node name="Scrap4" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(709, 612)
+
+[node name="Scrap9" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(1197, 452)
+
+[node name="Scrap10" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(1360, 394)
+
+[node name="Scrap11" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(1538, 357)
+
+[node name="Scrap12" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(3030, 687)
+
+[node name="Scrap13" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(2773, -46)
+
+[node name="Scrap14" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(2027, -675)
+
+[node name="Scrap15" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(3328, -549)
+
+[node name="Scrap16" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(3456, -608)
+
+[node name="Scrap17" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(3653, -596)
+
+[node name="Scrap18" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(3510, -406)
+
+[node name="Scrap6" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(757, 815)
+
+[node name="Scrap5" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(-285, 1286)
+
+[node name="Scrap7" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(-80, 1118)
+
+[node name="Scrap8" parent="NavigationRegion2D" instance=ExtResource("15_hrti6")]
+position = Vector2(-282, 1021)
+
 [node name="Background" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
-texture = ExtResource("6_g25cc")
+texture = ExtResource("11_o2i8g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -413,203 +467,86 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(370, 336)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_olnyg")
+texture = ExtResource("12_ei8nf")
 offset = Vector2(0, -350)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
-texture = ExtResource("3_olnyg")
+texture = ExtResource("12_ei8nf")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_rjx7k")]
+[node name="PlayerCharacter" parent="." instance=ExtResource("13_wfbos")]
 position = Vector2(449, 533)
 
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_horizontal_offset = 0.32
-drag_vertical_offset = -0.46
-
-[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("14_3jgcw")]
 position = Vector2(551, 1745)
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor4" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor4" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("14_3jgcw")]
 position = Vector2(673, 727)
 follow_area = NodePath("../Actor/FollowArea")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor5" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor5" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("14_3jgcw")]
 position = Vector2(119, 362)
 follow_area = NodePath("../Actor/FollowArea")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("14_3jgcw")]
 position = Vector2(1271, 322)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("14_3jgcw")]
 position = Vector2(1256, 1479)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("14_3jgcw")]
 position = Vector2(1248, 1736)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("14_3jgcw")]
 position = Vector2(129, 1809)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2881, 1229)
+[node name="CorruptedActor" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("14_3jgcw")]
+position = Vector2(3392, 1078)
 team = 1
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor3" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(3063, 1323)
+[node name="CorruptedActor3" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("14_3jgcw")]
+position = Vector2(3487, 1264)
 follow_area = NodePath("../CorruptedActor/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor4" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2932, 1555)
-follow_area = NodePath("../CorruptedActor/FollowArea")
+[node name="CorruptedActor15" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("14_3jgcw")]
+position = Vector2(-1, 0)
+follow_area = NodePath("")
 team = 1
-player = NodePath("../CorruptedActor")
+player = NodePath("")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor5" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(3240, 694)
-follow_area = NodePath("../CorruptedActor/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor")
-music_manager = NodePath("../MusicManager")
+[node name="FollowCamera" parent="." instance=ExtResource("16_as6fg")]
+position = Vector2(2383, 547)
+zoom = Vector2(0.4, 0.4)
+script = null
 
-[node name="CorruptedActor2" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2241, 1622)
-team = 1
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2102, 1738)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2246, 1816)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(4174, 168)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(4355, -24)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor10" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(3690, -137)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor11" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(3549, -311)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor12" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2884, -336)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor13" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2874, 246)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor14" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2105, 82)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="CorruptedActor15" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
-position = Vector2(2070, -188)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
-
-[node name="Scrap" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(197, -320)
-
-[node name="Scrap9" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(1774, 774)
-
-[node name="Scrap10" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(1937, 716)
-
-[node name="Scrap11" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(2115, 679)
-
-[node name="Scrap12" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(3607, 1009)
-
-[node name="Scrap14" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(2597, -386)
-
-[node name="Scrap17" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(4370, -352)
-
-[node name="FollowCamera" parent="." instance=ExtResource("7_sg7t6")]
-position = Vector2(494, 281)
-
-[node name="LevelUI" parent="FollowCamera" instance=ExtResource("8_8fyn6")]
-
-[node name="Scrap5" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(244, 1659)
-
-[node name="Scrap7" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(247, 1488)
-
-[node name="Scrap8" parent="." instance=ExtResource("6_ax147")]
-position = Vector2(243, 1336)
+[node name="LevelUI" parent="FollowCamera" instance=ExtResource("17_h2jmk")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.210773, 0.0573702, 0.196106, 1)
 
-[node name="Base" parent="." instance=ExtResource("20_clio4")]
-position = Vector2(4055, 1581)
+[node name="EnemyBase" parent="." instance=ExtResource("18_co4tn")]
+position = Vector2(3362, 1478)
 team = 1

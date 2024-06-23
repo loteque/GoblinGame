@@ -6,14 +6,12 @@ class_name CollectState
 @onready var animated_sprite = %AnimatedSprite2D
 @onready var actor_core = %ActorCore
 @onready var collector = %Collector
+@onready var collect_timer: Timer = Timer.new()
 
 @export var collection_time: float = 1
 
 var target: Scrap
-
 var is_collecting: bool = false
-
-@onready var collect_timer: Timer = Timer.new()
 
 func _ready():
     add_child(collect_timer)

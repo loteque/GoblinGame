@@ -20,14 +20,14 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 position = Vector2(577, 322)
 navigation_polygon = SubResource("NavigationPolygon_s8wgm")
 
+[node name="Scrap" parent="." instance=ExtResource("2_sa2n1")]
+position = Vector2(618, 143)
+
 [node name="PlayerBase" parent="." instance=ExtResource("1_8gnvv")]
 position = Vector2(107, -218)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(570, 110)
-
-[node name="Scrap" parent="." instance=ExtResource("2_sa2n1")]
-position = Vector2(618, 143)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_xd616")]
 position = Vector2(324, 334)
