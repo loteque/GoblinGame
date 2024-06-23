@@ -19,4 +19,4 @@ func receive_attack(attack: Attack):
         die()
 
 func die():
-    get_parent().queue_free()
+    get_parent().died.emit()

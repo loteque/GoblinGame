@@ -9,10 +9,25 @@ extends CharacterBody2D
 
 @onready var health_component = $HealthComponent
 
+@export var game_manager: GameManager
+
 var base_placer = BasePlacer.new(1)
 var selected: Node2D
 
 signal called_goblins()
+signal died
+
+func _ready():
+    base_placer.game_manager = game_manager
+    died.connect(_on_died)
+
+func _on_died():
+    game_manager.game_over.emit(GameManager.GameResult.LOSE)
+    die()
+
+func die():
+    visible = false
+    process_mode = Node.PROCESS_MODE_DISABLED
 
 func update_marker_position(player_direction: Vector2):
     if player_direction.length() == 0:

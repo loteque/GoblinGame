@@ -1,14 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://116p74iyvb7w"]
+[gd_scene load_steps=4 format=3 uid="uid://116p74iyvb7w"]
 
 [ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="1_b331v"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="2_q6lc7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rorvt"]
+vertices = PackedVector2Array(1578, 675, -476, 738, -464, -519, 1429, -551)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-474, -529, -487, 749, 1590, 685, 1438, -562)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="TestBase" type="Node2D"]
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_rorvt")
+
 [node name="PlayerBase" parent="." instance=ExtResource("1_b331v")]
-position = Vector2(50, 40)
+position = Vector2(63, 42)
 
 [node name="EnemyBase" parent="." instance=ExtResource("1_b331v")]
 position = Vector2(969, 41)
+team = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(570, 110)
+
+[node name="Actor2" parent="." instance=ExtResource("2_q6lc7")]
+position = Vector2(1015, -96)
+
+[node name="Actor3" parent="." node_paths=PackedStringArray("follow_area", "player") instance=ExtResource("2_q6lc7")]
+position = Vector2(1015, -96)
+follow_area = NodePath("../Actor2/FollowArea")
+player = NodePath("../Actor2")
+
+[node name="Actor4" parent="." node_paths=PackedStringArray("follow_area", "player") instance=ExtResource("2_q6lc7")]
+position = Vector2(1015, -96)
+follow_area = NodePath("../Actor2/FollowArea")
+player = NodePath("../Actor2")
+
+[node name="Actor5" parent="." node_paths=PackedStringArray("follow_area", "player") instance=ExtResource("2_q6lc7")]
+position = Vector2(1015, -96)
+follow_area = NodePath("../Actor2/FollowArea")
+player = NodePath("../Actor2")
+
+[node name="Actor6" parent="." node_paths=PackedStringArray("follow_area", "player") instance=ExtResource("2_q6lc7")]
+position = Vector2(1015, -96)
+follow_area = NodePath("../Actor2/FollowArea")
+player = NodePath("../Actor2")
+
+[node name="Actor7" parent="." node_paths=PackedStringArray("follow_area", "player") instance=ExtResource("2_q6lc7")]
+position = Vector2(1015, -96)
+follow_area = NodePath("../Actor2/FollowArea")
+player = NodePath("../Actor2")
+
+[node name="Actor8" parent="." node_paths=PackedStringArray("follow_area", "player") instance=ExtResource("2_q6lc7")]
+position = Vector2(1015, -96)
+follow_area = NodePath("../Actor2/FollowArea")
+player = NodePath("../Actor2")
+
+[node name="Actor9" parent="." node_paths=PackedStringArray("follow_area", "player") instance=ExtResource("2_q6lc7")]
+position = Vector2(1015, -96)
+follow_area = NodePath("../Actor2/FollowArea")
+player = NodePath("../Actor2")
+
+[node name="EnemyActor" parent="." instance=ExtResource("2_q6lc7")]
+position = Vector2(-37, -28)
+team = 1

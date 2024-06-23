@@ -25,11 +25,15 @@ func _on_body_entered(body: Node2D):
         tracked_nodes.append(body)
     if body.is_in_group("Scrap"):
         tracked_nodes.append(body)
+    if body.is_in_group("Base"):
+        tracked_nodes.append(body)
 
 func _on_body_exited(body: Node2D):
     if body.is_in_group("Actor"):
         tracked_nodes.erase(body)
     if body.is_in_group("Scrap"):
+        tracked_nodes.erase(body)
+    if body.is_in_group("Base"):
         tracked_nodes.erase(body)
 
 func is_not_same_team(npc: Actor):
@@ -38,6 +42,8 @@ func is_not_same_team(npc: Actor):
 
 func get_enemies_of(team: TeamManager.Team):
     var npcs = get_tracked_in_group("Actor")
+    var bases = get_tracked_in_group("Base")
+    npcs.append_array(bases)
     var enemies: Array[Node2D] = []
     for npc in npcs:
         #print (npc.team == team)

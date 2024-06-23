@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=32 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
+[ext_resource type="Script" path="res://game_manager.gd" id="1_o56us"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
 [ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="2_yg8ca"]
 [ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="3_3xj8b"]
@@ -17,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="7_sg7t6"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
 [ext_resource type="Texture2D" uid="uid://bqli464yb3nh0" path="res://assets/art/tilesets/gay_poison_tiles_v1-64px.png" id="10_rqdfg"]
+[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="19_h5dls"]
 [ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="20_clio4"]
+[ext_resource type="Script" path="res://src/ui/game_over_ui_screen.gd" id="20_s4vua"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
 vertices = PackedVector2Array(505, 1528, 3957, 1651, -567, 1644, 325, 1528, 3957, -824, 3449, 888, 3449, -380, 1913, -824, 2309, -380, 1913, -136, 2309, -200, 3269, -184, 3269, 888, 2873, 248, 2873, 68, 3253, -184, 1081, 1400, -567, -824, 325, -508, 1797, -824, 505, -508, 1797, -136, 901, 68, 3253, -200, 901, 1400, 1081, 264, 1097, 264, 1097, 248)
@@ -326,8 +329,12 @@ sources/4 = SubResource("TileSetAtlasSource_70gck")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbto2"]
 shader = ExtResource("5_n4qge")
 
-[node name="Main" type="Node2D" groups=["Map"]]
+[node name="Main2" type="Node2D" groups=["Map"]]
 y_sort_enabled = true
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_o56us")
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
 bus = &"music"
@@ -422,8 +429,9 @@ position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
 texture = ExtResource("3_olnyg")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_rjx7k")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("1_rjx7k")]
 position = Vector2(449, 533)
+game_manager = NodePath("../GameManager")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 position_smoothing_enabled = true
@@ -598,6 +606,14 @@ position = Vector2(494, 281)
 
 [node name="LevelUI" parent="FollowCamera" instance=ExtResource("8_8fyn6")]
 
+[node name="GameOverScreen" parent="FollowCamera/LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("19_h5dls")]
+visible = false
+z_index = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("20_s4vua")
+game_manager = NodePath("../../../GameManager")
+
 [node name="Scrap5" parent="." instance=ExtResource("6_ax147")]
 position = Vector2(244, 1659)
 
@@ -610,6 +626,7 @@ position = Vector2(243, 1336)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.210773, 0.0573702, 0.196106, 1)
 
-[node name="Base" parent="." instance=ExtResource("20_clio4")]
+[node name="Base" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("20_clio4")]
 position = Vector2(4055, 1581)
 team = 1
+game_manager = NodePath("../GameManager")

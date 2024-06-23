@@ -18,6 +18,12 @@ func get_scrap_count_by_team(team: Team):
         Team.CPU:
             return cpu.scrap
 
+func reset():
+    player.scrap = 0
+    scrap_updated.emit(Team.PLAYER, 0)
+    cpu.scrap = 0
+    scrap_updated.emit(Team.CPU, 0)
+
 func _init():
     scrap_collected.connect(_on_scrap_collected)
     player = TeamResources.new()
