@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bmtftsp36ylhy" path="res://assets/audio/hit2.wav" id="14_c04qp"]
 [ext_resource type="AudioStream" uid="uid://da546wjhxhlu3" path="res://assets/audio/hit3.wav" id="15_k6wic"]
 [ext_resource type="AudioStream" uid="uid://c8xb3f18kclth" path="res://assets/audio/hit4.wav" id="16_jso4m"]
+[ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="8_xi4xc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2vdy"]
 radius = 21.0535
@@ -118,6 +119,13 @@ one_shot = true
 script = ExtResource("7_uvm8g")
 goblin_command_component = NodePath("../GoblinCallComponent")
 target = NodePath("../Marker2D")
+
+[node name="HealthBarUi" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_xi4xc")]
+offset_left = -26.0
+offset_top = -127.0
+offset_right = -26.0
+offset_bottom = -127.0
+health_component = NodePath("../HealthComponent")
 
 [node name="Lights" type="Node2D" parent="."]
 position = Vector2(0, -56)
