@@ -4,6 +4,7 @@ class_name TutorialManager extends CanvasLayer
 @export var prompt_time: float
 @export var response_time: float
 
+
 class TutorialConnector:
     var manager: TutorialManager
     var prompter_connection: Node
@@ -14,17 +15,24 @@ class TutorialConnector:
         prompter_connection = connection_node
         ui_connection = ui_node
 
+
 class PanelConfigurator:
     const Panel_Scene = preload("res://tutorial_manager/message_panel.tscn")
     var message: String
     var panel: Control
+    var action_str: String
 
     func create_panel():
+        var _button_str: String
+        if action_str != "":
+            _button_str = ActionsProperty.Device.get_input_from_inputmap(action_str)
+            _button_str = " :  " + _button_str
         panel = Panel_Scene.instantiate()
-        panel.text = message
+        panel.text = message + _button_str
 
-    func _init(panel_message: String):
+    func _init(panel_message: String, panel_action_str: String = ""):
         message = panel_message
+        action_str = panel_action_str
         create_panel()
 
 var section_1: bool = true
@@ -55,17 +63,18 @@ var panels: Dictionary = {
 }
 
 
-func _add_panel(section: int, connector: TutorialConnector):
-    var config = PanelConfigurator.new(sections.get(section))
+func _add_panel(section: int, connector: TutorialConnector, action_str: String = ""):
+    var config = PanelConfigurator.new(sections.get(section), action_str)
     var panel = config.panel
     connector.ui_connection.add_child(panel)
     panels[section] = panel
 
 
-signal prompter_ready(section: Section, connector: TutorialConnector)
-func _on_prompter_ready(section, connector):
+signal prompter_ready(section: Section, connector: TutorialConnector, action_str: String)
+func _on_prompter_ready(section, connector, action_str):
+    
     if !panels[section]: 
-        _add_panel(section, connector)
+        _add_panel(section, connector, action_str)
 
 
 signal section_success(section: Section, new_section: Section, connector: TutorialConnector)
@@ -85,7 +94,6 @@ func _on_section_success(section, new_section, connector):
         panels[new_section].free()
         panels[new_section] = null
         _deactivate_section(new_section)
-
 
 func _ready():
     prompter_ready.connect(_on_prompter_ready)

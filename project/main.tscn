@@ -804,14 +804,11 @@ min_vol = -60
 script = ExtResource("7_fp0kt")
 prompt_time = 3.0
 response_time = 2.0
-inspire_prompt = "You can inspire goblins follow you press 
-follow_button "
+inspire_prompt = "You can inspire goblins follow you. "
 inspire_response = "Nice crew!"
-throw_prompt = "You can throw your goblin followers 
-press throw_button "
+throw_prompt = "You can throw your goblin followers. "
 throw_response = "Look at em go!"
-build_prompt = "You can build a camp 
-press place_camp_button "
+build_prompt = "You can build a camp. "
 build_response = "What a nice camp! Goblins will join your camp!"
 
 [node name="LevelUI" parent="." instance=ExtResource("8_8fyn6")]

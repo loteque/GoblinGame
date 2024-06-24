@@ -35,15 +35,18 @@ func _ready():
     await get_tree().create_timer(2).timeout
     tut_conn.manager.prompter_ready.emit(
         tut_conn.manager.Section.INSPIRE_PROMPT, 
-        tut_conn
+        tut_conn,
+        "call"
     )
     tut_conn.manager.prompter_ready.emit(
         tut_conn.manager.Section.THROW_PROMPT,
-        tut_conn
+        tut_conn,
+        "throw"
     )
     tut_conn.manager.prompter_ready.emit(
         tut_conn.manager.Section.BUILD_PROMPT,
-        tut_conn
+        tut_conn,
+        "place"
     )
 
 func _on_died():
