@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://78j5k0a24wsl"]
+[gd_scene load_steps=25 format=3 uid="uid://78j5k0a24wsl"]
 
 [ext_resource type="Script" path="res://PlayerCharacter.gd" id="1_k6ex4"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_1fc7m"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" path="res://goblin_call_area.gd" id="5_ennj5"]
 [ext_resource type="Script" path="res://src/character/components/throw_goblin_component.gd" id="7_uvm8g"]
 [ext_resource type="Texture2D" uid="uid://d04bgi5pe4150" path="res://src/character/lights/player_character.tres" id="8_c4qkd"]
+[ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="8_xi4xc"]
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="9_7fwrf"]
 [ext_resource type="AudioStream" uid="uid://cgnuiyer5k1ya" path="res://assets/audio/recruit1.wav" id="10_5i6eb"]
+[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="10_u2kbk"]
 [ext_resource type="AudioStream" uid="uid://n6i3gidauoxf" path="res://assets/audio/recruit2.wav" id="11_youbl"]
 [ext_resource type="AudioStream" uid="uid://be1oc7yjiqtru" path="res://assets/audio/recruit3.wav" id="12_qj7v8"]
 [ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="13_6i08g"]
@@ -88,7 +90,7 @@ shape = SubResource("RectangleShape2D_fe2m7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_e5xby")
-animation = &"run_down"
+animation = &"die"
 autoplay = "idle_front"
 offset = Vector2(0, -175)
 
@@ -119,6 +121,13 @@ script = ExtResource("7_uvm8g")
 goblin_command_component = NodePath("../GoblinCallComponent")
 target = NodePath("../Marker2D")
 
+[node name="HealthBarUi" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_xi4xc")]
+offset_left = -26.0
+offset_top = -127.0
+offset_right = -26.0
+offset_bottom = -127.0
+health_component = NodePath("../HealthComponent")
+
 [node name="Lights" type="Node2D" parent="."]
 position = Vector2(0, -56)
 
@@ -148,6 +157,8 @@ script = ExtResource("9_7fwrf")
 bank_names = Array[StringName]([&"recruit", &"hit", &"empty", &"empty", &"empty", &"empty", &"empty", &"empty"])
 bank_0 = Array[AudioStream]([ExtResource("10_5i6eb"), ExtResource("11_youbl"), ExtResource("12_qj7v8")])
 bank_1 = Array[AudioStream]([ExtResource("13_6i08g"), ExtResource("14_c04qp"), ExtResource("15_k6wic"), ExtResource("16_jso4m")])
+
+[node name="Ghost" parent="." instance=ExtResource("10_u2kbk")]
 
 [connection signal="body_entered" from="Marker2D/Cursor" to="." method="_on_cursor_body_entered"]
 [connection signal="body_exited" from="Marker2D/Cursor" to="." method="_on_cursor_body_exited"]

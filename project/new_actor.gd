@@ -17,11 +17,14 @@ class_name Actor
 var is_boosted:= false
 var current_move_speed: float = move_speed
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var health_bar_ui = $HealthBarUi
 @onready var music_connector = MusicManager.MusicConnector.new(music_manager, self)
 @onready var health_component = $HealthComponent
 @onready var boost_timer = $BoostTimer
 @onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var actor_core = %ActorCore
+@onready var lights = $Lights
 
 # can take damage
 signal health_updated(body)
@@ -50,7 +53,25 @@ func _on_died():
 
 # can die
 func die():
+    if health_bar_ui:
+        health_bar_ui.visible = false
+    animated_sprite_2d.play("die")
+    process_mode = Node.PROCESS_MODE_DISABLED    
+    animated_sprite_2d.process_mode = Node.PROCESS_MODE_ALWAYS
+    await animated_sprite_2d.animation_finished
+    animated_sprite_2d.process_mode = Node.PROCESS_MODE_DISABLED
+    if lights:
+        lights.queue_free()
+
+    var death_despawn_timer_delay = 600
+    var timer = Timer.new()
+    timer.one_shot = true
+    get_parent().add_child(timer)
+    timer.start(death_despawn_timer_delay)
+    await timer.timeout
+    timer.queue_free()
     queue_free()
+    
 
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
     if !actor_core.is_thrown:

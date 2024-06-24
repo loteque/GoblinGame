@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnpjlg6u1fhrp"]
+
+[ext_resource type="Shader" path="res://src/character/ghost.gdshader" id="1_2irq0"]
+[ext_resource type="Texture2D" uid="uid://c3c0kk22hp3hf" path="res://assets/art/spritesheets/sprite-sheet-grid.png" id="1_6lqi0"]
+[ext_resource type="Script" path="res://src/character/ghost.gd" id="3_w05rb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxm0e"]
+shader = ExtResource("1_2irq0")
+shader_parameter/speed = 1.0
+shader_parameter/frequency_y = 4.0
+shader_parameter/frequency_x = 5.0
+shader_parameter/amplitude_y = 0.0
+shader_parameter/amplitude_x = 268.0
+shader_parameter/inclination = 0.0
+shader_parameter/rotation_angle = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elk8m"]
+atlas = ExtResource("1_6lqi0")
+region = Rect2(615, 1845, 615, 615)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jvw1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elk8m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_wk4lb"]
+resource_name = "fade in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_25eh4"]
+resource_name = "fade_out"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kajy"]
+_data = {
+"fade in": SubResource("Animation_wk4lb"),
+"fade_out": SubResource("Animation_25eh4")
+}
+
+[node name="Ghost" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_hxm0e")
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jvw1o")
+script = ExtResource("3_w05rb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4kajy")
+}

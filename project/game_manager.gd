@@ -15,4 +15,4 @@ func _ready():
 func _on_game_over(result: GameResult):
     var players = get_tree().get_nodes_in_group("Player")
     var player = players[0]
-    player.process_mode = PROCESS_MODE_DISABLED
+    #player.process_mode = PROCESS_MODE_DISABLED

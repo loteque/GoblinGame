@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=52 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://src/ui/debug/state_debugger.gd" id="22_rd18m"]
 [ext_resource type="Script" path="res://src/ui/debug/debug_velocity_label.gd" id="25_vpkrl"]
 [ext_resource type="Script" path="res://CollectorComponent.gd" id="25_w71ht"]
+[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="26_5cti7"]
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="26_5dvql"]
 [ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="27_qsd1q"]
 [ext_resource type="AudioStream" uid="uid://bmtftsp36ylhy" path="res://assets/audio/hit2.wav" id="28_fplje"]
@@ -103,7 +104,7 @@ unique_name_in_owner = true
 position = Vector2(0, -63.75)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_xmqe5")
-animation = &"idle_front"
+animation = &"die"
 offset = Vector2(0, -165)
 
 [node name="TargetTrackerComponent" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
@@ -263,6 +264,9 @@ bank_0 = Array[AudioStream]([ExtResource("27_qsd1q"), ExtResource("28_fplje"), E
 bank_1 = Array[AudioStream]([ExtResource("32_yw0u1"), ExtResource("33_eo4f7"), ExtResource("34_bppj8"), ExtResource("35_5yf7r")])
 bank_2 = Array[AudioStream]([ExtResource("36_6682j"), ExtResource("37_1kj1u"), ExtResource("38_g3vxx"), ExtResource("39_ttqg1")])
 bank_3 = Array[AudioStream]([ExtResource("40_jy4ob"), ExtResource("41_6qu3w"), ExtResource("42_jqshp"), ExtResource("43_puc0p"), ExtResource("44_m0tq1")])
+
+[node name="Ghost" parent="." instance=ExtResource("26_5cti7")]
+position = Vector2(0, -165)
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]

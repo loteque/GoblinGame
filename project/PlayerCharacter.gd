@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var cursor: Area2D
 @export var follow_target: Marker2D
 @export var team: TeamManager.Team = TeamManager.Team.PLAYER
+@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var health_bar_ui = $HealthBarUi
 
 @onready var health_component = $HealthComponent
 
@@ -27,8 +29,13 @@ func _on_died():
     die()
 
 func die():
-    visible = false
+    if health_bar_ui:
+        health_bar_ui.visible = false
+    animated_sprite_2d.play("die")
     process_mode = Node.PROCESS_MODE_DISABLED
+    animated_sprite_2d.process_mode = Node.PROCESS_MODE_ALWAYS
+    await animated_sprite_2d.animation_finished
+    animated_sprite_2d.process_mode = Node.PROCESS_MODE_DISABLED
 
 func update_marker_position(player_direction: Vector2):
     if player_direction.length() == 0:
