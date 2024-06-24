@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://78j5k0a24wsl"]
+[gd_scene load_steps=25 format=3 uid="uid://78j5k0a24wsl"]
 
 [ext_resource type="Script" path="res://PlayerCharacter.gd" id="1_k6ex4"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_1fc7m"]
@@ -8,16 +8,16 @@
 [ext_resource type="Script" path="res://goblin_call_area.gd" id="5_ennj5"]
 [ext_resource type="Script" path="res://src/character/components/throw_goblin_component.gd" id="7_uvm8g"]
 [ext_resource type="Texture2D" uid="uid://d04bgi5pe4150" path="res://src/character/lights/player_character.tres" id="8_c4qkd"]
+[ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="8_xi4xc"]
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="9_7fwrf"]
 [ext_resource type="AudioStream" uid="uid://cgnuiyer5k1ya" path="res://assets/audio/recruit1.wav" id="10_5i6eb"]
+[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="10_u2kbk"]
 [ext_resource type="AudioStream" uid="uid://n6i3gidauoxf" path="res://assets/audio/recruit2.wav" id="11_youbl"]
 [ext_resource type="AudioStream" uid="uid://be1oc7yjiqtru" path="res://assets/audio/recruit3.wav" id="12_qj7v8"]
 [ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="13_6i08g"]
 [ext_resource type="AudioStream" uid="uid://bmtftsp36ylhy" path="res://assets/audio/hit2.wav" id="14_c04qp"]
 [ext_resource type="AudioStream" uid="uid://da546wjhxhlu3" path="res://assets/audio/hit3.wav" id="15_k6wic"]
 [ext_resource type="AudioStream" uid="uid://c8xb3f18kclth" path="res://assets/audio/hit4.wav" id="16_jso4m"]
-[ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="8_xi4xc"]
-[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="10_u2kbk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u2vdy"]
 radius = 21.0535

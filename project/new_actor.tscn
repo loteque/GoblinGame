@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=52 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://src/ui/debug/state_debugger.gd" id="22_rd18m"]
 [ext_resource type="Script" path="res://src/ui/debug/debug_velocity_label.gd" id="25_vpkrl"]
 [ext_resource type="Script" path="res://CollectorComponent.gd" id="25_w71ht"]
+[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="26_5cti7"]
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="26_5dvql"]
 [ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="27_qsd1q"]
 [ext_resource type="AudioStream" uid="uid://bmtftsp36ylhy" path="res://assets/audio/hit2.wav" id="28_fplje"]
@@ -44,7 +45,6 @@
 [ext_resource type="AudioStream" uid="uid://d4ceyrcvkgma1" path="res://assets/audio/throw3.wav" id="42_jqshp"]
 [ext_resource type="AudioStream" uid="uid://dga457mlya4h" path="res://assets/audio/throw4.wav" id="43_puc0p"]
 [ext_resource type="AudioStream" uid="uid://dbuxdutckxwmk" path="res://assets/audio/throw5.wav" id="44_m0tq1"]
-[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="26_5cti7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bxck"]
 radius = 17.5
