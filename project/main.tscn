@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=35 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="Script" path="res://game_manager.gd" id="1_o56us"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="6_ax147"]
 [ext_resource type="Texture2D" uid="uid://34mnibg6rfuw" path="res://assets/art/tilesets/river-edges-tileset.png" id="6_g0v38"]
 [ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="6_g25cc"]
+[ext_resource type="Script" path="res://tutorial_manager/TutorialManager.gd" id="7_fp0kt"]
 [ext_resource type="Texture2D" uid="uid://cdebc26yxfwlb" path="res://assets/art/dirt-tile.png" id="7_pmk3h"]
 [ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="7_sg7t6"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
@@ -799,6 +800,39 @@ lead_layer = ExtResource("5_x38i0")
 max_vol = -18
 min_vol = -60
 
+[node name="TutorialManager" type="CanvasLayer" parent="."]
+script = ExtResource("7_fp0kt")
+prompt_time = 3.0
+response_time = 2.0
+inspire_prompt = "You can inspire goblins follow you press 
+follow_button "
+inspire_response = "Nice crew!"
+throw_prompt = "You can throw your goblin followers 
+press throw_button "
+throw_response = "Look at em go!"
+build_prompt = "You can build a camp 
+press place_camp_button "
+build_response = "What a nice camp! Goblins will join your camp!"
+
+[node name="LevelUI" parent="." instance=ExtResource("8_8fyn6")]
+
+[node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("19_h5dls")]
+visible = false
+z_index = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("20_s4vua")
+game_manager = NodePath("../../GameManager")
+
+[node name="GamePlayMessages" type="VBoxContainer" parent="LevelUI"]
+unique_name_in_owner = true
+offset_left = 29.0
+offset_top = 36.0
+offset_right = 495.0
+offset_bottom = 1025.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(577, 322)
 navigation_polygon = SubResource("NavigationPolygon_ocatk")
@@ -878,9 +912,11 @@ position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
 texture = ExtResource("3_olnyg")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("1_rjx7k")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "tutorial_manager", "g_p_messages_cont") instance=ExtResource("1_rjx7k")]
 position = Vector2(449, 533)
 game_manager = NodePath("../GameManager")
+tutorial_manager = NodePath("../TutorialManager")
+g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 position_smoothing_enabled = true
@@ -1059,16 +1095,6 @@ position = Vector2(4370, -352)
 
 [node name="FollowCamera" parent="." instance=ExtResource("7_sg7t6")]
 position = Vector2(494, 281)
-
-[node name="LevelUI" parent="FollowCamera" instance=ExtResource("8_8fyn6")]
-
-[node name="GameOverScreen" parent="FollowCamera/LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("19_h5dls")]
-visible = false
-z_index = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("20_s4vua")
-game_manager = NodePath("../../../GameManager")
 
 [node name="Scrap5" parent="." instance=ExtResource("6_ax147")]
 z_index = 1

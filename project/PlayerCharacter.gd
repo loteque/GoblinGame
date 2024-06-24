@@ -14,6 +14,12 @@ extends CharacterBody2D
 @export var game_manager: GameManager
 @export var sfx_manager: SfxManager
 
+@export var tutorial_manager: TutorialManager
+@export var g_p_messages_cont: VBoxContainer
+@export var throw_component: Node
+var is_tutorial_section_active: bool = false
+var tut_conn: TutorialManager.TutorialConnector
+
 var base_placer = BasePlacer.new(1)
 var selected: Node2D
 
@@ -23,6 +29,22 @@ signal died
 func _ready():
     base_placer.game_manager = game_manager
     died.connect(_on_died)
+    
+    # tutorial: play tutorial when player loads
+    tut_conn = TutorialManager.TutorialConnector.new(tutorial_manager, self, g_p_messages_cont)
+    await get_tree().create_timer(2).timeout
+    tut_conn.manager.prompter_ready.emit(
+        tut_conn.manager.Section.INSPIRE_PROMPT, 
+        tut_conn
+    )
+    tut_conn.manager.prompter_ready.emit(
+        tut_conn.manager.Section.THROW_PROMPT,
+        tut_conn
+    )
+    tut_conn.manager.prompter_ready.emit(
+        tut_conn.manager.Section.BUILD_PROMPT,
+        tut_conn
+    )
 
 func _on_died():
     game_manager.game_over.emit(GameManager.GameResult.LOSE)
@@ -66,6 +88,15 @@ func _physics_process(_delta):
 func _input(event):
     if event.is_action("place"):
         base_placer.place(get_parent(), throw_target.global_transform.origin)
+        
+        # tutorial
+        if tut_conn.manager.is_tutorial_active():
+            tut_conn.manager.section_success.emit(
+                tut_conn.manager.Section.BUILD_PROMPT,
+                tut_conn.manager.Section.BUILD_RESPONSE, 
+                tut_conn
+            )
+
     if event.is_action("place") and selected:
         if selected.is_in_group("Upgradable"):
             selected.upgrader.upgrade()

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="8_xi4xc"]
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="9_7fwrf"]
 [ext_resource type="AudioStream" uid="uid://cgnuiyer5k1ya" path="res://assets/audio/recruit1.wav" id="10_5i6eb"]
-[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="10_u2kbk"]
+[ext_resource type="PackedScene" path="res://src/character/ghost.tscn" id="10_u2kbk"]
 [ext_resource type="AudioStream" uid="uid://n6i3gidauoxf" path="res://assets/audio/recruit2.wav" id="11_youbl"]
 [ext_resource type="AudioStream" uid="uid://be1oc7yjiqtru" path="res://assets/audio/recruit3.wav" id="12_qj7v8"]
 [ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="13_6i08g"]
@@ -41,7 +41,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_14lud"]
 polygon = PackedVector2Array(-26, 109, -12, 115, 14, 115, 28, 111, 24, 122, -23, 121)
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target", "cursor", "follow_target", "sfx_manager") groups=["Actor", "Player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target", "cursor", "follow_target", "sfx_manager", "throw_component") groups=["Actor", "Player"]]
 z_index = 1
 motion_mode = 1
 script = ExtResource("1_k6ex4")
@@ -49,6 +49,7 @@ throw_target = NodePath("Marker2D")
 cursor = NodePath("Marker2D/Cursor")
 follow_target = NodePath("FollowMarker2D")
 sfx_manager = NodePath("SfxManager")
+throw_component = NodePath("ThrowGoblinComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_1fc7m")]
 
@@ -116,10 +117,11 @@ unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="ThrowGoblinComponent" type="Node" parent="." node_paths=PackedStringArray("goblin_command_component", "target")]
+[node name="ThrowGoblinComponent" type="Node" parent="." node_paths=PackedStringArray("goblin_command_component", "target", "player")]
 script = ExtResource("7_uvm8g")
 goblin_command_component = NodePath("../GoblinCallComponent")
 target = NodePath("../Marker2D")
+player = NodePath("..")
 
 [node name="HealthBarUi" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_xi4xc")]
 offset_left = -26.0

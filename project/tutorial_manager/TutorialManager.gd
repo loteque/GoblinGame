@@ -7,9 +7,9 @@ class_name TutorialManager extends CanvasLayer
 class TutorialConnector:
     var manager: TutorialManager
     var prompter_connection: Node
-    var ui_connection: CanvasLayer
+    var ui_connection: VBoxContainer
 
-    func _init(manager_node: TutorialManager, connection_node: Node, ui_node: CanvasLayer):
+    func _init(manager_node: TutorialManager, connection_node: Node, ui_node: VBoxContainer):
         manager = manager_node
         prompter_connection = connection_node
         ui_connection = ui_node
@@ -17,47 +17,80 @@ class TutorialConnector:
 class PanelConfigurator:
     const Panel_Scene = preload("res://tutorial_manager/message_panel.tscn")
     var message: String
-    var panel: Node
-    var text_edit: TextEdit
+    var panel: Control
 
     func create_panel():
-        panel = Panel_Scene.new()
-        text_edit = panel.get_node("Message")
-        text_edit.text = message
+        panel = Panel_Scene.instantiate()
+        panel.text = message
 
     func _init(panel_message: String):
         message = panel_message
         create_panel()
 
-var _success: int
+var section_1: bool = true
+var section_2: bool = true
+var section_3: bool = true
+func _deactivate_section(response_section):
+    match response_section:
+        Section.INSPIRE_RESPONSE:
+            section_1 = false
+        Section.THROW_RESPONSE:
+            section_2 = false
+        Section.BUILD_RESPONSE:
+            section_3 = false
 
-func _add_panel(section: int, connector: TutorialConnector) -> Node:
+
+func is_tutorial_active() -> bool:
+    var active: bool = section_1 or section_2 or section_3
+    return active
+
+
+var panels: Dictionary = {
+    Section.INSPIRE_PROMPT: null,
+    Section.INSPIRE_RESPONSE: null,
+    Section.THROW_PROMPT: null,
+    Section.THROW_RESPONSE: null,
+    Section.BUILD_PROMPT: null,
+    Section.BUILD_RESPONSE: null,
+}
+
+
+func _add_panel(section: int, connector: TutorialConnector):
     var config = PanelConfigurator.new(sections.get(section))
-    connector.ui_connector.add_child(config.panel)
-    return config.panel
+    var panel = config.panel
+    connector.ui_connection.add_child(panel)
+    panels[section] = panel
+
 
 signal prompter_ready(section: Section, connector: TutorialConnector)
 func _on_prompter_ready(section, connector):
-    var panel = _add_panel(section, connector)
-    await section_success
-    if _success == section:
-        await get_tree().create_timer(prompt_time).timeout
-        panel.free()
+    if !panels[section]: 
+        _add_panel(section, connector)
 
 
 signal section_success(section: Section, new_section: Section, connector: TutorialConnector)
 func _on_section_success(section, new_section, connector):
-    _success = section
-    var panel = _add_panel(new_section, connector)
+    
+    if !panels[new_section]:
+        _add_panel(new_section, connector)
+    
+    await get_tree().create_timer(prompt_time).timeout
+    if panels[section] != null:
+        panels[section].free()
+        panels[section] = null
+
     await get_tree().create_timer(response_time).timeout
-    panel.free()
+    if panels[new_section] != null:
+        push_warning("trying to free panel: " + str(new_section))
+        panels[new_section].free()
+        panels[new_section] = null
+        _deactivate_section(new_section)
 
 
 func _ready():
     prompter_ready.connect(_on_prompter_ready)
     section_success.connect(_on_section_success)
     
-
 
 enum Section{
     INSPIRE_PROMPT = 10,
