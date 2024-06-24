@@ -1,6 +1,7 @@
 extends Control
 
 @export var game_manager: GameManager
+@export var restart_button: Button
 @onready var result_label = %ResultLabel
 
 var win_text = "[center][color=red][b][shake]Victory![/shake][/b][/color][/center]"
@@ -16,6 +17,7 @@ func _on_game_over(result: GameManager.GameResult):
 
 func show_game_over(result: GameManager.GameResult):
     visible = true
+    restart_button.grab_focus()
     if result == game_manager.GameResult.WIN:
         result_label.text = win_text
     else:
