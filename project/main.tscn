@@ -20,12 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="19_h5dls"]
 [ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="20_clio4"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ocatk"]
-vertices = PackedVector2Array(3957, -824, 3957, 1651, 3465, 904, 3465, -396, 2889, 264, 2889, 52, 3253, -184, 3253, 904, 2293, -184, 1929, -120, 1929, -824, 2293, -396, 885, 52, 885, 1352, 521, 1352, 521, -524, 1097, 1352, 1097, 264, -567, 1644, 309, 1352, -567, -824, 309, -524, 1781, -824, 1781, -120)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 6, 5, 9), PackedInt32Array(10, 0, 3, 11), PackedInt32Array(9, 10, 11, 8), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 4, 7), PackedInt32Array(7, 2, 1, 16), PackedInt32Array(16, 1, 18, 13), PackedInt32Array(14, 13, 18), PackedInt32Array(19, 14, 18), PackedInt32Array(19, 18, 20, 21), PackedInt32Array(21, 20, 22, 15), PackedInt32Array(12, 15, 22, 23), PackedInt32Array(5, 12, 23, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-577, -834, 3967, -834, 3967, 1662, -577, 1654)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u4m3w"]
 
 [sub_resource type="Gradient" id="Gradient_enkf7"]
@@ -34,6 +28,13 @@ colors = PackedColorArray(0, 0, 0, 1, 0.20989, 0.20989, 0.20989, 1, 0.28485, 0.2
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mpkqw"]
 gradient = SubResource("Gradient_enkf7")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kd4xc"]
+vertices = PackedVector2Array(2929, 304, 2929, 12, 3213, -144, 3213, 944, 2253, -144, 1969, -80, 3931, -794, 3944, 1621, 3505, 944, 3505, -436, 1969, -793, 2253, -436, 845, 12, 845, 1392, 561, 1392, 561, -564, 1137, 1392, 1137, 304, -530, 1629, 269, 1392, -526, -791, 269, -564, 1741, -792, 1741, -80)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 6, 9, 11), PackedInt32Array(5, 10, 11, 4), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 0, 3), PackedInt32Array(3, 8, 7, 16), PackedInt32Array(16, 7, 18, 13), PackedInt32Array(14, 13, 18), PackedInt32Array(19, 14, 18), PackedInt32Array(19, 18, 20, 21), PackedInt32Array(21, 20, 22, 15), PackedInt32Array(12, 15, 22, 23), PackedInt32Array(1, 12, 23, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-576, -841, -581, 1680, 3995, 1671, 3981, -845)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 50.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6pi3"]
 resource_name = "ANimated Rivers"
@@ -547,58 +548,56 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MainMenu" parent="LevelUI" instance=ExtResource("10_cxmx8")]
-process_mode = 3
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(577, 322)
-navigation_polygon = SubResource("NavigationPolygon_ocatk")
+[node name="WorldBoundery" type="StaticBody2D" parent="."]
 
-[node name="WorldBoundery" type="StaticBody2D" parent="NavigationRegion2D"]
-position = Vector2(-577, -322)
-
-[node name="Bottom" type="CollisionShape2D" parent="NavigationRegion2D/WorldBoundery"]
+[node name="Bottom" type="CollisionShape2D" parent="WorldBoundery"]
 position = Vector2(551, 1973)
 shape = SubResource("WorldBoundaryShape2D_u4m3w")
 
-[node name="Left" type="CollisionShape2D" parent="NavigationRegion2D/WorldBoundery"]
+[node name="Left" type="CollisionShape2D" parent="WorldBoundery"]
 position = Vector2(8, 200)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_u4m3w")
 
-[node name="Top" type="CollisionShape2D" parent="NavigationRegion2D/WorldBoundery"]
+[node name="Top" type="CollisionShape2D" parent="WorldBoundery"]
 position = Vector2(894, -498)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_u4m3w")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="NavigationRegion2D/WorldBoundery"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldBoundery"]
 position = Vector2(4535, 99)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_u4m3w")
 
-[node name="CaveWallLeft" type="Sprite2D" parent="NavigationRegion2D/WorldBoundery"]
+[node name="CaveWallLeft" type="Sprite2D" parent="WorldBoundery"]
 position = Vector2(-206, 796.5)
 scale = Vector2(6.59375, 62.2344)
 texture = SubResource("GradientTexture2D_mpkqw")
 
-[node name="CaveWallRight" type="Sprite2D" parent="NavigationRegion2D/WorldBoundery"]
+[node name="CaveWallRight" type="Sprite2D" parent="WorldBoundery"]
 position = Vector2(4743, 797)
 scale = Vector2(6.59375, 62.2344)
 texture = SubResource("GradientTexture2D_mpkqw")
 
-[node name="CaveWallTop" type="Sprite2D" parent="NavigationRegion2D/WorldBoundery"]
+[node name="CaveWallTop" type="Sprite2D" parent="WorldBoundery"]
 position = Vector2(2159.74, -709)
 rotation = 1.5708
 scale = Vector2(6.59375, 93.605)
 texture = SubResource("GradientTexture2D_mpkqw")
 
-[node name="CaveWallBottom" type="Sprite2D" parent="NavigationRegion2D/WorldBoundery"]
+[node name="CaveWallBottom" type="Sprite2D" parent="WorldBoundery"]
 position = Vector2(2170, 2181)
 rotation = 1.5708
 scale = Vector2(6.59375, 93.605)
 texture = SubResource("GradientTexture2D_mpkqw")
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(577, 322)
+navigation_polygon = SubResource("NavigationPolygon_kd4xc")
+
 [node name="TileMap64" type="TileMap" parent="NavigationRegion2D"]
-visible = false
+show_behind_parent = true
 position = Vector2(-577, -322)
 tile_set = SubResource("TileSet_4ynmb")
 format = 2
