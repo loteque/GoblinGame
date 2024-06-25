@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://blnqmsyjwncp6"]
 
 [ext_resource type="Script" path="res://base/base.gd" id="1_eyfgn"]
-[ext_resource type="Texture2D" uid="uid://c724x0xw1mdwh" path="res://assets/art/gay_camp_0_spritesheet_v2-1.png" id="2_xaon2"]
 [ext_resource type="Script" path="res://health_component.gd" id="3_ibguq"]
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="3_mcleq"]
 [ext_resource type="PackedScene" uid="uid://35pilvifscno" path="res://spawner.tscn" id="5_iewlk"]
 [ext_resource type="Script" path="res://base/CircularProgressBar.gd" id="6_xylyr"]
+[ext_resource type="Texture2D" uid="uid://ckku7yregv2ea" path="res://assets/art/sprites/base_small.png" id="7_5x3oo"]
 [ext_resource type="Shader" path="res://base/spawn_progress.gdshader" id="7_k3ig4"]
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="8_4vgup"]
 [ext_resource type="AudioStream" uid="uid://bc8imry1mbcve" path="res://assets/audio/build1.wav" id="9_6c6ur"]
@@ -31,14 +31,8 @@ radius = 73.1095
 
 [node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite", "sfx_manager") groups=["Base"]]
 script = ExtResource("1_eyfgn")
-base_sprite = NodePath("BaseSprite")
+base_sprite = NodePath("")
 sfx_manager = NodePath("SfxManager")
-
-[node name="BaseSprite" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_xaon2")
-region_enabled = true
-region_rect = Rect2(2144, 1088, 632, 488)
 
 [node name="BaseDataUI" type="HBoxContainer" parent="."]
 offset_left = -79.0
@@ -78,9 +72,7 @@ position = Vector2(2, 95)
 
 [node name="BaseSprite2" type="Sprite2D" parent="."]
 z_index = 1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_xaon2")
-region_enabled = true
+texture = ExtResource("7_5x3oo")
 region_rect = Rect2(2144, 1088, 632, 488)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
