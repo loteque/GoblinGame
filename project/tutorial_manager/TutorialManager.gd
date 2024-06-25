@@ -10,6 +10,13 @@ class TutorialConnector:
     var prompter_connection: Node
     var ui_connection: VBoxContainer
 
+    func connected():
+        if manager and prompter_connection and ui_connection:
+            return true
+        else:
+            return false
+            
+
     func _init(manager_node: TutorialManager, connection_node: Node, ui_node: VBoxContainer):
         manager = manager_node
         prompter_connection = connection_node

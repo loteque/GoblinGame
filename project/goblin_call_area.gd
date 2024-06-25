@@ -50,13 +50,14 @@ func call_goblins():
     if len(allied_goblins) > 0:
         lead(allied_goblins)
 
-    # tutorial   
-    if leader.tut_conn.manager.is_tutorial_active():
-        leader.tut_conn.manager.section_success.emit(
-            leader.tut_conn.manager.Section.INSPIRE_PROMPT, 
-            leader.tut_conn.manager.Section.INSPIRE_RESPONSE, 
-            leader.tut_conn
-        )
+    # tutorial
+    if leader.tut_conn.connected():   
+        if leader.tut_conn.manager.is_tutorial_active():
+            leader.tut_conn.manager.section_success.emit(
+                leader.tut_conn.manager.Section.INSPIRE_PROMPT, 
+                leader.tut_conn.manager.Section.INSPIRE_RESPONSE, 
+                leader.tut_conn
+            )
 
 func show_call_indicator():
     call_range_indicator_timer.start()
