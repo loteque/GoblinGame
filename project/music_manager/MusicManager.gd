@@ -37,6 +37,7 @@ class MusicConnector:
         _client = client
 
 signal game_started
+signal level_started
 signal player_entered_base
 signal player_left_base
 signal damage_taken
@@ -68,7 +69,7 @@ enum Source{
     SOURCE_3 = 8,
 }
 
-var fade: FadeType
+var fade: FadeType = FadeType.NONE
 enum FadeType{
     IN,
     OUT,
@@ -196,6 +197,9 @@ func fade_out(sources: int, speed: float, delta: float):
 
 
 func _on_game_started():
+    pass
+
+func _on_level_started():
     source_2.stream = combat_layer
     source_2.bus = null_bus_str
     source_2.play()
@@ -208,7 +212,6 @@ func _on_game_started():
     source_1.stream = explore_layer
     source_1.play()
     start_fade(Source.SOURCE_0 + Source.SOURCE_1, FadeType.IN, fade_in_speed)
-
 
 func _on_player_entered_base():
     push_warning("player entered base")
@@ -246,6 +249,7 @@ func _on_combat_finished():
 func _ready():
     
     game_started.connect(_on_game_started)
+    level_started.connect(_on_level_started)
     player_entered_base.connect(_on_player_entered_base)
     player_left_base.connect(_on_player_left_base)
     damage_taken.connect(_on_damage_taken)

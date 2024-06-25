@@ -547,7 +547,8 @@ offset_bottom = 1025.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MainMenu" parent="LevelUI" instance=ExtResource("10_cxmx8")]
+[node name="MainMenu" parent="LevelUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_cxmx8")]
+music_manager = NodePath("../../MusicManager")
 
 [node name="WorldBoundery" type="StaticBody2D" parent="."]
 
