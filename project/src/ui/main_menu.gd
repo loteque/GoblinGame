@@ -3,6 +3,8 @@ extends TextureRect
 @export var is_paused: bool = true
 @export var play_button: Button
 @export var quit_button: Button
+@export var music_manager: MusicManager
+@export var title_music: AudioStreamPlayer
 
 var pause_ok: bool = false
 
@@ -33,6 +35,10 @@ func _ready():
 
 func _on_play_button_pressed():
     if pause_ok == false:
+        title_music.stop()
+        var mus_conn: MusicManager.MusicConnector
+        mus_conn = MusicManager.MusicConnector.new(music_manager, self)
+        mus_conn._manager.level_started.emit()
         pause_ok = true
 
     if pause_ok:
