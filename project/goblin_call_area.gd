@@ -12,11 +12,16 @@ var is_leading: bool = false
 @onready var call_range_indicator_timer = %CallRangeIndicatorTimer
 
 func _ready():
+    body_exited.connect(_on_body_exited)
     call_range_indicator.visible = false
 
 func _input(event):
     if event.is_action_pressed("call"):
         call_goblins()
+
+func _on_body_exited(body):
+    if body.is_in_group("NPC") and leader == body.player:
+        body.unfollow(leader)
 
 func get_followers():
     return followers
