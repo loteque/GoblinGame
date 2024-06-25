@@ -5,11 +5,11 @@ class_name CollectorComponent
 
 @onready var target_tracker_component: TargetTrackerComponent = %TargetTrackerComponent
 
-
 var current_scrap: int = 0
 var max_scrap: int = 1
 var closest_base: Node2D
 var current_scrap_node: Scrap
+var is_in_collection_cycle = false
 @onready var parent: Actor = get_parent()
 
 var next_target_position: Vector2
@@ -24,7 +24,7 @@ func _process(delta):
 
 func should_return_to_base():
     var can_return_to_base = closest_base != null
-    return !has_remaining_capacity() and can_return_to_base
+    return !has_remaining_capacity() and can_return_to_base and is_in_collection_cycle
 
 func deliver_scrap():
     var delivery_amount =  current_scrap
@@ -46,7 +46,10 @@ func get_closest_scrap():
     return target_tracker_component.get_closest_in_group("Scrap")
 
 func is_near_scrap():
-    return target_tracker_component.is_tracking_group("Scrap")
+    var is_near = target_tracker_component.is_tracking_group("Scrap")
+    if is_near:
+        is_in_collection_cycle = true
+    return is_near
 
 func set_collect_target(target: Scrap):
     current_scrap_node = target
@@ -73,14 +76,18 @@ func get_current_scrap_node_position():
 func return_to_base():
     closest_base = get_closest_allied_base()
 
+func clear_mining_target():
+    is_in_collection_cycle = false
+    current_scrap_node = null
+
 func should_collect():
     var is_carrying_scrap = is_carrying_scrap()
     var can_return_to_base = closest_base != null
     var target_node_has_scrap = current_scrap_node and current_scrap_node != null
-    var is_near_node = target_tracker_component.includes("Scrap")
+    var is_near_node = is_near_scrap()
     if not current_scrap_node and is_near_node:
         current_scrap_node = get_closest_scrap()
-    return (is_carrying_scrap and can_return_to_base) or (is_near_node and has_remaining_capacity()) or (target_node_has_scrap and has_remaining_capacity())
+    return (is_carrying_scrap and can_return_to_base and is_in_collection_cycle) or (is_near_node and has_remaining_capacity()) or (target_node_has_scrap and has_remaining_capacity())
 
 func get_next_target():
     var target: Node2D

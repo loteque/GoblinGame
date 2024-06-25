@@ -10,6 +10,7 @@ var target: Node2D
 @onready var actor_core = %ActorCore
 @onready var idle = $Idle
 @onready var navigate = $Navigate
+@onready var collector: CollectorComponent = %Collector
 
 func is_close_enough():
     var distance = actor_core.actor.global_position.distance_to(target.global_position)
@@ -18,6 +19,8 @@ func is_close_enough():
 func enter_state(data: Dictionary = {}):
     super.enter_state()
     target = data.get("target")
+    collector.clear_mining_target()
+    
 
 func update(_delta):
     if target and not target == null:
