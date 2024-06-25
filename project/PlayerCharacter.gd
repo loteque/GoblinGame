@@ -32,22 +32,23 @@ func _ready():
     
     # tutorial: play tutorial when player loads
     tut_conn = TutorialManager.TutorialConnector.new(tutorial_manager, self, g_p_messages_cont)
-    await get_tree().create_timer(2).timeout
-    tut_conn.manager.prompter_ready.emit(
-        tut_conn.manager.Section.INSPIRE_PROMPT, 
-        tut_conn,
-        "call"
-    )
-    tut_conn.manager.prompter_ready.emit(
-        tut_conn.manager.Section.THROW_PROMPT,
-        tut_conn,
-        "throw"
-    )
-    tut_conn.manager.prompter_ready.emit(
-        tut_conn.manager.Section.BUILD_PROMPT,
-        tut_conn,
-        "place"
-    )
+    if tut_conn.connected():
+        await get_tree().create_timer(2).timeout
+        tut_conn.manager.prompter_ready.emit(
+            tut_conn.manager.Section.INSPIRE_PROMPT, 
+            tut_conn,
+            "call"
+        )
+        tut_conn.manager.prompter_ready.emit(
+            tut_conn.manager.Section.THROW_PROMPT,
+            tut_conn,
+            "throw"
+        )
+        tut_conn.manager.prompter_ready.emit(
+            tut_conn.manager.Section.BUILD_PROMPT,
+            tut_conn,
+            "place"
+        )
 
 func _on_died():
     game_manager.game_over.emit(GameManager.GameResult.LOSE)
@@ -93,12 +94,13 @@ func _input(event):
         base_placer.place(get_parent(), throw_target.global_transform.origin)
         
         # tutorial
-        if tut_conn.manager.is_tutorial_active():
-            tut_conn.manager.section_success.emit(
-                tut_conn.manager.Section.BUILD_PROMPT,
-                tut_conn.manager.Section.BUILD_RESPONSE, 
-                tut_conn
-            )
+        if tut_conn.connected():
+            if tut_conn.manager.is_tutorial_active():
+                tut_conn.manager.section_success.emit(
+                    tut_conn.manager.Section.BUILD_PROMPT,
+                    tut_conn.manager.Section.BUILD_RESPONSE, 
+                    tut_conn
+                )
 
     if event.is_action("place") and selected:
         if selected.is_in_group("Upgradable"):

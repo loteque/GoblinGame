@@ -22,12 +22,13 @@ func throw_a_goblin():
     throw_goblin(goblin)
 
     # tutorial
-    if player.tut_conn.manager.is_tutorial_active():
-        player.tut_conn.manager.section_success.emit(
-            player.tut_conn.manager.Section.THROW_PROMPT,
-            player.tut_conn.manager.Section.THROW_RESPONSE, 
-            player.tut_conn
-        )        
+    if player.tut_conn.connected():
+        if player.tut_conn.manager.is_tutorial_active():
+            player.tut_conn.manager.section_success.emit(
+                player.tut_conn.manager.Section.THROW_PROMPT,
+                player.tut_conn.manager.Section.THROW_RESPONSE, 
+                player.tut_conn
+            )        
 
 
 
