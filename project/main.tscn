@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=27 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
 [ext_resource type="Script" path="res://game_manager.gd" id="1_o56us"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://tutorial_manager/TutorialManager.gd" id="7_fp0kt"]
 [ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="7_sg7t6"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
+[ext_resource type="PackedScene" uid="uid://bekfd1deerevd" path="res://src/ui/main_menu.tscn" id="10_cxmx8"]
 [ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="10_l6u8u"]
 [ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="19_h5dls"]
 [ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="20_clio4"]
@@ -502,6 +503,7 @@ unique_name_in_owner = true
 script = ExtResource("1_o56us")
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 bus = &"music"
 script = ExtResource("1_51uy5")
 fade_in_speed = 20.0
@@ -543,6 +545,9 @@ offset_right = 495.0
 offset_bottom = 1025.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="MainMenu" parent="LevelUI" instance=ExtResource("10_cxmx8")]
+process_mode = 3
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(577, 322)
