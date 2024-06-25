@@ -21,6 +21,7 @@ func _input(event):
 
 func _on_body_exited(body):
     if body.is_in_group("NPC") and leader == body.player:
+        followers.erase(body)
         body.unfollow(leader)
 
 func get_followers():
