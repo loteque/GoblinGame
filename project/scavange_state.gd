@@ -23,13 +23,13 @@ func _ready():
     interact_area.body_entered.connect(_on_interact_area_body_entered)
     interact_area.body_exited.connect(_on_interact_area_body_exited)
 
-func _on_interact_area_body_entered(body: PhysicsBody2D):
+func _on_interact_area_body_entered(body):
     if body.is_in_group("Scrap"):
         is_close_enough_to_scrap = true
     if body.is_in_group("Base"):
         is_close_enough_to_base = true
 
-func _on_interact_area_body_exited(body: PhysicsBody2D):
+func _on_interact_area_body_exited(body):
     if body.is_in_group("Scrap"):
         is_close_enough_to_scrap = false
     if body.is_in_group("Base"):

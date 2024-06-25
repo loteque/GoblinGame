@@ -1,7 +1,6 @@
 extends AnimatedSprite2D
 
 @export var float_speed: float = 100 
-@onready var animated_sprite_2d = %AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
 
 func _ready():

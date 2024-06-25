@@ -21,7 +21,6 @@ var current_move_speed: float = move_speed
 @onready var health_bar_ui = $HealthBarUi
 @onready var music_connector = MusicManager.MusicConnector.new(music_manager, self)
 @onready var health_component = $HealthComponent
-@onready var boost_timer = $BoostTimer
 @onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var actor_core = %ActorCore
 @onready var lights = $Lights
@@ -72,7 +71,6 @@ func die():
     timer.queue_free()
     queue_free()
     
-
 func _on_velocity_computed(safe_velocity: Vector2) -> void:
     if !actor_core.is_thrown:
         set_velocity(safe_velocity)
@@ -112,8 +110,6 @@ func _physics_process(_delta):
 
 func stop_following():
     should_follow_player = false
-
-
 
 func attack(attack_target):
     print(str(attack_target))
