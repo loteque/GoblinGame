@@ -5,7 +5,7 @@ class_name CollectState
 
 @onready var animated_sprite = %AnimatedSprite2D
 @onready var actor_core = %ActorCore
-@onready var collector = %Collector
+@onready var collector: CollectorComponent = %Collector
 @onready var collect_timer: Timer = Timer.new()
 
 @export var collection_time: float = 1
@@ -22,7 +22,7 @@ func collect():
         target.get_collected()
         collector.collect(target)
 
-func enter_state(data: Dictionary = {}):
+func enter_state(data: Dictionary={}):
     if is_collecting:
         return
     super.enter_state()
@@ -30,7 +30,6 @@ func enter_state(data: Dictionary = {}):
     animated_sprite.play("collect_scrap")
     collect_timer.start(collection_time)
     await collect_timer.timeout
-    collect()
     actor_core.actor.sfx_manager.play_rand("scrap")
 
 func exit_state():
@@ -39,4 +38,4 @@ func exit_state():
     is_collecting = false
 
 func update(_delta):
-    pass
+    collect()
