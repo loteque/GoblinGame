@@ -58,6 +58,7 @@ func die():
     process_mode = Node.PROCESS_MODE_DISABLED    
     animated_sprite_2d.process_mode = Node.PROCESS_MODE_ALWAYS
     await animated_sprite_2d.animation_finished
+    z_index = 0
     animated_sprite_2d.process_mode = Node.PROCESS_MODE_DISABLED
     if lights:
         lights.queue_free()
