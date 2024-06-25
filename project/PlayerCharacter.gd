@@ -65,7 +65,7 @@ func die():
 func update_marker_position(player_direction: Vector2):
     if player_direction.length() == 0:
         return
-    var marker_position = global_position + player_direction * marker_range
+    var marker_position = global_position + player_direction.normalized() * marker_range
     throw_target.global_position = marker_position
 
 func receive_attack(attack: Attack):
