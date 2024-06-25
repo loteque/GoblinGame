@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="8_xi4xc"]
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="9_7fwrf"]
 [ext_resource type="AudioStream" uid="uid://cgnuiyer5k1ya" path="res://assets/audio/recruit1.wav" id="10_5i6eb"]
-[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="10_u2kbk"]
+[ext_resource type="PackedScene" path="res://src/character/ghost.tscn" id="10_u2kbk"]
 [ext_resource type="AudioStream" uid="uid://n6i3gidauoxf" path="res://assets/audio/recruit2.wav" id="11_youbl"]
 [ext_resource type="AudioStream" uid="uid://be1oc7yjiqtru" path="res://assets/audio/recruit3.wav" id="12_qj7v8"]
 [ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="13_6i08g"]

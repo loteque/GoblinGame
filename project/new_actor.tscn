@@ -25,7 +25,7 @@
 [ext_resource type="Script" path="res://src/ui/debug/state_debugger.gd" id="22_rd18m"]
 [ext_resource type="Script" path="res://src/ui/debug/debug_velocity_label.gd" id="25_vpkrl"]
 [ext_resource type="Script" path="res://CollectorComponent.gd" id="25_w71ht"]
-[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="26_5cti7"]
+[ext_resource type="PackedScene" path="res://src/character/ghost.tscn" id="26_5cti7"]
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="26_5dvql"]
 [ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="27_qsd1q"]
 [ext_resource type="AudioStream" uid="uid://bmtftsp36ylhy" path="res://assets/audio/hit2.wav" id="28_fplje"]
@@ -76,6 +76,7 @@ sfx_manager = NodePath("SfxManager")
 [node name="HealthComponent" parent="." instance=ExtResource("2_3ypmk")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, -2.75)
 shape = SubResource("CircleShape2D_1bxck")
 
@@ -99,6 +100,7 @@ debug_enabled = true
 position = Vector2(0, -63.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
+visible = false
 shape = SubResource("CircleShape2D_v1do6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -111,6 +113,7 @@ offset = Vector2(0, -165)
 
 [node name="TargetTrackerComponent" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -63.75)
 collision_layer = 0
 collision_mask = 257
@@ -255,6 +258,7 @@ unique_name_in_owner = true
 position = Vector2(0, -63.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+visible = false
 position = Vector2(0, 61)
 shape = SubResource("CircleShape2D_yrhv1")
 
