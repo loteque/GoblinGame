@@ -92,12 +92,6 @@ pause={
 
 2d_physics/layer_9="collectable"
 
-[navigation]
-
-2d/default_cell_size=64.0
-2d/default_edge_connection_margin=32.0
-2d/default_link_connection_radius=16.0
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
