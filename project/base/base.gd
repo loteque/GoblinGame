@@ -22,7 +22,7 @@ func _on_died():
         game_manager.game_over.emit(GameManager.GameResult.LOSE)
     else:
         game_manager.game_over.emit(GameManager.GameResult.WIN)
-    visible = false
+    queue_free()
 
 func receive_attack(attack_obj: Attack):
     health_component.receive_attack(attack_obj)
