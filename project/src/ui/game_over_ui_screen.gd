@@ -9,10 +9,12 @@ var lose_text = "[center][color=red][b][shake]Defeat![/shake][/b][/color][/cente
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    process_mode = Node.PROCESS_MODE_WHEN_PAUSED
     if game_manager:
         game_manager.game_over.connect(_on_game_over)
 
 func _on_game_over(result: GameManager.GameResult):
+    get_tree().paused = true
     show_game_over(result)
 
 func show_game_over(result: GameManager.GameResult):
