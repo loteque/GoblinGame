@@ -1,8 +1,80 @@
-[gd_scene load_steps=4 format=3 uid="uid://bekfd1deerevd"]
+[gd_scene load_steps=21 format=3 uid="uid://bekfd1deerevd"]
 
 [ext_resource type="Texture2D" uid="uid://cwuai51kck7yh" path="res://assets/art/title_screen_complete.png" id="1_bodfo"]
 [ext_resource type="Script" path="res://src/ui/main_menu.gd" id="1_ftqh1"]
 [ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="3_ydkvx"]
+[ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="4_ax7ni"]
+
+[sub_resource type="Gradient" id="Gradient_wjgsm"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryewb"]
+gradient = SubResource("Gradient_wjgsm")
+fill_from = Vector2(0.666667, 0.898148)
+fill_to = Vector2(0.856481, 0.898148)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8p4yw"]
+resource_local_to_scene = true
+seed = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dx023"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_8p4yw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xst12"]
+resource_local_to_scene = true
+shader = ExtResource("4_ax7ni")
+shader_parameter/brighter_color = Color(1, 0.8, 0, 1)
+shader_parameter/middle_color = Color(1, 0.56, 0, 1)
+shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 1)
+shader_parameter/spread = 0.558
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_dx023")
+shader_parameter/gradient_tex = SubResource("GradientTexture2D_ryewb")
+
+[sub_resource type="Gradient" id="Gradient_2i5ad"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8fbxp"]
+gradient = SubResource("Gradient_2i5ad")
+
+[sub_resource type="Theme" id="Theme_63dmv"]
+default_font_size = 100
+
+[sub_resource type="Gradient" id="Gradient_00qp8"]
+offsets = PackedFloat32Array(0, 0.881579, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_301wc"]
+gradient = SubResource("Gradient_00qp8")
+fill_from = Vector2(0.611111, 0.523148)
+fill_to = Vector2(1, 0.537037)
+
+[sub_resource type="Gradient" id="Gradient_5r3l8"]
+offsets = PackedFloat32Array(0, 0.875)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.972549)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3ogq2"]
+seed = 3
+frequency = 0.011
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1tyos"]
+seamless_blend_skirt = 0.0
+color_ramp = SubResource("Gradient_5r3l8")
+noise = SubResource("FastNoiseLite_3ogq2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7o8n"]
+shader = ExtResource("4_ax7ni")
+shader_parameter/brighter_color = Color(1, 0.8, 0, 0.666667)
+shader_parameter/middle_color = Color(1, 0.560784, 0, 0.580392)
+shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 0.8)
+shader_parameter/spread = 0.597
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_1tyos")
+shader_parameter/gradient_tex = SubResource("GradientTexture2D_301wc")
+
+[sub_resource type="Gradient" id="Gradient_agiis"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4oh38"]
+gradient = SubResource("Gradient_agiis")
+fill_from = Vector2(0.794872, 0.200855)
+fill_to = Vector2(0.606838, 0.440171)
 
 [node name="MainMenu" type="TextureRect" node_paths=PackedStringArray("play_button", "quit_button", "title_music")]
 process_mode = 3
@@ -57,3 +129,42 @@ horizontal_alignment = 1
 stream = ExtResource("3_ydkvx")
 volume_db = -2.324
 autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 315.0
+offset_right = 951.0
+offset_bottom = 435.0
+color = Color(0.223529, 0.203922, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_xst12")
+layout_mode = 0
+offset_left = 453.0
+offset_top = -67.0
+offset_right = 1061.0
+offset_bottom = 452.0
+texture = SubResource("GradientTexture2D_8fbxp")
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 374.0
+offset_right = 534.0
+offset_bottom = 512.0
+theme = SubResource("Theme_63dmv")
+bbcode_enabled = true
+text = "[color=\"black\"][shake rate=20.0 level=40 connected=1]Goblins[/shake][/color]"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_e7o8n")
+layout_mode = 0
+offset_left = 453.0
+offset_top = -67.0
+offset_right = 1061.0
+offset_bottom = 452.0
+texture = SubResource("GradientTexture2D_4oh38")
+stretch_mode = 4
+flip_h = true
