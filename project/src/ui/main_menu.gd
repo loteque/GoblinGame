@@ -46,4 +46,6 @@ func _on_play_button_pressed():
 
 
 func _on_quit_button_pressed():
+    if OS.has_feature('JavaScript'):
+        JavaScriptBridge.eval("window.close()")
     get_tree().quit()
