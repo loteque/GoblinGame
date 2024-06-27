@@ -7,8 +7,6 @@ class_name TutorialManager extends CanvasLayer
 @export var prompt_time: float
 @export var response_time: float
 
-@onready var tut_conn: TutorialManager.TutorialConnector = TutorialManager.TutorialConnector.new(self, player, g_p_messages_cont)
-
 class TutorialConnector:
     var manager: TutorialManager
     var prompter_connection: Node
@@ -19,13 +17,11 @@ class TutorialConnector:
             return true
         else:
             return false
-            
 
     func _init(manager_node: TutorialManager, connection_node: Node, ui_node: VBoxContainer):
         manager = manager_node
         prompter_connection = connection_node
         ui_connection = ui_node
-
 
 class PanelConfigurator:
     const Panel_Scene = preload("res://tutorial_manager/message_panel.tscn")
@@ -58,7 +54,6 @@ func _deactivate_section(response_section):
         Section.BUILD_RESPONSE:
             section_3 = false
 
-
 func is_tutorial_active() -> bool:
     var active: bool = section_1 or section_2 or section_3
     return active
@@ -72,24 +67,23 @@ var panels: Dictionary = {
     Section.BUILD_RESPONSE: null,
 }
 
-
-func _add_panel(section: int, connector: TutorialConnector, action_str: String = ""):
+func _add_panel(section: int, action_str: String = ""):
     var config = PanelConfigurator.new(sections.get(section), action_str)
     var panel = config.panel
-    connector.ui_connection.add_child(panel)
+    g_p_messages_cont.add_child(panel)
     panels[section] = panel
 
-signal prompter_ready(section: Section, connector: TutorialConnector, action_str: String)
-func _on_prompter_ready(section, connector, action_str):
+signal prompter_ready(section: Section, action_str: String)
+func _on_prompter_ready(section, action_str):
     
     if !panels[section]:
-        _add_panel(section, connector, action_str)
+        _add_panel(section, action_str)
 
-signal section_success(section: Section, new_section: Section, connector: TutorialConnector)
-func _on_section_success(section, new_section, connector):
+signal section_success(section: Section, new_section: Section)
+func _on_section_success(section, new_section):
     
     if !panels[new_section]:
-        _add_panel(new_section, connector)
+        _add_panel(new_section)
     
     await get_tree().create_timer(prompt_time).timeout
     if panels[section] != null:
@@ -103,23 +97,23 @@ func _on_section_success(section, new_section, connector):
         panels[new_section] = null
         _deactivate_section(new_section)
 
-
 func _on_player_ready():
     await get_tree().create_timer(2).timeout
-    tut_conn.manager.prompter_ready.emit(Section.INSPIRE_PROMPT, tut_conn, "call")
-    tut_conn.manager.prompter_ready.emit(Section.THROW_PROMPT, tut_conn, "throw")
-    tut_conn.manager.prompter_ready.emit(Section.BUILD_PROMPT, tut_conn, "place")
+    prompter_ready.emit(Section.INSPIRE_PROMPT, "call")
+    prompter_ready.emit(Section.THROW_PROMPT, "throw")
+    prompter_ready.emit(Section.BUILD_PROMPT, "place")
 
 func _on_player_lead_goblin():
-    if tut_conn.manager.is_tutorial_active():
-        tut_conn.manager.section_success.emit(Section.INSPIRE_PROMPT, Section.INSPIRE_RESPONSE, tut_conn)
+    if is_tutorial_active():
+        section_success.emit(Section.INSPIRE_PROMPT, Section.INSPIRE_RESPONSE)
 
 func _on_player_threw_goblin():
-    if tut_conn.manager.is_tutorial_active():
-        tut_conn.manager.section_success.emit(Section.THROW_PROMPT,Section.THROW_RESPONSE, tut_conn)
+    if is_tutorial_active():
+        section_success.emit(Section.THROW_PROMPT,Section.THROW_RESPONSE)
 
 func _on_player_built_base():
-    section_success.emit(Section.BUILD_PROMPT, Section.BUILD_RESPONSE, tut_conn)
+    if is_tutorial_active():
+        section_success.emit(Section.BUILD_PROMPT, Section.BUILD_RESPONSE)
 
 func _ready():
     prompter_ready.connect(_on_prompter_ready)
