@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://blnqmsyjwncp6"]
+[gd_scene load_steps=15 format=3 uid="uid://blnqmsyjwncp6"]
 
 [ext_resource type="Script" path="res://base/base.gd" id="1_eyfgn"]
 [ext_resource type="Script" path="res://health_component.gd" id="3_ibguq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="8_4vgup"]
 [ext_resource type="AudioStream" uid="uid://bc8imry1mbcve" path="res://assets/audio/build1.wav" id="9_6c6ur"]
 [ext_resource type="AudioStream" uid="uid://csp4yed7uv34d" path="res://assets/audio/build2.wav" id="10_ma2c3"]
+[ext_resource type="Script" path="res://base/base_preview.gd" id="11_8ynoq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ubkic"]
 shader = ExtResource("7_k3ig4")
@@ -31,7 +32,7 @@ radius = 73.1095
 
 [node name="Base" type="StaticBody2D" node_paths=PackedStringArray("base_sprite", "sfx_manager") groups=["Base"]]
 script = ExtResource("1_eyfgn")
-base_sprite = NodePath("")
+base_sprite = NodePath("BaseSprite2")
 sfx_manager = NodePath("SfxManager")
 
 [node name="BaseDataUI" type="HBoxContainer" parent="."]
@@ -84,3 +85,18 @@ shape = SubResource("CircleShape2D_m7b5u")
 script = ExtResource("8_4vgup")
 bank_names = Array[StringName]([&"build", &"empty", &"empty", &"empty", &"empty", &"empty", &"empty", &"empty"])
 bank_0 = Array[AudioStream]([ExtResource("9_6c6ur"), ExtResource("10_ma2c3")])
+
+[node name="preview" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+script = ExtResource("11_8ynoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="preview"]
+position = Vector2(1, 40)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_m7b5u")
+
+[node name="BaseSprite2" type="Sprite2D" parent="preview"]
+z_index = 1
+texture = ExtResource("7_5x3oo")
+region_rect = Rect2(2144, 1088, 632, 488)

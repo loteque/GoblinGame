@@ -90,17 +90,19 @@ func _physics_process(_delta):
     update_body()
 
 func _input(event):
-    if event.is_action("place"):
-        base_placer.place(get_parent(), throw_target.global_transform.origin)
-        
-        # tutorial
-        if tut_conn.connected():
-            if tut_conn.manager.is_tutorial_active():
-                tut_conn.manager.section_success.emit(
-                    tut_conn.manager.Section.BUILD_PROMPT,
-                    tut_conn.manager.Section.BUILD_RESPONSE, 
-                    tut_conn
-                )
+    if event.is_action_pressed("place"):
+        if base_placer.is_previewing():
+            base_placer.place(get_parent(), throw_target.global_transform.origin)
+                    # tutorial
+            if tut_conn.connected():
+                if tut_conn.manager.is_tutorial_active():
+                    tut_conn.manager.section_success.emit(
+                        tut_conn.manager.Section.BUILD_PROMPT,
+                        tut_conn.manager.Section.BUILD_RESPONSE, 
+                        tut_conn
+                    )
+        else:
+            base_placer.preview(throw_target)
 
     if event.is_action("place") and selected:
         if selected.is_in_group("Upgradable"):
