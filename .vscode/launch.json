@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Godot: Current Scene",
+      "type": "godot",
+      "request": "launch",
+      "project": "${workspaceFolder}/project",
+      "startScene": true
+    }
+  ]
+}
