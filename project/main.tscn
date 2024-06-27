@@ -657,8 +657,10 @@ lead_layer = ExtResource("5_x38i0")
 max_vol = -18
 min_vol = -60
 
-[node name="TutorialManager" type="CanvasLayer" parent="."]
+[node name="TutorialManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "g_p_messages_cont")]
 script = ExtResource("7_fp0kt")
+player = NodePath("../PlayerCharacter")
+g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 prompt_time = 3.0
 response_time = 2.0
 inspire_prompt = "You can inspire goblins follow you. "
@@ -743,10 +745,9 @@ position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
 texture = ExtResource("3_olnyg")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "tutorial_manager", "g_p_messages_cont") instance=ExtResource("1_rjx7k")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("1_rjx7k")]
 position = Vector2(449, 533)
 game_manager = NodePath("../GameManager")
-tutorial_manager = NodePath("../TutorialManager")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]

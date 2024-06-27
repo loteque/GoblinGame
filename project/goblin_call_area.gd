@@ -50,15 +50,9 @@ func call_goblins():
     var allied_goblins = goblins.filter(func(node: Actor): return node.team == leader.team) as Array[Actor]
     if len(allied_goblins) > 0:
         lead(allied_goblins)
+        leader.lead_goblin.emit()
 
-    # tutorial
-    if leader.tut_conn.connected():   
-        if leader.tut_conn.manager.is_tutorial_active():
-            leader.tut_conn.manager.section_success.emit(
-                leader.tut_conn.manager.Section.INSPIRE_PROMPT, 
-                leader.tut_conn.manager.Section.INSPIRE_RESPONSE, 
-                leader.tut_conn
-            )
+
 
 func show_call_indicator():
     call_range_indicator_timer.start()

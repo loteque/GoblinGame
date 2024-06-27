@@ -1,9 +1,13 @@
 class_name TutorialManager extends CanvasLayer
 
+@export var player: CharacterBody2D
+@export var g_p_messages_cont: VBoxContainer
+
 @export_category("Panel Fade Times")
 @export var prompt_time: float
 @export var response_time: float
 
+@onready var tut_conn: TutorialManager.TutorialConnector = TutorialManager.TutorialConnector.new(self, player, g_p_messages_cont)
 
 class TutorialConnector:
     var manager: TutorialManager
@@ -59,7 +63,6 @@ func is_tutorial_active() -> bool:
     var active: bool = section_1 or section_2 or section_3
     return active
 
-
 var panels: Dictionary = {
     Section.INSPIRE_PROMPT: null,
     Section.INSPIRE_RESPONSE: null,
@@ -76,13 +79,11 @@ func _add_panel(section: int, connector: TutorialConnector, action_str: String =
     connector.ui_connection.add_child(panel)
     panels[section] = panel
 
-
 signal prompter_ready(section: Section, connector: TutorialConnector, action_str: String)
 func _on_prompter_ready(section, connector, action_str):
     
-    if !panels[section]: 
+    if !panels[section]:
         _add_panel(section, connector, action_str)
-
 
 signal section_success(section: Section, new_section: Section, connector: TutorialConnector)
 func _on_section_success(section, new_section, connector):
@@ -102,12 +103,33 @@ func _on_section_success(section, new_section, connector):
         panels[new_section] = null
         _deactivate_section(new_section)
 
+
+func _on_player_ready():
+    await get_tree().create_timer(2).timeout
+    tut_conn.manager.prompter_ready.emit(Section.INSPIRE_PROMPT, tut_conn, "call")
+    tut_conn.manager.prompter_ready.emit(Section.THROW_PROMPT, tut_conn, "throw")
+    tut_conn.manager.prompter_ready.emit(Section.BUILD_PROMPT, tut_conn, "place")
+
+func _on_player_lead_goblin():
+    if tut_conn.manager.is_tutorial_active():
+        tut_conn.manager.section_success.emit(Section.INSPIRE_PROMPT, Section.INSPIRE_RESPONSE, tut_conn)
+
+func _on_player_threw_goblin():
+    if tut_conn.manager.is_tutorial_active():
+        tut_conn.manager.section_success.emit(Section.THROW_PROMPT,Section.THROW_RESPONSE, tut_conn)
+
+func _on_player_built_base():
+    section_success.emit(Section.BUILD_PROMPT, Section.BUILD_RESPONSE, tut_conn)
+
 func _ready():
     prompter_ready.connect(_on_prompter_ready)
     section_success.connect(_on_section_success)
-    
+    player.built_base.connect(_on_player_built_base)
+    player.ready.connect(_on_player_ready)
+    player.lead_goblin.connect(_on_player_lead_goblin)
+    player.threw_goblin.connect(_on_player_threw_goblin)
 
-enum Section{
+enum Section {
     INSPIRE_PROMPT = 10,
     INSPIRE_RESPONSE = 19,
     THROW_PROMPT = 20,
@@ -127,7 +149,7 @@ enum Section{
 @export_multiline var build_response: String
 
 @onready var sections: Dictionary = {
-    Section.INSPIRE_PROMPT: inspire_prompt, 
+    Section.INSPIRE_PROMPT: inspire_prompt,
     Section.INSPIRE_RESPONSE: inspire_response,
     Section.THROW_PROMPT: throw_prompt,
     Section.THROW_RESPONSE: throw_response,
