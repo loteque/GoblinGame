@@ -711,7 +711,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MainMenu" parent="LevelUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_cxmx8")]
-visible = false
 music_manager = NodePath("../../MusicManager")
 
 [node name="WorldBoundery" type="StaticBody2D" parent="."]
@@ -769,7 +768,7 @@ scale = Vector2(1, 0.3)
 texture = ExtResource("3_olnyg")
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("1_rjx7k")]
-position = Vector2(449, 533)
+position = Vector2(325, 566)
 game_manager = NodePath("../GameManager")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 
