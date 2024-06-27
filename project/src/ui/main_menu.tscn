@@ -76,7 +76,7 @@ gradient = SubResource("Gradient_agiis")
 fill_from = Vector2(0.794872, 0.200855)
 fill_to = Vector2(0.606838, 0.440171)
 
-[node name="MainMenu" type="TextureRect" node_paths=PackedStringArray("play_button", "quit_button", "title_music")]
+[node name="MainMenu" type="TextureRect" node_paths=PackedStringArray("play_button", "quit_button", "restart_button", "title_music")]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,6 +87,7 @@ texture = ExtResource("1_bodfo")
 script = ExtResource("1_ftqh1")
 play_button = NodePath("Menu/PlayButton")
 quit_button = NodePath("Menu/QuitButton")
+restart_button = NodePath("Menu/RestartButton")
 title_music = NodePath("AudioStreamPlayer")
 
 [node name="Menu" type="VBoxContainer" parent="."]
@@ -113,11 +114,22 @@ text = "Play"
 
 [node name="QuitButton" type="Button" parent="Menu"]
 process_mode = 2
+visible = false
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../PlayButton")
 text = "Quit
+"
+
+[node name="RestartButton" type="Button" parent="Menu"]
+process_mode = 2
+visible = false
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+text = "Restart
 "
 
 [node name="VersionLabel" type="Label" parent="Menu"]

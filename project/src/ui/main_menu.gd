@@ -3,7 +3,9 @@ extends TextureRect
 @export var is_paused: bool = true
 @export var play_button: Button
 @export var quit_button: Button
+@export var restart_button: Button
 @export var music_manager: MusicManager
+@export var game_manager: GameManager
 @export var title_music: AudioStreamPlayer
 
 var pause_ok: bool = false
@@ -29,12 +31,15 @@ func _input(event):
 
 func _ready():
     play_button.pressed.connect(_on_play_button_pressed)
+    restart_button.pressed.connect(_on_restart_button_pressed)
     quit_button.pressed.connect(_on_quit_button_pressed)
     update_pause(true)
 
 
 func _on_play_button_pressed():
     if pause_ok == false:
+        play_button.text = "Resume"
+        restart_button.show()
         title_music.stop()
         var mus_conn: MusicManager.MusicConnector
         mus_conn = MusicManager.MusicConnector.new(music_manager, self)
@@ -44,6 +49,10 @@ func _on_play_button_pressed():
     if pause_ok:
         update_pause(not is_paused)
 
+
+func _on_restart_button_pressed():
+    ResourceManager.reset()
+    get_tree().reload_current_scene()
 
 func _on_quit_button_pressed():
     get_tree().quit()
