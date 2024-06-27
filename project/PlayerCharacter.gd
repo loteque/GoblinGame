@@ -14,41 +14,22 @@ extends CharacterBody2D
 @export var game_manager: GameManager
 @export var sfx_manager: SfxManager
 
-@export var tutorial_manager: TutorialManager
 @export var g_p_messages_cont: VBoxContainer
 @export var throw_component: Node
-var is_tutorial_section_active: bool = false
-var tut_conn: TutorialManager.TutorialConnector
 
 var base_placer = BasePlacer.new(1)
 var selected: Node2D
 
 signal called_goblins()
 signal died
+signal built_base
+signal lead_goblin
+signal threw_goblin
 
 func _ready():
     base_placer.game_manager = game_manager
     died.connect(_on_died)
     
-    # tutorial: play tutorial when player loads
-    tut_conn = TutorialManager.TutorialConnector.new(tutorial_manager, self, g_p_messages_cont)
-    if tut_conn.connected():
-        await get_tree().create_timer(2).timeout
-        tut_conn.manager.prompter_ready.emit(
-            tut_conn.manager.Section.INSPIRE_PROMPT, 
-            tut_conn,
-            "call"
-        )
-        tut_conn.manager.prompter_ready.emit(
-            tut_conn.manager.Section.THROW_PROMPT,
-            tut_conn,
-            "throw"
-        )
-        tut_conn.manager.prompter_ready.emit(
-            tut_conn.manager.Section.BUILD_PROMPT,
-            tut_conn,
-            "place"
-        )
 
 func _on_died():
     game_manager.game_over.emit(GameManager.GameResult.LOSE)
@@ -93,14 +74,7 @@ func _input(event):
     if event.is_action_pressed("place"):
         if base_placer.is_previewing() and base_placer.can_be_placed:
             base_placer.place(get_parent(), throw_target.global_transform.origin)
-                    # tutorial
-            if tut_conn.connected():
-                if tut_conn.manager.is_tutorial_active():
-                    tut_conn.manager.section_success.emit(
-                        tut_conn.manager.Section.BUILD_PROMPT,
-                        tut_conn.manager.Section.BUILD_RESPONSE, 
-                        tut_conn
-                    )
+            built_base.emit()
         else:
             base_placer.preview(throw_target)
 
