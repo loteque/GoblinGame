@@ -5,6 +5,8 @@ var game_manager: GameManager
 #var base = preload("res://static_unit.tscn").instantiate()
 var base = preload("res://base/base.tscn").instantiate()
 var preview_node: Node2D
+var can_be_placed: bool = false:
+    get: return preview_node != null and preview_node.can_be_placed
 
 func is_previewing():
     return preview_node != null
@@ -21,6 +23,8 @@ func place(attachment_node: Node2D, position: Vector2):
 
 func preview(attach_node: Node2D):
     var preview_source = base.get_node("%preview")
+    if preview_source == null:
+        return
     preview_node = preview_source.duplicate()
     preview_source.queue_free()
     attach_node.add_child(preview_node)
