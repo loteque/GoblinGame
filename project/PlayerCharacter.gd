@@ -91,7 +91,7 @@ func _physics_process(_delta):
 
 func _input(event):
     if event.is_action_pressed("place"):
-        if base_placer.is_previewing():
+        if base_placer.is_previewing() and base_placer.can_be_placed:
             base_placer.place(get_parent(), throw_target.global_transform.origin)
                     # tutorial
             if tut_conn.connected():
