@@ -13,7 +13,7 @@ func show_as_invalid():
     base_sprite_2.modulate = Color(Color.CRIMSON)
 
 func show_as_valid():
-    base_sprite_2.modulate = Color(Color.WHITE)
+    base_sprite_2.modulate = Color(Color.GREEN)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
