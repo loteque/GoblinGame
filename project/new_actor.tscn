@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=53 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
@@ -45,6 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://d4ceyrcvkgma1" path="res://assets/audio/throw3.wav" id="42_jqshp"]
 [ext_resource type="AudioStream" uid="uid://dga457mlya4h" path="res://assets/audio/throw4.wav" id="43_puc0p"]
 [ext_resource type="AudioStream" uid="uid://dbuxdutckxwmk" path="res://assets/audio/throw5.wav" id="44_m0tq1"]
+[ext_resource type="PackedScene" uid="uid://l5vvruq23htq" path="res://head_glow.tscn" id="46_xbp4a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bxck"]
 radius = 17.5
@@ -273,6 +274,14 @@ bank_3 = Array[AudioStream]([ExtResource("40_jy4ob"), ExtResource("41_6qu3w"), E
 
 [node name="Ghost" parent="." instance=ExtResource("26_5cti7")]
 position = Vector2(0, -165)
+
+[node name="HeadGlowPosi" type="Marker2D" parent="."]
+position = Vector2(0, -120)
+
+[node name="HeadGlow" parent="HeadGlowPosi" instance=ExtResource("46_xbp4a")]
+position = Vector2(1, 1)
+scale = Vector2(9.98375, 9.98375)
+energy = 0.2
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]

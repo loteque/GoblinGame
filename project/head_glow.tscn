@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://l5vvruq23htq"]
+
+[ext_resource type="Texture2D" uid="uid://d04bgi5pe4150" path="res://src/character/lights/player_character.tres" id="1_qxvjk"]
+
+[node name="HeadGlow" type="PointLight2D"]
+position = Vector2(3436, 1406)
+scale = Vector2(14.03, 14.03)
+energy = 0.34
+texture = ExtResource("1_qxvjk")
+texture_scale = 0.1
