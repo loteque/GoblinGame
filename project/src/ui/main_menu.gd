@@ -4,9 +4,12 @@ extends TextureRect
 @export var play_button: Button
 @export var quit_button: Button
 @export var restart_button: Button
+@export var remap_done_button: Button
+@export var remapper_menu: VBoxContainer
 @export var music_manager: MusicManager
 @export var game_manager: GameManager
 @export var title_music: AudioStreamPlayer
+
 
 var pause_ok: bool = false
 
@@ -30,10 +33,16 @@ func _input(event):
 
 
 func _ready():
+    # remap_done_button.pressed.connect(_on_remap_done_button_pressed)
     play_button.pressed.connect(_on_play_button_pressed)
     restart_button.pressed.connect(_on_restart_button_pressed)
     quit_button.pressed.connect(_on_quit_button_pressed)
     update_pause(true)
+
+
+func _on_remap_done_button_pressed():
+    remapper_menu.hide()
+    play_button.show()
 
 
 func _on_play_button_pressed():

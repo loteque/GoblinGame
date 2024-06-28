@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7rtq80rm3hoy"]
+
+[ext_resource type="Script" path="res://addons/action_remapper/src/ReMapperButton.gd" id="1_qu0f7"]
+
+[node name="ReMapperButton" type="Button"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+toggle_mode = true
+text = "Move Left: A "
+script = ExtResource("1_qu0f7")
+seperator_str = ":"
+option = "move_left"

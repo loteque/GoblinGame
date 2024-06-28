@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://bekfd1deerevd"]
+[gd_scene load_steps=24 format=3 uid="uid://bekfd1deerevd"]
 
 [ext_resource type="Script" path="res://src/ui/main_menu.gd" id="1_ftqh1"]
 [ext_resource type="Texture2D" uid="uid://biploe6jtd0rn" path="res://assets/art/title-art-no-bg-nolines.png" id="2_rd2gd"]
+[ext_resource type="Script" path="res://addons/action_remapper/src/ReMapperButton.gd" id="3_6l1cr"]
 [ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="3_ydkvx"]
 [ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="4_ax7ni"]
-[ext_resource type="Theme" uid="uid://c3w7atbti77dq" path="res://src/ui/main_menu.tres" id="4_vc25i"]
+[ext_resource type="Theme" path="res://src/ui/main_menu.tres" id="4_vc25i"]
 
 [sub_resource type="Gradient" id="Gradient_b8ftk"]
 offsets = PackedFloat32Array(0, 0.497738)
@@ -84,7 +85,7 @@ gradient = SubResource("Gradient_agiis")
 fill_from = Vector2(0.794872, 0.200855)
 fill_to = Vector2(0, 1)
 
-[node name="MainMenu" type="TextureRect" node_paths=PackedStringArray("play_button", "quit_button", "restart_button", "title_music")]
+[node name="MainMenu" type="TextureRect" node_paths=PackedStringArray("play_button", "quit_button", "restart_button", "remap_done_button", "remapper_menu", "title_music")]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,6 +97,8 @@ script = ExtResource("1_ftqh1")
 play_button = NodePath("Menu/PlayButton")
 quit_button = NodePath("Menu/QuitButton")
 restart_button = NodePath("Menu/RestartButton")
+remap_done_button = NodePath("Menu/ReMapperMenu/DoneButton")
+remapper_menu = NodePath("Menu/ReMapperMenu")
 title_music = NodePath("AudioStreamPlayer")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
@@ -110,22 +113,93 @@ texture = ExtResource("2_rd2gd")
 
 [node name="Menu" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -427.0
-offset_top = -198.0
-offset_right = -177.0
-offset_bottom = -67.0
+offset_left = -598.0
+offset_top = 347.0
+offset_right = -14.0
+offset_bottom = 643.0
 grow_horizontal = 2
-grow_vertical = 2
+
+[node name="ReMapperMenu" type="VBoxContainer" parent="Menu"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/ReMapperMenu"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Please map your controller as the Godot Project's controller mapping file is quite busted right now."
+autowrap_mode = 3
+
+[node name="RemapperEntryMenu" type="HBoxContainer" parent="Menu/ReMapperMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/ReMapperMenu/RemapperEntryMenu"]
+layout_mode = 2
+text = "Menu"
+
+[node name="ReMapperButton" type="Button" parent="Menu/ReMapperMenu/RemapperEntryMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Pause| "
+script = ExtResource("3_6l1cr")
+action = "pause"
+
+[node name="RemapperEntryX" type="HBoxContainer" parent="Menu/ReMapperMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/ReMapperMenu/RemapperEntryX"]
+layout_mode = 2
+text = "X"
+
+[node name="ReMapperButton" type="Button" parent="Menu/ReMapperMenu/RemapperEntryX"]
+layout_mode = 2
+toggle_mode = true
+text = "Call| "
+script = ExtResource("3_6l1cr")
+action = "call"
+
+[node name="RemapperEntryA" type="HBoxContainer" parent="Menu/ReMapperMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/ReMapperMenu/RemapperEntryA"]
+layout_mode = 2
+text = "A"
+
+[node name="ReMapperButton" type="Button" parent="Menu/ReMapperMenu/RemapperEntryA"]
+layout_mode = 2
+toggle_mode = true
+text = "Throw| "
+script = ExtResource("3_6l1cr")
+action = "throw"
+
+[node name="RemapperEntryB" type="HBoxContainer" parent="Menu/ReMapperMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/ReMapperMenu/RemapperEntryB"]
+layout_mode = 2
+text = "B"
+
+[node name="ReMapperButton" type="Button" parent="Menu/ReMapperMenu/RemapperEntryB"]
+layout_mode = 2
+toggle_mode = true
+text = "Place| "
+script = ExtResource("3_6l1cr")
+action = "place"
+
+[node name="DoneButton" type="Button" parent="Menu/ReMapperMenu"]
+layout_mode = 2
+text = "Done ReMapping"
 
 [node name="PlayButton" type="Button" parent="Menu"]
 process_mode = 2
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../RestartButton")
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="Menu"]
