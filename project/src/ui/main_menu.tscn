@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://addons/action_remapper/src/ReMapperButton.gd" id="3_6l1cr"]
 [ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="3_ydkvx"]
 [ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="4_ax7ni"]
-[ext_resource type="Theme" uid="uid://c3w7atbti77dq" path="res://src/ui/main_menu.tres" id="4_vc25i"]
+[ext_resource type="Theme" path="res://src/ui/main_menu.tres" id="4_vc25i"]
 
 [sub_resource type="Gradient" id="Gradient_b8ftk"]
 offsets = PackedFloat32Array(0, 0.497738)
@@ -198,6 +198,8 @@ text = "Done ReMapping"
 process_mode = 2
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../RestartButton")
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="Menu"]
