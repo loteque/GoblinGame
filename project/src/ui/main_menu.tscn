@@ -224,7 +224,7 @@ text = "Restart
 
 [node name="VersionLabel" type="Label" parent="Menu"]
 layout_mode = 2
-text = "build: alpha-0.0.12"
+text = "build: alpha-0.0.18"
 horizontal_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
