@@ -45,7 +45,7 @@ func _ready():
     died.connect(die)
     nav_agent.velocity_computed.connect(_on_velocity_computed)
     if team == TeamManager.Team.CPU:
-        set_modulate(Color(0.784, 0.114, 0.8))
+        set_modulate(Color8(255, 88, 218))
 
 func _on_died():
     die()
