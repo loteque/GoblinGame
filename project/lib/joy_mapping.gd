@@ -21,7 +21,7 @@ func _ready():
                 set_mapping_str(
                     dev_0_guid, 
                     dev_0_name,
-                    'leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:a4,righttrigger:a5,a:b0,b:b1,x:b3,y:b2,leftshoulder:b4,rightshoulder:b5,back:b8,start:b9,leftstick:b10,rightstick:b11,dpup:b12,dpdown:b13,dpleft:b14,dpright:b15,guide:b16,leftstick:b10,rightstick:b11,platform:Javascript'
+                    'leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:a4,righttrigger:a5,a:b0,b:b1,x:b2,y:b3,leftshoulder:b4,rightshoulder:b5,back:b8,start:b9,leftstick:b10,rightstick:b11,dpup:b12,dpdown:b13,dpleft:b14,dpright:b15,guide:b16,leftstick:b10,rightstick:b11,platform:Javascript'
                 )
         # linux
             if OS.get_name() == "Linux":

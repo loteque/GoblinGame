@@ -33,7 +33,7 @@ func _input(event):
 
 
 func _ready():
-    remap_done_button.pressed.connect(_on_remap_done_button_pressed)
+    # remap_done_button.pressed.connect(_on_remap_done_button_pressed)
     play_button.pressed.connect(_on_play_button_pressed)
     restart_button.pressed.connect(_on_restart_button_pressed)
     quit_button.pressed.connect(_on_quit_button_pressed)

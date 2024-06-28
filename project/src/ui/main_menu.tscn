@@ -123,6 +123,7 @@ offset_bottom = 643.0
 grow_horizontal = 2
 
 [node name="ReMapperMenu" type="VBoxContainer" parent="Menu"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Menu/ReMapperMenu"]
@@ -195,7 +196,6 @@ text = "Done ReMapping"
 
 [node name="PlayButton" type="Button" parent="Menu"]
 process_mode = 2
-visible = false
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 text = "Play"
