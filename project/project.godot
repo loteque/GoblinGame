@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.2")
 [autoload]
 
 ResourceManager="*res://resource_manager.gd"
+JoyMapping="*res://lib/joy_mapping.gd"
 
 [display]
 
@@ -25,6 +26,10 @@ window/size/viewport_height=1080
 window/size/mode=4
 window/size/initial_position_type=2
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/action_remapper/plugin.cfg")
 
 [input]
 
@@ -92,3 +97,8 @@ pause={
 [layer_names]
 
 2d_physics/layer_9="collectable"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
