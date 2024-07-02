@@ -28,7 +28,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/action_remapper/plugin.cfg")
+enabled=PackedStringArray("res://addons/action_remapper/plugin.cfg", "res://addons/state_machine/plugin.cfg")
 
 [input]
 

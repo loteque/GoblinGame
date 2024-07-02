@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyjb26kkr8185"]
+
+[ext_resource type="Script" path="res://tests/simple_test_objects/SimplePlayerCharacter.gd" id="1_kwgdt"]
+[ext_resource type="Script" path="res://tests/simple_test_objects/SimpleAnimStateController.gd" id="4_0vqm3"]
+[ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://src/character/goblin_0_sprite_frames.tres" id="4_tjjit"]
+[ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://src/character/animation_controller.tscn" id="5_5283l"]
+
+[node name="LoteqStateMachineTest" type="Node2D"]
+
+[node name="PlayerCharacter" type="CharacterBody2D" parent="." groups=["Actor", "Player"]]
+z_index = 1
+position = Vector2(1006, 391)
+motion_mode = 1
+script = ExtResource("1_kwgdt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerCharacter"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("4_tjjit")
+animation = &"die"
+autoplay = "idle_front"
+offset = Vector2(0, -175)
+
+[node name="AnimationController" parent="PlayerCharacter" node_paths=PackedStringArray("actor", "sprite") instance=ExtResource("5_5283l")]
+script = ExtResource("4_0vqm3")
+actor = NodePath("..")
+sprite = NodePath("../AnimatedSprite2D")
