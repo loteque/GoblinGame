@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://ddlgbmws4pwyv"]
 
-[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="1_8gnvv"]
-[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="2_sa2n1"]
-[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="3_xd616"]
+[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="1_8gnvv"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="2_sa2n1"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="3_xd616"]
 [ext_resource type="Script" path="res://src/ui/debug/debug_name_label.gd" id="5_84ku4"]
-[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="5_t072y"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/new_actor.tscn" id="5_t072y"]
 [ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="5_vwx1r"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="6_astev"]
 

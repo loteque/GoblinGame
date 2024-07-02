@@ -1,16 +1,16 @@
 [gd_scene load_steps=15 format=3 uid="uid://blnqmsyjwncp6"]
 
-[ext_resource type="Script" path="res://base/base.gd" id="1_eyfgn"]
-[ext_resource type="Script" path="res://health_component.gd" id="3_ibguq"]
+[ext_resource type="Script" path="res://src/base/base.gd" id="1_eyfgn"]
+[ext_resource type="Script" path="res://src/character/health_component.gd" id="3_ibguq"]
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="3_mcleq"]
-[ext_resource type="PackedScene" uid="uid://35pilvifscno" path="res://spawner.tscn" id="5_iewlk"]
-[ext_resource type="Script" path="res://base/CircularProgressBar.gd" id="6_xylyr"]
+[ext_resource type="PackedScene" uid="uid://35pilvifscno" path="res://src/base/spawner.tscn" id="5_iewlk"]
+[ext_resource type="Script" path="res://src/base/CircularProgressBar.gd" id="6_xylyr"]
 [ext_resource type="Texture2D" uid="uid://ckku7yregv2ea" path="res://assets/art/sprites/base_small.png" id="7_5x3oo"]
-[ext_resource type="Shader" path="res://base/spawn_progress.gdshader" id="7_k3ig4"]
-[ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="8_4vgup"]
+[ext_resource type="Shader" path="res://src/base/spawn_progress.gdshader" id="7_k3ig4"]
+[ext_resource type="Script" path="res://src/managers/sfx_manager/sfx_manager.gd" id="8_4vgup"]
 [ext_resource type="AudioStream" uid="uid://bc8imry1mbcve" path="res://assets/audio/build1.wav" id="9_6c6ur"]
 [ext_resource type="AudioStream" uid="uid://csp4yed7uv34d" path="res://assets/audio/build2.wav" id="10_ma2c3"]
-[ext_resource type="Script" path="res://base/base_preview.gd" id="11_8ynoq"]
+[ext_resource type="Script" path="res://src/base/base_preview.gd" id="11_8ynoq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ubkic"]
 shader = ExtResource("7_k3ig4")

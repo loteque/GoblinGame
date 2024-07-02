@@ -1,6 +1,6 @@
 extends Button
 
-const MAIN = preload("res://main.tscn")
+const MAIN = preload("res://src/maps/main.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pressed.connect(_on_button_pressed)

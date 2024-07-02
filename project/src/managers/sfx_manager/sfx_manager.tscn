@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dqlth6d0j20y6"]
 
-[ext_resource type="Script" path="res://sfx_manager/sfx_manager.gd" id="1_mryi4"]
+[ext_resource type="Script" path="res://src/managers/sfx_manager/sfx_manager.gd" id="1_mryi4"]
 
 [node name="SFXManager" type="AudioStreamPlayer2D"]
 script = ExtResource("1_mryi4")

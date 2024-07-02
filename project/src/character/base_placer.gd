@@ -3,7 +3,7 @@ class_name BasePlacer
 var num_bases
 var game_manager: GameManager
 #var base = preload("res://static_unit.tscn").instantiate()
-var base = preload("res://base/base.tscn").instantiate()
+var base = preload("res://src/base/base.tscn").instantiate()
 var preview_node: Node2D
 var can_be_placed: bool = false:
     get: return preview_node != null and preview_node.can_be_placed

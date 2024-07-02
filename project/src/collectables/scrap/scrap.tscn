@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://hehsosy8cwdc"]
 
-[ext_resource type="Script" path="res://collectables/scrap/scrap.gd" id="1_a2bdl"]
+[ext_resource type="Script" path="res://src/collectables/scrap/scrap.gd" id="1_a2bdl"]
 [ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="2_2xjhb"]
 [ext_resource type="Script" path="res://src/ui/debug/scrap_debug.gd" id="3_yc37h"]
 

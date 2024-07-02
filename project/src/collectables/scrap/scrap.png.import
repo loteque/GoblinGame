@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kuktjxvnjemo"
-path="res://.godot/imported/scrap.png-ac0fae6c6727755f74a5223da7974e41.ctex"
+path="res://.godot/imported/scrap.png-15d0913de806f7ed186bee8f218cb935.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://collectables/scrap/scrap.png"
-dest_files=["res://.godot/imported/scrap.png-ac0fae6c6727755f74a5223da7974e41.ctex"]
+source_file="res://src/collectables/scrap/scrap.png"
+dest_files=["res://.godot/imported/scrap.png-15d0913de806f7ed186bee8f218cb935.ctex"]
 
 [params]
 

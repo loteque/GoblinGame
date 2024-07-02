@@ -11,19 +11,18 @@ config_version=5
 [application]
 
 config/name="Goblin Armies"
-run/main_scene="res://start.tscn"
+run/main_scene="res://src/start.tscn"
 config/features=PackedStringArray("4.2")
 
 [autoload]
 
-ResourceManager="*res://resource_manager.gd"
+ResourceManager="*res://src/managers/resource_manager.gd"
 JoyMapping="*res://lib/joy_mapping.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=4
 window/size/initial_position_type=2
 window/stretch/mode="viewport"
 

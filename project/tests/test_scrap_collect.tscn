@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6c1r2u67hv5y"]
 
-[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="1_fxf3w"]
-[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="2_wya63"]
-[ext_resource type="PackedScene" uid="uid://cm83wuwxqwmtn" path="res://collectables/collector_component.tscn" id="3_2c4i6"]
-[ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://actor.tscn" id="4_81knk"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="1_fxf3w"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="2_wya63"]
+[ext_resource type="PackedScene" path="res://collectables/collector_component.tscn" id="3_2c4i6"]
+[ext_resource type="PackedScene" uid="uid://bnj8oqycjiqah" path="res://src/character/actor.tscn" id="4_81knk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_l2h8k"]
 vertices = PackedVector2Array(3957, 1651, -567, 1644, -567, -824, 3957, -824)

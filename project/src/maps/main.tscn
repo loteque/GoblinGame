@@ -1,26 +1,26 @@
 [gd_scene load_steps=33 format=3 uid="uid://c4fb2nyi3hcyx"]
 
-[ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="1_51uy5"]
-[ext_resource type="Script" path="res://game_manager.gd" id="1_o56us"]
-[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="1_rjx7k"]
-[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="2_yg8ca"]
-[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="3_3xj8b"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="3_olnyg"]
-[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="4_rfcqa"]
-[ext_resource type="Shader" path="res://background.gdshader" id="5_n4qge"]
-[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="5_qmkqn"]
-[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="5_x38i0"]
-[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="6_ax147"]
-[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="6_g25cc"]
-[ext_resource type="Script" path="res://tutorial_manager/TutorialManager.gd" id="7_fp0kt"]
-[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="7_sg7t6"]
-[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_8fyn6"]
-[ext_resource type="PackedScene" uid="uid://bekfd1deerevd" path="res://src/ui/main_menu.tscn" id="10_cxmx8"]
-[ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="10_l6u8u"]
-[ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="11_qtmrf"]
-[ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="12_oj177"]
-[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="19_h5dls"]
-[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="20_clio4"]
+[ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_c7i1w"]
+[ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_5jfie"]
+[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="3_mi44y"]
+[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="4_14lxc"]
+[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="5_hfk4p"]
+[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_bbuej"]
+[ext_resource type="Script" path="res://src/ui/quest_tracker_ui/TutorialManager.gd" id="7_lgdd0"]
+[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_i8f3g"]
+[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_7oydw"]
+[ext_resource type="PackedScene" uid="uid://bekfd1deerevd" path="res://src/ui/main_menu.tscn" id="10_wo30j"]
+[ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="11_d2tvh"]
+[ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="12_xbtnx"]
+[ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="13_sqgla"]
+[ext_resource type="Shader" path="res://src/environment/background.gdshader" id="14_mlodm"]
+[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="15_8ucia"]
+[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="16_aejvg"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="17_rmg1c"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/new_actor.tscn" id="18_arbuc"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="19_orqww"]
+[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="20_20hkx"]
+[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="21_3gmgp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xpm44"]
 
@@ -34,7 +34,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 50.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qwc5o"]
-texture = ExtResource("11_qtmrf")
+texture = ExtResource("11_d2tvh")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -86,7 +86,7 @@ texture_region_size = Vector2i(64, 64)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aox3i"]
-texture = ExtResource("12_oj177")
+texture = ExtResource("12_xbtnx")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -175,7 +175,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6pi3"]
 resource_name = "ANimated Rivers"
-texture = ExtResource("10_l6u8u")
+texture = ExtResource("13_sqgla")
 texture_region_size = Vector2i(64, 64)
 0:0/animation_columns = 2
 0:0/0 = 0
@@ -633,7 +633,7 @@ sources/0 = SubResource("TileSetAtlasSource_qwc5o")
 sources/1 = SubResource("TileSetAtlasSource_aox3i")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbto2"]
-shader = ExtResource("5_n4qge")
+shader = ExtResource("14_mlodm")
 
 [sub_resource type="Gradient" id="Gradient_3kivr"]
 offsets = PackedFloat32Array(0.0547264, 1)
@@ -662,25 +662,25 @@ y_sort_enabled = true
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_o56us")
+script = ExtResource("1_c7i1w")
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 bus = &"music"
-script = ExtResource("1_51uy5")
+script = ExtResource("2_5jfie")
 fade_in_speed = 20.0
 fade_out_speed = 15.0
 combat_in_speed = 20.0
 combat_out_speed = 10.0
-calm_layer = ExtResource("2_yg8ca")
-explore_layer = ExtResource("3_3xj8b")
-combat_layer = ExtResource("4_rfcqa")
-lead_layer = ExtResource("5_x38i0")
+calm_layer = ExtResource("3_mi44y")
+explore_layer = ExtResource("4_14lxc")
+combat_layer = ExtResource("5_hfk4p")
+lead_layer = ExtResource("6_bbuej")
 max_vol = -18
 min_vol = -60
 
 [node name="TutorialManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "g_p_messages_cont")]
-script = ExtResource("7_fp0kt")
+script = ExtResource("7_lgdd0")
 player = NodePath("../PlayerCharacter")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 prompt_time = 3.0
@@ -692,9 +692,9 @@ throw_response = "Look at em go!"
 build_prompt = "You can build a camp. "
 build_response = "What a nice camp! Goblins will join your camp!"
 
-[node name="LevelUI" parent="." instance=ExtResource("8_8fyn6")]
+[node name="LevelUI" parent="." instance=ExtResource("8_i8f3g")]
 
-[node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("19_h5dls")]
+[node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_7oydw")]
 visible = false
 z_index = 2
 size_flags_horizontal = 4
@@ -710,7 +710,7 @@ offset_bottom = 1025.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MainMenu" parent="LevelUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_cxmx8")]
+[node name="MainMenu" parent="LevelUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_wo30j")]
 music_manager = NodePath("../../MusicManager")
 
 [node name="WorldBoundery" type="StaticBody2D" parent="."]
@@ -750,7 +750,7 @@ layer_1/tile_data = PackedInt32Array(-589826, 1, 0, -524290, 1, 1, -458754, 1, 2
 material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
-texture = ExtResource("6_g25cc")
+texture = ExtResource("15_8ucia")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -758,16 +758,16 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(370, 336)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_olnyg")
+texture = ExtResource("16_aejvg")
 offset = Vector2(0, -350)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
-texture = ExtResource("3_olnyg")
+texture = ExtResource("16_aejvg")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("1_rjx7k")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("17_rmg1c")]
 position = Vector2(325, 566)
 game_manager = NodePath("../GameManager")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
@@ -780,51 +780,51 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(658, 1337)
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor4" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor4" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(1010, -321)
 follow_area = NodePath("../Actor/FollowArea")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor5" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor5" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(172, 1664)
 follow_area = NodePath("../Actor/FollowArea")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(318, -143)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(1253, 873)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(774, 1220)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("5_qmkqn")]
+[node name="Actor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(775, 1459)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3426, 1515)
 team = 1
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor3" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor3" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3298, 1579)
 follow_area = NodePath("../CorruptedActor/FollowArea")
@@ -832,7 +832,7 @@ team = 1
 player = NodePath("../CorruptedActor")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor4" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor4" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3159, 1727)
 follow_area = NodePath("../CorruptedActor/FollowArea")
@@ -840,7 +840,7 @@ team = 1
 player = NodePath("../CorruptedActor")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor5" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor5" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3240, 694)
 follow_area = NodePath("../CorruptedActor/FollowArea")
@@ -848,13 +848,13 @@ team = 1
 player = NodePath("../CorruptedActor")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor2" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor2" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(1839, 1940)
 team = 1
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3427, 1770)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
@@ -862,7 +862,7 @@ team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3948, 1653)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
@@ -870,7 +870,7 @@ team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3527, -256)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
@@ -878,7 +878,7 @@ team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(4355, -24)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
@@ -886,7 +886,7 @@ team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor12" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor12" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2884, -336)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
@@ -894,7 +894,7 @@ team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor13" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor13" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2874, 246)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
@@ -902,7 +902,7 @@ team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor14" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor14" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2702, 325)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
@@ -910,7 +910,7 @@ team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../MusicManager")
 
-[node name="CorruptedActor15" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("5_qmkqn")]
+[node name="CorruptedActor15" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3665, 389)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
@@ -918,61 +918,61 @@ team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../MusicManager")
 
-[node name="Scrap" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(197, -320)
 
-[node name="Scrap2" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap2" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(1979, -145)
 
-[node name="Scrap9" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap9" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(1940, 716)
 
-[node name="Scrap13" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap13" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(2777, 1265)
 
-[node name="Scrap10" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap10" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(2430, 1441)
 
-[node name="Scrap11" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap11" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(2517, 1199)
 
-[node name="Scrap12" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap12" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(3642, 1032)
 
-[node name="Scrap14" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap14" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(2582, -423)
 
-[node name="Scrap17" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap17" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(4370, -352)
 
-[node name="FollowCamera" parent="." instance=ExtResource("7_sg7t6")]
+[node name="FollowCamera" parent="." instance=ExtResource("20_20hkx")]
 position = Vector2(494, 281)
 
-[node name="Scrap5" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap5" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(207, 1760)
 
-[node name="Scrap7" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap7" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(175, -32)
 
-[node name="Scrap8" parent="." instance=ExtResource("6_ax147")]
+[node name="Scrap8" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(476, -327)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.210773, 0.0573702, 0.196106, 1)
 
-[node name="Base" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("20_clio4")]
+[node name="Base" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("21_3gmgp")]
 position = Vector2(4067, 1540)
 team = 1
 game_manager = NodePath("../GameManager")

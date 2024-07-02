@@ -1,30 +1,30 @@
 [gd_scene load_steps=51 format=3 uid="uid://hnp0d32u42xt"]
 
-[ext_resource type="Script" path="res://game_manager.gd" id="1_midmw"]
-[ext_resource type="Script" path="res://music_manager/MusicManager.gd" id="2_ux3cy"]
-[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="3_03o76"]
-[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="4_xjkhg"]
-[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="5_f3i5b"]
-[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_klkbw"]
-[ext_resource type="Script" path="res://tutorial_manager/TutorialManager.gd" id="7_66fsj"]
-[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_mvjj5"]
-[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_wnp1g"]
-[ext_resource type="Texture2D" uid="uid://cwuai51kck7yh" path="res://assets/art/title_screen_complete.png" id="10_5r26m"]
-[ext_resource type="Script" path="res://src/ui/main_menu.gd" id="11_frigg"]
-[ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="11_x5nao"]
-[ext_resource type="Script" path="res://src/ui/skip_tutorial_button.gd" id="12_14mgm"]
-[ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="12_bjkqn"]
-[ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="13_7e3os"]
-[ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="13_341lr"]
-[ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="14_akdcp"]
-[ext_resource type="Shader" path="res://background.gdshader" id="14_oke8s"]
-[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="15_60dq7"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://icon-bot.png" id="16_lg7vd"]
-[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://player_character.tscn" id="17_14gyr"]
-[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://new_actor.tscn" id="18_kycvk"]
-[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://collectables/scrap/scrap.tscn" id="19_vthkx"]
-[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="20_venkv"]
-[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://base/base.tscn" id="21_jmmge"]
+[ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_uotb5"]
+[ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_golmd"]
+[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="3_txhld"]
+[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="4_uodu6"]
+[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="5_lk4yo"]
+[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_afpfj"]
+[ext_resource type="Script" path="res://src/ui/quest_tracker_ui/TutorialManager.gd" id="7_jtmnu"]
+[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_etn82"]
+[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_1p4l0"]
+[ext_resource type="Texture2D" uid="uid://cwuai51kck7yh" path="res://assets/art/title_screen_complete.png" id="10_jhxs3"]
+[ext_resource type="Script" path="res://src/ui/main_menu.gd" id="11_ssics"]
+[ext_resource type="Script" path="res://src/ui/skip_tutorial_button.gd" id="12_jpfq7"]
+[ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="13_xv0cb"]
+[ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="14_lnvqu"]
+[ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="15_hnjov"]
+[ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="16_vkwli"]
+[ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="17_jdec5"]
+[ext_resource type="Shader" path="res://src/environment/background.gdshader" id="18_1opko"]
+[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="19_uc5hp"]
+[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="20_xcpng"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="21_3yo60"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/new_actor.tscn" id="22_juktx"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="23_ipiw0"]
+[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="24_btaty"]
+[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="25_v043w"]
 
 [sub_resource type="Gradient" id="Gradient_wjgsm"]
 
@@ -43,7 +43,7 @@ noise = SubResource("FastNoiseLite_7m4gu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0uul7"]
 resource_local_to_scene = true
-shader = ExtResource("14_akdcp")
+shader = ExtResource("14_lnvqu")
 shader_parameter/brighter_color = Color(1, 0.8, 0, 1)
 shader_parameter/middle_color = Color(1, 0.56, 0, 1)
 shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 1)
@@ -82,7 +82,7 @@ color_ramp = SubResource("Gradient_5r3l8")
 noise = SubResource("FastNoiseLite_3ogq2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7o8n"]
-shader = ExtResource("14_akdcp")
+shader = ExtResource("14_lnvqu")
 shader_parameter/brighter_color = Color(1, 0.8, 0, 0.666667)
 shader_parameter/middle_color = Color(1, 0.560784, 0, 0.580392)
 shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 0.8)
@@ -111,7 +111,7 @@ tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 2, 196608, 1, 3, 2
 tile_data = PackedInt32Array(0, 196608, 1610612736, 65536, 131072, 1610612736, 131072, 65536, 1610612736, 196608, 0, 1610612736, 262144, 458752, 1610612736, 327680, 393216, 1610612736, 393216, 327680, 1610612736, 458752, 262144, 1610612736, 524288, 196608, 1610612736, 589824, 327680, 1610612736, 655360, 262144, 1610612736, 720896, 196608, 1610612736, 786432, 131073, 1610612736, 851968, 65537, 1610612736, 917504, 1, 1610612736, 1, 196608, 1610612737, 65537, 131072, 1610612737, 131073, 65536, 1610612737, 196609, 0, 1610612737, 262145, 458752, 1610612737, 327681, 393216, 1610612737, 393217, 327680, 1610612737, 458753, 262144, 1610612737, 524289, 196608, 1610612737, 589825, 327680, 1610612737, 655361, 262144, 1610612737, 720897, 196608, 1610612737, 786433, 131073, 1610612737, 851969, 65537, 1610612737, 917505, 1, 1610612737, 851970, 65537, 1610612738, 917506, 1, 1610612738, 851971, 65537, 1610612739, 917507, 1, 1610612739, 851972, 65537, 1610612740, 917508, 1, 1610612740, 851973, 65537, 1610612741, 917509, 1, 1610612741, 851974, 65537, 1610612742, 917510, 1, 1610612742, 851975, 65537, 1610612743, 917511, 1, 1610612743, 851976, 458752, 805306369, 917512, 458752, 805306368, 851977, 393216, 805306369, 917513, 393216, 805306368, 851978, 327680, 805306369, 917514, 327680, 805306368, 851979, 262144, 805306369, 917515, 262144, 805306368, 851980, 196608, 805306369, 917516, 196608, 805306368, 851981, 131072, 805306369, 917517, 131072, 805306368, 851982, 65536, 805306369, 917518, 65536, 805306368, 851983, 0, 805306369, 917519, 0, 805306368, 851984, 458752, 805306369, 917520, 458752, 805306368, 851985, 393216, 805306369, 917521, 393216, 805306368, 851986, 327680, 805306369, 917522, 327680, 805306368, 851987, 262144, 805306369, 917523, 262144, 805306368, 851988, 196608, 805306369, 917524, 196608, 805306368, 851989, 131072, 805306369, 917525, 131072, 805306368, 851990, 65536, 805306369, 917526, 65536, 805306368, 851991, 0, 805306369, 917527, 0, 805306368, 851992, 458752, 805306369, 917528, 458752, 805306368, 851993, 393216, 805306369, 917529, 393216, 805306368, 851994, 327680, 805306369, 917530, 327680, 805306368, 851995, 262144, 805306369, 917531, 262144, 805306368, 851996, 196608, 805306369, 917532, 196608, 805306368, 851997, 131072, 805306369, 917533, 131072, 805306368, 851998, 65536, 805306369, 917534, 65536, 805306368, 851999, 0, 805306369, 917535, 0, 805306368, 852000, 458752, 805306369, 917536, 458752, 805306368, 852001, 393216, 805306369, 917537, 393216, 805306368, 852002, 327680, 805306369, 917538, 327680, 805306368, 852003, 262144, 805306369, 917539, 262144, 805306368, 852004, 196608, 805306369, 917540, 196608, 805306368, 852005, 131072, 805306369, 917541, 131072, 805306368, 852006, 65536, 805306369, 917542, 65536, 805306368, 852007, 0, 805306369, 917543, 0, 805306368, 852008, 458752, 805306369, 917544, 458752, 805306368, 852009, 393216, 805306369, 917545, 393216, 805306368, 852010, 327680, 805306369, 917546, 327680, 805306368, 852011, 262144, 805306369, 917547, 262144, 805306368, 852012, 196608, 805306369, 917548, 196608, 805306368, 852013, 131072, 805306369, 917549, 131072, 805306368, 852014, 65536, 805306369, 917550, 65536, 805306368, 852015, 0, 805306369, 917551, 0, 805306368, 852016, 458752, 805306369, 917552, 458752, 805306368, 852017, 393216, 805306369, 917553, 393216, 805306368, 852018, 327680, 805306369, 917554, 327680, 805306368, 852019, 262144, 805306369, 917555, 262144, 805306368, 852020, 196608, 805306369, 917556, 196608, 805306368, 852021, 131072, 805306369, 917557, 131072, 805306368, 852022, 65536, 805306369, 917558, 65536, 805306368, 852023, 0, 805306369, 917559, 0, 805306368, 852024, 458752, 805306369, 917560, 458752, 805306368, 852025, 393216, 805306369, 917561, 393216, 805306368, 852026, 327680, 805306369, 917562, 327680, 805306368, 852027, 262144, 805306369, 917563, 262144, 805306368, 852028, 196608, 805306369, 917564, 196608, 805306368, 852029, 131072, 805306369, 917565, 131072, 805306368, 852030, 65536, 805306369, 917566, 65536, 805306368, 852031, 0, 805306369, 917567, 0, 805306368, 852032, 458752, 805306369, 917568, 458752, 805306368, 852033, 393216, 805306369, 917569, 393216, 805306368, 852034, 327680, 805306369, 917570, 327680, 805306368, 852035, 262144, 805306369, 917571, 262144, 805306368, 852036, 196608, 805306369, 917572, 196608, 805306368, 852037, 131072, 805306369, 917573, 131072, 805306368, 852038, 65536, 805306369, 917574, 65536, 805306368, 852039, 0, 805306369, 917575, 0, 805306368, 852040, 131073, 805306369, 917576, 131073, 805306368, 73, 65536, 1342177281, 65609, 131072, 1342177281, 131145, 196608, 1342177281, 196681, 262144, 1342177281, 262217, 327680, 1342177281, 327753, 393216, 1342177281, 393289, 458752, 1342177281, 458825, 65537, 805306375, 524361, 65537, 805306374, 589897, 65537, 805306373, 655433, 65537, 805306372, 720969, 65537, 805306371, 786505, 65537, 805306370, 852041, 65537, 805306369, 917577, 65537, 805306368, 74, 65536, 1342177280, 65610, 131072, 1342177280, 131146, 196608, 1342177280, 196682, 262144, 1342177280, 262218, 327680, 1342177280, 327754, 393216, 1342177280, 393290, 458752, 1342177280, 458826, 1, 805306375, 524362, 1, 805306374, 589898, 1, 805306373, 655434, 1, 805306372, 720970, 1, 805306371, 786506, 1, 805306370, 852042, 1, 805306369, 917578, 1, 805306368)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qwc5o"]
-texture = ExtResource("11_x5nao")
+texture = ExtResource("15_hnjov")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -179,7 +179,7 @@ texture_region_size = Vector2i(64, 64)
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aox3i"]
-texture = ExtResource("12_bjkqn")
+texture = ExtResource("16_vkwli")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -296,7 +296,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6pi3"]
 resource_name = "ANimated Rivers"
-texture = ExtResource("13_341lr")
+texture = ExtResource("17_jdec5")
 texture_region_size = Vector2i(64, 64)
 0:0/animation_columns = 2
 0:0/0 = 0
@@ -756,7 +756,7 @@ pattern_0 = SubResource("TileMapPattern_73xwa")
 pattern_1 = SubResource("TileMapPattern_cccry")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbto2"]
-shader = ExtResource("14_oke8s")
+shader = ExtResource("18_1opko")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjm5k"]
 size = Vector2(451, 962.5)
@@ -766,25 +766,25 @@ y_sort_enabled = true
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_midmw")
+script = ExtResource("1_uotb5")
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 bus = &"music"
-script = ExtResource("2_ux3cy")
+script = ExtResource("2_golmd")
 fade_in_speed = 20.0
 fade_out_speed = 15.0
 combat_in_speed = 20.0
 combat_out_speed = 10.0
-calm_layer = ExtResource("3_03o76")
-explore_layer = ExtResource("4_xjkhg")
-combat_layer = ExtResource("5_f3i5b")
-lead_layer = ExtResource("6_klkbw")
+calm_layer = ExtResource("3_txhld")
+explore_layer = ExtResource("4_uodu6")
+combat_layer = ExtResource("5_lk4yo")
+lead_layer = ExtResource("6_afpfj")
 max_vol = -18
 min_vol = -60
 
 [node name="TutorialManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "g_p_messages_cont")]
-script = ExtResource("7_66fsj")
+script = ExtResource("7_jtmnu")
 player = NodePath("../PlayerCharacter")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 prompt_time = 3.0
@@ -796,9 +796,9 @@ throw_response = "Look at em go!"
 build_prompt = "You can build a camp. "
 build_response = "What a nice camp! Goblins will join your camp!"
 
-[node name="LevelUI" parent="." instance=ExtResource("8_mvjj5")]
+[node name="LevelUI" parent="." instance=ExtResource("8_etn82")]
 
-[node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_wnp1g")]
+[node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_1p4l0")]
 visible = false
 z_index = 2
 size_flags_horizontal = 4
@@ -821,8 +821,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_5r26m")
-script = ExtResource("11_frigg")
+texture = ExtResource("10_jhxs3")
+script = ExtResource("11_ssics")
 play_button = NodePath("Menu/PlayButton")
 quit_button = NodePath("Menu/QuitButton")
 music_manager = NodePath("../../MusicManager")
@@ -867,7 +867,7 @@ focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../PlayButton")
 text = "Skip Tutorial
 "
-script = ExtResource("12_14mgm")
+script = ExtResource("12_jpfq7")
 
 [node name="VersionLabel" type="Label" parent="LevelUI/MainMenu/Menu"]
 layout_mode = 2
@@ -875,7 +875,7 @@ text = "build: alpha-0.0.12"
 horizontal_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LevelUI/MainMenu"]
-stream = ExtResource("13_7e3os")
+stream = ExtResource("13_xv0cb")
 volume_db = -2.324
 autoplay = true
 
@@ -935,7 +935,7 @@ layer_1/tile_data = PackedInt32Array(1114183, 65537, 805306370, 1114184, 1, 8053
 material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
-texture = ExtResource("15_60dq7")
+texture = ExtResource("19_uc5hp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -943,16 +943,16 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(370, 336)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("16_lg7vd")
+texture = ExtResource("20_xcpng")
 offset = Vector2(0, -350)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
-texture = ExtResource("16_lg7vd")
+texture = ExtResource("20_xcpng")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("17_14gyr")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("21_3yo60")]
 position = Vector2(-1085, 533)
 game_manager = NodePath("../GameManager")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
@@ -965,42 +965,42 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("18_kycvk")]
+[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
 position = Vector2(1368, 990)
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor2" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("18_kycvk")]
+[node name="Actor2" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
 position = Vector2(1406, 571)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor")
 music_manager = NodePath("../MusicManager")
 sfx_manager = NodePath("../Actor/SfxManager")
 
-[node name="CorruptedActor16" parent="." node_paths=PackedStringArray("music_manager", "sfx_manager") groups=["Enemy"] instance=ExtResource("18_kycvk")]
+[node name="CorruptedActor16" parent="." node_paths=PackedStringArray("music_manager", "sfx_manager") groups=["Enemy"] instance=ExtResource("22_juktx")]
 process_mode = 4
 position = Vector2(2681, 837)
 team = 1
 music_manager = NodePath("../MusicManager")
 sfx_manager = NodePath("../CorruptedActor15/SfxManager")
 
-[node name="CorruptedActor15" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("18_kycvk")]
+[node name="CorruptedActor15" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("22_juktx")]
 process_mode = 4
 position = Vector2(4167, 2524)
 team = 1
 music_manager = NodePath("../MusicManager")
 
-[node name="Scrap" parent="." instance=ExtResource("19_vthkx")]
+[node name="Scrap" parent="." instance=ExtResource("23_ipiw0")]
 z_index = 1
 position = Vector2(2232, 1016)
 
-[node name="FollowCamera" parent="." instance=ExtResource("20_venkv")]
+[node name="FollowCamera" parent="." instance=ExtResource("24_btaty")]
 position = Vector2(494, 281)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.210773, 0.0573702, 0.196106, 1)
 
-[node name="Base" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("21_jmmge")]
+[node name="Base" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("25_v043w")]
 position = Vector2(4127, 2676)
 team = 1
 game_manager = NodePath("../GameManager")

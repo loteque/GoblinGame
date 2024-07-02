@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bf7crtfeg2ch1"]
 
-[ext_resource type="Script" path="res://AnimationController.gd" id="1_1doo3"]
+[ext_resource type="Script" path="res://src/character/AnimationController.gd" id="1_1doo3"]
 
 [node name="AnimationController" type="Node"]
 script = ExtResource("1_1doo3")

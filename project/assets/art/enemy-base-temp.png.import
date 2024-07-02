@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://binsxgaxudhe3"
-path="res://.godot/imported/icon-bot.png-b5b362875aa359e159c6285adec62eea.ctex"
+uid="uid://bhqy8rllcpw75"
+path="res://.godot/imported/enemy-base-temp.png-b5abfa85d00495d5962f3147beb06b3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon-bot.png"
-dest_files=["res://.godot/imported/icon-bot.png-b5b362875aa359e159c6285adec62eea.ctex"]
+source_file="res://assets/art/enemy-base-temp.png"
+dest_files=["res://.godot/imported/enemy-base-temp.png-b5abfa85d00495d5962f3147beb06b3d.ctex"]
 
 [params]
 

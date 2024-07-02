@@ -24,7 +24,7 @@ class TutorialConnector:
         ui_connection = ui_node
 
 class PanelConfigurator:
-    const Panel_Scene = preload("res://tutorial_manager/message_panel.tscn")
+    const Panel_Scene = preload("message_panel.tscn")
     var message: String
     var panel: Control
     var action_str: String
