@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=29 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_c7i1w"]
 [ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_5jfie"]
@@ -19,10 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/new_actor.tscn" id="18_arbuc"]
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="19_orqww"]
 [ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="21_3gmgp"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xpm44"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u4m3w"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kd4xc"]
 vertices = PackedVector2Array(2929, 304, 2929, 12, 3213, -144, 3213, 944, 2253, -144, 1969, -80, 3931, -794, 3944, 1621, 3505, 944, 3505, -436, 1969, -793, 2253, -436, 845, 12, 845, 1392, 561, 1392, 561, -564, 1137, 1392, 1137, 304, -530, 1629, 269, 1392, -526, -791, 269, -564, 1741, -792, 1741, -80)
@@ -710,27 +706,6 @@ size_flags_vertical = 3
 
 [node name="MainMenu" parent="LevelUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_wo30j")]
 music_manager = NodePath("../../MusicManager")
-
-[node name="WorldBoundery" type="StaticBody2D" parent="."]
-
-[node name="Bottom" type="CollisionShape2D" parent="WorldBoundery"]
-position = Vector2(891, 1983)
-shape = SubResource("WorldBoundaryShape2D_xpm44")
-
-[node name="Left" type="CollisionShape2D" parent="WorldBoundery"]
-position = Vector2(8, 200)
-rotation = 1.5708
-shape = SubResource("WorldBoundaryShape2D_u4m3w")
-
-[node name="Top" type="CollisionShape2D" parent="WorldBoundery"]
-position = Vector2(894, -498)
-rotation = 3.14159
-shape = SubResource("WorldBoundaryShape2D_u4m3w")
-
-[node name="Right" type="CollisionShape2D" parent="WorldBoundery"]
-position = Vector2(4535, 99)
-rotation = -1.5708
-shape = SubResource("WorldBoundaryShape2D_u4m3w")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(577, 322)
