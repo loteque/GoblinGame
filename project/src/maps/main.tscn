@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=32 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_c7i1w"]
 [ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_5jfie"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="17_rmg1c"]
 [ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/new_actor.tscn" id="18_arbuc"]
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="19_orqww"]
-[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="20_20hkx"]
 [ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="21_3gmgp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xpm44"]
@@ -953,9 +952,6 @@ position = Vector2(2582, -423)
 [node name="Scrap17" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(4370, -352)
-
-[node name="FollowCamera" parent="." instance=ExtResource("20_20hkx")]
-position = Vector2(494, 281)
 
 [node name="Scrap5" parent="." instance=ExtResource("19_orqww")]
 z_index = 1
