@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://35pilvifscno"]
 
 [ext_resource type="Script" path="res://src/base/spawner.gd" id="1_0mo8m"]
-[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/new_actor.tscn" id="2_33fkh"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/actor.tscn" id="2_33fkh"]
 
 [node name="Spawner" type="Marker2D"]
 position = Vector2(0, 31.5)
