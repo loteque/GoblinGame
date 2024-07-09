@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="19_uc5hp"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="20_xcpng"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="21_3yo60"]
-[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/new_actor.tscn" id="22_juktx"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/actor.tscn" id="22_juktx"]
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="23_ipiw0"]
 [ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="24_btaty"]
 [ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="25_v043w"]
