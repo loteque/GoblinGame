@@ -1,8 +1,7 @@
-[gd_scene load_steps=53 format=3 uid="uid://b3f3e2snpptm"]
+[gd_scene load_steps=52 format=3 uid="uid://b3f3e2snpptm"]
 
 [ext_resource type="Script" path="res://src/character/new_actor.gd" id="1_j6rqw"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_3ypmk"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="2_dx5gv"]
 [ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://src/character/goblin_0_sprite_frames.tres" id="3_xmqe5"]
 [ext_resource type="Script" path="res://src/character/target_tracker_component.gd" id="4_cu521"]
 [ext_resource type="Script" path="res://src/character/state/actor_core.gd" id="5_fjmgl"]
@@ -80,12 +79,6 @@ sfx_manager = NodePath("SfxManager")
 visible = false
 position = Vector2(1, -2.75)
 shape = SubResource("CircleShape2D_1bxck")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0.823529, 0, 0.729412, 1)
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("2_dx5gv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
