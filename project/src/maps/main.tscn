@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=31 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_c7i1w"]
 [ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_5jfie"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="13_sqgla"]
 [ext_resource type="Shader" path="res://src/environment/background.gdshader" id="14_mlodm"]
 [ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="15_8ucia"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="16_aejvg"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="17_rmg1c"]
 [ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/new_actor.tscn" id="18_arbuc"]
 [ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="19_orqww"]
@@ -750,21 +749,6 @@ material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
 texture = ExtResource("15_8ucia")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-z_index = 1
-y_sort_enabled = true
-position = Vector2(370, 336)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("16_aejvg")
-offset = Vector2(0, -350)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-3.33333, 0)
-scale = Vector2(1, 0.3)
-texture = ExtResource("16_aejvg")
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("17_rmg1c")]
 position = Vector2(325, 566)
