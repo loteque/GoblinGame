@@ -748,37 +748,31 @@ drag_vertical_offset = -0.46
 position = Vector2(658, 1337)
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor4" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
+[node name="Actor4" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
 position = Vector2(1010, -321)
-follow_area = NodePath("../Actor/FollowArea")
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor5" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
+[node name="Actor5" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
 position = Vector2(172, 1664)
-follow_area = NodePath("../Actor/FollowArea")
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor6" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
+[node name="Actor6" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
 position = Vector2(318, -143)
-follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor7" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
+[node name="Actor7" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
 position = Vector2(1253, 873)
-follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor8" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
+[node name="Actor8" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
 position = Vector2(774, 1220)
-follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor9" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
+[node name="Actor9" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
 position = Vector2(775, 1459)
-follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
 music_manager = NodePath("../../MusicManager")
 
@@ -788,26 +782,23 @@ position = Vector2(3426, 1515)
 team = 1
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor3" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor3" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3298, 1579)
-follow_area = NodePath("../CorruptedActor/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor4" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor4" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3159, 1727)
-follow_area = NodePath("../CorruptedActor/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor5" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor5" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3240, 694)
-follow_area = NodePath("../CorruptedActor/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor")
 music_manager = NodePath("../../MusicManager")
@@ -818,66 +809,58 @@ position = Vector2(1839, 1940)
 team = 1
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor6" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor6" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3427, 1770)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor7" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor7" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3948, 1653)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor8" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor8" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3527, -256)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor9" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor9" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(4355, -24)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor12" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor12" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2884, -336)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor13" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor13" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2874, 246)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor14" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor14" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2702, 325)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor15" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
+[node name="CorruptedActor15" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3665, 389)
-follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
 music_manager = NodePath("../../MusicManager")
