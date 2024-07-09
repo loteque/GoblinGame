@@ -4,7 +4,7 @@ class_name StaticUnit
 @export var upgrade_name_label: Label
 @export var upgrade_value_label: Label
 
-@onready var music_manager = get_node("../MusicManager")
+@onready var music_manager = get_node("../../MusicManager")
 var music_connector: MusicManager.MusicConnector
 var upgrader: Upgradable
 

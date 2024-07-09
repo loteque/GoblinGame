@@ -675,8 +675,8 @@ min_vol = -60
 
 [node name="TutorialManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "g_p_messages_cont")]
 script = ExtResource("7_lgdd0")
-player = NodePath("../PlayerCharacter")
-g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
+player = NodePath("../DemoLevel/PlayerCharacter")
+g_p_messages_cont = NodePath("../DemoLevel/LevelUI/GamePlayMessages")
 prompt_time = 3.0
 response_time = 2.0
 inspire_prompt = "You can inspire goblins follow you. "
@@ -686,16 +686,24 @@ throw_response = "Look at em go!"
 build_prompt = "You can build a camp. "
 build_response = "What a nice camp! Goblins will join your camp!"
 
-[node name="LevelUI" parent="." instance=ExtResource("8_i8f3g")]
+[node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_7oydw")]
+[node name="MainMenu" parent="GameUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_wo30j")]
+music_manager = NodePath("../../MusicManager")
+
+[node name="DemoLevel" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="LevelUI" parent="DemoLevel" instance=ExtResource("8_i8f3g")]
+
+[node name="GameOverScreen" parent="DemoLevel/LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_7oydw")]
 visible = false
 z_index = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-game_manager = NodePath("../../GameManager")
+game_manager = NodePath("../../../GameManager")
 
-[node name="GamePlayMessages" type="VBoxContainer" parent="LevelUI"]
+[node name="GamePlayMessages" type="VBoxContainer" parent="DemoLevel/LevelUI"]
 unique_name_in_owner = true
 offset_left = 29.0
 offset_top = 36.0
@@ -703,15 +711,13 @@ offset_right = 495.0
 offset_bottom = 1025.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
 
-[node name="MainMenu" parent="LevelUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_wo30j")]
-music_manager = NodePath("../../MusicManager")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="DemoLevel"]
 position = Vector2(577, 322)
 navigation_polygon = SubResource("NavigationPolygon_kd4xc")
 
-[node name="TileMap64" type="TileMap" parent="NavigationRegion2D"]
+[node name="TileMap64" type="TileMap" parent="DemoLevel/NavigationRegion2D"]
 position = Vector2(-577, -322)
 tile_set = SubResource("TileSet_4ynmb")
 format = 2
@@ -719,18 +725,18 @@ layer_0/tile_data = PackedInt32Array(-196594, 3, 9, -196593, 65539, 9, -196592, 
 layer_1/name = "top"
 layer_1/tile_data = PackedInt32Array(-589826, 1, 0, -524290, 1, 1, -458754, 1, 2, -393218, 1, 3, -327682, 1, 4, -262146, 1, 5, -196610, 1, 6, -131074, 1, 7, -589825, 65537, 0, -524289, 65537, 1, -458753, 65537, 2, -393217, 65537, 3, -327681, 65537, 4, -262145, 65537, 5, -196609, 65537, 6, -131073, 65537, 7, -655360, 131073, 0, -589824, 131073, 1, -655359, 196609, 0, -589823, 196609, 1, -655358, 262145, 0, -589822, 262145, 1, -655357, 327681, 0, -589821, 327681, 1, -655356, 393217, 0, -589820, 393217, 1, -655355, 458753, 0, -589819, 458753, 1, -655288, 1, 1342177280, -589752, 65537, 1342177280, -524216, 131073, 1342177280, -458680, 0, 1342177280, -393144, 65536, 1342177280, -327608, 131072, 1342177280, -262072, 196608, 1342177280, -196536, 262144, 1342177280, -655289, 1, 1342177281, -589753, 65537, 1342177281, -524217, 131073, 1342177281, -458681, 0, 1342177281, -393145, 65536, 1342177281, -327609, 131072, 1342177281, -262073, 196608, 1342177281, -196537, 262144, 1342177281, -655290, 1, 1342177282, -589754, 65537, 1342177282, -655291, 1, 1342177283, -589755, 65537, 1342177283, -655292, 1, 1342177284, -589756, 65537, 1342177284, -655293, 327680, 0, -589757, 327680, 1, -655294, 262144, 0, -589758, 262144, 1, -655295, 196608, 0, -589759, 196608, 1, 1638472, 1, 805306375, 1704008, 1, 805306374, 1769544, 1, 805306373, 1835080, 1, 805306372, 1900616, 1, 805306371, 1966152, 1, 805306370, 2031688, 1, 805306369, 2097224, 1, 805306368, 1638471, 65537, 805306375, 1704007, 65537, 805306374, 1769543, 65537, 805306373, 1835079, 65537, 805306372, 1900615, 65537, 805306371, 1966151, 65537, 805306370, 2031687, 65537, 805306369, 2097223, 65537, 805306368, 2031686, 131073, 805306369, 2097222, 131073, 805306368, 2031685, 0, 805306369, 2097221, 0, 805306368, 2031684, 65536, 805306369, 2097220, 65536, 805306368, 2031683, 131072, 805306369, 2097219, 131072, 805306368, 2031682, 196608, 805306369, 2097218, 196608, 805306368, 2031681, 262144, 805306369, 2097217, 262144, 805306368, 2031621, 65537, 1610612743, 2097157, 1, 1610612743, 2031620, 65537, 1610612742, 2097156, 1, 1610612742, 2031619, 65537, 1610612741, 2097155, 1, 1610612741, 2031618, 65537, 1610612740, 2097154, 1, 1610612740, 2031617, 65537, 1610612739, 2097153, 1, 1610612739, 2031616, 65537, 1610612738, 2097152, 1, 1610612738, 1703935, 262144, 1610612737, 1769471, 196608, 1610612737, 1835007, 327680, 1610612737, 1900543, 262144, 1610612737, 1966079, 196608, 1610612737, 2031615, 131073, 1610612737, 2097151, 65537, 1610612737, 2162687, 1, 1610612737, 1703934, 262144, 1610612736, 1769470, 196608, 1610612736, 1835006, 327680, 1610612736, 1900542, 262144, 1610612736, 1966078, 196608, 1610612736, 2031614, 131073, 1610612736, 2097150, 65537, 1610612736, 2162686, 1, 1610612736, -655354, 0, 0, -589818, 0, 1, -655353, 65536, 0, -589817, 65536, 1, -655352, 131072, 0, -589816, 131072, 1, -655351, 196608, 0, -589815, 196608, 1, -655350, 262144, 0, -589814, 262144, 1, -655349, 327680, 0, -589813, 327680, 1, -655348, 393216, 0, -589812, 393216, 1, -655347, 458752, 0, -589811, 458752, 1, -655346, 0, 0, -589810, 0, 1, -655345, 65536, 0, -589809, 65536, 1, -655344, 131072, 0, -589808, 131072, 1, -655343, 196608, 0, -589807, 196608, 1, -655342, 262144, 0, -589806, 262144, 1, -655341, 327680, 0, -589805, 327680, 1, -655340, 393216, 0, -589804, 393216, 1, -655339, 458752, 0, -589803, 458752, 1, -655338, 0, 0, -589802, 0, 1, -655337, 65536, 0, -589801, 65536, 1, -655336, 131072, 0, -589800, 131072, 1, -655335, 196608, 0, -589799, 196608, 1, -655334, 262144, 0, -589798, 262144, 1, -655333, 327680, 0, -589797, 327680, 1, -655332, 393216, 0, -589796, 393216, 1, -655331, 458752, 0, -589795, 458752, 1, -655330, 0, 0, -589794, 0, 1, -655329, 65536, 0, -589793, 65536, 1, -655328, 131072, 0, -589792, 131072, 1, -655327, 196608, 0, -589791, 196608, 1, -655326, 262144, 0, -589790, 262144, 1, -655325, 327680, 0, -589789, 327680, 1, -655324, 393216, 0, -589788, 393216, 1, -655323, 458752, 0, -589787, 458752, 1, -655322, 0, 0, -589786, 0, 1, -655321, 65536, 0, -589785, 65536, 1, -655320, 131072, 0, -589784, 131072, 1, -655319, 196608, 0, -589783, 196608, 1, -655318, 262144, 0, -589782, 262144, 1, -655317, 327680, 0, -589781, 327680, 1, -655316, 393216, 0, -589780, 393216, 1, -655315, 458752, 0, -589779, 458752, 1, -655314, 0, 0, -589778, 0, 1, -655313, 65536, 0, -589777, 65536, 1, -655312, 131072, 0, -589776, 131072, 1, -655311, 196608, 0, -589775, 196608, 1, -655310, 262144, 0, -589774, 262144, 1, -655309, 327680, 0, -589773, 327680, 1, -655308, 393216, 0, -589772, 393216, 1, -655307, 458752, 0, -589771, 458752, 1, -655306, 0, 0, -589770, 0, 1, -655305, 65536, 0, -589769, 65536, 1, -655304, 131072, 0, -589768, 131072, 1, -655303, 196608, 0, -589767, 196608, 1, -655302, 262144, 0, -589766, 262144, 1, -655301, 327680, 0, -589765, 327680, 1, -655300, 393216, 0, -589764, 393216, 1, -655299, 458752, 0, -589763, 458752, 1, -655298, 0, 0, -589762, 0, 1, -655297, 65536, 0, -589761, 65536, 1, -655296, 131072, 0, -589760, 131072, 1, 393214, 0, 1610612736, 327678, 65536, 1610612736, 262142, 131072, 1610612736, 196606, 196608, 1610612736, 131070, 262144, 1610612736, 65534, 327680, 1610612736, -2, 393216, 1610612736, -65538, 458752, 1610612736, 393215, 0, 1610612737, 327679, 65536, 1610612737, 262143, 131072, 1610612737, 196607, 196608, 1610612737, 131071, 262144, 1610612737, 65535, 327680, 1610612737, -1, 393216, 1610612737, -65537, 458752, 1610612737, 917502, 0, 1610612736, 851966, 65536, 1610612736, 786430, 131072, 1610612736, 720894, 196608, 1610612736, 655358, 262144, 1610612736, 589822, 327680, 1610612736, 524286, 393216, 1610612736, 458750, 458752, 1610612736, 917503, 0, 1610612737, 851967, 65536, 1610612737, 786431, 131072, 1610612737, 720895, 196608, 1610612737, 655359, 262144, 1610612737, 589823, 327680, 1610612737, 524287, 393216, 1610612737, 458751, 458752, 1610612737, 1441790, 0, 1610612736, 1376254, 65536, 1610612736, 1310718, 131072, 1610612736, 1245182, 196608, 1610612736, 1179646, 262144, 1610612736, 1114110, 327680, 1610612736, 1048574, 393216, 1610612736, 983038, 458752, 1610612736, 1441791, 0, 1610612737, 1376255, 65536, 1610612737, 1310719, 131072, 1610612737, 1245183, 196608, 1610612737, 1179647, 262144, 1610612737, 1114111, 327680, 1610612737, 1048575, 393216, 1610612737, 983039, 458752, 1610612737, 1638398, 327680, 1610612736, 1572862, 393216, 1610612736, 1507326, 458752, 1610612736, 1638399, 327680, 1610612737, 1572863, 393216, 1610612737, 1507327, 458752, 1610612737, 2031629, 0, 805306369, 2097165, 0, 805306368, 2031628, 65536, 805306369, 2097164, 65536, 805306368, 2031627, 131072, 805306369, 2097163, 131072, 805306368, 2031626, 196608, 805306369, 2097162, 196608, 805306368, 2031625, 262144, 805306369, 2097161, 262144, 805306368, 2031624, 327680, 805306369, 2097160, 327680, 805306368, 2031623, 393216, 805306369, 2097159, 393216, 805306368, 2031622, 458752, 805306369, 2097158, 458752, 805306368, 2031637, 0, 805306369, 2097173, 0, 805306368, 2031636, 65536, 805306369, 2097172, 65536, 805306368, 2031635, 131072, 805306369, 2097171, 131072, 805306368, 2031634, 196608, 805306369, 2097170, 196608, 805306368, 2031633, 262144, 805306369, 2097169, 262144, 805306368, 2031632, 327680, 805306369, 2097168, 327680, 805306368, 2031631, 393216, 805306369, 2097167, 393216, 805306368, 2031630, 458752, 805306369, 2097166, 458752, 805306368, 2031645, 0, 805306369, 2097181, 0, 805306368, 2031644, 65536, 805306369, 2097180, 65536, 805306368, 2031643, 131072, 805306369, 2097179, 131072, 805306368, 2031642, 196608, 805306369, 2097178, 196608, 805306368, 2031641, 262144, 805306369, 2097177, 262144, 805306368, 2031640, 327680, 805306369, 2097176, 327680, 805306368, 2031639, 393216, 805306369, 2097175, 393216, 805306368, 2031638, 458752, 805306369, 2097174, 458752, 805306368, 2031653, 0, 805306369, 2097189, 0, 805306368, 2031652, 65536, 805306369, 2097188, 65536, 805306368, 2031651, 131072, 805306369, 2097187, 131072, 805306368, 2031650, 196608, 805306369, 2097186, 196608, 805306368, 2031649, 262144, 805306369, 2097185, 262144, 805306368, 2031648, 327680, 805306369, 2097184, 327680, 805306368, 2031647, 393216, 805306369, 2097183, 393216, 805306368, 2031646, 458752, 805306369, 2097182, 458752, 805306368, 2031661, 0, 805306369, 2097197, 0, 805306368, 2031660, 65536, 805306369, 2097196, 65536, 805306368, 2031659, 131072, 805306369, 2097195, 131072, 805306368, 2031658, 196608, 805306369, 2097194, 196608, 805306368, 2031657, 262144, 805306369, 2097193, 262144, 805306368, 2031656, 327680, 805306369, 2097192, 327680, 805306368, 2031655, 393216, 805306369, 2097191, 393216, 805306368, 2031654, 458752, 805306369, 2097190, 458752, 805306368, 2031669, 0, 805306369, 2097205, 0, 805306368, 2031668, 65536, 805306369, 2097204, 65536, 805306368, 2031667, 131072, 805306369, 2097203, 131072, 805306368, 2031666, 196608, 805306369, 2097202, 196608, 805306368, 2031665, 262144, 805306369, 2097201, 262144, 805306368, 2031664, 327680, 805306369, 2097200, 327680, 805306368, 2031663, 393216, 805306369, 2097199, 393216, 805306368, 2031662, 458752, 805306369, 2097198, 458752, 805306368, 2031677, 0, 805306369, 2097213, 0, 805306368, 2031676, 65536, 805306369, 2097212, 65536, 805306368, 2031675, 131072, 805306369, 2097211, 131072, 805306368, 2031674, 196608, 805306369, 2097210, 196608, 805306368, 2031673, 262144, 805306369, 2097209, 262144, 805306368, 2031672, 327680, 805306369, 2097208, 327680, 805306368, 2031671, 393216, 805306369, 2097207, 393216, 805306368, 2031670, 458752, 805306369, 2097206, 458752, 805306368, 2031680, 327680, 805306369, 2097216, 327680, 805306368, 2031679, 393216, 805306369, 2097215, 393216, 805306368, 2031678, 458752, 805306369, 2097214, 458752, 805306368, 1572935, 458752, 1342177281, 1507399, 393216, 1342177281, 1441863, 327680, 1342177281, 1376327, 262144, 1342177281, 1310791, 196608, 1342177281, 1245255, 131072, 1342177281, 1179719, 65536, 1342177281, 1114183, 0, 1342177281, 1572936, 458752, 1342177280, 1507400, 393216, 1342177280, 1441864, 327680, 1342177280, 1376328, 262144, 1342177280, 1310792, 196608, 1342177280, 1245256, 131072, 1342177280, 1179720, 65536, 1342177280, 1114184, 0, 1342177280, 1048647, 458752, 1342177281, 983111, 393216, 1342177281, 917575, 327680, 1342177281, 852039, 262144, 1342177281, 786503, 196608, 1342177281, 720967, 131072, 1342177281, 655431, 65536, 1342177281, 589895, 0, 1342177281, 1048648, 458752, 1342177280, 983112, 393216, 1342177280, 917576, 327680, 1342177280, 852040, 262144, 1342177280, 786504, 196608, 1342177280, 720968, 131072, 1342177280, 655432, 65536, 1342177280, 589896, 0, 1342177280, 524359, 458752, 1342177281, 458823, 393216, 1342177281, 393287, 327680, 1342177281, 327751, 262144, 1342177281, 262215, 196608, 1342177281, 196679, 131072, 1342177281, 131143, 65536, 1342177281, 65607, 0, 1342177281, 524360, 458752, 1342177280, 458824, 393216, 1342177280, 393288, 327680, 1342177280, 327752, 262144, 1342177280, 262216, 196608, 1342177280, 196680, 131072, 1342177280, 131144, 65536, 1342177280, 65608, 0, 1342177280, 71, 458752, 1342177281, -65465, 393216, 1342177281, -131001, 327680, 1342177281, 72, 458752, 1342177280, -65464, 393216, 1342177280, -131000, 327680, 1342177280)
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="DemoLevel"]
 material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
 texture = ExtResource("15_8ucia")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("17_rmg1c")]
+[node name="PlayerCharacter" parent="DemoLevel" node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("17_rmg1c")]
 position = Vector2(325, 566)
-game_manager = NodePath("../GameManager")
+game_manager = NodePath("../../GameManager")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+[node name="Camera2D" type="Camera2D" parent="DemoLevel/PlayerCharacter"]
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
@@ -738,199 +744,199 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
+[node name="Actor" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(658, 1337)
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Actor4" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
+[node name="Actor4" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(1010, -321)
 follow_area = NodePath("../Actor/FollowArea")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Actor5" parent="." node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
+[node name="Actor5" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(172, 1664)
 follow_area = NodePath("../Actor/FollowArea")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Actor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
+[node name="Actor6" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(318, -143)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Actor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
+[node name="Actor7" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(1253, 873)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Actor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
+[node name="Actor8" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(774, 1220)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Actor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
+[node name="Actor9" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Ally"] instance=ExtResource("18_arbuc")]
 position = Vector2(775, 1459)
 follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor5")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3426, 1515)
 team = 1
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor3" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor3" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3298, 1579)
 follow_area = NodePath("../CorruptedActor/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor4" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor4" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3159, 1727)
 follow_area = NodePath("../CorruptedActor/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor5" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor5" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3240, 694)
 follow_area = NodePath("../CorruptedActor/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor2" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor2" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(1839, 1940)
 team = 1
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor6" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor6" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3427, 1770)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor7" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor7" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3948, 1653)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor8" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor8" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3527, -256)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor9" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor9" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(4355, -24)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor12" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor12" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2884, -336)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor13" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor13" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2874, 246)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor14" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor14" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(2702, 325)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor15" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
+[node name="CorruptedActor15" parent="DemoLevel" node_paths=PackedStringArray("follow_area", "player", "music_manager") groups=["Enemy"] instance=ExtResource("18_arbuc")]
 modulate = Color(1, 0.343384, 0.854094, 1)
 position = Vector2(3665, 389)
 follow_area = NodePath("../CorruptedActor2/FollowArea")
 team = 1
 player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Scrap" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(197, -320)
 
-[node name="Scrap2" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap2" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(1979, -145)
 
-[node name="Scrap9" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap9" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(1940, 716)
 
-[node name="Scrap13" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap13" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(2777, 1265)
 
-[node name="Scrap10" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap10" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(2430, 1441)
 
-[node name="Scrap11" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap11" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(2517, 1199)
 
-[node name="Scrap12" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap12" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(3642, 1032)
 
-[node name="Scrap14" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap14" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(2582, -423)
 
-[node name="Scrap17" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap17" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(4370, -352)
 
-[node name="Scrap5" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap5" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(207, 1760)
 
-[node name="Scrap7" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap7" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(175, -32)
 
-[node name="Scrap8" parent="." instance=ExtResource("19_orqww")]
+[node name="Scrap8" parent="DemoLevel" instance=ExtResource("19_orqww")]
 z_index = 1
 position = Vector2(476, -327)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.210773, 0.0573702, 0.196106, 1)
-
-[node name="Base" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("21_3gmgp")]
+[node name="Base" parent="DemoLevel" node_paths=PackedStringArray("game_manager") instance=ExtResource("21_3gmgp")]
 position = Vector2(4067, 1540)
 team = 1
-game_manager = NodePath("../GameManager")
+game_manager = NodePath("../../GameManager")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="DemoLevel"]
+color = Color(0.210773, 0.0573702, 0.196106, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DemoLevel"]
 environment = SubResource("Environment_ngf1l")
