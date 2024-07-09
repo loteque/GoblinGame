@@ -45,7 +45,12 @@ func _ready():
     died.connect(die)
     nav_agent.velocity_computed.connect(_on_velocity_computed)
     if team == TeamManager.Team.CPU:
+        add_to_group(&"Enemy")
         set_modulate(Color8(255, 88, 218))
+    
+    if team == TeamManager.Team.PLAYER:
+        add_to_group(&"Ally")
+        
 
 func _on_died():
     die()
