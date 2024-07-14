@@ -63,6 +63,6 @@ body:
   - type: checkboxes
     id: info_permission
     attributes:
-      label: Is it okay to include this information?
+      label: Is it okay to include your hardware information with your feedback?
       options:
         - label: Yes, you can include this information
