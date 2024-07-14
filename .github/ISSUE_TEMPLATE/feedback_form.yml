@@ -6,18 +6,12 @@ assignees: ["loteque", "jonathandavidlewis"]
 projects: "loteque/6"
 
 body:
-  - type: markdown
-    attributes:
-      value: |
-        **Did you experience any issues with your controller?**
   - type: textarea
     id: controller_issues
-    attributes:
-      label: Describe any issues with your controller
+    label: Did you have any issues with your controller?
       description: Please provide as much detail as possible about any problems you encountered with your controller.
       placeholder: Describe the issue here
-      validation:
-        required: true
+    required: true
   - type: markdown
     attributes:
       value: |
@@ -34,15 +28,12 @@ body:
       label: Email
       description: Enter your email address if you are okay with us contacting you for clarification on your feedback.
       placeholder: Your email address
-      validation:
-        required: false
-  - type: checkbox
+  - type: checkboxes
     id: contact_permission
     attributes:
       label: Is it okay if we contact you for clarification on your feedback?
       options:
         - label: Yes, you can contact me
-          required: false
   - type: conditional
     attributes:
       if:
@@ -66,14 +57,9 @@ body:
             label: System Information
             description: Please include your operating system, input device, browser, and hardware.
             placeholder: Describe your system information here
-        - type: checkbox
+        - type: checkboxes
           id: info_permission
           attributes:
             label: Is it okay to include this information?
             options:
               - label: Yes, you can include this information
-                required: false
-  - type: markdown
-    attributes:
-      value: |
-        **Opt-in**
