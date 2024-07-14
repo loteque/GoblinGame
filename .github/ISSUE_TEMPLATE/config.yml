@@ -1,7 +1,1 @@
 blank_issues_enabled: false
-issue_templates:
-  - name: Feedback Form
-    description: Submit your feedback for Several Dozen Goblins
-    labels: ["user feedback"]
-    assignees: ["loteque", "jonathandavidlewis"]
-    projects: ["loteque/6"]
