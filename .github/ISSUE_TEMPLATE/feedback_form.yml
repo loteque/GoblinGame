@@ -12,8 +12,8 @@ body:
       label: Did you have any issues with your controller?
       description: Please provide as much detail as possible about any problems you encountered with your controller.
       placeholder: Describe the issue here
-      validations:
-        required: true
+    validations:
+      required: true
   - type: markdown
     attributes:
       value: |
