@@ -99,9 +99,9 @@ func _on_section_success(section, new_section):
 
 func _on_player_ready():
     await get_tree().create_timer(2).timeout
-    prompter_ready.emit(Section.INSPIRE_PROMPT, "call")
-    prompter_ready.emit(Section.THROW_PROMPT, "throw")
-    prompter_ready.emit(Section.BUILD_PROMPT, "place")
+    #prompter_ready.emit(Section.INSPIRE_PROMPT, "call")
+    #prompter_ready.emit(Section.THROW_PROMPT, "throw")
+    #prompter_ready.emit(Section.BUILD_PROMPT, "place")
 
 func _on_player_lead_goblin():
     if is_tutorial_active():
@@ -119,7 +119,7 @@ func _ready():
     prompter_ready.connect(_on_prompter_ready)
     section_success.connect(_on_section_success)
     player.built_base.connect(_on_player_built_base)
-    player.ready.connect(_on_player_ready)
+    #player.ready.connect(_on_player_ready)
     player.lead_goblin.connect(_on_player_lead_goblin)
     player.threw_goblin.connect(_on_player_threw_goblin)
 
