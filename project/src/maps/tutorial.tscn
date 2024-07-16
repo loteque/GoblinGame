@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_afpfj"]
 [ext_resource type="Script" path="res://src/ui/quest_tracker_ui/TutorialManager.gd" id="7_jtmnu"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_etn82"]
-[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_1p4l0"]
+[ext_resource type="PackedScene" path="res://src/ui/game_over_ui_screen.tscn" id="9_1p4l0"]
 [ext_resource type="Texture2D" uid="uid://cwuai51kck7yh" path="res://assets/art/title_screen_complete.png" id="10_jhxs3"]
 [ext_resource type="Script" path="res://src/ui/main_menu.gd" id="11_ssics"]
 [ext_resource type="Script" path="res://src/ui/skip_tutorial_button.gd" id="12_jpfq7"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="16_vkwli"]
 [ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="17_jdec5"]
 [ext_resource type="Shader" path="res://src/environment/background.gdshader" id="18_1opko"]
-[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="19_uc5hp"]
+[ext_resource type="Texture2D" uid="uid://dmcx3iqavseua" path="res://assets/art/scrap_sprite.png" id="19_uc5hp"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="20_xcpng"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="21_3yo60"]
 [ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/actor.tscn" id="22_juktx"]
@@ -969,9 +969,8 @@ drag_vertical_offset = -0.46
 position = Vector2(1368, 990)
 music_manager = NodePath("../MusicManager")
 
-[node name="Actor2" parent="." node_paths=PackedStringArray("follow_area", "player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
+[node name="Actor2" parent="." node_paths=PackedStringArray("player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
 position = Vector2(1406, 571)
-follow_area = NodePath("../Actor/FollowArea")
 player = NodePath("../Actor")
 music_manager = NodePath("../MusicManager")
 sfx_manager = NodePath("../Actor/SfxManager")

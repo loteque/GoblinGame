@@ -21,13 +21,11 @@ navigation_polygon = SubResource("NavigationPolygon_4xp5u")
 [node name="NewActor" parent="." instance=ExtResource("1_t411p")]
 position = Vector2(202, 167)
 
-[node name="NewActor2" parent="." node_paths=PackedStringArray("follow_area") instance=ExtResource("1_t411p")]
+[node name="NewActor2" parent="." instance=ExtResource("1_t411p")]
 position = Vector2(158, 84)
-follow_area = NodePath("../NewActor/FollowArea")
 
-[node name="NewActor3" parent="." node_paths=PackedStringArray("follow_area") instance=ExtResource("1_t411p")]
+[node name="NewActor3" parent="." instance=ExtResource("1_t411p")]
 position = Vector2(287, 145)
-follow_area = NodePath("../NewActor/FollowArea")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_v212g")]
 position = Vector2(548, 286)
