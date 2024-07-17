@@ -2,11 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "GDScript: Launch Pinned File",
+      "type": "godot",
+      "request": "launch",
+      "scene": "pinned",
+      "project": "${workspaceFolder}/project",
+    },
+    {
       "name": "Godot: Current Scene",
       "type": "godot",
       "request": "launch",
       "project": "${workspaceFolder}/project",
-      "startScene": true
     }
   ]
 }

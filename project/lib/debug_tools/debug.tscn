@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://rfa6g7cy1ua"]
+
+[ext_resource type="Script" path="res://lib/debug_tools/debug.gd" id="1_pppo8"]
+
+[node name="Debug" type="TextEdit"]
+top_level = true
+offset_left = 55.0
+offset_top = 53.0
+offset_right = 1085.0
+offset_bottom = 537.0
+size_flags_horizontal = 4
+theme_override_colors/background_color = Color(0.470588, 0.470588, 0.470588, 0.231373)
+theme_override_font_sizes/font_size = 28
+text = "Debug"
+editable = false
+caret_draw_when_editable_disabled = true
+caret_multiple = false
+script = ExtResource("1_pppo8")

@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.2")
 [autoload]
 
 ResourceManager="*res://src/managers/resource_manager.gd"
-JoyMapping="*res://lib/joy_mapping.gd"
+JoyMapping="res://lib/joy_mapping.gd"
 
 [display]
 

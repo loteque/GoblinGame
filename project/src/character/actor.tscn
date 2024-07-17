@@ -61,12 +61,11 @@ polygon = PackedVector2Array(-26, 109, -12, 115, 14, 115, 28, 111, 24, 122, -23,
 [sub_resource type="CircleShape2D" id="CircleShape2D_yrhv1"]
 radius = 37.054
 
-[node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("follow_area", "player", "sfx_manager") groups=["Actor", "NPC", "Throwable"]]
+[node name="Actor2" type="CharacterBody2D" node_paths=PackedStringArray("player", "sfx_manager") groups=["Actor", "NPC", "Throwable"]]
 z_index = 1
 motion_mode = 1
 wall_min_slide_angle = 3.14159
 script = ExtResource("1_iyd3c")
-follow_area = NodePath("")
 player = NodePath(".")
 sfx_manager = NodePath("SfxManager")
 
