@@ -44,6 +44,7 @@ layout/style_list=["res://src/dialog/tutorial/dialog_lower_third_style.tres"]
 layout/default_style="res://src/dialog/tutorial/dialog_lower_third_style.tres"
 variables={}
 glossary/default_case_sensitive=true
+JoyMapping="res://lib/joy_mapping.gd"
 
 [display]
 
