@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://tn1m5lrnkbgi"]
+[gd_scene load_steps=12 format=3 uid="uid://tn1m5lrnkbgi"]
 
 [ext_resource type="Texture2D" uid="uid://cbpb8mgxbanfn" path="res://assets/art/river_chunk_a_but_actually_good.png" id="1_y246k"]
 [ext_resource type="Texture2D" uid="uid://rdyfgdf6cfpo" path="res://assets/art/river_chunk_d_v2.png" id="2_em68b"]
-[ext_resource type="Texture2D" uid="uid://dlofx0lxxjmc1" path="res://assets/art/river_chunk_c_v2.png" id="3_meov6"]
 [ext_resource type="Texture2D" uid="uid://ctjoy3q1hb817" path="res://assets/art/river_chunk_b.png" id="4_vmyvf"]
 [ext_resource type="Texture2D" uid="uid://27xyuac7an00" path="res://assets/art/ground_tile_with_just_ground.png" id="5_dkomy"]
 [ext_resource type="Script" path="res://lib/proc_gen/procedural_map.gd" id="6_ewbll"]
@@ -11,22 +10,36 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dav7k"]
 texture = ExtResource("1_y246k")
 texture_region_size = Vector2i(384, 384)
+0:0/next_alternative_id = 2
 0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ccuwg"]
 texture = ExtResource("2_em68b")
 texture_region_size = Vector2i(384, 384)
+0:0/next_alternative_id = 4
 0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yr2tx"]
-texture = ExtResource("3_meov6")
-texture_region_size = Vector2i(384, 384)
-0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_v = true
+0:0/2 = 2
+0:0/2/transpose = true
+0:0/3 = 3
+0:0/3/flip_v = true
+0:0/3/transpose = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rx5r6"]
 texture = ExtResource("4_vmyvf")
 texture_region_size = Vector2i(384, 384)
+0:0/next_alternative_id = 4
 0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/1/transpose = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/transpose = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bhnt3"]
 texture = ExtResource("5_dkomy")
@@ -37,7 +50,6 @@ texture_region_size = Vector2i(384, 384)
 tile_size = Vector2i(384, 384)
 sources/1 = SubResource("TileSetAtlasSource_dav7k")
 sources/4 = SubResource("TileSetAtlasSource_ccuwg")
-sources/5 = SubResource("TileSetAtlasSource_yr2tx")
 sources/6 = SubResource("TileSetAtlasSource_rx5r6")
 sources/7 = SubResource("TileSetAtlasSource_bhnt3")
 

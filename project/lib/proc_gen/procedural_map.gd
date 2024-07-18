@@ -77,6 +77,246 @@ func _gen_linear_random_map():
         y = y - 1
 
 
+# ruleset
+var ruleset: Array[Dictionary] = [
+    {
+        "source_id": 1,
+        0: {
+            "invalid_down": {
+                0: [7],
+                90: [4,6,7],
+                180: [4,6,7],
+                270: [4,6,7],   
+            },
+            "invalid_right": {
+                0: [1,4,6],
+                90: [1,4,6],
+                180: [1,4,6],
+                270: [1,4,6],                   
+            },
+        },
+        90: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [1],
+                180: [1],
+                270: [1,4],                   
+            },
+            "invalid_right": {
+                0: [1,4,6,7],
+                90: [4,6,7],
+                180: [1,4,6,7],
+                270: [7],   
+            },
+        },
+        180: {
+            "invalid_down": {
+                0: [1,5,6],
+                90: [7],
+                180: [7],
+                270: [7],   
+            },
+            "invalid_right": {
+                0: [1],
+                90: [7],
+                180: [7],
+                270: [7],   
+            },
+        },
+        270: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],   
+            },
+            "invalid_right": {
+                0: [1],
+                90: [7],
+                180: [7],
+                270: [7],   
+            },
+        },
+    },
+    {
+        "source_id": 4,
+        0: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [1,4,6,7],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+        },
+        90: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [1,4,6,7],
+                90: [7],
+                180: [7],
+                270: [7],
+            }
+        },
+        180: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [1,4,6,7],
+                90: [7],
+                180: [7],
+                270: [7],
+            }
+        },
+        270: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [1,4,6,7],
+                90: [7],
+                180: [7],
+                270: [7],
+            }
+        },
+    },
+    {
+        "source_id": 6,
+        0: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+        },
+        90: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+        },
+        180: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+        },
+        270: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+        },
+    },
+    {
+        "source_id": 7,
+        0: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [],
+                90: [7],
+                180: [7],
+                270: [7],
+            },        
+        },
+        90: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [],
+                90: [7],
+                180: [7],
+                270: [7],
+            },        
+        },
+        180: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [],
+                90: [7],
+                180: [7],
+                270: [7],
+            },        
+        },
+        270: {
+            "invalid_down": {
+                0: [1,4,6],
+                90: [7],
+                180: [7],
+                270: [7],
+            },
+            "invalid_right": {
+                0: [],
+                90: [7],
+                180: [7],
+                270: [7],
+            },        
+        },
+    },
+]
+
 
 # put all possible tile_set tile source ids in an array
 var tile_set_source_ids: Array = update_tile_set_source_ids(0)
@@ -94,17 +334,27 @@ func gen_tile_map_possibility_space():
         for x in num_cells.x:
             tile_map_possibility_space.append(
                 {
-                   &"idx": tmps_idx,
-                   &"ps": tile_set_source_ids.slice(0),
-                   &"prev_ps": [],
+                    &"idx": tmps_idx,
+                    &"ps": {
+                        0: tile_set_source_ids.slice(0),
+                        90: tile_set_source_ids.slice(0),
+                        180: tile_set_source_ids.slice(0),
+                        270: tile_set_source_ids.slice(0),
+                    },
+                    &"prev_ps": [],
                 }
             )
             tmps_idx = tmps_idx + 1
     
     return tile_map_possibility_space
 
+func get_tmps_idx_by_coords(x, y, x_distance, y_distance, num_indcs_in_grid_row) -> int:
+    # (y + (y_distance)) * num_indcs_in_row + (x + (x_distance)) -formula by ghost_burrito
+    var tmps_idx = (y + y_distance) * num_indcs_in_grid_row + (x + x_distance)
+    
+    return tmps_idx
 
-func update_valid_tiles(x, y, tmps, ruleset, tile_source_id):
+func update_valid_tiles(tmps, ruleset, tile_source_id, target_ps_idx, position_str, rotation_deg: int = 0):
     
     # update the right and down tiles' possibility space
     var current_ruleset_id
@@ -115,82 +365,47 @@ func update_valid_tiles(x, y, tmps, ruleset, tile_source_id):
 
     # valid ruleset idx is equal to the index of tile_set source id in tile_set_source_ids 
     var current_ruleset_idx = tile_set_source_ids.find(current_ruleset_id)
-    
-    # get next row at x possibiliy space idx
-    var next_row_x_ps_idx: int = (y + 1) * num_cells.x + (x + 0)
-    if next_row_x_ps_idx < tmps.size():
-        
-        # set next row at x possibiliy space
-        $Debug.append("down invalid rules: ")
-        for rule in ruleset[current_ruleset_idx].get("invalid_down"):
-            var dict = tmps[next_row_x_ps_idx]
-            var array = dict.get("ps")
-            array.erase(rule)
 
-            $Debug.append(str(rule), false, ", ")
-        
-        $Debug.append("next down ruleset: ")
-        $Debug.append(str(tmps[next_row_x_ps_idx]["ps"]), false)
 
-    # get right x possibility space idx
-    var right_x_ps_idx: int = (y + 0) * num_cells.x + (x + 1)
-    if right_x_ps_idx < tmps.size():
+    if target_ps_idx < tmps.size():
         
         # set right x possibiliy space
-        $Debug.append("right invalid rules: ")
-        for rule in ruleset[current_ruleset_idx].get("invalid_right"):
-            var dict = tmps[right_x_ps_idx]
-            var array = dict.get("ps")
-            array.erase(rule)
-
-            $Debug.append(str(rule), false, ", ")
+        $Debug.append("next invalid rules: ")
+        var ps_rot_deg = 0
+        var ruleset_at_pos_str = ruleset[current_ruleset_idx][rotation_deg][position_str]
+        for rule_idx in ruleset_at_pos_str:
+            ps_rot_deg = ps_rot_deg + 90
+            if ps_rot_deg > 270: ps_rot_deg = 0
+            for rule_at_rotation in ruleset_at_pos_str[rule_idx]:
+                var ps_dict = tmps[target_ps_idx]
+                var ps_rot_dict = ps_dict["ps"]
+                var ps_at_rot = ps_rot_dict[ps_rot_deg]
+                ps_at_rot.erase(rule_at_rotation)
+                $Debug.append(str(ps_rot_deg), false)
+                $Debug.append(str(rule_at_rotation), false, ", ")
         
 
-        $Debug.append("next right ruleset: ")
-        $Debug.append(str(tmps[right_x_ps_idx]["ps"]), false)
+        $Debug.append("set ruleset: ")
+        $Debug.append(str(tmps[target_ps_idx]["ps"]), false)
     
     pass
 
-func _gen_linear_wfc_map_020():
+func get_rnd_alt_tile_id(tile_source: TileSetSource):
+    var alt_tiles_count = tile_source.get_alternative_tiles_count(Vector2i(0,0))
+    var rnd_alt_tile_id = randi_range(0,alt_tiles_count)
+    return rnd_alt_tile_id
 
-    # ruleset
-    var ruleset: Array[Dictionary] = [
-        {
-            "source_id": 1,
-            "valid_down": [1,4,5,6],
-            "invalid_down": [7],
-            "valid_right": [4,6,7],
-            "invalid_right": [1,5]
-        },
-        {
-            "source_id": 4,
-            "valid_down": [7],
-            "invalid_down": [1,4,5,6],
-            "valid_right": [5],
-            "invalid_right": [1,4,6,7]
-        },
-        {
-            "source_id": 5,
-            "valid_down": [7],
-            "invalid_down": [1,4,5,6],
-            "valid_right": [7],
-            "invalid_right": [1,4,5,6]
-        },
-        {
-            "source_id": 6,
-            "valid_down": [7],
-            "invalid_down": [1,4,5,6],
-            "valid_right": [7],
-            "invalid_right": [1,4,5,6]
-        },
-        {
-            "source_id": 7,
-            "valid_down": [7],
-            "invalid_down": [1,4,5,6],
-            "valid_right": [1,4,6,7],
-            "invalid_right": [5]
-        },
-    ]
+func get_rnd_ps_rotation(ps_rotation) -> Array:
+    var rnd_ps_rotation: Array = []
+    for rot in ps_rotation:
+        if ps_rotation[rot].size() > 0:
+            rnd_ps_rotation.append(ps_rotation[rot])
+    var rnd_ps_rotation_idx = randi_range(0, rnd_ps_rotation.size() - 1)
+    if rnd_ps_rotation_idx > -1:
+        rnd_ps_rotation = rnd_ps_rotation[rnd_ps_rotation_idx]
+    return rnd_ps_rotation
+
+func _gen_linear_wfc_map_020():
     
     var prev_cell_ps
 
@@ -201,12 +416,12 @@ func _gen_linear_wfc_map_020():
 
             # get the current possibility space index
             # (y + (y_distance)) * num_indcs_in_row + (x + (x_distance)) -formula by ghost_burrito
-            var current_tmps_index = (y + 0) * num_cells.x + (x + 0)
-            
+            var current_tmps_index = get_tmps_idx_by_coords(x, y, 0, 0, num_cells.x)
+
             # get the possiblility space for the current cell
             var current_cell_ps = tile_map_possibility_space[current_tmps_index].get("ps")
             
-
+            #if there is no valid cell gracefully exit
             if !current_cell_ps:
 
                 $Debug.append("----------------")
@@ -217,26 +432,58 @@ func _gen_linear_wfc_map_020():
 
 
             # set cell tile source id
+            var rnd_ps_rotation = get_rnd_ps_rotation(current_cell_ps)
+            var tile_source_rotation
             var tile_source_id
+            var tile_source
+            var rnd_alt_tile_id
 
-            if current_cell_ps.size() - 1 == 0:
-                tile_source_id = current_cell_ps[0]
-                set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO)
+            if rnd_ps_rotation.size() == 1:
+                tile_source_id = rnd_ps_rotation[0]
+                tile_source = tile_set.get_source(tile_source_id)
+                rnd_alt_tile_id = get_rnd_alt_tile_id(tile_source)
+                set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, rnd_alt_tile_id)
             else:
-                var rnd_possibility_idx = randi_range(0, current_cell_ps.size() - 1)
-                var rnd_source_id = current_cell_ps[rnd_possibility_idx]
+                var rnd_possibility_idx = randi_range(0, rnd_ps_rotation.size() - 1)
+                var rnd_source_id = rnd_ps_rotation[rnd_possibility_idx]
                 tile_source_id = rnd_source_id
-                set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO)
+                tile_source = tile_set.get_source(tile_source_id)
+                rnd_alt_tile_id = get_rnd_alt_tile_id(tile_source)
+                set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, rnd_alt_tile_id)
                 
                 #DEBUG
                 prev_cell_ps = current_cell_ps
 
-            update_valid_tiles(
-                x, 
-                y, 
+            var rot_deg: int
+            match rnd_alt_tile_id:
+                1:
+                    rot_deg = 90
+                2:
+                    rot_deg = 180
+                3:
+                    rot_deg = 270
+                _:
+                    rot_deg = 0
+
+            var next_row_x_ps_idx: int = (y + 1) * num_cells.x + (x + 0)
+            var right_x_ps_idx: int = (y + 0) * num_cells.x + (x + 1)
+
+            update_valid_tiles( 
                 tile_map_possibility_space, 
                 ruleset, 
-                tile_source_id
+                tile_source_id,
+                next_row_x_ps_idx,
+                "invalid_down",
+                rot_deg
+            )
+
+            update_valid_tiles( 
+                tile_map_possibility_space, 
+                ruleset, 
+                tile_source_id,
+                right_x_ps_idx,
+                "invalid_right",
+                rot_deg
             )
 
 
@@ -261,7 +508,7 @@ func _gen_linear_wfc_map_020():
 func _clear_all_tiles():
     for y in num_cells.y:
         for x in num_cells.x:
-            set_cell(-1, Vector2(x,y), -1, Vector2.ZERO)
+            set_cell(-1, Vector2(x,y), - 1, Vector2.ZERO)
 
 signal test_started
 
@@ -280,19 +527,6 @@ func _ready():
     # _gen_linear_map_all_tiles()
     # _gen_linear_random_map() 
     # _gen_linear_wfc_map_020()
-
-    
-    
-    # for i in 10:
-    #     await self.map_generation_finished
-    #     $Debug.append("MAP GENERATION FINSISHED")
-    #     await get_tree().create_timer(.5).timeout
-    #     $Debug.append("----------------")
-    #     $Debug.append("Test " + str(i) + " : ")
-    #     $Debug.append("----------------")
-    #     _clear_all_tiles()
-    #     _gen_linear_wfc_map_020()
-    #     i+=i
 
 var num_tests = 1
 func _on_test_started():
