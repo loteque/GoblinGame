@@ -1,6 +1,5 @@
 extends TileMap
 
-
 @export var screen_resolution: Vector2 = Vector2(1920, 1080)
 @export var num_screens_vert: int = 2
 @export var num_screens_horiz: int = 1
@@ -10,71 +9,8 @@ var map_size = Vector2i(
     round(screen_resolution.x * num_screens_horiz), 
     round(screen_resolution.y * num_screens_vert)
 )
-
-
 var num_cells = map_size / tile_set.tile_size
 
-func _gen_linear_dirt_map():
-    for y in num_cells.y:
-        for x in num_cells.x:
-            $Debug.append("set cell (index): " + str(x))
-            $Debug.append(str(y), false, ",")
-            set_cell(-1, Vector2(x,y),7, Vector2.ZERO)
-            await get_tree().create_timer(.1).timeout
-            x = x - 1
-        y = y - 1
-
-
-func _gen_linear_map_all_tiles():
-    var num_erase_idx := 2
-    var tile_idx = 0
-    var tile_id: int 
-
-    for y in num_cells.y:
-        for x in num_cells.x:
-            
-            tile_id = tile_set.get_source_id(tile_idx)
-
-            $Debug.append("set cell (index): " + str(x))
-            $Debug.append(str(y), false, ",")
-            $Debug.append("tile source: " + str(tile_id), false, "; ")
-            
-            set_cell(-1, Vector2(x,y), tile_id, Vector2.ZERO)
-           
-            await get_tree().create_timer(.1).timeout
-            x = x - 1
-            
-            if tile_idx > tile_set.get_source_count() - num_erase_idx:
-                tile_idx = 0
-            else:
-                tile_idx = tile_idx + 1
-
-
-        y = y - 1
-
-
-func _gen_linear_random_map():
-    var num_of_erase_idx := 2
-    var rand_tile_idx: int
-    var rand_source_id: int
-
-    for y in num_cells.y:
-        for x in num_cells.x:
-
-            rand_tile_idx = randi_range(0, tile_set.get_source_count() - num_of_erase_idx)
-            rand_source_id = tile_set.get_source_id(rand_tile_idx)
-            
-            set_cell(-1, Vector2(x,y), rand_source_id, Vector2.ZERO)
-
-            $Debug.append("set cell (index): " + str(x))
-            $Debug.append(str(y), false, ",")
-            $Debug.append("tile source: " + str(rand_source_id), false, "; ")
-           
-            await get_tree().create_timer(.1).timeout
-            x = x - 1
-
-
-        y = y - 1
 
 class ProcTile:
     var source_id: int
@@ -96,6 +32,7 @@ class ProcTile:
         alt_tile_id = _alt_tile_id
         atlas_coords = _atlas_coords
         sockets = _sockets
+
 
 class ProcTileSet:
 
@@ -140,6 +77,7 @@ class ProcTileSet:
         
         return proc_tile_set
 
+
 var sockets: Dictionary = {
     0: [1,0,1,0],
     1: [0,1,0,1],
@@ -153,246 +91,6 @@ var sockets: Dictionary = {
     9: [0,0,0,1],
     10: [0,0,0,0]
 }
-
-# ruleset (dep)
-# var ruleset: Array[Dictionary] = [
-#     {
-#         "source_id": 1,
-#         0: {
-#             "invalid_down": {
-#                 0: [7],
-#                 90: [4,6,7],
-#                 180: [4,6,7],
-#                 270: [4,6,7],   
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6],
-#                 90: [1,4,6],
-#                 180: [1,4,6],
-#                 270: [1,4,6],                   
-#             },
-#         },
-#         90: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [1],
-#                 180: [1],
-#                 270: [1,4],                   
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6,7],
-#                 90: [4,6,7],
-#                 180: [1,4,6,7],
-#                 270: [7],   
-#             },
-#         },
-#         180: {
-#             "invalid_down": {
-#                 0: [1,5,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],   
-#             },
-#             "invalid_right": {
-#                 0: [1],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],   
-#             },
-#         },
-#         270: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],   
-#             },
-#             "invalid_right": {
-#                 0: [1],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],   
-#             },
-#         },
-#     },
-#     {
-#         "source_id": 4,
-#         0: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6,7],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#         },
-#         90: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6,7],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             }
-#         },
-#         180: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6,7],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             }
-#         },
-#         270: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6,7],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             }
-#         },
-#     },
-#     {
-#         "source_id": 6,
-#         0: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#         },
-#         90: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#         },
-#         180: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#         },
-#         270: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#         },
-#     },
-#     {
-#         "source_id": 7,
-#         0: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },        
-#         },
-#         90: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },        
-#         },
-#         180: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },        
-#         },
-#         270: {
-#             "invalid_down": {
-#                 0: [1,4,6],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },
-#             "invalid_right": {
-#                 0: [],
-#                 90: [7],
-#                 180: [7],
-#                 270: [7],
-#             },        
-#         },
-#     },
-# ]
 
 
 # put all possible tile_set tile source ids in an array
@@ -414,6 +112,7 @@ func gen_proc_tile_set_idc():
         i = i + 1
     return idc
 
+# TILE MAP POSSIBILITY SPACE
 # create an Array of Dictionaries
 # each dictionary maps Array position to an Array of tile source ids
 var tile_map_possibility_space: Array[Dictionary] = gen_tile_map_possibility_space()
@@ -469,123 +168,7 @@ func update_valid_tiles(tmps_idx, current_proc_tile_sockets, edge_idx):
 
     
     pass
-
-# (dep)
-# func get_rnd_alt_tile_id(tile_source: TileSetSource):
-#     var alt_tiles_count = tile_source.get_alternative_tiles_count(Vector2i(0,0))
-#     var rnd_alt_tile_id = randi_range(0,alt_tiles_count)
-#     return rnd_alt_tile_id
-
-# (dep)
-# func get_rnd_ps_rotation(ps_rotation) -> Array:
-    # var rnd_ps_rotation: Array = []
-    # for rot in ps_rotation:
-    #     if ps_rotation[rot].size() > 0:
-    #         rnd_ps_rotation.append(ps_rotation[rot])
-    # var rnd_ps_rotation_idx = randi_range(0, rnd_ps_rotation.size() - 1)
-    # if rnd_ps_rotation_idx > -1:
-    #     rnd_ps_rotation = rnd_ps_rotation[rnd_ps_rotation_idx]
-    # return rnd_ps_rotation
-
-# (dep)
-# func _gen_linear_wfc_map_020():
-    
-#     var prev_cell_ps
-
-#     for y in num_cells.y:
-
-#         # generate tiles in cells using WFC    
-#         for x in num_cells.x:
-
-#             # get the current possibility space index
-#             # (y + (y_distance)) * num_indcs_in_row + (x + (x_distance)) -formula by ghost_burrito
-#             var current_tmps_index = get_tmps_idx_by_coords(x, y, 0, 0, num_cells.x)
-
-#             # get the possiblility space for the current cell
-#             var current_cell_ps = tile_map_possibility_space[current_tmps_index].get("ps")
-            
-#             #if there is no valid cell gracefully exit
-#             if !current_cell_ps:
-
-#                 $Debug.append("----------------")
-#                 $Debug.append("stoppped; current_cell_ps: " + str(current_cell_ps))
-#                 $Debug.append("prev_cell_ps: " + str(prev_cell_ps))
-                
-#                 return
-
-
-#             # set cell tile source id
-#             var rnd_ps_rotation = get_rnd_ps_rotation(current_cell_ps)
-#             var tile_source_rotation
-#             var tile_source_id
-#             var tile_source
-#             var rnd_alt_tile_id
-
-#             if rnd_ps_rotation.size() == 1:
-#                 tile_source_id = rnd_ps_rotation[0]
-#                 tile_source = tile_set.get_source(tile_source_id)
-#                 rnd_alt_tile_id = get_rnd_alt_tile_id(tile_source)
-#                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, rnd_alt_tile_id)
-#             else:
-#                 var rnd_possibility_idx = randi_range(0, rnd_ps_rotation.size() - 1)
-#                 var rnd_source_id = rnd_ps_rotation[rnd_possibility_idx]
-#                 tile_source_id = rnd_source_id
-#                 tile_source = tile_set.get_source(tile_source_id)
-#                 rnd_alt_tile_id = get_rnd_alt_tile_id(tile_source)
-#                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, rnd_alt_tile_id)
-                
-#                 #DEBUG
-#                 prev_cell_ps = current_cell_ps
-
-#             var rot_deg: int
-#             match rnd_alt_tile_id:
-#                 1:
-#                     rot_deg = 90
-#                 2:
-#                     rot_deg = 180
-#                 3:
-#                     rot_deg = 270
-#                 _:
-#                     rot_deg = 0
-
-#             var next_row_x_ps_idx: int = (y + 1) * num_cells.x + (x + 0)
-#             var right_x_ps_idx: int = (y + 0) * num_cells.x + (x + 1)
-
-#             update_valid_tiles( 
-#                 tile_map_possibility_space, 
-#                 ruleset, 
-#                 tile_source_id,
-#                 next_row_x_ps_idx,
-#                 "invalid_down",
-#                 rot_deg
-#             )
-
-#             update_valid_tiles( 
-#                 tile_map_possibility_space, 
-#                 ruleset, 
-#                 tile_source_id,
-#                 right_x_ps_idx,
-#                 "invalid_right",
-#                 rot_deg
-#             )
-
-
-#             # DEBUG:
-#             $Debug.append("----------------")
-#             $Debug.append("TMPS index: " )
-#             $Debug.append(str(current_tmps_index), false)
-#             $Debug.append("current ruleset: ")
-#             $Debug.append(str(current_cell_ps), false)
-#             $Debug.append("set cell (coord): ")
-#             $Debug.append(str(x), false)
-#             $Debug.append(str(y), false, ",")
-#             $Debug.append("tile source: " + str(tile_source_id), false, "; ")
-#             # using a delay to visualize process
-#             # await get_tree().create_timer(.1).timeout
-
-#             x = x - 1
-        
-#         y = y - 1
+# /TILE MAP POSSIBLITY SPACE
 
 
 func _gen_linear_wfc_map_019(proc_tile_set: ProcTileSet):
@@ -623,7 +206,7 @@ func _gen_linear_wfc_map_019(proc_tile_set: ProcTileSet):
                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, alt_tile_id)
             
             else:
-                var rnd_possibility_idx = randi_range(0, current_cell_ps.size() - 1)
+                var rnd_possibility_idx = randi_range(0, current_cell_ps.size())
                 proc_tile = proc_tile_set.tile_set[rnd_possibility_idx]
                 tile_source_id = proc_tile.source_id
                 alt_tile_id = proc_tile.alt_tile_id
@@ -667,14 +250,14 @@ func _gen_linear_wfc_map_019(proc_tile_set: ProcTileSet):
         y = y - 1
 
 
-
-
 func _clear_all_tiles():
     for y in num_cells.y:
         for x in num_cells.x:
             set_cell(-1, Vector2(x,y), - 1, Vector2.ZERO)
 
+
 signal test_started
+
 
 func _ready():
     $Debug.append("Map Cell Size: (x,y):")
@@ -686,24 +269,6 @@ func _ready():
     test_started.connect(_on_test_started)
     test_started.emit()
 
-
-    # var proc_tile_set = ProcTileSet.new(tile_set, tile_set_source_ids, sockets)
-    # var proc_tile = proc_tile_set.tile_set[10]
-    # var tile_source_id = proc_tile.source_id
-    # var tile_alt_tile_id = proc_tile.alt_tile_id
-    # var tile_sockets = proc_tile.sockets
-
-    # $Debug.append(str(proc_tile_set.tile_set))
-    # $Debug.append(str(tile_source_id))
-    # $Debug.append(str(tile_alt_tile_id))
-    # $Debug.append(str(tile_sockets))
-    # set_cell(-1, Vector2.ZERO, tile_source_id, Vector2.ZERO, tile_alt_tile_id)
-    
-
-    # _gen_linear_dirt_map()
-    # _gen_linear_map_all_tiles()
-    # _gen_linear_random_map() 
-    # _gen_linear_wfc_map_020()
 
 var num_tests = 1
 func _on_test_started():
