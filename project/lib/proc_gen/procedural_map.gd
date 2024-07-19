@@ -76,6 +76,56 @@ func _gen_linear_random_map():
 
         y = y - 1
 
+class ProcTile:
+    var source_id: int
+    var source: TileSetSource
+    var alt_tile_id: int
+    var atlas_coords: Vector2i
+    var invalid_left: Array[int]
+    var invalid_right: Array[int]
+
+    func _init(
+        _source_id: int, 
+        _source: TileSetSource, 
+        _alt_tile_id: int, 
+        _atlas_coords: Vector2i = Vector2i.ZERO, 
+        _invalid_left: Array[int] = [], 
+        _invalid_right: Array[int] = []
+    ):
+        source_id = _source_id
+        source = _source
+        alt_tile_id = _alt_tile_id
+        atlas_coords = _atlas_coords
+        invalid_left = _invalid_left
+        invalid_right = _invalid_right
+
+class ProcTileSet:
+    var tile_set: Array[ProcTile]
+
+    func _init(_tile_set: Array[ProcTile]):
+        tile_set = _tile_set
+
+
+func get_tile_alt_ids(source: TileSetSource) -> Array[int]:
+    var tile_alt_ids: Array[int]
+    for count in source.get_alternative_tiles_count(Vector2i.ZERO):
+        var alt_id = source.get_alternative_tile_id(Vector2i.ZERO, count)
+        tile_alt_ids.append(alt_id)
+    return tile_alt_ids
+
+func gen_proc_tile_set() -> Array[ProcTile]:
+    var proc_tile_set: Array[ProcTile]
+    for id in tile_set_source_ids:
+        var source = tile_set.get_source(id)
+        for alt_id in get_tile_alt_ids(source): 
+            var proc_tile = ProcTile.new(
+                id,
+                source,
+                alt_id,
+            )
+            proc_tile_set.append(proc_tile)
+    
+    return proc_tile_set
 
 # ruleset
 var ruleset: Array[Dictionary] = [
@@ -519,9 +569,12 @@ func _ready():
     $Debug.append((str(tile_set)))
     $Debug.append(str(tile_map_possibility_space))
 
-    test_started.connect(_on_test_started)
+    var proc_tile_set = ProcTileSet.new(gen_proc_tile_set())
+    $Debug.append(str(proc_tile_set.tile_set))
 
-    test_started.emit()
+    # test_started.connect(_on_test_started)
+
+    # test_started.emit()
 
     # _gen_linear_dirt_map()
     # _gen_linear_map_all_tiles()
