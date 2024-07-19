@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cju2eyaufp5xj" path="res://src/ui/HealthBarUI.tscn" id="8_xi4xc"]
 [ext_resource type="Script" path="res://src/managers/sfx_manager/sfx_manager.gd" id="9_7fwrf"]
 [ext_resource type="AudioStream" uid="uid://cgnuiyer5k1ya" path="res://assets/audio/recruit1.wav" id="10_5i6eb"]
-[ext_resource type="PackedScene" path="res://src/character/ghost.tscn" id="10_u2kbk"]
+[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="10_u2kbk"]
 [ext_resource type="AudioStream" uid="uid://n6i3gidauoxf" path="res://assets/audio/recruit2.wav" id="11_youbl"]
 [ext_resource type="AudioStream" uid="uid://be1oc7yjiqtru" path="res://assets/audio/recruit3.wav" id="12_qj7v8"]
 [ext_resource type="AudioStream" uid="uid://brua1v4kcpsii" path="res://assets/audio/hit1.wav" id="13_6i08g"]
@@ -75,6 +75,7 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0, 0.6)
+metadata/_edit_use_anchors_ = true
 
 [node name="Cursor" type="Area2D" parent="Marker2D"]
 
@@ -109,6 +110,8 @@ texture = SubResource("GradientTexture2D_72leo")
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="GoblinCallComponent"]
 
 [node name="ThrowGoblinComponent" type="Node" parent="." node_paths=PackedStringArray("goblin_command_component", "target", "player")]
 script = ExtResource("7_uvm8g")

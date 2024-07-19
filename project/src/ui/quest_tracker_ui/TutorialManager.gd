@@ -7,6 +7,9 @@ class_name TutorialManager extends CanvasLayer
 @export var prompt_time: float
 @export var response_time: float
 
+const ControllerIconTexture = preload("res://addons/controller_icons/objects/ControllerIconTexture.gd")
+
+
 class TutorialConnector:
     var manager: TutorialManager
     var prompter_connection: Node
@@ -35,7 +38,13 @@ class PanelConfigurator:
             _button_str = ActionsProperty.Device.get_input_from_inputmap(action_str)
             _button_str = " :  " + _button_str
         panel = Panel_Scene.instantiate()
-        panel.text = message + _button_str
+        panel.text = message
+        var button_icon = ControllerIconTexture.new()
+        button_icon.path = action_str
+        var texture_rect = TextureRect.new()
+        texture_rect.texture = button_icon
+        texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+        panel.add_child(texture_rect)
 
     func _init(panel_message: String, panel_action_str: String = ""):
         message = panel_message
@@ -106,14 +115,17 @@ func _on_player_ready():
 func _on_player_lead_goblin():
     if is_tutorial_active():
         section_success.emit(Section.INSPIRE_PROMPT, Section.INSPIRE_RESPONSE)
+        player.lead_goblin.disconnect(_on_player_lead_goblin)
 
 func _on_player_threw_goblin():
     if is_tutorial_active():
         section_success.emit(Section.THROW_PROMPT,Section.THROW_RESPONSE)
+        player.threw_goblin.disconnect(_on_player_threw_goblin)
 
 func _on_player_built_base():
     if is_tutorial_active():
         section_success.emit(Section.BUILD_PROMPT, Section.BUILD_RESPONSE)
+        player.built_base.disconnect(_on_player_built_base)
 
 func _ready():
     prompter_ready.connect(_on_prompter_ready)

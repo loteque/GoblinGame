@@ -7,6 +7,8 @@ class_name UnitSpawner
 var team: TeamManager.Team
 @export var scrap_cost: int = 5
 @onready var spawn_timer = Timer.new()
+@onready var base = $".."
+
 
 var map: Node2D
 var current_progress: float:
@@ -49,3 +51,4 @@ func spawn_unit():
         unit.team = team
         map.add_child(unit)
         unit.global_position = global_position
+        base.unit_spawned.emit(unit)

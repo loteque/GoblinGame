@@ -1,7 +1,15 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://cpdw03vb0scor"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://cpdw03vb0scor"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_b3xxo"]
 resource_name = "Reverb"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_3sfxv"]
+resource_name = "Reverb"
+room_size = 1.0
+damping = 0.1
+spread = 0.7
+hipass = 0.4
+wet = 0.1
 
 [resource]
 bus/1/name = &"music"
@@ -36,3 +44,11 @@ bus/5/volume_db = 0.0
 bus/5/send = &"Master"
 bus/5/effect/0/effect = SubResource("AudioEffectReverb_b3xxo")
 bus/5/effect/0/enabled = true
+bus/6/name = &"voice"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = 0.0
+bus/6/send = &"Master"
+bus/6/effect/0/effect = SubResource("AudioEffectReverb_3sfxv")
+bus/6/effect/0/enabled = true

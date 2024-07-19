@@ -1,4 +1,6 @@
+[voice path="res://assets/audio/voice_over/tut-intro/07-01-grizzle-look-at-that.wav" volume="0.0"]
 grizzle: Look at that! You’ve collected enough scrap. Now our base can start training new goblins.
+[voice path="res://assets/audio/voice_over/tut-intro/07-02-player-our-community-is.wav" volume="0.0"]
+player: Our community is growing!
+[voice path="res://assets/audio/voice_over/tut-intro/07-03-snark-finally-some-reinforcements.wav" volume="0.0"]
 snark: Finally! Some reinforcements. Let’s hope SOME GOBLIN knows what they're doing!
-player: Every new goblin is a new opportunity. Let's welcome them and help them grow.
-

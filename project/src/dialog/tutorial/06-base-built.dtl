@@ -1,7 +1,12 @@
+[voice path="res://assets/audio/voice_over/tut-intro/06-01-player.wav"]
 player: This base isn't just a place to store scrap. It's a foundation for our community to grow and thrive.
+[voice path="res://assets/audio/voice_over/tut-intro/06-02-grizzle-you-made-us-proud.wav"]
 grizzle: Oh, you made us proud!
+[voice path="res://assets/audio/voice_over/tut-intro/06-03-snark-lets-just-say.wav"]
 snark: Let's just say you're less of an embarrassment.
+[voice path="res://assets/audio/voice_over/tut-intro/06-04-grizzle-and-dont-worry.wav"]
 grizzle: And don't worry if they grumble. Goblins love a bit of grunt work!
-snark: Hey, I don't see you doing any work, ya lazy dog!
+[voice path="res://assets/audio/voice_over/tut-intro/06-05-player-great-work.wav" bus="voice"]
 player: Great work everyone! We can do this if we work together!
-
+[voice path="res://assets/audio/voice_over/tut-intro/06-06-snark-hey-i-dont.wav" bus="voice"]
+snark: Hey, I don't see you doing any work, ya lazy dog!

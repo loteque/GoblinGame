@@ -5,6 +5,7 @@ class_name CollectState
 
 @onready var animated_sprite = %AnimatedSprite2D
 @onready var actor_core = %ActorCore
+@onready var actor: Actor = actor_core.actor
 @onready var collector: CollectorComponent = %Collector
 @onready var collect_timer: Timer = Timer.new()
 
@@ -21,6 +22,7 @@ func collect():
     if not target == null and !target.is_on_cooldown():
         target.get_collected()
         collector.collect(target)
+        actor.collected_scrap.emit()
 
 func enter_state(data: Dictionary={}):
     if is_collecting:
