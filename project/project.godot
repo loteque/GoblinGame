@@ -168,6 +168,7 @@ skip={
 [layer_names]
 
 2d_physics/layer_9="collectable"
+2d_physics/layer_20="throw_collision"
 
 [rendering]
 

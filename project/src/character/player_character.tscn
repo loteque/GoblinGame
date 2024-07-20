@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://78j5k0a24wsl"]
+[gd_scene load_steps=26 format=3 uid="uid://78j5k0a24wsl"]
 
 [ext_resource type="Script" path="res://src/character/PlayerCharacter.gd" id="1_k6ex4"]
 [ext_resource type="PackedScene" uid="uid://kr7oxu32ckts" path="res://src/character/components/health_component.tscn" id="2_1fc7m"]
 [ext_resource type="SpriteFrames" uid="uid://b1tde2jhy8sfh" path="res://src/character/goblin_0_sprite_frames.tres" id="3_e5xby"]
+[ext_resource type="Script" path="res://src/character/throw_target_area.gd" id="3_pt5mj"]
 [ext_resource type="PackedScene" uid="uid://bf7crtfeg2ch1" path="res://src/character/animation_controller.tscn" id="4_ij8ar"]
 [ext_resource type="Script" path="res://src/character/goblin_call_area.gd" id="5_ennj5"]
 [ext_resource type="Script" path="res://src/character/components/throw_goblin_component.gd" id="7_uvm8g"]
@@ -22,6 +23,8 @@
 radius = 21.0535
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe2m7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16q1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pp7l4"]
 radius = 454.0
@@ -82,6 +85,14 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/Cursor"]
 shape = SubResource("RectangleShape2D_fe2m7")
 
+[node name="ThowTargetArea" type="Area2D" parent="Marker2D"]
+collision_layer = 0
+collision_mask = 524288
+script = ExtResource("3_pt5mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/ThowTargetArea"]
+shape = SubResource("RectangleShape2D_16q1u")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("3_e5xby")
@@ -111,12 +122,10 @@ unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="GoblinCallComponent"]
-
-[node name="ThrowGoblinComponent" type="Node" parent="." node_paths=PackedStringArray("goblin_command_component", "target", "player")]
+[node name="ThrowGoblinComponent" type="Node" parent="." node_paths=PackedStringArray("goblin_command_component", "cursor", "player")]
 script = ExtResource("7_uvm8g")
 goblin_command_component = NodePath("../GoblinCallComponent")
-target = NodePath("../Marker2D")
+cursor = NodePath("../Marker2D/Cursor")
 player = NodePath("..")
 
 [node name="HealthBarUi" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_xi4xc")]
