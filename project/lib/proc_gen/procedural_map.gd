@@ -48,10 +48,9 @@ class ProcTileSet:
     var tile_set: Array[ProcTile]
 
 
-    func _init(_map_tile_set: TileSet, _tile_set_source_ids: Array[int]):
+    func _init(_map_tile_set: TileSet):
         map_tile_set = _map_tile_set
-        tile_set_source_ids = _tile_set_source_ids
-        tile_set = ProcTileSet.gen_proc_tile_set(map_tile_set, tile_set_source_ids)
+        tile_set = ProcTileSet.gen_proc_tile_set(map_tile_set)
 
     static func get_tile_alt_ids(source: TileSetSource) -> Array[int]:
         var tile_alt_ids: Array[int]
@@ -63,14 +62,14 @@ class ProcTileSet:
 
     static func gen_proc_tile_set(
         _map_tile_set, 
-        _tile_set_source_ids, 
     ) -> Array[ProcTile]:
         
         var proc_tile_set: Array[ProcTile]
-        var idx = 0; for id in _tile_set_source_ids:
+        var idx = 0; for tile_count in _map_tile_set.get_source_count():
+            var id: int = _map_tile_set.get_source_id(tile_count)
             var source: TileSetAtlasSource = _map_tile_set.get_source(id)
-            var tile_alt_ids = ProcTileSet.get_tile_alt_ids(source)
-            for alt_id in tile_alt_ids:
+            var alt_ids := ProcTileSet.get_tile_alt_ids(source)
+            for alt_id in alt_ids:
 
                 var tile_data: TileData = source.get_tile_data(Vector2i.ZERO, alt_id)
 
@@ -92,17 +91,7 @@ class ProcTileSet:
         
         return proc_tile_set
 
-
-# put all possible tile_set tile source ids in an array
-var tile_set_source_ids: Array[int] = update_tile_set_source_ids(0)
-func update_tile_set_source_ids(num_of_erase_idx):
-    for tile_count in tile_set.get_source_count() - num_of_erase_idx:
-        tile_set_source_ids.append(tile_set.get_source_id(tile_count))
-    return tile_set_source_ids
-
-#var sockets: Dictionary
-
-var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_set, tile_set_source_ids)
+var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_set)
 
 var proc_tile_set_idc: Array = gen_proc_tile_set_idc()
 func gen_proc_tile_set_idc():
