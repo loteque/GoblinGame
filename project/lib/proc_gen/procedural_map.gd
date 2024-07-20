@@ -48,11 +48,10 @@ class ProcTileSet:
     var tile_set: Array[ProcTile]
 
 
-    func _init(_map_tile_set: TileSet, _tile_set_source_ids: Array[int], _tile_sockets_dict: Dictionary):
+    func _init(_map_tile_set: TileSet, _tile_set_source_ids: Array[int]):
         map_tile_set = _map_tile_set
         tile_set_source_ids = _tile_set_source_ids
-        tile_sockets_dict = _tile_sockets_dict
-        tile_set = ProcTileSet.gen_proc_tile_set(map_tile_set, tile_set_source_ids, tile_sockets_dict)
+        tile_set = ProcTileSet.gen_proc_tile_set(map_tile_set, tile_set_source_ids)
 
     static func get_tile_alt_ids(source: TileSetSource) -> Array[int]:
         var tile_alt_ids: Array[int]
@@ -65,40 +64,33 @@ class ProcTileSet:
     static func gen_proc_tile_set(
         _map_tile_set, 
         _tile_set_source_ids, 
-        _tile_sockets_dict: Dictionary
     ) -> Array[ProcTile]:
-    
+        
         var proc_tile_set: Array[ProcTile]
         var idx = 0; for id in _tile_set_source_ids:
-            var source = _map_tile_set.get_source(id)
+            var source: TileSetAtlasSource = _map_tile_set.get_source(id)
             var tile_alt_ids = ProcTileSet.get_tile_alt_ids(source)
-            for alt_id in tile_alt_ids: 
+            for alt_id in tile_alt_ids:
+
+                var tile_data: TileData = source.get_tile_data(Vector2i.ZERO, alt_id)
+
+                var sockets: Array = (
+                    tile_data
+                    .get_custom_data("sockets")
+                )
+
                 var proc_tile = ProcTile.new(
                     idx,
                     id,
                     source,
                     alt_id,
-                    _tile_sockets_dict[idx]
+                    sockets
                 )
+
                 proc_tile_set.append(proc_tile)
                 idx = idx + 1
         
         return proc_tile_set
-
-
-var sockets: Dictionary = {
-    0: [1,0,1,0],
-    1: [0,1,0,1],
-    2: [1,1,0,0],
-    3: [0,1,1,0],
-    4: [0,0,1,1],
-    5: [1,0,0,1],
-    6: [1,0,0,0],
-    7: [0,1,0,0],
-    8: [0,0,1,0],
-    9: [0,0,0,1],
-    10: [0,0,0,0]
-}
 
 
 # put all possible tile_set tile source ids in an array
@@ -108,8 +100,9 @@ func update_tile_set_source_ids(num_of_erase_idx):
         tile_set_source_ids.append(tile_set.get_source_id(tile_count))
     return tile_set_source_ids
 
+#var sockets: Dictionary
 
-var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_set, tile_set_source_ids, sockets)
+var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_set, tile_set_source_ids)
 
 var proc_tile_set_idc: Array = gen_proc_tile_set_idc()
 func gen_proc_tile_set_idc():
@@ -200,8 +193,10 @@ func update_valid_tiles(tmps_idx, current_proc_tile, socket_idx):
             pass
 
     for erasable in erasables:
+        # var start_clock_time = Time.get_ticks_usec()
         matching_cell_ps.erase(erasable)
-        
+        # print("erase: " + str(Time.get_ticks_usec() - start_clock_time))
+
         # VALID
         # var index_of_value = matching_cell_ps.find(erasable)    
         # assert(index_of_value == -1)
@@ -213,10 +208,15 @@ func update_valid_tiles(tmps_idx, current_proc_tile, socket_idx):
 func _gen_linear_wfc_map_019():
 
     var prev_tile
+    var time_since_last_op = 0
+    var time_accum := 0
 
     for y in num_cells.y:
-   
+        
         for x in num_cells.x:
+            var iter_start_time = Time.get_ticks_usec()
+            # set_cell(-1, Vector2(x,y), 1, Vector2.ZERO, 0)
+            # continue
 
             # get the current possibility space index
             var current_tmps_index = get_tmps_idx_by_coords(x, y, 0, 0, num_cells.x)
@@ -242,9 +242,14 @@ func _gen_linear_wfc_map_019():
                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, alt_tile_id)
             
             else:
-                var rnd_possibility_idx = randi_range(0, current_cell_ps.size() - 1)
-                var ps_index = current_cell_ps[rnd_possibility_idx]
                 
+                # var start_clock_time = Time.get_ticks_usec() 
+                
+                var rnd_possibility_idx = randi_range(0, current_cell_ps.size() - 1)
+                
+                # print("randi_range: " + str(Time.get_ticks_usec() - start_clock_time))
+
+                var ps_index = current_cell_ps[rnd_possibility_idx]
                 proc_tile = proc_tile_set.tile_set[ps_index]
                 tile_source_id = proc_tile.source_id
                 alt_tile_id = proc_tile.alt_tile_id
@@ -256,15 +261,14 @@ func _gen_linear_wfc_map_019():
             var next_row_x_ps_idx: int = get_tmps_idx_by_coords(x, y, 0, 1, num_cells.x)
             var right_x_ps_idx: int = get_tmps_idx_by_coords(x, y, 1, 0, num_cells.x)
 
-            # if next_row_x_ps_idx > num_cells.x:
-                
-            #     return
 
+            
             update_valid_tiles(
                 next_row_x_ps_idx,
                 proc_tile,
                 2
             )
+
 
             update_valid_tiles( 
                 right_x_ps_idx,
@@ -272,20 +276,20 @@ func _gen_linear_wfc_map_019():
                 1
             )
 
+            print("iter_start_time: ", Time.get_ticks_usec() - iter_start_time)
+            time_accum += Time.get_ticks_usec() - iter_start_time
 
             # DEBUG:
             $Debug.append("----------------")
             $Debug.append("TMPS index: " )
-            $Debug.append(str(current_tmps_index), false)
-            $Debug.append("current ruleset: ")
             $Debug.append(str(current_cell_ps), false)
             $Debug.append("set cell (coord): ")
             $Debug.append(str(x), false)
             $Debug.append(str(y), false, ",")
             $Debug.append("tile source: " + str(tile_source_id), false, "; ")
             # using a delay to visualize process
-            # await get_tree().create_timer(.1).timeout
-
+            # await get_tree().create_timer(0).timeout
+    print("Total Time: ", time_accum)
 
 func _clear_all_tiles():
     for y in num_cells.y:
@@ -310,8 +314,13 @@ func _ready():
         $Debug.append("----------------")
         _clear_all_tiles()
         tile_map_possibility_space.clear()
+        
+        var gen_ps_space_start_time = Time.get_ticks_usec()
         gen_tile_map_possibility_space()
+        print("gen_ps_start_time: ", Time.get_ticks_usec() - gen_ps_space_start_time)
+        
         _gen_linear_wfc_map_019()
+
         $Debug.append("MAP GENERATION FINSISHED")
         await get_tree().create_timer(1).timeout
 
