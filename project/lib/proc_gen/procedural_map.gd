@@ -5,10 +5,12 @@ extends TileMap
 @export var num_screens_horiz: int = 3
 
 var screen_map_size := Vector2i(1920, 1152)
+
 var map_size = Vector2i(
     screen_map_size.x * num_screens_horiz, 
     screen_map_size.y * num_screens_vert
 )
+
 var num_cells: Vector2i = set_num_cells()
 func set_num_cells() -> Vector2i:
     num_cells.x = map_size.x / tile_set.tile_size.x
@@ -22,6 +24,10 @@ class ProcTile:
     var alt_tile_id: int
     var atlas_coords: Vector2i
     var sockets: Array
+    var valid_top: Array
+    var valid_right: Array
+    var valid_left: Array
+    var valid_bottom: Array
 
     func _init(
         _set_idx: int,
@@ -43,8 +49,6 @@ class ProcTile:
 class ProcTileSet:
 
     var map_tile_set: TileSet
-    var tile_set_source_ids: Array[int]
-    var tile_sockets_dict: Dictionary
     var tile_set: Array[ProcTile]
 
 
@@ -60,17 +64,17 @@ class ProcTileSet:
         return tile_alt_ids
 
 
-    static func gen_proc_tile_set(
-        _map_tile_set, 
-    ) -> Array[ProcTile]:
+    static func gen_proc_tile_set(_map_tile_set: TileSet) -> Array[ProcTile]:
         
         var proc_tile_set: Array[ProcTile]
         var idx = 0; for tile_count in _map_tile_set.get_source_count():
+            
             var id: int = _map_tile_set.get_source_id(tile_count)
             var source: TileSetAtlasSource = _map_tile_set.get_source(id)
             var alt_ids := ProcTileSet.get_tile_alt_ids(source)
+            
             for alt_id in alt_ids:
-
+                
                 var tile_data: TileData = source.get_tile_data(Vector2i.ZERO, alt_id)
 
                 var sockets: Array = (
@@ -88,203 +92,159 @@ class ProcTileSet:
 
                 proc_tile_set.append(proc_tile)
                 idx = idx + 1
+
+        for tile in proc_tile_set:
+            var sockets = tile.sockets
+            var valid_right = tile.valid_right
+            var valid_bottom = tile.valid_bottom
+            var tile_source = tile.source
+
+            for c_tile in proc_tile_set:
+                var c_set_idx = c_tile.set_idx
+                var c_sockets = c_tile.sockets
+
+                if sockets[1] == c_sockets[3]:
+                    valid_right.append(c_set_idx)   
+            
+                if sockets[2] == c_sockets[0]:
+                    valid_bottom.append(c_set_idx)
+            
+            for c_tile in proc_tile_set:
+                (
+                    tile_source.get_tile_data(
+                        Vector2i.ZERO, 
+                        tile.alt_tile_id
+                    )
+                    .set_custom_data(
+                        "valid_right", 
+                        tile.valid_right
+                    )
+                )
+                (
+                    tile_source.get_tile_data(
+                        Vector2i.ZERO, 
+                        tile.alt_tile_id
+                    )
+                    .set_custom_data(
+                        "valid_bottom", 
+                        tile.valid_bottom
+                    )
+                )
         
         return proc_tile_set
 
-var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_set)
 
-var proc_tile_set_idc: Array = gen_proc_tile_set_idc()
-func gen_proc_tile_set_idc():
-    var idc: Array[int] = []
-    var i = 0
-    for tile in proc_tile_set.tile_set:
-        idc.append(i)
-        i = i + 1
-    return idc
+func _gen_linear_wfc_map_019(proc_tile_set):
 
-
-var proc_tile_set_names: Array = [
-    "full_river_top_bottom",
-    "full_river_right_left",
-    "angled_river_top_right",
-    "angled_river_right_bottom",
-    "angled_river_bottom_left",
-    "angled_river_left_top",
-    "half_river_top",
-    "half_river_right",
-    "half_river_bottom",
-    "half_river_left",
-    "dirt"
-]
-
-# TILE MAP POSSIBILITY SPACE
-# create an Array of Dictionaries
-# each dictionary maps Array position to an Array of tile source ids
-var tile_map_possibility_space: Array[Dictionary] = gen_tile_map_possibility_space()
-func gen_tile_map_possibility_space():
-    var tmps_idx: int = 0
-    for y in num_cells.y:
-        for x in num_cells.x:
-            tile_map_possibility_space.append(
-                {
-                    &"idx": tmps_idx,
-                    &"ps": proc_tile_set_idc.slice(0),
-                }
-            )
-            tmps_idx = tmps_idx + 1
-    
-    return tile_map_possibility_space
-
-func get_tmps_idx_by_coords(x, y, x_distance, y_distance, num_indcs_in_grid_row) -> int:
-    # (y + (y_distance)) * num_indcs_in_row + (x + (x_distance)) -formula by ghost_burrito
-    var tmps_idx = (y + y_distance) * num_indcs_in_grid_row + (x + x_distance)
-    
-    return tmps_idx
-
-
-func update_valid_tiles(tmps_idx, current_proc_tile, socket_idx):
-    
-    if tmps_idx > num_cells.x * num_cells.y - 1:
-        return
-
-    var current_tile = current_proc_tile
-    var current_proc_tile_sockets = current_tile.sockets 
-    var current_tile_set_idx = current_tile.set_idx
-
-    var matching_socket_idx
-    match socket_idx:
-        0:
-            matching_socket_idx = 2
-        1:
-            matching_socket_idx = 3
-        2: 
-            matching_socket_idx = 0
-        3:
-            matching_socket_idx = 1
-
-    var matching_cell_ps: Array = tile_map_possibility_space[tmps_idx]["ps"]
-    var tile_set_array = proc_tile_set.tile_set
-    var erasables: Array = []
-    
-    for matching_tile_set_idx in matching_cell_ps:
-        
-        var _matching_tile_set_idx = matching_tile_set_idx
-        var matching_tile = tile_set_array[_matching_tile_set_idx]
-        var matching_tile_idx = matching_tile.set_idx
-        var matching_tile_sockets = matching_tile.sockets
-        var matching_socket = matching_tile_sockets[matching_socket_idx] 
-        var current_tile_socket = current_proc_tile_sockets[socket_idx]
-        var is_socket_match = matching_socket == current_tile_socket 
-        
-        if is_socket_match == false:
-            erasables.append(matching_tile_idx)
-        else:
-            pass
-
-    for erasable in erasables:
-        # var start_clock_time = Time.get_ticks_usec()
-        matching_cell_ps.erase(erasable)
-        # print("erase: " + str(Time.get_ticks_usec() - start_clock_time))
-
-        # VALID
-        # var index_of_value = matching_cell_ps.find(erasable)    
-        # assert(index_of_value == -1)
-
-    pass
-# /TILE MAP POSSIBLITY SPACE
-
-
-func _gen_linear_wfc_map_019():
-
-    var prev_tile
-    var time_since_last_op = 0
-    var time_accum := 0
+    var time_accum := 0.0
 
     for y in num_cells.y:
         
         for x in num_cells.x:
+
             var iter_start_time = Time.get_ticks_usec()
-            # set_cell(-1, Vector2(x,y), 1, Vector2.ZERO, 0)
-            # continue
 
-            # get the current possibility space index
-            var current_tmps_index = get_tmps_idx_by_coords(x, y, 0, 0, num_cells.x)
-
-            # get the possiblility space for the current cell
-            var current_cell_ps = tile_map_possibility_space[current_tmps_index].get("ps")
+            var top_cell_coords := Vector2i(x, y - 1)
+            var left_cell_coords := Vector2i(x - 1, y)
             
-            var current_cell_ps_names = current_cell_ps.map(func(idx): return proc_tile_set_names[idx])
+            var top_cell_data: TileData = self.get_cell_tile_data(-1, top_cell_coords)
+            var left_cell_data: TileData = self.get_cell_tile_data(-1, left_cell_coords)
+            
+            var top_ps: Array
+            var left_ps: Array
+            if top_cell_data:
+                top_ps = top_cell_data.get_custom_data("valid_bottom") 
 
-            #if there is no valid cell gracefully exit
-            if !current_cell_ps:
+            
+            if left_cell_data:
+                left_ps = left_cell_data.get_custom_data("valid_right")
+
+
+            var proto_valid_tiles = [0,1,2,3,4,5,6,7,8,9,10]
+            var valid_tiles: Array = []
+            
+            var big = left_ps
+            var small = top_ps
+            if top_ps.size() > left_ps.size():
+                big = top_ps
+                small = left_ps
+
+            # TEST STRIPES
+            # big = [0,1]
+            # small = [1]            
+            # for p in small:
+            #     valid_tiles = big.filter(func(idx): return idx == p)
+            # /TEST STRIPES
+
+            if top_ps == left_ps:
+                valid_tiles = left_ps
+            
+            var inner_inner_inner_for_start = Time.get_ticks_usec() 
+            if !top_ps.is_empty() and !left_ps.is_empty():
+                for p in small:
+                    valid_tiles += big.filter(func(idx): return idx == p)
+            print("in_in_in_for time: ", Time.get_ticks_usec() - inner_inner_inner_for_start)
+
+            if top_ps.is_empty():
+                valid_tiles = left_ps
+
+            if left_ps.is_empty():
+                valid_tiles = top_ps
+            
+            if top_ps.is_empty() and left_ps.is_empty():
+                valid_tiles = proto_valid_tiles
                 
-                return
-
             var tile_source_id: int
             var alt_tile_id: int
             var proc_tile: ProcTile
 
-            if current_cell_ps.size() == 1:
-                proc_tile = proc_tile_set.tile_set[current_cell_ps[0]]
+            if valid_tiles.size() == 1:
+        
+                proc_tile = proc_tile_set.tile_set[valid_tiles[0]]
                 tile_source_id = proc_tile.source_id
                 alt_tile_id = proc_tile.alt_tile_id
                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, alt_tile_id)
-            
+
             else:
                 
-                # var start_clock_time = Time.get_ticks_usec() 
-                
-                var rnd_possibility_idx = randi_range(0, current_cell_ps.size() - 1)
-                
-                # print("randi_range: " + str(Time.get_ticks_usec() - start_clock_time))
-
-                var ps_index = current_cell_ps[rnd_possibility_idx]
-                proc_tile = proc_tile_set.tile_set[ps_index]
+                var rnd_valid_idx = randi_range(0, valid_tiles.size() - 1)
+                var tile_idx = valid_tiles[rnd_valid_idx]
+                proc_tile = proc_tile_set.tile_set[tile_idx]
                 tile_source_id = proc_tile.source_id
                 alt_tile_id = proc_tile.alt_tile_id
                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, alt_tile_id)
-                
-
-            prev_tile = proc_tile_set_names[proc_tile.set_idx] 
-
-            var next_row_x_ps_idx: int = get_tmps_idx_by_coords(x, y, 0, 1, num_cells.x)
-            var right_x_ps_idx: int = get_tmps_idx_by_coords(x, y, 1, 0, num_cells.x)
 
 
-            
-            update_valid_tiles(
-                next_row_x_ps_idx,
-                proc_tile,
-                2
-            )
-
-
-            update_valid_tiles( 
-                right_x_ps_idx,
-                proc_tile,
-                1
-            )
-
-            print("iter_start_time: ", Time.get_ticks_usec() - iter_start_time)
+            print("iter_time (u): ", Time.get_ticks_usec() - iter_start_time)
             time_accum += Time.get_ticks_usec() - iter_start_time
 
             # DEBUG:
             $Debug.append("----------------")
             $Debug.append("TMPS index: " )
-            $Debug.append(str(current_cell_ps), false)
             $Debug.append("set cell (coord): ")
             $Debug.append(str(x), false)
             $Debug.append(str(y), false, ",")
             $Debug.append("tile source: " + str(tile_source_id), false, "; ")
             # using a delay to visualize process
             # await get_tree().create_timer(0).timeout
-    print("Total Time: ", time_accum)
+    
+    print("Map Gen Accum Time (m): ", time_accum / 1000.0)
 
 func _clear_all_tiles():
     for y in num_cells.y:
         for x in num_cells.x:
             set_cell(-1, Vector2(x,y), -1, Vector2.ZERO)
 
+func run_map_gen_x_times(x, proc_tile_set):
+    var max_tests = x
+    for i in max_tests:
+        $Debug.append("----------------")
+        $Debug.append("Test " + str(i) + " : ")
+        $Debug.append("----------------")
+        _clear_all_tiles()
+        _gen_linear_wfc_map_019(proc_tile_set)
+        $Debug.append("MAP GENERATION FINSISHED")
+        await get_tree().create_timer(1).timeout
 
 func _ready():
     $Debug.append(str(num_cells))
@@ -292,40 +252,73 @@ func _ready():
     $Debug.append(str(num_cells.x - 1))
     $Debug.append(str(num_cells.y - 1), false, ",")
     $Debug.append((str(tile_set)))
-    $Debug.append(str(tile_map_possibility_space))
 
-    # test_started.connect(_on_test_started)
-    # test_started.emit()
-    var max_tests = 1
-    for i in max_tests:
-        $Debug.append("----------------")
-        $Debug.append("Test " + str(i) + " : ")
-        $Debug.append("----------------")
-        _clear_all_tiles()
-        tile_map_possibility_space.clear()
+    var init_start_time = Time.get_ticks_usec()
+    var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_set)
+    print("Init Time (m): ", init_start_time / 1000.0)
+
+    Test.Suite.run(self)
+    run_map_gen_x_times(1, proc_tile_set)
+
+
+class Test:
+    
+    static var proc_tile_set_names: Array = [
+        "full_river_top_bottom",
+        "full_river_right_left",
+        "angled_river_top_right",
+        "angled_river_right_bottom",
+        "angled_river_bottom_left",
+        "angled_river_left_top",
+        "half_river_top",
+        "half_river_right",
+        "half_river_bottom",
+        "half_river_left",
+        "dirt"
+    ]
+
+    class Suite:
         
-        var gen_ps_space_start_time = Time.get_ticks_usec()
-        gen_tile_map_possibility_space()
-        print("gen_ps_start_time: ", Time.get_ticks_usec() - gen_ps_space_start_time)
+        static func run(tile_map: TileMap):
         
-        _gen_linear_wfc_map_019()
+            var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_map.tile_set)
+            
+            Test.assert_proc_tile_set_size(proc_tile_set.tile_set, 11)
 
-        $Debug.append("MAP GENERATION FINSISHED")
-        await get_tree().create_timer(1).timeout
+            var tile = proc_tile_set.tile_set[0]
+            Test.assert_sockets(tile, [1,0,1,0])
+            Test.assert_valid_bottom(tile, [0,2,5,6])
+            Test.assert_valid_right(tile, [0,2,3,6,7,8,10])
 
 
-    # VALID
-    # var set_idx = 6
-    # var proc_tile = proc_tile_set.tile_set[set_idx]
-    # var proc_tile_set_idx = proc_tile.set_idx
-    # var proc_tile_source_id = proc_tile.source_id
-    # var proc_tile_alt_id = proc_tile.alt_tile_id
-    # set_cell(-1, Vector2(0,0), proc_tile_source_id, Vector2.ZERO, proc_tile_alt_id)
-    # $Debug.append(str(proc_tile_source_id))
-    # $Debug.append(str(proc_tile_alt_id))
-    # $Debug.append(str(proc_tile_set_idx))
-    # var procts = proc_tile_set.tile_set
-    # var procts_tile = procts[set_idx]
-    # var procts_tile_setidx = procts_tile.set_idx
-    # pass
+            # tile = proc_tile_set.tile_set[6]
+            # Test.assert_sockets(tile, [1,0,0,0])
+            # Test.assert_valid_bottom(tile, [0,3,4,7,8,9,10])
+
+            tile = proc_tile_set.tile_set[7]
+            Test.assert_sockets(tile, [0,1,0,0])
+            Test.assert_valid_bottom(tile, [1,3,4,7,8,9,10])
+            
+
+    static func assert_proc_tile_set_size(proc_tile_set, size):
+
+        assert(proc_tile_set.size() == size)
+
+    static func assert_sockets(proc_tile, assert_sockets):
+
+        var sockets = proc_tile.sockets
+        assert(sockets == assert_sockets)
+    
+    static func assert_valid_bottom(proc_tile: ProcTile, assert_valid_bottom):
+            
+        var valid_bottom = proc_tile.valid_bottom
+        var assert_names = assert_valid_bottom.map(func(n): return Test.proc_tile_set_names[n])
+        var names = valid_bottom.map(func(n): return Test.proc_tile_set_names[n])
+        assert(valid_bottom == assert_valid_bottom)
+    
+    static func assert_valid_right(proc_tile: ProcTile, assert_valid_right):
+            
+        var valid_right = proc_tile.valid_right
+        assert(valid_right == assert_valid_right)
+
 
