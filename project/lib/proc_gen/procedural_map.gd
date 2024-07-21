@@ -136,7 +136,7 @@ class ProcTileSet:
 
 func _gen_linear_wfc_map_019(proc_tile_set):
 
-    var time_accum := 0.0
+    # var time_accum := 0.0
 
     for y in num_cells.y:
         
@@ -146,6 +146,7 @@ func _gen_linear_wfc_map_019(proc_tile_set):
 
             var top_cell_coords := Vector2i(x, y - 1)
             var left_cell_coords := Vector2i(x - 1, y)
+            
             
             var top_cell_data: TileData = self.get_cell_tile_data(-1, top_cell_coords)
             var left_cell_data: TileData = self.get_cell_tile_data(-1, left_cell_coords)
@@ -169,21 +170,15 @@ func _gen_linear_wfc_map_019(proc_tile_set):
                 big = top_ps
                 small = left_ps
 
-            # TEST STRIPES
-            # big = [0,1]
-            # small = [1]            
-            # for p in small:
-            #     valid_tiles = big.filter(func(idx): return idx == p)
-            # /TEST STRIPES
-
             if top_ps == left_ps:
                 valid_tiles = left_ps
-            
-            var inner_inner_inner_for_start = Time.get_ticks_usec() 
+             
             if !top_ps.is_empty() and !left_ps.is_empty():
+                
+                var inner_inner_inner_for_start = Time.get_ticks_usec()
                 for p in small:
                     valid_tiles += big.filter(func(idx): return idx == p)
-            print("in_in_in_for time: ", Time.get_ticks_usec() - inner_inner_inner_for_start)
+                print("in_in_in_for time: ", Time.get_ticks_usec() - inner_inner_inner_for_start)
 
             if top_ps.is_empty():
                 valid_tiles = left_ps
@@ -193,7 +188,9 @@ func _gen_linear_wfc_map_019(proc_tile_set):
             
             if top_ps.is_empty() and left_ps.is_empty():
                 valid_tiles = proto_valid_tiles
-                
+
+            # valid_tiles = Test.test_stripes(big, small, valid_tiles)
+
             var tile_source_id: int
             var alt_tile_id: int
             var proc_tile: ProcTile
@@ -215,50 +212,20 @@ func _gen_linear_wfc_map_019(proc_tile_set):
                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, alt_tile_id)
 
 
-            print("iter_time (u): ", Time.get_ticks_usec() - iter_start_time)
-            time_accum += Time.get_ticks_usec() - iter_start_time
-
-            # DEBUG:
-            $Debug.append("----------------")
-            $Debug.append("TMPS index: " )
-            $Debug.append("set cell (coord): ")
-            $Debug.append(str(x), false)
-            $Debug.append(str(y), false, ",")
-            $Debug.append("tile source: " + str(tile_source_id), false, "; ")
-            # using a delay to visualize process
-            # await get_tree().create_timer(0).timeout
+            # print("iter_time (u): ", Time.get_ticks_usec() - iter_start_time)
+            # time_accum += Time.get_ticks_usec() - iter_start_time
     
-    print("Map Gen Accum Time (m): ", time_accum / 1000.0)
+    # print("Map Gen Accum Time (m): ", time_accum / 1000.0)
 
-func _clear_all_tiles():
-    for y in num_cells.y:
-        for x in num_cells.x:
-            set_cell(-1, Vector2(x,y), -1, Vector2.ZERO)
-
-func run_map_gen_x_times(x, proc_tile_set):
-    var max_tests = x
-    for i in max_tests:
-        $Debug.append("----------------")
-        $Debug.append("Test " + str(i) + " : ")
-        $Debug.append("----------------")
-        _clear_all_tiles()
-        _gen_linear_wfc_map_019(proc_tile_set)
-        $Debug.append("MAP GENERATION FINSISHED")
-        await get_tree().create_timer(1).timeout
 
 func _ready():
-    $Debug.append(str(num_cells))
-    $Debug.append("Map Cell Size: (x,y):")
-    $Debug.append(str(num_cells.x - 1))
-    $Debug.append(str(num_cells.y - 1), false, ",")
-    $Debug.append((str(tile_set)))
 
-    var init_start_time = Time.get_ticks_usec()
+    # var init_start_time = Time.get_ticks_usec()
     var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_set)
-    print("Init Time (m): ", init_start_time / 1000.0)
+    # print("Init Time (m): ", init_start_time / 1000.0)
 
-    Test.Suite.run(self)
-    run_map_gen_x_times(1, proc_tile_set)
+    # Test.Suite.run(self)
+    Test.run_map_gen_x_times(4, _gen_linear_wfc_map_019, self, proc_tile_set)
 
 
 class Test:
@@ -277,6 +244,31 @@ class Test:
         "dirt"
     ]
 
+
+    static func test_stripes(big_array_ref: Array, small_array_ref: Array, valid_tiles_ref: Array):
+        big_array_ref = [0,1]
+        small_array_ref = [1]            
+        for p in small_array_ref:
+            valid_tiles_ref = big_array_ref.filter(func(idx): return idx == p)
+        
+        return valid_tiles_ref
+
+    static func clear_all_tiles(num_cells: Vector2i, tile_map: TileMap):
+        for y in num_cells.y:
+            for x in num_cells.x:
+                tile_map.set_cell(-1, Vector2(x,y), -1, Vector2.ZERO)
+
+
+    static func run_map_gen_x_times(x: int, gen_func: Callable, tile_map: TileMap, proc_tile_set: ProcTileSet):
+
+        var max_tests = x
+        for i in max_tests:
+
+            Test.clear_all_tiles(tile_map.num_cells, tile_map)
+            gen_func.call(proc_tile_set)
+            await tile_map.get_tree().create_timer(1).timeout
+
+
     class Suite:
         
         static func run(tile_map: TileMap):
@@ -291,14 +283,14 @@ class Test:
             Test.assert_valid_right(tile, [0,2,3,6,7,8,10])
 
 
-            # tile = proc_tile_set.tile_set[6]
-            # Test.assert_sockets(tile, [1,0,0,0])
-            # Test.assert_valid_bottom(tile, [0,3,4,7,8,9,10])
+            tile = proc_tile_set.tile_set[6]
+            Test.assert_sockets(tile, [1,0,0,0])
+            Test.assert_valid_bottom(tile, [0,3,4,7,8,9,10])
 
             tile = proc_tile_set.tile_set[7]
             Test.assert_sockets(tile, [0,1,0,0])
             Test.assert_valid_bottom(tile, [1,3,4,7,8,9,10])
-            
+    
 
     static func assert_proc_tile_set_size(proc_tile_set, size):
 
