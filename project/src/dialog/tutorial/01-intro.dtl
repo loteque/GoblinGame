@@ -1,3 +1,4 @@
+[style name="dialog_lower_third_style"]
 [voice path="res://assets/audio/voice_over/tut-intro/01-01-grizzle-well-look.wav"]
 grizzle: Well, look who finally showed up! The runt of the litter! Don’t worry, we’ll whip you into shape in no time.
 [voice path="res://assets/audio/voice_over/tut-intro/01-02-snark-well-maybe.wav"]

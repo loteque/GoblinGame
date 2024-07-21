@@ -31,11 +31,13 @@ directories/dch_directory={
 directories/dtl_directory={
 "01-intro": "res://src/dialog/tutorial/01-intro.dtl",
 "02-inspire": "res://src/dialog/tutorial/02-inspire.dtl",
+"021-inspire-done": "res://src/dialog/tutorial/021-inspire-done.dtl",
 "03-falling-behind": "res://src/dialog/tutorial/03-falling-behind.dtl",
 "04-throw-goblins": "res://src/dialog/tutorial/04-throw-goblins.dtl",
 "05-collecting-scrap": "res://src/dialog/tutorial/05-collecting-scrap.dtl",
 "06-base-built": "res://src/dialog/tutorial/06-base-built.dtl",
 "07-goblins-start-training": "res://src/dialog/tutorial/07-goblins-start-training.dtl",
+"071-bring-goblins": "res://src/dialog/tutorial/071-bring-goblins.dtl",
 "08-see-corrupted-goblins": "res://src/dialog/tutorial/08-see-corrupted-goblins.dtl",
 "09-killed-corrupted-goblin": "res://src/dialog/tutorial/09-killed-corrupted-goblin.dtl",
 "10-see-enemy-base": "res://src/dialog/tutorial/10-see-enemy-base.dtl",
@@ -75,6 +77,7 @@ event_default_overrides={
 "volume": 0.0
 }
 }
+portraits/default_portrait=""
 
 [display]
 

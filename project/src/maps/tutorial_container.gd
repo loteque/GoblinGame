@@ -96,13 +96,16 @@ func _on_corrupted_goblin_died():
 func _on_player_lead_goblin():
     # TODO: Add player inspired goblins success case dialog
     player.lead_goblin.disconnect(_on_player_lead_goblin)
-    return
-    const _02_INSPIRE = preload("res://src/dialog/tutorial/02-inspire.dtl")
-    Dialogic.start.call_deferred(_02_INSPIRE)
+    const _021_INSPIRE_DONE = preload("res://src/dialog/tutorial/021-inspire-done.dtl")
+    Dialogic.start.call_deferred(_021_INSPIRE_DONE)
 
 func _on_player_lost_follower():
     const _03_FALLING_BEHIND = preload("res://src/dialog/tutorial/03-falling-behind.dtl")
     Dialogic.start.call_deferred(_03_FALLING_BEHIND)
+    tutorial_manager.prompter_ready.emit(TutorialManager.Section.INSPIRE_PROMPT, "call")
+    if not player.lead_goblin.is_connected(tutorial_manager._on_player_lead_goblin):
+        player.lead_goblin.connect(tutorial_manager._on_player_lead_goblin)
+    player.lead_goblin.connect(_on_player_lead_goblin)
     player.lost_follower.disconnect(_on_player_lost_follower)
 
 func _on_player_built_base():
