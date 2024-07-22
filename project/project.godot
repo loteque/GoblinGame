@@ -20,6 +20,7 @@ ResourceManager="*res://src/managers/resource_manager.gd"
 JoyMapping="*res://lib/joy_mapping.gd"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+SceneLoader="*res://src/autoloads/scene_loader.gd"
 
 [dialogic]
 

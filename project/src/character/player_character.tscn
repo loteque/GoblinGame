@@ -45,6 +45,7 @@ polygon = PackedVector2Array(-26, 109, -12, 115, 14, 115, 28, 111, 24, 122, -23,
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("throw_target", "cursor", "follow_target", "sfx_manager", "throw_component") groups=["Actor", "Player"]]
 z_index = 1
+y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_k6ex4")
 throw_target = NodePath("Marker2D")

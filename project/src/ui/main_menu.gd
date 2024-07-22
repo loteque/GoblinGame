@@ -9,7 +9,9 @@ extends TextureRect
 @export var music_manager: MusicManager
 @export var game_manager: GameManager
 @export var title_music: AudioStreamPlayer
+@export var show_skip_tutorial: bool = false
 
+@onready var skip_tutorial = $Menu/SkipTutorial
 
 var pause_ok: bool = false
 
@@ -37,13 +39,25 @@ func _ready():
     play_button.pressed.connect(_on_play_button_pressed)
     restart_button.pressed.connect(_on_restart_button_pressed)
     quit_button.pressed.connect(_on_quit_button_pressed)
+    skip_tutorial.pressed.connect(_on_skip_tutorial_pressed)
     update_pause(true)
+    skip_tutorial.visible = show_skip_tutorial
 
+func _on_skip_tutorial_pressed():
+    reset_dialog()
+    SceneLoader.load_scene(SceneLoader.Level.MAIN)
+
+func reset_dialog():
+    var dialogic_connections = Dialogic.timeline_ended.get_connections()
+    for connection in dialogic_connections:
+        connection.signal.disconnect(connection.callable)
+    var voice_subsystem = Dialogic.get_subsystem("Voice")
+    voice_subsystem.stop_audio()
+    Dialogic.end_timeline()
 
 func _on_remap_done_button_pressed():
     remapper_menu.hide()
     play_button.show()
-
 
 func _on_play_button_pressed():
     if pause_ok == false:
@@ -60,6 +74,7 @@ func _on_play_button_pressed():
 
 
 func _on_restart_button_pressed():
+    reset_dialog()
     ResourceManager.reset()
     get_tree().reload_current_scene()
 

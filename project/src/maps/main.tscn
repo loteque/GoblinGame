@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=28 format=3 uid="uid://c4fb2nyi3hcyx"]
 
 [ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_c7i1w"]
 [ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_5jfie"]
@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="4_14lxc"]
 [ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="5_hfk4p"]
 [ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_bbuej"]
-[ext_resource type="Script" path="res://src/ui/quest_tracker_ui/TutorialManager.gd" id="7_lgdd0"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_i8f3g"]
 [ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_7oydw"]
 [ext_resource type="PackedScene" uid="uid://bekfd1deerevd" path="res://src/ui/main_menu.tscn" id="10_wo30j"]
@@ -673,25 +672,12 @@ lead_layer = ExtResource("6_bbuej")
 max_vol = -18
 min_vol = -60
 
-[node name="TutorialManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "g_p_messages_cont")]
-script = ExtResource("7_lgdd0")
-player = NodePath("../DemoLevel/PlayerCharacter")
-g_p_messages_cont = NodePath("../DemoLevel/LevelUI/GamePlayMessages")
-prompt_time = 3.0
-response_time = 2.0
-inspire_prompt = "You can inspire goblins follow you. "
-inspire_response = "Nice crew!"
-throw_prompt = "You can throw your goblin followers. "
-throw_response = "Look at em go!"
-build_prompt = "You can build a camp. "
-build_response = "What a nice camp! Goblins will join your camp!"
-
 [node name="GameUI" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" parent="GameUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_wo30j")]
 music_manager = NodePath("../../MusicManager")
 
-[node name="DemoLevel" type="Node2D" parent="."]
+[node name="DemoLevel" type="Node2D" parent="." groups=["Map"]]
 y_sort_enabled = true
 
 [node name="LevelUI" parent="DemoLevel" instance=ExtResource("8_i8f3g")]

@@ -1,15 +1,20 @@
-[gd_scene load_steps=44 format=3 uid="uid://hnp0d32u42xt"]
+[gd_scene load_steps=66 format=3 uid="uid://hnp0d32u42xt"]
 
+[ext_resource type="Script" path="res://src/ui/main_menu.gd" id="1_hx3ol"]
 [ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_uotb5"]
+[ext_resource type="Texture2D" uid="uid://biploe6jtd0rn" path="res://assets/art/title-art-no-bg-nolines.png" id="2_1g74i"]
 [ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_golmd"]
+[ext_resource type="Script" path="res://addons/action_remapper/src/ReMapperButton.gd" id="3_sbfd8"]
 [ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="3_txhld"]
 [ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="4_uodu6"]
+[ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="4_x4ycx"]
+[ext_resource type="Theme" uid="uid://c3w7atbti77dq" path="res://src/ui/main_menu.tres" id="5_dhxwx"]
 [ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="5_lk4yo"]
+[ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="6_7dgld"]
 [ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_afpfj"]
 [ext_resource type="Script" path="res://src/ui/quest_tracker_ui/TutorialManager.gd" id="7_jtmnu"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_etn82"]
 [ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_1p4l0"]
-[ext_resource type="PackedScene" uid="uid://bekfd1deerevd" path="res://src/ui/main_menu.tscn" id="10_6tucy"]
 [ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="15_hnjov"]
 [ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="16_vkwli"]
 [ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="17_jdec5"]
@@ -28,6 +33,84 @@
 [ext_resource type="Resource" path="res://src/dialog/tutorial/08-see-corrupted-goblins.dtl" id="27_mmdt0"]
 [ext_resource type="Resource" path="res://src/dialog/tutorial/10-see-enemy-base.dtl" id="28_8mkrq"]
 [ext_resource type="Script" path="res://src/maps/expect_goblin_followers_area.gd" id="28_empy5"]
+
+[sub_resource type="Gradient" id="Gradient_b8ftk"]
+offsets = PackedFloat32Array(0, 0.497738)
+colors = PackedColorArray(0.304265, 0, 0.115763, 1, 0.0242718, 1.17055e-06, 0.0223806, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_auqso"]
+gradient = SubResource("Gradient_b8ftk")
+fill = 1
+fill_from = Vector2(0.478632, 1)
+
+[sub_resource type="Gradient" id="Gradient_wjgsm"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryewb"]
+gradient = SubResource("Gradient_wjgsm")
+fill_from = Vector2(0.666667, 0.898148)
+fill_to = Vector2(0.856481, 0.898148)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5wrmq"]
+resource_local_to_scene = true
+seed = 9
+frequency = 0.0096
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ejgo3"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_5wrmq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itaq8"]
+resource_local_to_scene = true
+shader = ExtResource("6_7dgld")
+shader_parameter/brighter_color = Color(1, 0.8, 0, 1)
+shader_parameter/middle_color = Color(1, 0.56, 0, 1)
+shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 1)
+shader_parameter/spread = 0.558
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_ejgo3")
+shader_parameter/gradient_tex = SubResource("GradientTexture2D_ryewb")
+
+[sub_resource type="Gradient" id="Gradient_2i5ad"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8fbxp"]
+gradient = SubResource("Gradient_2i5ad")
+
+[sub_resource type="Gradient" id="Gradient_00qp8"]
+offsets = PackedFloat32Array(0, 0.881579, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_301wc"]
+gradient = SubResource("Gradient_00qp8")
+fill_from = Vector2(0.363248, 0.521368)
+fill_to = Vector2(1, 0.537037)
+
+[sub_resource type="Gradient" id="Gradient_5r3l8"]
+offsets = PackedFloat32Array(0, 0.513158)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.972549)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3ogq2"]
+seed = 18
+frequency = 0.0068
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1tyos"]
+seamless_blend_skirt = 0.0
+color_ramp = SubResource("Gradient_5r3l8")
+noise = SubResource("FastNoiseLite_3ogq2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7o8n"]
+shader = ExtResource("6_7dgld")
+shader_parameter/brighter_color = Color(1, 0.8, 0, 0.666667)
+shader_parameter/middle_color = Color(1, 0.560784, 0, 0.580392)
+shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 0.8)
+shader_parameter/spread = 0.622
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_1tyos")
+shader_parameter/gradient_tex = SubResource("GradientTexture2D_301wc")
+
+[sub_resource type="Gradient" id="Gradient_agiis"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4oh38"]
+gradient = SubResource("Gradient_agiis")
+fill_from = Vector2(0.794872, 0.200855)
+fill_to = Vector2(0, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kd4xc"]
 vertices = PackedVector2Array(3121, 2032, 3927, 2597, 2058, 2587, 2701, 2032, 2024, 799, 2701, 716, 3928, -37, 3121, 716, -5737, -29, -5747, 788)
@@ -716,6 +799,230 @@ size = Vector2(1230, 918)
 [node name="Main2" type="Node2D" groups=["Map"]]
 y_sort_enabled = true
 
+[node name="GameUI" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="MainMenu" type="TextureRect" parent="GameUI" node_paths=PackedStringArray("play_button", "quit_button", "restart_button", "remap_done_button", "remapper_menu", "music_manager", "game_manager", "title_music")]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_auqso")
+script = ExtResource("1_hx3ol")
+play_button = NodePath("Menu/PlayButton")
+quit_button = NodePath("Menu/QuitButton")
+restart_button = NodePath("Menu/RestartButton")
+remap_done_button = NodePath("Menu/ReMapperMenu/DoneButton")
+remapper_menu = NodePath("Menu/ReMapperMenu")
+music_manager = NodePath("../../MusicManager")
+game_manager = NodePath("../../GameManager")
+title_music = NodePath("AudioStreamPlayer")
+show_skip_tutorial = true
+
+[node name="TextureRect3" type="TextureRect" parent="GameUI/MainMenu"]
+modulate = Color(0.765719, 0.765719, 0, 0.588235)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1g74i")
+
+[node name="Menu" type="VBoxContainer" parent="GameUI/MainMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -598.0
+offset_top = 347.0
+offset_right = -14.0
+offset_bottom = 643.0
+grow_horizontal = 2
+
+[node name="ReMapperMenu" type="VBoxContainer" parent="GameUI/MainMenu/Menu"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Please map your controller as the Godot Project's controller mapping file is quite busted right now."
+autowrap_mode = 3
+
+[node name="RemapperEntryMenu" type="HBoxContainer" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryMenu"]
+layout_mode = 2
+text = "Menu"
+
+[node name="ReMapperButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryMenu"]
+layout_mode = 2
+toggle_mode = true
+text = "Pause| Joypad Button 6 (Start, Xbox Menu, Nintendo +)"
+script = ExtResource("3_sbfd8")
+action = "pause"
+
+[node name="RemapperEntryX" type="HBoxContainer" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryX"]
+layout_mode = 2
+text = "X"
+
+[node name="ReMapperButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryX"]
+layout_mode = 2
+toggle_mode = true
+text = "Call| Joypad Button 2 (Left Action, Sony Square, Xbox X, Nintendo Y)"
+script = ExtResource("3_sbfd8")
+action = "call"
+
+[node name="RemapperEntryA" type="HBoxContainer" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryA"]
+layout_mode = 2
+text = "A"
+
+[node name="ReMapperButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryA"]
+layout_mode = 2
+toggle_mode = true
+text = "Throw| Joypad Button 0 (Bottom Action, Sony Cross, Xbox A, Nintendo B)"
+script = ExtResource("3_sbfd8")
+action = "throw"
+
+[node name="RemapperEntryB" type="HBoxContainer" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryB"]
+layout_mode = 2
+text = "B"
+
+[node name="ReMapperButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryB"]
+layout_mode = 2
+toggle_mode = true
+text = "Place| Joypad Button 1 (Right Action, Sony Circle, Xbox B, Nintendo A)"
+script = ExtResource("3_sbfd8")
+action = "place"
+
+[node name="DoneButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
+layout_mode = 2
+text = "Done ReMapping"
+
+[node name="PlayButton" type="Button" parent="GameUI/MainMenu/Menu"]
+process_mode = 2
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../RestartButton")
+text = "Play"
+
+[node name="SkipTutorial" type="Button" parent="GameUI/MainMenu/Menu"]
+process_mode = 2
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../RestartButton")
+text = "Skip Tutorial"
+
+[node name="QuitButton" type="Button" parent="GameUI/MainMenu/Menu"]
+process_mode = 2
+visible = false
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+text = "Quit
+"
+
+[node name="RestartButton" type="Button" parent="GameUI/MainMenu/Menu"]
+process_mode = 2
+visible = false
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+text = "Restart
+"
+
+[node name="VersionLabel" type="Label" parent="GameUI/MainMenu/Menu"]
+layout_mode = 2
+text = "build: alpha-0.0.12"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameUI/MainMenu"]
+stream = ExtResource("4_x4ycx")
+volume_db = -2.324
+autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="GameUI/MainMenu"]
+visible = false
+layout_mode = 0
+offset_left = 518.0
+offset_top = 315.0
+offset_right = 951.0
+offset_bottom = 435.0
+color = Color(0.0784314, 0.0352941, 0.0470588, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameUI/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 319.0
+offset_top = 127.0
+offset_right = 319.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_dhxwx")
+bbcode_enabled = true
+text = "[color=\"ffffff\"][outline_size=10][outline_color=\"ff0000\"][shake rate=10.0 level=40 connected=1]Several Dozen[/shake][/outline_color][/outline_size][/color]"
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="GameUI/MainMenu"]
+material = SubResource("ShaderMaterial_itaq8")
+layout_mode = 0
+offset_left = 399.0
+offset_top = -175.0
+offset_right = 1007.0
+offset_bottom = 344.0
+texture = SubResource("GradientTexture2D_8fbxp")
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameUI/MainMenu/TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -138.0
+offset_right = 219.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_dhxwx")
+bbcode_enabled = true
+text = "[color=\"ffffff\"][outline_size=10][outline_color=\"ff0000\"][shake rate=10.0 level=40 connected=1]Goblins[/shake][/outline_color][/outline_size][/color]"
+
+[node name="TextureRect2" type="TextureRect" parent="GameUI/MainMenu"]
+material = SubResource("ShaderMaterial_e7o8n")
+layout_mode = 0
+offset_left = 399.0
+offset_top = -175.0
+offset_right = 1007.0
+offset_bottom = 344.0
+texture = SubResource("GradientTexture2D_4oh38")
+stretch_mode = 4
+flip_h = true
+
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_uotb5")
@@ -739,7 +1046,7 @@ min_vol = -60
 [node name="TutorialManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "g_p_messages_cont")]
 unique_name_in_owner = true
 script = ExtResource("7_jtmnu")
-player = NodePath("../PlayerCharacter")
+player = NodePath("../Map/PlayerCharacter")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 prompt_time = 3.0
 response_time = 2.0
@@ -751,6 +1058,7 @@ build_prompt = "Place your camp: Press once to preview, again to place."
 build_response = "What a nice camp!"
 
 [node name="LevelUI" parent="." instance=ExtResource("8_etn82")]
+layer = 2
 
 [node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_1p4l0")]
 visible = false
@@ -768,15 +1076,15 @@ offset_bottom = 1025.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MainMenu" parent="LevelUI" node_paths=PackedStringArray("music_manager", "game_manager") instance=ExtResource("10_6tucy")]
-music_manager = NodePath("../../MusicManager")
-game_manager = NodePath("../../GameManager")
+[node name="Map" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
+z_index = 1
 position = Vector2(577, 322)
 navigation_polygon = SubResource("NavigationPolygon_kd4xc")
 
-[node name="TileMap64" type="TileMap" parent="NavigationRegion2D"]
+[node name="TileMap64" type="TileMap" parent="Map/NavigationRegion2D"]
 position = Vector2(-577, -322)
 tile_set = SubResource("TileSet_4ynmb")
 format = 2
@@ -786,24 +1094,24 @@ layer_1/tile_data = PackedInt32Array(196544, 131075, 10, 262080, 131075, 10, 327
 layer_2/name = "top"
 layer_2/tile_data = PackedInt32Array(1114183, 65537, 805306370, 1114184, 1, 805306370, 1048647, 65537, 805306371, 983111, 65537, 805306372, 917575, 65537, 805306373, 852039, 65537, 805306374, 786503, 65537, 805306375, 720967, 458752, 1342177281, 655431, 393216, 1342177281, 589895, 327680, 1342177281, 1048648, 1, 805306371, 983112, 1, 805306372, 917576, 1, 805306373, 852040, 1, 805306374, 786504, 1, 805306375, 720968, 458752, 1342177280, 655432, 393216, 1342177280, 589896, 327680, 1342177280, 524359, 262144, 1342177281, 458823, 196608, 1342177281, 393287, 131072, 1342177281, 327751, 65536, 1342177281, 262215, 131073, 1342177281, 524360, 262144, 1342177280, 458824, 196608, 1342177280, 393288, 131072, 1342177280, 327752, 65536, 1342177280, 262216, 131073, 1342177280, 196606, 131072, 0, 262142, 131072, 1, 196607, 196608, 0, 262143, 196608, 1, 131143, 1, 1342177281, 196679, 65537, 1342177281, 131144, 1, 1342177280, 196680, 65537, 1342177280, 131072, 262144, 0, 196608, 262144, 1, 131073, 327680, 0, 196609, 327680, 1, 131074, 393216, 0, 196610, 393216, 1, 131075, 458752, 0, 196611, 458752, 1, 131076, 393217, 0, 196612, 393217, 1, 131077, 458753, 0, 196613, 458753, 1, 131078, 0, 0, 196614, 0, 1, 131079, 65536, 0, 196615, 65536, 1, 131080, 131072, 0, 196616, 131072, 1, 131081, 196608, 0, 196617, 196608, 1, 131082, 262144, 0, 196618, 262144, 1, 131083, 327680, 0, 196619, 327680, 1, 131084, 393216, 0, 196620, 393216, 1, 131085, 458752, 0, 196621, 458752, 1, 131086, 0, 0, 196622, 0, 1, 131087, 65536, 0, 196623, 65536, 1, 131088, 131072, 0, 196624, 131072, 1, 131089, 196608, 0, 196625, 196608, 1, 131090, 262144, 0, 196626, 262144, 1, 131091, 327680, 0, 196627, 327680, 1, 131092, 393216, 0, 196628, 393216, 1, 131093, 458752, 0, 196629, 458752, 1, 131094, 0, 0, 196630, 0, 1, 131095, 65536, 0, 196631, 65536, 1, 131096, 131072, 0, 196632, 131072, 1, 131097, 196608, 0, 196633, 196608, 1, 131098, 262144, 0, 196634, 262144, 1, 131099, 327680, 0, 196635, 327680, 1, 131100, 393216, 0, 196636, 393216, 1, 131101, 458752, 0, 196637, 458752, 1, 131102, 0, 0, 196638, 0, 1, 131103, 65536, 0, 196639, 65536, 1, 131104, 131072, 0, 196640, 131072, 1, 131105, 196608, 0, 196641, 196608, 1, 131106, 262144, 0, 196642, 262144, 1, 131107, 327680, 0, 196643, 327680, 1, 131108, 393216, 0, 196644, 393216, 1, 131109, 458752, 0, 196645, 458752, 1, 131110, 0, 0, 196646, 0, 1, 131111, 65536, 0, 196647, 65536, 1, 131112, 131072, 0, 196648, 131072, 1, 131113, 196608, 0, 196649, 196608, 1, 131114, 262144, 0, 196650, 262144, 1, 131115, 327680, 0, 196651, 327680, 1, 131116, 393216, 0, 196652, 393216, 1, 131117, 458752, 0, 196653, 458752, 1, 131118, 0, 0, 196654, 0, 1, 131119, 65536, 0, 196655, 65536, 1, 131120, 131072, 0, 196656, 131072, 1, 131121, 196608, 0, 196657, 196608, 1, 131122, 262144, 0, 196658, 262144, 1, 131123, 327680, 0, 196659, 327680, 1, 131124, 393216, 0, 196660, 393216, 1, 131125, 458752, 0, 196661, 458752, 1, 131126, 0, 0, 196662, 0, 1, 131127, 65536, 0, 196663, 65536, 1, 131128, 131072, 0, 196664, 131072, 1, 131129, 196608, 0, 196665, 196608, 1, 131130, 262144, 0, 196666, 262144, 1, 131131, 327680, 0, 196667, 327680, 1, 131132, 393216, 0, 196668, 393216, 1, 131133, 458752, 0, 196669, 458752, 1, 131134, 0, 0, 196670, 0, 1, 131135, 65536, 0, 196671, 65536, 1, 131136, 131072, 0, 196672, 131072, 1, 131137, 196608, 0, 196673, 196608, 1, 131138, 262144, 0, 196674, 262144, 1, 131139, 327680, 0, 196675, 327680, 1, 131140, 1, 1342177284, 196676, 65537, 1342177284, 131141, 1, 1342177283, 196677, 65537, 1342177283, 131142, 1, 1342177282, 196678, 65537, 1342177282, 1245182, 262144, 805306369, 1310718, 262144, 805306368, 1245183, 196608, 805306369, 1310719, 196608, 805306368, 1179648, 131072, 805306369, 1245184, 131072, 805306368, 1179649, 65536, 805306369, 1245185, 65536, 805306368, 1179650, 0, 805306369, 1245186, 0, 805306368, 1179651, 65537, 1610612741, 1245187, 1, 1610612741, 1179652, 65537, 1610612742, 1245188, 1, 1610612742, 1179653, 65537, 1610612743, 1245189, 1, 1610612743, 1179654, 458752, 805306369, 1245190, 458752, 805306368, 1179655, 393216, 805306369, 1245191, 393216, 805306368, 1179656, 327680, 805306369, 1245192, 327680, 805306368, 1179657, 262144, 805306369, 1245193, 262144, 805306368, 1179658, 196608, 805306369, 1245194, 196608, 805306368, 1179659, 131072, 805306369, 1245195, 131072, 805306368, 1179660, 65536, 805306369, 1245196, 65536, 805306368, 1179661, 0, 805306369, 1245197, 0, 805306368, 1179662, 458752, 805306369, 1245198, 458752, 805306368, 1179663, 393216, 805306369, 1245199, 393216, 805306368, 1179664, 327680, 805306369, 1245200, 327680, 805306368, 1179665, 262144, 805306369, 1245201, 262144, 805306368, 1179666, 196608, 805306369, 1245202, 196608, 805306368, 1179667, 131072, 805306369, 1245203, 131072, 805306368, 1179668, 65536, 805306369, 1245204, 65536, 805306368, 1179669, 0, 805306369, 1245205, 0, 805306368, 1179670, 458752, 805306369, 1245206, 458752, 805306368, 1179671, 393216, 805306369, 1245207, 393216, 805306368, 1179672, 327680, 805306369, 1245208, 327680, 805306368, 1179673, 262144, 805306369, 1245209, 262144, 805306368, 1179674, 196608, 805306369, 1245210, 196608, 805306368, 1179675, 131072, 805306369, 1245211, 131072, 805306368, 1179676, 65536, 805306369, 1245212, 65536, 805306368, 1179677, 0, 805306369, 1245213, 0, 805306368, 1179678, 458752, 805306369, 1245214, 458752, 805306368, 1179679, 393216, 805306369, 1245215, 393216, 805306368, 1179680, 327680, 805306369, 1245216, 327680, 805306368, 1179681, 262144, 805306369, 1245217, 262144, 805306368, 1179682, 196608, 805306369, 1245218, 196608, 805306368, 1179683, 131072, 805306369, 1245219, 131072, 805306368, 1179684, 65536, 805306369, 1245220, 65536, 805306368, 1179685, 0, 805306369, 1245221, 0, 805306368, 1179686, 458752, 805306369, 1245222, 458752, 805306368, 1179687, 393216, 805306369, 1245223, 393216, 805306368, 1179719, 0, 1342177281, 1245255, 65536, 1342177281, 1310791, 131072, 1342177281, 1376327, 196608, 1342177281, 1441863, 262144, 1342177281, 1507399, 327680, 1342177281, 1572935, 393216, 1342177281, 1638471, 458752, 1342177281, 1704007, 0, 1342177281, 1769543, 65536, 1342177281, 1835079, 131072, 1342177281, 1900615, 196608, 1342177281, 1179720, 0, 1342177280, 1245256, 65536, 1342177280, 1310792, 131072, 1342177280, 1376328, 196608, 1342177280, 1441864, 262144, 1342177280, 1507400, 327680, 1342177280, 1572936, 393216, 1342177280, 1638472, 458752, 1342177280, 1704008, 0, 1342177280, 1769544, 65536, 1342177280, 1835080, 131072, 1342177280, 1900616, 196608, 1342177280, 1966151, 262144, 1342177281, 2031687, 327680, 1342177281, 2097223, 393216, 1342177281, 2162759, 458752, 1342177281, 2228295, 0, 1342177281, 2293831, 0, 1342177281, 2359367, 65536, 1342177281, 2424903, 131072, 1342177281, 2490439, 196608, 1342177281, 2555975, 262144, 1342177281, 2621511, 327680, 1342177281, 2687047, 393216, 1342177281, 1966152, 262144, 1342177280, 2031688, 327680, 1342177280, 2097224, 393216, 1342177280, 2162760, 458752, 1342177280, 2228296, 0, 1342177280, 2293832, 0, 1342177280, 2359368, 65536, 1342177280, 2424904, 131072, 1342177280, 2490440, 196608, 1342177280, 2555976, 262144, 1342177280, 2621512, 327680, 1342177280, 2687048, 393216, 1342177280, 2752583, 458752, 1342177281, 2818119, 65537, 805306372, 2883655, 65537, 805306371, 2949191, 65537, 805306370, 2752584, 458752, 1342177280, 2818120, 1, 805306372, 2883656, 1, 805306371, 2949192, 1, 805306370, 3014696, 65537, 1610612738, 3080232, 1, 1610612738, 3014697, 65537, 1610612739, 3080233, 1, 1610612739, 3014698, 65537, 1610612740, 3080234, 1, 1610612740, 3014699, 65537, 1610612741, 3080235, 1, 1610612741, 3014700, 65537, 1610612742, 3080236, 1, 1610612742, 3014701, 65537, 1610612743, 3080237, 1, 1610612743, 3014702, 458752, 805306369, 3080238, 458752, 805306368, 3014703, 393216, 805306369, 3080239, 393216, 805306368, 3014704, 327680, 805306369, 3080240, 327680, 805306368, 3014705, 262144, 805306369, 3080241, 262144, 805306368, 3014706, 196608, 805306369, 3080242, 196608, 805306368, 3014707, 131072, 805306369, 3080243, 131072, 805306368, 3014708, 65536, 805306369, 3080244, 65536, 805306368, 3014709, 0, 805306369, 3080245, 0, 805306368, 3014710, 458752, 805306369, 3080246, 458752, 805306368, 3014711, 393216, 805306369, 3080247, 393216, 805306368, 3014712, 327680, 805306369, 3080248, 327680, 805306368, 3014713, 262144, 805306369, 3080249, 262144, 805306368, 3014714, 196608, 805306369, 3080250, 196608, 805306368, 3014715, 131072, 805306369, 3080251, 131072, 805306368, 3014716, 65536, 805306369, 3080252, 65536, 805306368, 3014717, 0, 805306369, 3080253, 0, 805306368, 3014718, 458752, 805306369, 3080254, 458752, 805306368, 3014719, 393216, 805306369, 3080255, 393216, 805306368, 3014720, 327680, 805306369, 3080256, 327680, 805306368, 3014721, 458753, 805306369, 3080257, 458753, 805306368, 3014722, 393217, 805306369, 3080258, 393217, 805306368, 3014723, 327681, 805306369, 3080259, 327681, 805306368, 3014724, 262145, 805306369, 3080260, 262145, 805306368, 3014725, 196609, 805306369, 3080261, 196609, 805306368, 3014726, 131073, 805306369, 3080262, 131073, 805306368, 3014727, 65537, 805306369, 3080263, 65537, 805306368, 3014728, 1, 805306369, 3080264, 1, 805306368, 1769510, 0, 1610612736, 1703974, 65536, 1610612736, 1638438, 131072, 1610612736, 1572902, 196608, 1610612736, 1507366, 262144, 1610612736, 1441830, 327680, 1610612736, 1376294, 393216, 1610612736, 1310758, 458752, 1610612736, 1769511, 0, 1610612737, 1703975, 65536, 1610612737, 1638439, 131072, 1610612737, 1572903, 196608, 1610612737, 1507367, 262144, 1610612737, 1441831, 327680, 1610612737, 1376295, 393216, 1610612737, 1310759, 458752, 1610612737, 2293798, 0, 1610612736, 2228262, 65536, 1610612736, 2162726, 131072, 1610612736, 2097190, 196608, 1610612736, 2031654, 262144, 1610612736, 1966118, 327680, 1610612736, 1900582, 393216, 1610612736, 1835046, 458752, 1610612736, 2293799, 0, 1610612737, 2228263, 65536, 1610612737, 2162727, 131072, 1610612737, 2097191, 196608, 1610612737, 2031655, 262144, 1610612737, 1966119, 327680, 1610612737, 1900583, 393216, 1610612737, 1835047, 458752, 1610612737, 2818086, 262145, 1610612736, 2752550, 327681, 1610612736, 2687014, 393217, 1610612736, 2621478, 458753, 1610612736, 2555942, 262144, 1610612736, 2490406, 327680, 1610612736, 2424870, 393216, 1610612736, 2359334, 458752, 1610612736, 2818087, 262145, 1610612737, 2752551, 327681, 1610612737, 2687015, 393217, 1610612737, 2621479, 458753, 1610612737, 2555943, 262144, 1610612737, 2490407, 327680, 1610612737, 2424871, 393216, 1610612737, 2359335, 458752, 1610612737, 3080230, 1, 1610612736, 3014694, 65537, 1610612736, 2949158, 131073, 1610612736, 2883622, 196609, 1610612736, 3080231, 1, 1610612737, 3014695, 65537, 1610612737, 2949159, 131073, 1610612737, 2883623, 196609, 1610612737, 262140, 0, 1, 196604, 0, 0, 262141, 65536, 1, 196605, 65536, 0, 262132, 0, 1, 196596, 0, 0, 262133, 65536, 1, 196597, 65536, 0, 262134, 131072, 1, 196598, 131072, 0, 262135, 196608, 1, 196599, 196608, 0, 262136, 262144, 1, 196600, 262144, 0, 262137, 327680, 1, 196601, 327680, 0, 262138, 393216, 1, 196602, 393216, 0, 262139, 458752, 1, 196603, 458752, 0, 262125, 65536, 1, 196589, 65536, 0, 262126, 131072, 1, 196590, 131072, 0, 262127, 196608, 1, 196591, 196608, 0, 262128, 262144, 1, 196592, 262144, 0, 262129, 327680, 1, 196593, 327680, 0, 262130, 393216, 1, 196594, 393216, 0, 262131, 458752, 1, 196595, 458752, 0, 1245181, 327680, 805306369, 1310717, 327680, 805306368, 1245180, 393216, 805306369, 1310716, 393216, 805306368, 1245179, 458752, 805306369, 1310715, 458752, 805306368, 1245178, 0, 805306369, 1310714, 0, 805306368, 1245177, 65536, 805306369, 1310713, 65536, 805306368, 1245176, 131072, 805306369, 1310712, 131072, 805306368, 1245175, 196608, 805306369, 1310711, 196608, 805306368, 1245174, 262144, 805306369, 1310710, 262144, 805306368, 1245173, 327680, 805306369, 1310709, 327680, 805306368, 1245172, 393216, 805306369, 1310708, 393216, 805306368, 1245171, 458752, 805306369, 1310707, 458752, 805306368, 1245170, 0, 805306369, 1310706, 0, 805306368, 1245169, 65536, 805306369, 1310705, 65536, 805306368, 1245168, 131072, 805306369, 1310704, 131072, 805306368, 1245167, 196608, 805306369, 1310703, 196608, 805306368, 1245166, 262144, 805306369, 1310702, 262144, 805306368, 1245165, 327680, 805306369, 1310701, 327680, 805306368, 1245164, 65537, 1610612743, 1310700, 1, 1610612743, 1245163, 65536, 805306369, 1310699, 65536, 805306368, 1310693, 458752, 805306368, 1245157, 458752, 805306369, 1310694, 393216, 805306368, 1245158, 393216, 805306369, 1310695, 327680, 805306368, 1245159, 327680, 805306369, 1310696, 262144, 805306368, 1245160, 262144, 805306369, 1310697, 196608, 805306368, 1245161, 196608, 805306369, 1310698, 131072, 805306368, 1245162, 131072, 805306369, 262117, 0, 1, 262118, 65536, 1, 262119, 131072, 1, 262120, 196608, 1, 262121, 262144, 1, 262122, 327680, 1, 262123, 393216, 1, 196588, 458753, 0, 262124, 458753, 1, 196581, 0, 0, 196582, 65536, 0, 196583, 131072, 0, 196584, 196608, 0, 196585, 262144, 0, 196586, 327680, 0, 196587, 393216, 0, 196524, 1, 0, 262060, 1, 1, 327596, 1, 2, 393132, 1, 3, 458668, 1, 4, 524204, 1, 5, 589740, 1, 6, 655276, 1, 7, 720812, 327680, 1610612736, 786348, 262144, 1610612736, 851884, 196608, 1610612736, 917420, 131072, 1610612736, 982956, 65536, 1610612736, 1048492, 0, 1610612736, 1114028, 196609, 1610612736, 1179564, 131073, 1610612736, 1245100, 65537, 1610612736, 1310636, 1, 1610612736, 196525, 65537, 0, 262061, 65537, 1, 327597, 65537, 2, 393133, 65537, 3, 458669, 65537, 4, 524205, 65537, 5, 589741, 65537, 6, 655277, 65537, 7, 720813, 327680, 1610612737, 786349, 262144, 1610612737, 851885, 196608, 1610612737, 917421, 131072, 1610612737, 982957, 65536, 1610612737, 1048493, 0, 1610612737, 1114029, 196609, 1610612737, 1179565, 131073, 1610612737, 1245101, 65537, 1610612737, 1310637, 1, 1610612737, 196526, 131073, 0, 262062, 131073, 1, 1245102, 65537, 1610612738, 1310638, 1, 1610612738, 196527, 196609, 0, 262063, 196609, 1, 1245103, 65537, 1610612739, 1310639, 1, 1610612739, 196528, 262145, 0, 262064, 262145, 1, 1245104, 65537, 1610612740, 1310640, 1, 1610612740, 196529, 327681, 0, 262065, 327681, 1, 1245105, 65537, 1610612741, 1310641, 1, 1610612741, 196530, 393217, 0, 262066, 393217, 1, 1245106, 65537, 1610612742, 1310642, 1, 1610612742, 196531, 458753, 0, 262067, 458753, 1, 1245107, 65537, 1610612743, 1310643, 1, 1610612743, 196532, 65536, 0, 262068, 65536, 1, 1245108, 327680, 805306369, 1310644, 327680, 805306368, 196533, 131072, 0, 262069, 131072, 1, 1245109, 262144, 805306369, 1310645, 262144, 805306368, 196534, 196608, 0, 262070, 196608, 1, 1245110, 196608, 805306369, 1310646, 196608, 805306368, 196535, 262144, 0, 262071, 262144, 1, 1245111, 131072, 805306369, 1310647, 131072, 805306368, 196536, 327680, 0, 262072, 327680, 1, 1245112, 65536, 805306369, 1310648, 65536, 805306368, 196537, 393216, 0, 262073, 393216, 1, 1245113, 0, 805306369, 1310649, 0, 805306368, 196538, 458752, 0, 262074, 458752, 1, 1245114, 458752, 805306369, 1310650, 458752, 805306368, 196539, 0, 0, 262075, 0, 1, 1245115, 393216, 805306369, 1310651, 393216, 805306368, 196540, 65536, 0, 262076, 65536, 1, 1245116, 327680, 805306369, 1310652, 327680, 805306368, 196541, 131072, 0, 262077, 131072, 1, 1245117, 262144, 805306369, 1310653, 262144, 805306368, 196542, 196608, 0, 262078, 196608, 1, 1245118, 196608, 805306369, 1310654, 196608, 805306368, 196543, 262144, 0, 262079, 262144, 1, 1245119, 131072, 805306369, 1310655, 131072, 805306368, 196544, 327680, 0, 262080, 327680, 1, 1245120, 65536, 805306369, 1310656, 65536, 805306368, 196545, 393216, 0, 262081, 393216, 1, 1245121, 0, 805306369, 1310657, 0, 805306368, 196546, 458752, 0, 262082, 458752, 1, 1245122, 458752, 805306369, 1310658, 458752, 805306368, 196547, 0, 0, 262083, 0, 1, 1245123, 393216, 805306369, 1310659, 393216, 805306368, 196548, 65536, 0, 262084, 65536, 1, 1245124, 327680, 805306369, 1310660, 327680, 805306368, 196549, 131072, 0, 262085, 131072, 1, 1245125, 262144, 805306369, 1310661, 262144, 805306368, 196550, 196608, 0, 262086, 196608, 1, 1245126, 196608, 805306369, 1310662, 196608, 805306368, 196551, 262144, 0, 262087, 262144, 1, 1245127, 131072, 805306369, 1310663, 131072, 805306368, 196552, 327680, 0, 262088, 327680, 1, 1245128, 65536, 805306369, 1310664, 65536, 805306368, 196553, 393216, 0, 262089, 393216, 1, 1245129, 0, 805306369, 1310665, 0, 805306368, 196554, 458752, 0, 262090, 458752, 1, 1245130, 65537, 1610612741, 1310666, 1, 1610612741, 196555, 393217, 0, 262091, 393217, 1, 1245131, 65537, 1610612742, 1310667, 1, 1610612742, 196556, 458753, 0, 262092, 458753, 1, 1245132, 65537, 1610612743, 1310668, 1, 1610612743, 196557, 0, 0, 262093, 0, 1, 1245133, 458752, 805306369, 1310669, 458752, 805306368, 196558, 65536, 0, 262094, 65536, 1, 1245134, 393216, 805306369, 1310670, 393216, 805306368, 196559, 131072, 0, 262095, 131072, 1, 1245135, 327680, 805306369, 1310671, 327680, 805306368, 196560, 196608, 0, 262096, 196608, 1, 1245136, 262144, 805306369, 1310672, 262144, 805306368, 196561, 262144, 0, 262097, 262144, 1, 1245137, 196608, 805306369, 1310673, 196608, 805306368, 196562, 327680, 0, 262098, 327680, 1, 1245138, 131072, 805306369, 1310674, 131072, 805306368, 196563, 393216, 0, 262099, 393216, 1, 1245139, 65536, 805306369, 1310675, 65536, 805306368, 196564, 458752, 0, 262100, 458752, 1, 1245140, 0, 805306369, 1310676, 0, 805306368, 196565, 0, 0, 262101, 0, 1, 1245141, 458752, 805306369, 1310677, 458752, 805306368, 196566, 65536, 0, 262102, 65536, 1, 1245142, 393216, 805306369, 1310678, 393216, 805306368, 196567, 131072, 0, 262103, 131072, 1, 1245143, 327680, 805306369, 1310679, 327680, 805306368, 196568, 196608, 0, 262104, 196608, 1, 1245144, 262144, 805306369, 1310680, 262144, 805306368, 196569, 262144, 0, 262105, 262144, 1, 1245145, 196608, 805306369, 1310681, 196608, 805306368, 196570, 327680, 0, 262106, 327680, 1, 1245146, 131072, 805306369, 1310682, 131072, 805306368, 196571, 393216, 0, 262107, 393216, 1, 1245147, 65536, 805306369, 1310683, 65536, 805306368, 196572, 458752, 0, 262108, 458752, 1, 1245148, 0, 805306369, 1310684, 0, 805306368, 196573, 0, 0, 262109, 0, 1, 1245149, 458752, 805306369, 1310685, 458752, 805306368, 196574, 65536, 0, 262110, 65536, 1, 1245150, 393216, 805306369, 1310686, 393216, 805306368, 196575, 131072, 0, 262111, 131072, 1, 1245151, 327680, 805306369, 1310687, 327680, 805306368, 196576, 196608, 0, 262112, 196608, 1, 1245152, 262144, 805306369, 1310688, 262144, 805306368, 196577, 262144, 0, 262113, 262144, 1, 1245153, 196608, 805306369, 1310689, 196608, 805306368, 196578, 327680, 0, 262114, 327680, 1, 1245154, 131072, 805306369, 1310690, 131072, 805306368, 196579, 393216, 0, 262115, 393216, 1, 1245155, 65536, 805306369, 1310691, 65536, 805306368, 196580, 458752, 0, 262116, 458752, 1, 1245156, 0, 805306369, 1310692, 0, 805306368)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Map/NavigationRegion2D"]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map/NavigationRegion2D/StaticBody2D"]
 position = Vector2(-1245, 858)
 rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_u1so0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/NavigationRegion2D/StaticBody2D"]
 position = Vector2(-1994.75, 1897)
 shape = SubResource("RectangleShape2D_ii6tm")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="Map"]
 material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
 texture = ExtResource("19_uc5hp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Map"]
 visible = false
 z_index = 1
 y_sort_enabled = true
@@ -812,18 +1120,18 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("20_xcpng")
 offset = Vector2(0, -350)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+[node name="Sprite2D2" type="Sprite2D" parent="Map/Sprite2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
 texture = ExtResource("20_xcpng")
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("21_3yo60")]
+[node name="PlayerCharacter" parent="Map" node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("21_3yo60")]
 position = Vector2(-4962, 702)
-game_manager = NodePath("../GameManager")
-g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
+game_manager = NodePath("../../GameManager")
+g_p_messages_cont = NodePath("../../LevelUI/GamePlayMessages")
 
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+[node name="Camera2D" type="Camera2D" parent="Map/PlayerCharacter"]
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
@@ -831,105 +1139,105 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="." node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
+[node name="Actor" parent="Map" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
 position = Vector2(-4015, 675)
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Actor2" parent="." node_paths=PackedStringArray("player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
+[node name="Actor2" parent="Map" node_paths=PackedStringArray("player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
 position = Vector2(-4009, 756)
 player = NodePath("../Actor")
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 sfx_manager = NodePath("../Actor/SfxManager")
 
-[node name="CorruptedActor16" parent="." node_paths=PackedStringArray("music_manager", "sfx_manager") groups=["Enemy"] instance=ExtResource("22_juktx")]
+[node name="CorruptedActor16" parent="Map" node_paths=PackedStringArray("music_manager", "sfx_manager") groups=["Enemy"] instance=ExtResource("22_juktx")]
 process_mode = 4
 position = Vector2(2681, 837)
 team = 1
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 sfx_manager = NodePath("../CorruptedActor15/SfxManager")
 
-[node name="CorruptedActor15" parent="." node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("22_juktx")]
+[node name="CorruptedActor15" parent="Map" node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("22_juktx")]
 process_mode = 4
 position = Vector2(4167, 2524)
 team = 1
-music_manager = NodePath("../MusicManager")
+music_manager = NodePath("../../MusicManager")
 
-[node name="Scrap" parent="." instance=ExtResource("23_ipiw0")]
+[node name="Scrap" parent="Map" instance=ExtResource("23_ipiw0")]
 z_index = 1
 position = Vector2(-1287, 642)
 max_amount = 20
 current_amount = 20
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Scrap"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Map/Scrap"]
 position = Vector2(139, 0)
 shape = SubResource("RectangleShape2D_1sxx0")
 
-[node name="FollowCamera" parent="." instance=ExtResource("24_btaty")]
+[node name="FollowCamera" parent="Map" instance=ExtResource("24_btaty")]
 position = Vector2(494, 281)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.210773, 0.0573702, 0.196106, 1)
-
-[node name="Base" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("25_v043w")]
+[node name="Base" parent="Map" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_v043w")]
 position = Vector2(4127, 2676)
 team = 1
-game_manager = NodePath("../GameManager")
+game_manager = NodePath("../../GameManager")
 
-[node name="TutorialContainer" type="Node2D" parent="." node_paths=PackedStringArray("music_player")]
+[node name="TutorialContainer" type="Node2D" parent="Map" node_paths=PackedStringArray("music_player")]
 z_index = 1
 script = ExtResource("22_eyef4")
 dialog_timeline = ExtResource("23_aror7")
-music_player = NodePath("../MusicManager")
+music_player = NodePath("../../MusicManager")
 
-[node name="StartTimer" type="Timer" parent="TutorialContainer"]
-wait_time = 0.2
+[node name="StartTimer" type="Timer" parent="Map/TutorialContainer"]
+wait_time = 1.5
 one_shot = true
 autostart = true
 
-[node name="InvisibleRiverWall" type="StaticBody2D" parent="TutorialContainer"]
+[node name="InvisibleRiverWall" type="StaticBody2D" parent="Map/TutorialContainer"]
 position = Vector2(-4014, 701)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialContainer/InvisibleRiverWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/InvisibleRiverWall"]
 position = Vector2(6.5, 0)
 shape = SubResource("RectangleShape2D_djmk4")
 
-[node name="ThrowGoblins" type="Area2D" parent="TutorialContainer" node_paths=PackedStringArray("tutorial_manager")]
+[node name="ThrowGoblins" type="Area2D" parent="Map/TutorialContainer" node_paths=PackedStringArray("tutorial_manager")]
 position = Vector2(-1122, 666)
 script = ExtResource("26_0rmbu")
 tutorial_text = 20
 command_string = "throw"
-tutorial_manager = NodePath("../../TutorialManager")
+tutorial_manager = NodePath("../../../TutorialManager")
 dialog_timeline = ExtResource("26_jv6td")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialContainer/ThrowGoblins"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/ThrowGoblins"]
 position = Vector2(-45, -26)
 shape = SubResource("RectangleShape2D_fjm5k")
 
-[node name="SeeCorruptedGoblin" type="Area2D" parent="TutorialContainer"]
+[node name="SeeCorruptedGoblin" type="Area2D" parent="Map/TutorialContainer"]
 position = Vector2(3552, 703)
 script = ExtResource("26_0rmbu")
 tutorial_text = null
 command_string = null
 dialog_timeline = ExtResource("27_mmdt0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialContainer/SeeCorruptedGoblin"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/SeeCorruptedGoblin"]
 position = Vector2(-854, 50)
 shape = SubResource("RectangleShape2D_fjm5k")
 
-[node name="SeeCorruptedBase" type="Area2D" parent="TutorialContainer"]
+[node name="SeeCorruptedBase" type="Area2D" parent="Map/TutorialContainer"]
 position = Vector2(4976, 2619)
 script = ExtResource("26_0rmbu")
 tutorial_text = null
 command_string = null
 dialog_timeline = ExtResource("28_8mkrq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialContainer/SeeCorruptedBase"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/SeeCorruptedBase"]
 position = Vector2(-816, 205)
 shape = SubResource("RectangleShape2D_fjm5k")
 
-[node name="ExpectGoblinFollowers" type="Area2D" parent="TutorialContainer"]
+[node name="ExpectGoblinFollowers" type="Area2D" parent="Map/TutorialContainer"]
 position = Vector2(1270, 711)
 script = ExtResource("28_empy5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialContainer/ExpectGoblinFollowers"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/ExpectGoblinFollowers"]
 shape = SubResource("RectangleShape2D_6c7b7")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.210773, 0.0573702, 0.196106, 1)

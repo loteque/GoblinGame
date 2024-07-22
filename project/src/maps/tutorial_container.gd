@@ -13,7 +13,6 @@ extends Node2D
 var starting_volume
 var fade_out_duration = 2.0
 
-
 @export var tutorial_manager: TutorialManager
 
 @onready var player = get_tree().get_first_node_in_group("Player")

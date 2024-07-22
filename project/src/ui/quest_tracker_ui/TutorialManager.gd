@@ -81,6 +81,14 @@ func _add_panel(section: int, action_str: String = ""):
     var panel = config.panel
     g_p_messages_cont.add_child(panel)
     panels[section] = panel
+    
+func _add_notification(text_content, time):
+    const Panel_Scene = preload("message_panel.tscn")
+    var panel = Panel_Scene.instantiate()
+    panel.text = text_content
+    g_p_messages_cont.add_child(panel)
+    await get_tree().create_timer(time).timeout
+    panel.queue_free()
 
 signal prompter_ready(section: Section, action_str: String)
 func _on_prompter_ready(section, action_str):
@@ -134,6 +142,7 @@ func _ready():
     #player.ready.connect(_on_player_ready)
     player.lead_goblin.connect(_on_player_lead_goblin)
     player.threw_goblin.connect(_on_player_threw_goblin)
+    _add_notification("You can skip the tutorial from the main menu", 10)
 
 enum Section {
     INSPIRE_PROMPT = 10,
