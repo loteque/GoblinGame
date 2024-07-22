@@ -2296,7 +2296,7 @@ adjustment_contrast = 1.12
 adjustment_saturation = 1.56
 adjustment_color_correction = SubResource("GradientTexture2D_bp8ac")
 
-[node name="Main2" type="Node2D" groups=["Map"]]
+[node name="Main3" type="Node2D" groups=["Map"]]
 y_sort_enabled = true
 
 [node name="GameManager" type="Node" parent="."]
@@ -2320,7 +2320,7 @@ min_vol = -60
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="MainMenu" parent="GameUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_wo30j")]
+[node name="MainMenu" parent="GameUI" node_paths=PackedStringArray("music_manager") groups=["MainMenu"] instance=ExtResource("10_wo30j")]
 visible = false
 music_manager = NodePath("../../MusicManager")
 

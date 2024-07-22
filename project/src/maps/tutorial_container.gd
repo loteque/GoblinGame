@@ -46,7 +46,7 @@ func set_enemy_base_death_event_handling():
     enemy_base.died.connect(_on_enemy_base_destroyed)
 
 func _on_enemy_base_destroyed():
-    const _11_ENEMY_BASE_DESTROYED = preload("res://src/dialog/tutorial/11-enemy-base-destroyed.dtl")
+    var _11_ENEMY_BASE_DESTROYED = ResourceLoaderUtil.load_res("res://src/dialog/tutorial/11-enemy-base-destroyed.dtl")
     Dialogic.start(_11_ENEMY_BASE_DESTROYED)
     Dialogic.timeline_ended.connect(_on_enemy_base_destroyed_dialog_ended)
     enemy_base.queue_free()
@@ -67,7 +67,7 @@ func activate_enemies():
         actor.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_scrap_collected():
-    const _05_COLLECTING_SCRAP = preload("res://src/dialog/tutorial/05-collecting-scrap.dtl")
+    var _05_COLLECTING_SCRAP = ResourceLoaderUtil.load_res("res://src/dialog/tutorial/05-collecting-scrap.dtl")
     Dialogic.start(_05_COLLECTING_SCRAP)
     Dialogic.timeline_ended.connect(_on_scrap_collect_dialog_ended)
     
@@ -84,7 +84,7 @@ func _on_scrap_collect_dialog_ended():
     
 
 func _on_corrupted_goblin_died():
-    const _09_KILLED_CORRUPTED_GOBLIN = preload("res://src/dialog/tutorial/09-killed-corrupted-goblin.dtl")
+    var _09_KILLED_CORRUPTED_GOBLIN = ResourceLoaderUtil.load_res("res://src/dialog/tutorial/09-killed-corrupted-goblin.dtl")
     Dialogic.start.call_deferred(_09_KILLED_CORRUPTED_GOBLIN)
     var enemy_actors = get_tree().get_nodes_in_group("NPC").filter(func(npc): return npc.team == TeamManager.Team.CPU)
     for actor in enemy_actors:
@@ -95,11 +95,11 @@ func _on_corrupted_goblin_died():
 func _on_player_lead_goblin():
     # TODO: Add player inspired goblins success case dialog
     player.lead_goblin.disconnect(_on_player_lead_goblin)
-    const _021_INSPIRE_DONE = preload("res://src/dialog/tutorial/021-inspire-done.dtl")
+    var _021_INSPIRE_DONE = ResourceLoaderUtil.load_res("res://src/dialog/tutorial/021-inspire-done.dtl")
     Dialogic.start.call_deferred(_021_INSPIRE_DONE)
 
 func _on_player_lost_follower():
-    const _03_FALLING_BEHIND = preload("res://src/dialog/tutorial/03-falling-behind.dtl")
+    var _03_FALLING_BEHIND = ResourceLoaderUtil.load_res("res://src/dialog/tutorial/03-falling-behind.dtl")
     Dialogic.start.call_deferred(_03_FALLING_BEHIND)
     tutorial_manager.prompter_ready.emit(TutorialManager.Section.INSPIRE_PROMPT, "call")
     if not player.lead_goblin.is_connected(tutorial_manager._on_player_lead_goblin):
@@ -108,7 +108,7 @@ func _on_player_lost_follower():
     player.lost_follower.disconnect(_on_player_lost_follower)
 
 func _on_player_built_base():
-    const _06_BASE_BUILT = preload("res://src/dialog/tutorial/06-base-built.dtl")
+    var _06_BASE_BUILT = ResourceLoaderUtil.load_res("res://src/dialog/tutorial/06-base-built.dtl")
     Dialogic.start.call_deferred(_06_BASE_BUILT)
     player.built_base.disconnect(_on_player_built_base)
     var player_bases = get_tree().get_nodes_in_group("Base").filter(func(base): return base.team == TeamManager.Team.PLAYER)
@@ -116,7 +116,7 @@ func _on_player_built_base():
         base.unit_spawned.connect(_on_goblin_trained)
 
 func _on_goblin_trained(_unit):
-    const _07_GOBLINS_START_TRAINING = preload("res://src/dialog/tutorial/07-goblins-start-training.dtl")
+    var _07_GOBLINS_START_TRAINING = ResourceLoaderUtil.load_res("res://src/dialog/tutorial/07-goblins-start-training.dtl")
     Dialogic.start.call_deferred(_07_GOBLINS_START_TRAINING)
     var player_bases = get_tree().get_nodes_in_group("Base").filter(func(npc): return npc.team == TeamManager.Team.PLAYER)
     for base in player_bases:
@@ -138,7 +138,7 @@ func _on_timeline_ended():
 
 func call_goblin_event():
     tutorial_manager.prompter_ready.emit(TutorialManager.Section.INSPIRE_PROMPT, "call")
-    const _02_INSPIRE = preload("res://src/dialog/tutorial/02-inspire.dtl")
+    var _02_INSPIRE = ResourceLoaderUtil.load_res("res://src/dialog/tutorial/02-inspire.dtl")
     Dialogic.start(_02_INSPIRE)
 
 func fade_out_music():
