@@ -1,8 +1,9 @@
 extends TileMap
 
 @export var screen_resolution: Vector2 = Vector2(1920, 1080)
-@export var num_screens_vert: int = 3
 @export var num_screens_horiz: int = 3
+@export var num_screens_vert: int = 2
+@export var scrap_scene: PackedScene
 
 var screen_map_size := Vector2i(1920, 1152)
 
@@ -134,6 +135,74 @@ class ProcTileSet:
         return proc_tile_set
 
 
+func place_prop(x: int, y: int, prop: PackedScene, tile_map: TileMap, step_size: int = 32, rotation_idx: int = 0):
+
+    var values = [12, 3, 10, 5]
+
+    var steps: Dictionary = {
+        "top_right": [Vector2i(values[0], -values[1]), Vector2i(values[2], -values[1]), Vector2i(values[2], -values[3])],
+        "bottom_right": [Vector2i(values[0], values[1]), Vector2(values[2], values[1]), Vector2i(values[2], values[3])],
+        "bottom_left": [Vector2i(-values[0], values[1]), Vector2(-values[2], values[1]), Vector2i(-values[2], values[3])],
+        "top_left": [Vector2i(-values[0], -values[1]), Vector2i(-values[2], -values[1]), Vector2i(-values[2], -values[3])],
+    }
+
+    var calc = func(n, step_size, k, i, xy):
+        if xy == "x":
+            return step_size * steps[k][i].x + n + 30
+        else:
+            return step_size * steps[k][i].y + n - 30
+
+    var get_placement = func(x, y, key) -> Array[Vector2]:
+        return(
+            [
+                Vector2(calc.call(x, step_size, key, 0, "x"), calc.call(y, step_size, key, 0, "y")),
+                Vector2(calc.call(x, step_size, key, 1, "x"), calc.call(y, step_size, key, 1, "y")),
+                Vector2(calc.call(x, step_size, key, 2, "x"), calc.call(y, step_size, key, 2, "y"))  
+            ]
+        )
+
+    var placements: Dictionary = {
+        "top_right": get_placement.call(x, y, "top_right"),
+        "bottom_right": get_placement.call(x, y, "bottom_right"),
+        "bottom_left": get_placement.call(x, y, "bottom_left"),
+        "top_left": get_placement.call(x, y, "top_left")
+    }
+    
+    var prop_node_0: Node2D = prop.instantiate()
+    var prop_node_1: Node2D = prop.instantiate()
+    var prop_node_2: Node2D = prop.instantiate()
+
+    
+
+    var place = func(p_key):
+
+        var global_adjustment = Vector2(0, 0)
+        
+        placements[p_key].shuffle()
+        
+        var placement = placements[p_key].pop_back()  
+        prop_node_0.global_transform.origin = placement - global_adjustment
+        tile_map.add_child(prop_node_0)
+        
+        placement = placements[p_key].pop_back()  
+        prop_node_1.global_transform.origin = placement - global_adjustment
+        tile_map.add_child(prop_node_1)
+        
+        placement = placements[p_key].pop_back()  
+        prop_node_2.global_transform.origin = placement - global_adjustment
+        tile_map.add_child(prop_node_2)
+
+    match rotation_idx:
+        0:
+            place.call("top_right")
+        1:
+            place.call("bottom_right")
+        2:
+            place.call("bottom_left")
+        3:
+            place.call("top_left")
+
+
 func _gen_linear_wfc_map_019(proc_tile_set):
 
     # var time_accum := 0.0
@@ -142,7 +211,7 @@ func _gen_linear_wfc_map_019(proc_tile_set):
         
         for x in num_cells.x:
 
-            var iter_start_time = Time.get_ticks_usec()
+            # var iter_start_time = Time.get_ticks_usec()
 
             var top_cell_coords := Vector2i(x, y - 1)
             var left_cell_coords := Vector2i(x - 1, y)
@@ -194,6 +263,9 @@ func _gen_linear_wfc_map_019(proc_tile_set):
             var tile_source_id: int
             var alt_tile_id: int
             var proc_tile: ProcTile
+            var roll = randi_range(0, 2)
+            var can_place_prop = roll == 0 or roll == 2
+
 
             if valid_tiles.size() == 1:
         
@@ -201,6 +273,12 @@ func _gen_linear_wfc_map_019(proc_tile_set):
                 tile_source_id = proc_tile.source_id
                 alt_tile_id = proc_tile.alt_tile_id
                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, alt_tile_id)
+                
+                if [2,3,4,5].has(proc_tile.set_idx) and can_place_prop:
+                    var cell_center_pos = map_to_local(Vector2i(x,y))
+                    var rot_idx = proc_tile.set_idx - 2
+                    place_prop(cell_center_pos.x, cell_center_pos.y, scrap_scene, self, 16, rot_idx)
+
 
             else:
                 
@@ -210,6 +288,11 @@ func _gen_linear_wfc_map_019(proc_tile_set):
                 tile_source_id = proc_tile.source_id
                 alt_tile_id = proc_tile.alt_tile_id
                 set_cell(-1, Vector2(x,y), tile_source_id, Vector2.ZERO, alt_tile_id)
+
+                if [2,3,4,5].has(proc_tile.set_idx) and can_place_prop:
+                    var cell_center_pos = map_to_local(Vector2i(x,y))
+                    var rot_idx = proc_tile.set_idx - 2
+                    place_prop(cell_center_pos.x, cell_center_pos.y, scrap_scene, self, 16, rot_idx)
 
 
             # print("iter_time (u): ", Time.get_ticks_usec() - iter_start_time)
@@ -224,8 +307,10 @@ func _ready():
     var proc_tile_set: ProcTileSet = ProcTileSet.new(tile_set)
     # print("Init Time (m): ", init_start_time / 1000.0)
 
+    _gen_linear_wfc_map_019(proc_tile_set)
+
     # Test.Suite.run(self)
-    Test.run_map_gen_x_times(4, _gen_linear_wfc_map_019, self, proc_tile_set)
+    #Test.run_map_gen_x_times(4, _gen_linear_wfc_map_019, self, proc_tile_set)
 
 
 class Test:

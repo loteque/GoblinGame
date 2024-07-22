@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://tn1m5lrnkbgi"]
+[gd_scene load_steps=13 format=3 uid="uid://tn1m5lrnkbgi"]
 
 [ext_resource type="Texture2D" uid="uid://cbpb8mgxbanfn" path="res://assets/art/river_chunk_a_but_actually_good.png" id="1_y246k"]
 [ext_resource type="Texture2D" uid="uid://rdyfgdf6cfpo" path="res://assets/art/river_chunk_d_v2.png" id="2_em68b"]
 [ext_resource type="Texture2D" uid="uid://ctjoy3q1hb817" path="res://assets/art/river_chunk_b.png" id="4_vmyvf"]
 [ext_resource type="Texture2D" uid="uid://27xyuac7an00" path="res://assets/art/ground_tile_with_just_ground.png" id="5_dkomy"]
 [ext_resource type="Script" path="res://lib/proc_gen/procedural_map.gd" id="6_ewbll"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="6_iah78"]
 [ext_resource type="PackedScene" uid="uid://rfa6g7cy1ua" path="res://lib/debug_tools/debug.tscn" id="7_vj4su"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dav7k"]
@@ -108,6 +109,7 @@ tile_set = SubResource("TileSet_eip0c")
 format = 2
 script = ExtResource("6_ewbll")
 screen_resolution = Vector2(1920, 180)
+scrap_scene = ExtResource("6_iah78")
 metadata/_edit_vertical_guides_ = [-270.0]
 
 [node name="Debug" parent="." instance=ExtResource("7_vj4su")]
