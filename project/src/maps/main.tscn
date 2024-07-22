@@ -719,6 +719,7 @@ min_vol = -60
 [node name="GameUI" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" parent="GameUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("10_wo30j")]
+visible = false
 music_manager = NodePath("../../MusicManager")
 
 [node name="DemoLevel" type="Node2D" parent="." groups=["Map"]]
