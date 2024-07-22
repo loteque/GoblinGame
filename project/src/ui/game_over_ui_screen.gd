@@ -3,6 +3,7 @@ extends Control
 @export var game_manager: GameManager
 @export var restart_button: Button
 @onready var result_label = %ResultLabel
+@onready var continue_button = %ContinueButton
 
 var win_text = "[center][color=red][b][shake]Victory![/shake][/b][/color][/center]"
 var lose_text = "[center][color=red][b][shake]Defeat![/shake][/b][/color][/center]"
@@ -19,8 +20,20 @@ func _on_game_over(result: GameManager.GameResult):
 
 func show_game_over(result: GameManager.GameResult):
     visible = true
-    restart_button.grab_focus()
+    
     if result == game_manager.GameResult.WIN:
-        result_label.text = win_text
+        handle_win()
     else:
-        result_label.text = lose_text
+        handle_loss()
+
+func handle_win():
+    continue_button.visible = true
+    restart_button.visible = false
+    continue_button.grab_focus()
+    result_label.text = win_text
+
+func handle_loss():
+    continue_button.visible = false
+    restart_button.visible = true
+    restart_button.grab_focus()
+    result_label.text = lose_text

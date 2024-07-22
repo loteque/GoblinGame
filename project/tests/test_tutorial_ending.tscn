@@ -1,38 +1,38 @@
-[gd_scene load_steps=66 format=3 uid="uid://hnp0d32u42xt"]
+[gd_scene load_steps=66 format=3 uid="uid://drsdon732e47t"]
 
-[ext_resource type="Script" path="res://src/ui/main_menu.gd" id="1_hx3ol"]
-[ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_uotb5"]
-[ext_resource type="Texture2D" uid="uid://biploe6jtd0rn" path="res://assets/art/title-art-no-bg-nolines.png" id="2_1g74i"]
-[ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_golmd"]
-[ext_resource type="Script" path="res://addons/action_remapper/src/ReMapperButton.gd" id="3_sbfd8"]
-[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="3_txhld"]
-[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="4_uodu6"]
-[ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="4_x4ycx"]
-[ext_resource type="Theme" uid="uid://c3w7atbti77dq" path="res://src/ui/main_menu.tres" id="5_dhxwx"]
-[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="5_lk4yo"]
-[ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="6_7dgld"]
-[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_afpfj"]
-[ext_resource type="Script" path="res://src/ui/quest_tracker_ui/TutorialManager.gd" id="7_jtmnu"]
-[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_etn82"]
-[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_1p4l0"]
-[ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="15_hnjov"]
-[ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="16_vkwli"]
-[ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="17_jdec5"]
-[ext_resource type="Shader" path="res://src/environment/background.gdshader" id="18_1opko"]
-[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="19_uc5hp"]
-[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="20_xcpng"]
-[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="21_3yo60"]
-[ext_resource type="Script" path="res://src/maps/tutorial_container.gd" id="22_eyef4"]
-[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/actor.tscn" id="22_juktx"]
-[ext_resource type="Resource" path="res://src/dialog/tutorial/01-intro.dtl" id="23_aror7"]
-[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="23_ipiw0"]
-[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="24_btaty"]
-[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="25_v043w"]
-[ext_resource type="Script" path="res://src/tutorial/tut_area.gd" id="26_0rmbu"]
-[ext_resource type="Resource" path="res://src/dialog/tutorial/04-throw-goblins.dtl" id="26_jv6td"]
-[ext_resource type="Resource" path="res://src/dialog/tutorial/08-see-corrupted-goblins.dtl" id="27_mmdt0"]
-[ext_resource type="Resource" path="res://src/dialog/tutorial/10-see-enemy-base.dtl" id="28_8mkrq"]
-[ext_resource type="Script" path="res://src/maps/expect_goblin_followers_area.gd" id="28_empy5"]
+[ext_resource type="Script" path="res://src/ui/main_menu.gd" id="1_sngi3"]
+[ext_resource type="Texture2D" uid="uid://biploe6jtd0rn" path="res://assets/art/title-art-no-bg-nolines.png" id="2_7qmtr"]
+[ext_resource type="Script" path="res://addons/action_remapper/src/ReMapperButton.gd" id="3_vp3ku"]
+[ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="4_sd3qc"]
+[ext_resource type="Theme" uid="uid://c3w7atbti77dq" path="res://src/ui/main_menu.tres" id="5_uvcaa"]
+[ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="6_0y16o"]
+[ext_resource type="Script" path="res://src/managers/game_manager.gd" id="7_gojtc"]
+[ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="8_jivuw"]
+[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="9_iaeqy"]
+[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="10_ydt12"]
+[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="11_38r8m"]
+[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="12_vxlrj"]
+[ext_resource type="Script" path="res://src/ui/quest_tracker_ui/TutorialManager.gd" id="13_svf20"]
+[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="14_si8sd"]
+[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="15_jjf8r"]
+[ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="16_noeeb"]
+[ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="17_73aoo"]
+[ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="18_lxftu"]
+[ext_resource type="Shader" path="res://src/environment/background.gdshader" id="19_p733e"]
+[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="20_47gbv"]
+[ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="21_xjrm5"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="22_huuyt"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/actor.tscn" id="23_6jtpr"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="24_di0mv"]
+[ext_resource type="PackedScene" uid="uid://ct8ncpasvj5j0" path="res://src/camera/follow_camera.tscn" id="25_doskr"]
+[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="26_e3ijw"]
+[ext_resource type="Script" path="res://src/maps/tutorial_container.gd" id="27_ypi78"]
+[ext_resource type="Resource" path="res://src/dialog/tutorial/01-intro.dtl" id="28_iahk3"]
+[ext_resource type="Script" path="res://src/tutorial/tut_area.gd" id="29_8rckh"]
+[ext_resource type="Resource" path="res://src/dialog/tutorial/04-throw-goblins.dtl" id="30_81u4j"]
+[ext_resource type="Resource" path="res://src/dialog/tutorial/08-see-corrupted-goblins.dtl" id="31_xodvb"]
+[ext_resource type="Resource" path="res://src/dialog/tutorial/10-see-enemy-base.dtl" id="32_g4qgp"]
+[ext_resource type="Script" path="res://src/maps/expect_goblin_followers_area.gd" id="33_ek1ps"]
 
 [sub_resource type="Gradient" id="Gradient_b8ftk"]
 offsets = PackedFloat32Array(0, 0.497738)
@@ -61,7 +61,7 @@ noise = SubResource("FastNoiseLite_5wrmq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itaq8"]
 resource_local_to_scene = true
-shader = ExtResource("6_7dgld")
+shader = ExtResource("6_0y16o")
 shader_parameter/brighter_color = Color(1, 0.8, 0, 1)
 shader_parameter/middle_color = Color(1, 0.56, 0, 1)
 shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 1)
@@ -97,7 +97,7 @@ color_ramp = SubResource("Gradient_5r3l8")
 noise = SubResource("FastNoiseLite_3ogq2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7o8n"]
-shader = ExtResource("6_7dgld")
+shader = ExtResource("6_0y16o")
 shader_parameter/brighter_color = Color(1, 0.8, 0, 0.666667)
 shader_parameter/middle_color = Color(1, 0.560784, 0, 0.580392)
 shader_parameter/darker_color = Color(0.64, 0.2, 0.05, 0.8)
@@ -129,7 +129,7 @@ tile_data = PackedInt32Array(0, 196608, 1610612736, 65536, 131072, 1610612736, 1
 tile_data = PackedInt32Array(131072, 458755, 1, 196608, 524291, 1610612736, 262144, 524291, 1610612736, 327680, 524291, 1610612736, 393216, 524291, 1610612736, 458752, 524291, 1610612736, 524288, 524291, 1610612736, 1, 3, 10, 65537, 3, 10, 131073, 3, 10, 196609, 3, 10, 262145, 3, 10, 327681, 3, 10, 393217, 3, 10, 458753, 3, 11, 524289, 458755, 1, 2, 65539, 10, 65538, 65539, 10, 131074, 65539, 10, 196610, 65539, 10, 262146, 65539, 10, 327682, 65539, 10, 393218, 65539, 10, 458754, 65539, 11, 524290, 458755, 1, 3, 65539, 10, 65539, 65539, 10, 131075, 65539, 10, 196611, 65539, 10, 262147, 65539, 10, 327683, 65539, 10, 393219, 65539, 10, 458755, 65539, 11, 524291, 458755, 1, 4, 131075, 10, 65540, 131075, 10, 131076, 131075, 10, 196612, 131075, 10, 262148, 131075, 10, 327684, 131075, 10, 393220, 131075, 10, 458756, 131075, 11, 524292, 458755, 1, 65541, 65539, 10, 131077, 458755, 1, 196613, 524291, 1342177280, 262149, 524291, 1342177280, 327685, 524291, 1342177280, 393221, 524291, 1342177280, 458757, 524291, 1342177280, 524293, 524291, 1342177280)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qwc5o"]
-texture = ExtResource("15_hnjov")
+texture = ExtResource("16_noeeb")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -197,7 +197,7 @@ texture_region_size = Vector2i(64, 64)
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aox3i"]
-texture = ExtResource("16_vkwli")
+texture = ExtResource("17_73aoo")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -314,7 +314,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6pi3"]
 resource_name = "ANimated Rivers"
-texture = ExtResource("17_jdec5")
+texture = ExtResource("18_lxftu")
 texture_region_size = Vector2i(64, 64)
 0:0/animation_columns = 2
 0:0/0 = 0
@@ -782,7 +782,7 @@ distance = -1054.0
 size = Vector2(7735.5, 1890)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbto2"]
-shader = ExtResource("18_1opko")
+shader = ExtResource("19_p733e")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sxx0"]
 size = Vector2(259, 122)
@@ -810,7 +810,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_auqso")
-script = ExtResource("1_hx3ol")
+script = ExtResource("1_sngi3")
 play_button = NodePath("Menu/PlayButton")
 quit_button = NodePath("Menu/QuitButton")
 restart_button = NodePath("Menu/RestartButton")
@@ -829,7 +829,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_1g74i")
+texture = ExtResource("2_7qmtr")
 
 [node name="Menu" type="VBoxContainer" parent="GameUI/MainMenu"]
 layout_mode = 1
@@ -865,7 +865,7 @@ text = "Menu"
 layout_mode = 2
 toggle_mode = true
 text = "Pause| Joypad Button 6 (Start, Xbox Menu, Nintendo +)"
-script = ExtResource("3_sbfd8")
+script = ExtResource("3_vp3ku")
 action = "pause"
 
 [node name="RemapperEntryX" type="HBoxContainer" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
@@ -879,7 +879,7 @@ text = "X"
 layout_mode = 2
 toggle_mode = true
 text = "Call| Joypad Button 2 (Left Action, Sony Square, Xbox X, Nintendo Y)"
-script = ExtResource("3_sbfd8")
+script = ExtResource("3_vp3ku")
 action = "call"
 
 [node name="RemapperEntryA" type="HBoxContainer" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
@@ -893,7 +893,7 @@ text = "A"
 layout_mode = 2
 toggle_mode = true
 text = "Throw| Joypad Button 0 (Bottom Action, Sony Cross, Xbox A, Nintendo B)"
-script = ExtResource("3_sbfd8")
+script = ExtResource("3_vp3ku")
 action = "throw"
 
 [node name="RemapperEntryB" type="HBoxContainer" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
@@ -907,7 +907,7 @@ text = "B"
 layout_mode = 2
 toggle_mode = true
 text = "Place| Joypad Button 1 (Right Action, Sony Circle, Xbox B, Nintendo A)"
-script = ExtResource("3_sbfd8")
+script = ExtResource("3_vp3ku")
 action = "place"
 
 [node name="DoneButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu"]
@@ -956,7 +956,7 @@ text = "build: alpha-0.0.12"
 horizontal_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameUI/MainMenu"]
-stream = ExtResource("4_x4ycx")
+stream = ExtResource("4_sd3qc")
 volume_db = -2.324
 autoplay = true
 
@@ -981,7 +981,7 @@ offset_bottom = 127.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("5_dhxwx")
+theme = ExtResource("5_uvcaa")
 bbcode_enabled = true
 text = "[color=\"ffffff\"][outline_size=10][outline_color=\"ff0000\"][shake rate=10.0 level=40 connected=1]Several Dozen[/shake][/outline_color][/outline_size][/color]"
 scroll_active = false
@@ -1008,7 +1008,7 @@ offset_top = -138.0
 offset_right = 219.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = ExtResource("5_dhxwx")
+theme = ExtResource("5_uvcaa")
 bbcode_enabled = true
 text = "[color=\"ffffff\"][outline_size=10][outline_color=\"ff0000\"][shake rate=10.0 level=40 connected=1]Goblins[/shake][/outline_color][/outline_size][/color]"
 
@@ -1025,27 +1025,27 @@ flip_h = true
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_uotb5")
+script = ExtResource("7_gojtc")
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
 bus = &"music"
-script = ExtResource("2_golmd")
+script = ExtResource("8_jivuw")
 fade_in_speed = 20.0
 fade_out_speed = 15.0
 combat_in_speed = 20.0
 combat_out_speed = 10.0
-calm_layer = ExtResource("3_txhld")
-explore_layer = ExtResource("4_uodu6")
-combat_layer = ExtResource("5_lk4yo")
-lead_layer = ExtResource("6_afpfj")
+calm_layer = ExtResource("9_iaeqy")
+explore_layer = ExtResource("10_ydt12")
+combat_layer = ExtResource("11_38r8m")
+lead_layer = ExtResource("12_vxlrj")
 max_vol = -18
 min_vol = -60
 
 [node name="TutorialManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "g_p_messages_cont")]
 unique_name_in_owner = true
-script = ExtResource("7_jtmnu")
+script = ExtResource("13_svf20")
 player = NodePath("../Map/PlayerCharacter")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 prompt_time = 3.0
@@ -1057,10 +1057,10 @@ throw_response = "Look at em go!"
 build_prompt = "Place your camp: Press once to preview, again to place."
 build_response = "What a nice camp!"
 
-[node name="LevelUI" parent="." instance=ExtResource("8_etn82")]
+[node name="LevelUI" parent="." instance=ExtResource("14_si8sd")]
 layer = 2
 
-[node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_1p4l0")]
+[node name="GameOverScreen" parent="LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("15_jjf8r")]
 visible = false
 z_index = 2
 size_flags_horizontal = 4
@@ -1109,24 +1109,24 @@ shape = SubResource("RectangleShape2D_ii6tm")
 material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
-texture = ExtResource("19_uc5hp")
+texture = ExtResource("20_47gbv")
 
 [node name="Sprite2D" type="Sprite2D" parent="Map"]
 visible = false
 y_sort_enabled = true
 position = Vector2(113, -96)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("20_xcpng")
+texture = ExtResource("21_xjrm5")
 offset = Vector2(0, -350)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Map/Sprite2D"]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-3.33333, 0)
 scale = Vector2(1, 0.3)
-texture = ExtResource("20_xcpng")
+texture = ExtResource("21_xjrm5")
 
-[node name="PlayerCharacter" parent="Map" node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("21_3yo60")]
-position = Vector2(-4962, 702)
+[node name="PlayerCharacter" parent="Map" node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("22_huuyt")]
+position = Vector2(3649, 2536)
 game_manager = NodePath("../../GameManager")
 g_p_messages_cont = NodePath("../../LevelUI/GamePlayMessages")
 
@@ -1138,30 +1138,42 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="Map" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
-position = Vector2(-4015, 675)
+[node name="Actor" parent="Map" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("23_6jtpr")]
+position = Vector2(4176, 2621)
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor2" parent="Map" node_paths=PackedStringArray("player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("22_juktx")]
-position = Vector2(-4009, 756)
+[node name="Actor2" parent="Map" node_paths=PackedStringArray("player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("23_6jtpr")]
+position = Vector2(4182, 2702)
 player = NodePath("../Actor")
 music_manager = NodePath("../../MusicManager")
 sfx_manager = NodePath("../Actor/SfxManager")
 
-[node name="CorruptedActor16" parent="Map" node_paths=PackedStringArray("music_manager", "sfx_manager") groups=["Enemy"] instance=ExtResource("22_juktx")]
+[node name="Actor3" parent="Map" node_paths=PackedStringArray("player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("23_6jtpr")]
+position = Vector2(3994, 2697)
+player = NodePath("../Actor")
+music_manager = NodePath("../../MusicManager")
+sfx_manager = NodePath("../Actor/SfxManager")
+
+[node name="Actor4" parent="Map" node_paths=PackedStringArray("player", "music_manager", "sfx_manager") groups=["Ally"] instance=ExtResource("23_6jtpr")]
+position = Vector2(4000, 2778)
+player = NodePath("../Actor")
+music_manager = NodePath("../../MusicManager")
+sfx_manager = NodePath("../Actor/SfxManager")
+
+[node name="CorruptedActor16" parent="Map" node_paths=PackedStringArray("music_manager", "sfx_manager") groups=["Enemy"] instance=ExtResource("23_6jtpr")]
 process_mode = 4
 position = Vector2(2681, 837)
 team = 1
 music_manager = NodePath("../../MusicManager")
 sfx_manager = NodePath("../CorruptedActor15/SfxManager")
 
-[node name="CorruptedActor15" parent="Map" node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("22_juktx")]
+[node name="CorruptedActor15" parent="Map" node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("23_6jtpr")]
 process_mode = 4
 position = Vector2(4167, 2524)
 team = 1
 music_manager = NodePath("../../MusicManager")
 
-[node name="Scrap" parent="Map" instance=ExtResource("23_ipiw0")]
+[node name="Scrap" parent="Map" instance=ExtResource("24_di0mv")]
 z_index = 1
 position = Vector2(-1287, 642)
 max_amount = 20
@@ -1171,18 +1183,18 @@ current_amount = 20
 position = Vector2(139, 0)
 shape = SubResource("RectangleShape2D_1sxx0")
 
-[node name="FollowCamera" parent="Map" instance=ExtResource("24_btaty")]
+[node name="FollowCamera" parent="Map" instance=ExtResource("25_doskr")]
 position = Vector2(494, 281)
 
-[node name="Base" parent="Map" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_v043w")]
+[node name="Base" parent="Map" node_paths=PackedStringArray("game_manager") instance=ExtResource("26_e3ijw")]
 position = Vector2(4127, 2676)
 team = 1
 game_manager = NodePath("../../GameManager")
 
 [node name="TutorialContainer" type="Node2D" parent="Map" node_paths=PackedStringArray("music_player")]
 z_index = 1
-script = ExtResource("22_eyef4")
-dialog_timeline = ExtResource("23_aror7")
+script = ExtResource("27_ypi78")
+dialog_timeline = ExtResource("28_iahk3")
 music_player = NodePath("../../MusicManager")
 
 [node name="StartTimer" type="Timer" parent="Map/TutorialContainer"]
@@ -1199,11 +1211,11 @@ shape = SubResource("RectangleShape2D_djmk4")
 
 [node name="ThrowGoblins" type="Area2D" parent="Map/TutorialContainer" node_paths=PackedStringArray("tutorial_manager")]
 position = Vector2(-1122, 666)
-script = ExtResource("26_0rmbu")
+script = ExtResource("29_8rckh")
 tutorial_text = 20
 command_string = "throw"
 tutorial_manager = NodePath("../../../TutorialManager")
-dialog_timeline = ExtResource("26_jv6td")
+dialog_timeline = ExtResource("30_81u4j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/ThrowGoblins"]
 position = Vector2(-45, -26)
@@ -1211,10 +1223,10 @@ shape = SubResource("RectangleShape2D_fjm5k")
 
 [node name="SeeCorruptedGoblin" type="Area2D" parent="Map/TutorialContainer"]
 position = Vector2(3552, 703)
-script = ExtResource("26_0rmbu")
+script = ExtResource("29_8rckh")
 tutorial_text = null
 command_string = null
-dialog_timeline = ExtResource("27_mmdt0")
+dialog_timeline = ExtResource("31_xodvb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/SeeCorruptedGoblin"]
 position = Vector2(-854, 50)
@@ -1222,10 +1234,10 @@ shape = SubResource("RectangleShape2D_fjm5k")
 
 [node name="SeeCorruptedBase" type="Area2D" parent="Map/TutorialContainer"]
 position = Vector2(4976, 2619)
-script = ExtResource("26_0rmbu")
+script = ExtResource("29_8rckh")
 tutorial_text = null
 command_string = null
-dialog_timeline = ExtResource("28_8mkrq")
+dialog_timeline = ExtResource("32_g4qgp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/SeeCorruptedBase"]
 position = Vector2(-816, 205)
@@ -1233,7 +1245,7 @@ shape = SubResource("RectangleShape2D_fjm5k")
 
 [node name="ExpectGoblinFollowers" type="Area2D" parent="Map/TutorialContainer"]
 position = Vector2(1270, 711)
-script = ExtResource("28_empy5")
+script = ExtResource("33_ek1ps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TutorialContainer/ExpectGoblinFollowers"]
 shape = SubResource("RectangleShape2D_6c7b7")

@@ -45,7 +45,7 @@ func _ready():
 
 func _on_skip_tutorial_pressed():
     reset_dialog()
-    SceneLoader.load_scene(SceneLoader.Level.MAIN)
+    SceneLoader.load_next_level()
 
 func reset_dialog():
     var dialogic_connections = Dialogic.timeline_ended.get_connections()
@@ -60,6 +60,9 @@ func _on_remap_done_button_pressed():
     play_button.show()
 
 func _on_play_button_pressed():
+    play_level()
+
+func play_level():
     if pause_ok == false:
         play_button.text = "Resume"
         restart_button.show()

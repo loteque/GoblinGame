@@ -85,7 +85,7 @@ gradient = SubResource("Gradient_agiis")
 fill_from = Vector2(0.794872, 0.200855)
 fill_to = Vector2(0, 1)
 
-[node name="MainMenu" type="TextureRect" node_paths=PackedStringArray("play_button", "quit_button", "restart_button", "remap_done_button", "remapper_menu", "title_music")]
+[node name="MainMenu" type="TextureRect" node_paths=PackedStringArray("play_button", "quit_button", "restart_button", "remap_done_button", "remapper_menu", "title_music") groups=["MainMenu"]]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

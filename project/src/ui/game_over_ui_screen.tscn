@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://def5ntq3woqan"]
+[gd_scene load_steps=5 format=3 uid="uid://def5ntq3woqan"]
 
 [ext_resource type="Script" path="res://src/ui/game_over_ui_screen.gd" id="1_lnqes"]
 [ext_resource type="Script" path="res://src/ui/reload_scene_button.gd" id="1_o7clh"]
+[ext_resource type="Script" path="res://src/ui/continue_button.gd" id="3_04goe"]
 
 [sub_resource type="Theme" id="Theme_5bk77"]
 default_font_size = 60
@@ -42,3 +43,9 @@ fit_content = true
 layout_mode = 2
 text = "Restart"
 script = ExtResource("1_o7clh")
+
+[node name="ContinueButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+script = ExtResource("3_04goe")
