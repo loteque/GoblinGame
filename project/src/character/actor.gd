@@ -30,6 +30,7 @@ signal health_updated(body)
 signal thrown_to(position: Vector2)
 signal hurt
 signal died
+signal collected_scrap
 
 var has_target: bool = false
 var target: Node2D

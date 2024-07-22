@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var team: TeamManager.Team = TeamManager.Team.PLAYER
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var health_bar_ui = $HealthBarUi
+@onready var goblin_call_component = $GoblinCallComponent
 
 @onready var health_component = $HealthComponent
 
@@ -25,11 +26,11 @@ signal died
 signal built_base
 signal lead_goblin
 signal threw_goblin
+signal lost_follower
 
 func _ready():
     base_placer.game_manager = game_manager
     died.connect(_on_died)
-    
 
 func _on_died():
     game_manager.game_over.emit(GameManager.GameResult.LOSE)

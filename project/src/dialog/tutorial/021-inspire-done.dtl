@@ -1,0 +1,6 @@
+[wait time="0.4"]
+[voice path="res://assets/audio/voice_over/tut-intro/021-player-lets-go.wav"]
+player: Let's get going, everyone!
+[wait time="0.0"]
+[voice path="res://assets/audio/voice_over/tut-intro/021-snark-cmon.wav"]
+snark: Come on, now! Lead the way!

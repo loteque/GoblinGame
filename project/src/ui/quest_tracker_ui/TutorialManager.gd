@@ -7,6 +7,9 @@ class_name TutorialManager extends CanvasLayer
 @export var prompt_time: float
 @export var response_time: float
 
+const ControllerIconTexture = preload("res://addons/controller_icons/objects/ControllerIconTexture.gd")
+
+
 class TutorialConnector:
     var manager: TutorialManager
     var prompter_connection: Node
@@ -35,7 +38,13 @@ class PanelConfigurator:
             _button_str = ActionsProperty.Device.get_input_from_inputmap(action_str)
             _button_str = " :  " + _button_str
         panel = Panel_Scene.instantiate()
-        panel.text = message + _button_str
+        panel.text = message
+        var button_icon = ControllerIconTexture.new()
+        button_icon.path = action_str
+        var texture_rect = TextureRect.new()
+        texture_rect.texture = button_icon
+        texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+        panel.add_child(texture_rect)
 
     func _init(panel_message: String, panel_action_str: String = ""):
         message = panel_message
@@ -72,6 +81,14 @@ func _add_panel(section: int, action_str: String = ""):
     var panel = config.panel
     g_p_messages_cont.add_child(panel)
     panels[section] = panel
+    
+func _add_notification(text_content, time):
+    const Panel_Scene = preload("message_panel.tscn")
+    var panel = Panel_Scene.instantiate()
+    panel.text = text_content
+    g_p_messages_cont.add_child(panel)
+    await get_tree().create_timer(time).timeout
+    panel.queue_free()
 
 signal prompter_ready(section: Section, action_str: String)
 func _on_prompter_ready(section, action_str):
@@ -99,29 +116,33 @@ func _on_section_success(section, new_section):
 
 func _on_player_ready():
     await get_tree().create_timer(2).timeout
-    prompter_ready.emit(Section.INSPIRE_PROMPT, "call")
-    prompter_ready.emit(Section.THROW_PROMPT, "throw")
-    prompter_ready.emit(Section.BUILD_PROMPT, "place")
+    #prompter_ready.emit(Section.INSPIRE_PROMPT, "call")
+    #prompter_ready.emit(Section.THROW_PROMPT, "throw")
+    #prompter_ready.emit(Section.BUILD_PROMPT, "place")
 
 func _on_player_lead_goblin():
     if is_tutorial_active():
         section_success.emit(Section.INSPIRE_PROMPT, Section.INSPIRE_RESPONSE)
+        player.lead_goblin.disconnect(_on_player_lead_goblin)
 
 func _on_player_threw_goblin():
     if is_tutorial_active():
         section_success.emit(Section.THROW_PROMPT,Section.THROW_RESPONSE)
+        player.threw_goblin.disconnect(_on_player_threw_goblin)
 
 func _on_player_built_base():
     if is_tutorial_active():
         section_success.emit(Section.BUILD_PROMPT, Section.BUILD_RESPONSE)
+        player.built_base.disconnect(_on_player_built_base)
 
 func _ready():
     prompter_ready.connect(_on_prompter_ready)
     section_success.connect(_on_section_success)
     player.built_base.connect(_on_player_built_base)
-    player.ready.connect(_on_player_ready)
+    #player.ready.connect(_on_player_ready)
     player.lead_goblin.connect(_on_player_lead_goblin)
     player.threw_goblin.connect(_on_player_threw_goblin)
+    _add_notification("You can skip the tutorial from the main menu", 10)
 
 enum Section {
     INSPIRE_PROMPT = 10,

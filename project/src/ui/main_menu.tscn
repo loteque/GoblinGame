@@ -202,6 +202,14 @@ focus_neighbor_top = NodePath("../RestartButton")
 focus_neighbor_bottom = NodePath("../RestartButton")
 text = "Play"
 
+[node name="SkipTutorial" type="Button" parent="Menu"]
+process_mode = 2
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../RestartButton")
+text = "Skip Tutorial"
+
 [node name="QuitButton" type="Button" parent="Menu"]
 process_mode = 2
 visible = false

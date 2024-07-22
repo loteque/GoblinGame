@@ -14,6 +14,7 @@ var Team = TeamManager.Team
 
 signal hurt
 signal died
+signal unit_spawned(unit)
 
 func _on_died():
     if team == TeamManager.Team.PLAYER:

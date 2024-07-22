@@ -1,9 +1,15 @@
-[gd_scene format=3 uid="uid://m0mje71gcqds"]
+[gd_scene load_steps=2 format=3 uid="uid://m0mje71gcqds"]
 
-[node name="MessagePanel" type="TextEdit"]
+[ext_resource type="Script" path="res://src/ui/quest_tracker_ui/message_panel.gd" id="1_u5f17"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_u5f17")
+
+[node name="MessagePanel" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(350, 125)
-offset_right = 350.0
-offset_bottom = 125.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "this is some demo text. just to test the message pnael sizing."
 editable = false
