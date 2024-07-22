@@ -152,16 +152,3 @@ metadata/_edit_vertical_guides_ = [-270.0]
 
 [node name="Debug" parent="." instance=ExtResource("7_vj4su")]
 visible = false
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-zoom = Vector2(0.3, 0.3)
-=======
-metadata/_edit_vertical_guides_ = [-270.0]
-
-[node name="Debug" parent="." instance=ExtResource("7_vj4su")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-zoom = Vector2(0.9, 0.9)
->>>>>>> 973b0b5 (update proc_gen, add art imports, update pg doc, update launch.json)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://yc8twnk1t7pw"]
+
+[ext_resource type="PackedScene" uid="uid://tn1m5lrnkbgi" path="res://lib/proc_gen/procedural_map.tscn" id="1_lnfn1"]
+
+[node name="TestNavigationOnProcMap" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+
+[node name="procedural_map" parent="NavigationRegion2D" instance=ExtResource("1_lnfn1")]
