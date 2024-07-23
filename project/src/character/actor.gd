@@ -19,7 +19,7 @@ var current_move_speed: float = move_speed
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var health_bar_ui = $HealthBarUi
-@onready var music_connector = MusicManager.MusicConnector.new(music_manager, self)
+@onready var music_connector: MusicManager.MusicConnector
 @onready var health_component = $HealthComponent
 @onready var nav_agent: NavigationAgent2D = %NavigationAgent2D
 @onready var actor_core = %ActorCore
@@ -43,6 +43,9 @@ func is_thrown():
     return false
 
 func _ready():
+    if music_manager == null:
+        music_manager = get_tree().get_first_node_in_group("MusicManager")
+    music_connector = MusicManager.MusicConnector.new(music_manager, self)
     died.connect(die)
     nav_agent.velocity_computed.connect(_on_velocity_computed)
     if team == TeamManager.Team.CPU:
