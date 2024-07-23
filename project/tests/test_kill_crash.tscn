@@ -1,36 +1,37 @@
-[gd_scene load_steps=54 format=3 uid="uid://c4fb2nyi3hcyx"]
+[gd_scene load_steps=55 format=3 uid="uid://cj8al2764e40m"]
 
-[ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_c7i1w"]
-[ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_5jfie"]
-[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="3_mi44y"]
-[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="4_14lxc"]
-[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="5_hfk4p"]
-[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_bbuej"]
-[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_i8f3g"]
-[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_7oydw"]
-[ext_resource type="PackedScene" uid="uid://bekfd1deerevd" path="res://src/ui/main_menu.tscn" id="10_wo30j"]
-[ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="11_d2tvh"]
-[ext_resource type="Texture2D" uid="uid://d4cuwr74swtnw" path="res://assets/art/river_chunk_c_with_bones.png" id="12_c7eaf"]
-[ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="12_xbtnx"]
-[ext_resource type="Texture2D" uid="uid://dv330g4sha07b" path="res://assets/art/river_chunk_c_with_bones_and_puddles.png" id="13_mrd65"]
-[ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="13_sqgla"]
-[ext_resource type="Texture2D" uid="uid://dharihjpbrol1" path="res://assets/art/river_chunk_c_with_puddles.png" id="14_221fj"]
-[ext_resource type="Shader" path="res://src/environment/background.gdshader" id="14_mlodm"]
-[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="15_8ucia"]
-[ext_resource type="Texture2D" uid="uid://4et16b1a5ilw" path="res://assets/art/river_chunk_d.png" id="15_skehk"]
-[ext_resource type="Texture2D" uid="uid://c7vxajbpij8tl" path="res://assets/art/river_chunk_d_with_bones.png" id="16_2pfjn"]
-[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/actor.tscn" id="17_levp3"]
-[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="17_rmg1c"]
-[ext_resource type="Texture2D" uid="uid://c13n2apbbtbfi" path="res://assets/art/river_chunk_d_with_bones_and_puddle.png" id="18_7akn1"]
-[ext_resource type="Texture2D" uid="uid://djqy01u4v6p4k" path="res://assets/art/river_chunk_d_with_bones_and_puddle_2.png" id="19_0ypg4"]
-[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="19_orqww"]
-[ext_resource type="Texture2D" uid="uid://dnlnbwh13akcm" path="res://assets/art/river_chunk_d_with_puddle.png" id="20_7h443"]
-[ext_resource type="PackedScene" uid="uid://blnqmsyjwncp6" path="res://src/base/base.tscn" id="21_3gmgp"]
-[ext_resource type="Texture2D" uid="uid://pbhtx8fmrbs1" path="res://assets/art/river_chunk_d_with_puddle_2.png" id="21_kg4np"]
-[ext_resource type="Texture2D" uid="uid://27xyuac7an00" path="res://assets/art/ground_tile_with_just_ground.png" id="22_pko3j"]
-[ext_resource type="Texture2D" uid="uid://bewix5i38ly4i" path="res://assets/art/river_chunk_a.png" id="24_wiw2f"]
-[ext_resource type="Texture2D" uid="uid://ctjoy3q1hb817" path="res://assets/art/river_chunk_b.png" id="25_0r7wo"]
-[ext_resource type="Texture2D" uid="uid://cv8mqkqhkjw7v" path="res://assets/art/river_chunk_c.png" id="26_srj66"]
+[ext_resource type="Script" path="res://tests/test_kill_crash.gd" id="1_5cxha"]
+[ext_resource type="Script" path="res://src/managers/game_manager.gd" id="1_qdjhf"]
+[ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_useq6"]
+[ext_resource type="AudioStream" uid="uid://dkemwfmpoofdw" path="res://assets/audio/music/Calm.wav" id="3_nymlx"]
+[ext_resource type="AudioStream" uid="uid://byierw7rtr8hr" path="res://assets/audio/music/Exploration.wav" id="4_q41g5"]
+[ext_resource type="AudioStream" uid="uid://0bqys4aq8hxm" path="res://assets/audio/music/Combat.wav" id="5_fi6bk"]
+[ext_resource type="AudioStream" uid="uid://c4h8hlsgv52f8" path="res://assets/audio/music/Lead.wav" id="6_jway5"]
+[ext_resource type="PackedScene" uid="uid://bekfd1deerevd" path="res://src/ui/main_menu.tscn" id="7_pbno3"]
+[ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_ccls1"]
+[ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_v5r1s"]
+[ext_resource type="Texture2D" uid="uid://bqk6l2ek4j6yc" path="res://assets/art/cave_wall_2.png" id="10_qn8rc"]
+[ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="11_cfme6"]
+[ext_resource type="Texture2D" uid="uid://d4cuwr74swtnw" path="res://assets/art/river_chunk_c_with_bones.png" id="12_wyfvm"]
+[ext_resource type="Texture2D" uid="uid://dv330g4sha07b" path="res://assets/art/river_chunk_c_with_bones_and_puddles.png" id="13_mhtnn"]
+[ext_resource type="Texture2D" uid="uid://dharihjpbrol1" path="res://assets/art/river_chunk_c_with_puddles.png" id="14_51cgs"]
+[ext_resource type="Texture2D" uid="uid://4et16b1a5ilw" path="res://assets/art/river_chunk_d.png" id="15_iyxn1"]
+[ext_resource type="Texture2D" uid="uid://c7vxajbpij8tl" path="res://assets/art/river_chunk_d_with_bones.png" id="16_gt7vb"]
+[ext_resource type="Texture2D" uid="uid://c13n2apbbtbfi" path="res://assets/art/river_chunk_d_with_bones_and_puddle.png" id="17_1t3d3"]
+[ext_resource type="Texture2D" uid="uid://djqy01u4v6p4k" path="res://assets/art/river_chunk_d_with_bones_and_puddle_2.png" id="18_itq1x"]
+[ext_resource type="Texture2D" uid="uid://dnlnbwh13akcm" path="res://assets/art/river_chunk_d_with_puddle.png" id="19_niudy"]
+[ext_resource type="Texture2D" uid="uid://pbhtx8fmrbs1" path="res://assets/art/river_chunk_d_with_puddle_2.png" id="20_vyu3v"]
+[ext_resource type="Texture2D" uid="uid://27xyuac7an00" path="res://assets/art/ground_tile_with_just_ground.png" id="21_x5sgd"]
+[ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="22_wxte2"]
+[ext_resource type="Texture2D" uid="uid://bewix5i38ly4i" path="res://assets/art/river_chunk_a.png" id="23_o1053"]
+[ext_resource type="Texture2D" uid="uid://ctjoy3q1hb817" path="res://assets/art/river_chunk_b.png" id="24_ltpe0"]
+[ext_resource type="Texture2D" uid="uid://cv8mqkqhkjw7v" path="res://assets/art/river_chunk_c.png" id="25_7la5v"]
+[ext_resource type="Shader" path="res://src/environment/background.gdshader" id="26_oslir"]
+[ext_resource type="Texture2D" uid="uid://c6sk0q2ipgv4d" path="res://assets/art/scrap_sprite.png" id="27_2mr6o"]
+[ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="28_etgv2"]
+[ext_resource type="PackedScene" uid="uid://b3f3e2snpptm" path="res://src/character/actor.tscn" id="29_qldlr"]
+[ext_resource type="PackedScene" uid="uid://hehsosy8cwdc" path="res://src/collectables/scrap/scrap.tscn" id="30_yrsvj"]
+[ext_resource type="PackedScene" uid="uid://b38oe6jt1eoct" path="res://src/base/base.tscn" id="31_0aecu"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kd4xc"]
 vertices = PackedVector2Array(2929, 304, 2929, 12, 3213, -144, 3213, 944, 2253, -144, 1969, -80, 3931, -794, 3944, 1621, 3505, 944, 3505, -436, 1969, -793, 2253, -436, 845, 12, 845, 1392, 561, 1392, 561, -564, 1137, 1392, 1137, 304, -530, 1629, 269, 1392, -526, -791, 269, -564, 1741, -792, 1741, -80)
@@ -40,7 +41,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 50.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qwc5o"]
-texture = ExtResource("11_d2tvh")
+texture = ExtResource("10_qn8rc")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -108,7 +109,7 @@ texture_region_size = Vector2i(64, 64)
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aox3i"]
-texture = ExtResource("12_xbtnx")
+texture = ExtResource("11_cfme6")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -224,7 +225,7 @@ texture_region_size = Vector2i(64, 64)
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2wdk"]
-texture = ExtResource("12_c7eaf")
+texture = ExtResource("12_wyfvm")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -348,7 +349,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7p3qd"]
-texture = ExtResource("13_mrd65")
+texture = ExtResource("13_mhtnn")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -472,7 +473,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54fwc"]
-texture = ExtResource("14_221fj")
+texture = ExtResource("14_51cgs")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -595,7 +596,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bv7bu"]
-texture = ExtResource("15_skehk")
+texture = ExtResource("15_iyxn1")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -716,7 +717,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nxar4"]
-texture = ExtResource("16_2pfjn")
+texture = ExtResource("16_gt7vb")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -837,7 +838,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3sw5l"]
-texture = ExtResource("18_7akn1")
+texture = ExtResource("17_1t3d3")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -958,7 +959,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xyl1y"]
-texture = ExtResource("19_0ypg4")
+texture = ExtResource("18_itq1x")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1079,7 +1080,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j88ma"]
-texture = ExtResource("20_7h443")
+texture = ExtResource("19_niudy")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1200,7 +1201,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7f2hu"]
-texture = ExtResource("21_kg4np")
+texture = ExtResource("20_vyu3v")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1321,7 +1322,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b77mn"]
-texture = ExtResource("22_pko3j")
+texture = ExtResource("21_x5sgd")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1434,7 +1435,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6pi3"]
 resource_name = "ANimated Rivers"
-texture = ExtResource("13_sqgla")
+texture = ExtResource("22_wxte2")
 texture_region_size = Vector2i(64, 64)
 0:0/animation_columns = 2
 0:0/0 = 0
@@ -1880,7 +1881,7 @@ texture_region_size = Vector2i(64, 64)
 11:11/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1qtrj"]
-texture = ExtResource("24_wiw2f")
+texture = ExtResource("23_o1053")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -2004,7 +2005,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_314sc"]
-texture = ExtResource("25_0r7wo")
+texture = ExtResource("24_ltpe0")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -2124,7 +2125,7 @@ texture_region_size = Vector2i(64, 64)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sbjeo"]
-texture = ExtResource("26_srj66")
+texture = ExtResource("25_7la5v")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -2272,7 +2273,7 @@ sources/28 = SubResource("TileSetAtlasSource_7f2hu")
 sources/29 = SubResource("TileSetAtlasSource_b77mn")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jbto2"]
-shader = ExtResource("14_mlodm")
+shader = ExtResource("26_oslir")
 
 [sub_resource type="Gradient" id="Gradient_3kivr"]
 offsets = PackedFloat32Array(0.0547264, 1)
@@ -2298,38 +2299,39 @@ adjustment_color_correction = SubResource("GradientTexture2D_bp8ac")
 
 [node name="Main3" type="Node2D" groups=["Map"]]
 y_sort_enabled = true
+script = ExtResource("1_5cxha")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_c7i1w")
+script = ExtResource("1_qdjhf")
 
 [node name="MusicManager" type="AudioStreamPlayer" parent="." groups=["MusicManager"]]
 process_mode = 3
 bus = &"music"
-script = ExtResource("2_5jfie")
+script = ExtResource("2_useq6")
 fade_in_speed = 20.0
 fade_out_speed = 15.0
 combat_in_speed = 20.0
 combat_out_speed = 10.0
-calm_layer = ExtResource("3_mi44y")
-explore_layer = ExtResource("4_14lxc")
-combat_layer = ExtResource("5_hfk4p")
-lead_layer = ExtResource("6_bbuej")
+calm_layer = ExtResource("3_nymlx")
+explore_layer = ExtResource("4_q41g5")
+combat_layer = ExtResource("5_fi6bk")
+lead_layer = ExtResource("6_jway5")
 max_vol = -18
 min_vol = -60
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="MainMenu" parent="GameUI" node_paths=PackedStringArray("music_manager") groups=["MainMenu"] instance=ExtResource("10_wo30j")]
+[node name="MainMenu" parent="GameUI" node_paths=PackedStringArray("music_manager") instance=ExtResource("7_pbno3")]
 visible = false
 music_manager = NodePath("../../MusicManager")
 
 [node name="DemoLevel" type="Node2D" parent="." groups=["Map"]]
 y_sort_enabled = true
 
-[node name="LevelUI" parent="DemoLevel" instance=ExtResource("8_i8f3g")]
+[node name="LevelUI" parent="DemoLevel" instance=ExtResource("8_ccls1")]
 
-[node name="GameOverScreen" parent="DemoLevel/LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_7oydw")]
+[node name="GameOverScreen" parent="DemoLevel/LevelUI" node_paths=PackedStringArray("game_manager") instance=ExtResource("9_v5r1s")]
 visible = false
 z_index = 2
 size_flags_horizontal = 4
@@ -2362,10 +2364,10 @@ layer_1/tile_data = PackedInt32Array(-589826, 1, 0, -524290, 1, 1, -458754, 1, 2
 material = SubResource("ShaderMaterial_jbto2")
 position = Vector2(-978, -1410)
 scale = Vector2(6846, 4357)
-texture = ExtResource("15_8ucia")
+texture = ExtResource("27_2mr6o")
 
-[node name="PlayerCharacter" parent="DemoLevel" node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("17_rmg1c")]
-position = Vector2(325, 566)
+[node name="PlayerCharacter" parent="DemoLevel" node_paths=PackedStringArray("game_manager", "g_p_messages_cont") instance=ExtResource("28_etgv2")]
+position = Vector2(3261, 1382)
 game_manager = NodePath("../../GameManager")
 g_p_messages_cont = NodePath("../LevelUI/GamePlayMessages")
 
@@ -2377,176 +2379,87 @@ drag_vertical_enabled = true
 drag_horizontal_offset = 0.32
 drag_vertical_offset = -0.46
 
-[node name="Actor" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
-position = Vector2(658, 1337)
+[node name="Actor" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("29_qldlr")]
+position = Vector2(3706, 1449)
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor4" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
-position = Vector2(1010, -321)
+[node name="Actor4" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("29_qldlr")]
+position = Vector2(4058, -209)
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor5" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
-position = Vector2(172, 1664)
+[node name="Actor5" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Ally"] instance=ExtResource("29_qldlr")]
+position = Vector2(3220, 1776)
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor6" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
-position = Vector2(318, -143)
+[node name="Actor6" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("29_qldlr")]
+position = Vector2(3366, -31)
 player = NodePath("../Actor5")
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor7" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
-position = Vector2(1253, 873)
+[node name="Actor7" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("29_qldlr")]
+position = Vector2(4301, 985)
 player = NodePath("../Actor5")
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor8" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
-position = Vector2(774, 1220)
+[node name="Actor8" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("29_qldlr")]
+position = Vector2(3822, 1332)
 player = NodePath("../Actor5")
 music_manager = NodePath("../../MusicManager")
 
-[node name="Actor9" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("17_levp3")]
-position = Vector2(775, 1459)
+[node name="Actor9" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Ally"] instance=ExtResource("29_qldlr")]
+position = Vector2(3823, 1571)
 player = NodePath("../Actor5")
 music_manager = NodePath("../../MusicManager")
 
-[node name="CorruptedActor" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(3426, 1515)
-team = 1
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor3" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(3298, 1579)
-team = 1
-player = NodePath("../CorruptedActor")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor4" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(3159, 1727)
-team = 1
-player = NodePath("../CorruptedActor")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor5" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(3240, 694)
-team = 1
-player = NodePath("../CorruptedActor")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor2" parent="DemoLevel" node_paths=PackedStringArray("music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(1839, 1940)
-team = 1
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor6" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(3427, 1770)
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor7" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(3948, 1653)
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor8" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(3527, -256)
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor9" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(4355, -24)
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor12" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(2884, -336)
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor13" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(2874, 246)
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor14" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(2702, 325)
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../../MusicManager")
-
-[node name="CorruptedActor15" parent="DemoLevel" node_paths=PackedStringArray("player", "music_manager") groups=["Enemy"] instance=ExtResource("17_levp3")]
-modulate = Color(1, 0.343384, 0.854094, 1)
-position = Vector2(3665, 389)
-team = 1
-player = NodePath("../CorruptedActor2")
-music_manager = NodePath("../../MusicManager")
-
-[node name="Scrap" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(197, -320)
 
-[node name="Scrap2" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap2" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(1979, -145)
 
-[node name="Scrap9" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap9" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(1940, 716)
 
-[node name="Scrap13" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap13" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(2777, 1265)
 
-[node name="Scrap10" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap10" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(2430, 1441)
 
-[node name="Scrap11" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap11" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(2517, 1199)
 
-[node name="Scrap12" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap12" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(3642, 1032)
 
-[node name="Scrap14" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap14" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(2582, -423)
 
-[node name="Scrap17" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap17" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(4370, -352)
 
-[node name="Scrap5" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap5" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(207, 1760)
 
-[node name="Scrap7" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap7" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(175, -32)
 
-[node name="Scrap8" parent="DemoLevel" instance=ExtResource("19_orqww")]
+[node name="Scrap8" parent="DemoLevel" instance=ExtResource("30_yrsvj")]
 z_index = 1
 position = Vector2(476, -327)
 
-[node name="Base" parent="DemoLevel" node_paths=PackedStringArray("game_manager") instance=ExtResource("21_3gmgp")]
+[node name="Base" parent="DemoLevel" node_paths=PackedStringArray("game_manager") instance=ExtResource("31_0aecu")]
 position = Vector2(4067, 1540)
 team = 1
 game_manager = NodePath("../../GameManager")

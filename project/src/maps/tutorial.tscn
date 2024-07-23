@@ -1027,7 +1027,7 @@ flip_h = true
 unique_name_in_owner = true
 script = ExtResource("1_uotb5")
 
-[node name="MusicManager" type="AudioStreamPlayer" parent="."]
+[node name="MusicManager" type="AudioStreamPlayer" parent="." groups=["MusicManager"]]
 unique_name_in_owner = true
 process_mode = 3
 bus = &"music"
