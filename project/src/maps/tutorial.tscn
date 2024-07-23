@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://biploe6jtd0rn" path="res://assets/art/title-art-no-bg-nolines.png" id="2_1g74i"]
 [ext_resource type="Script" path="res://src/managers/music_manager/MusicManager.gd" id="2_golmd"]
 [ext_resource type="Script" path="res://addons/action_remapper/src/ReMapperButton.gd" id="3_sbfd8"]
-[ext_resource type="AudioStream" uid="uid://b0yiocx34phwq" path="res://assets/audio/music/Calm.wav" id="3_txhld"]
-[ext_resource type="AudioStream" uid="uid://b4a2ko4663egg" path="res://assets/audio/music/Exploration.wav" id="4_uodu6"]
+[ext_resource type="AudioStream" uid="uid://dkemwfmpoofdw" path="res://assets/audio/music/Calm.wav" id="3_txhld"]
+[ext_resource type="AudioStream" uid="uid://byierw7rtr8hr" path="res://assets/audio/music/Exploration.wav" id="4_uodu6"]
 [ext_resource type="AudioStream" uid="uid://c1ho8j2h1saq" path="res://assets/audio/music/menuMusic.ogg" id="4_x4ycx"]
-[ext_resource type="Theme" uid="uid://c3w7atbti77dq" path="res://src/ui/main_menu.tres" id="5_dhxwx"]
-[ext_resource type="AudioStream" uid="uid://cvwh2natqwj53" path="res://assets/audio/music/Combat.wav" id="5_lk4yo"]
+[ext_resource type="Theme" path="res://src/ui/main_menu.tres" id="5_dhxwx"]
+[ext_resource type="AudioStream" uid="uid://0bqys4aq8hxm" path="res://assets/audio/music/Combat.wav" id="5_lk4yo"]
 [ext_resource type="Shader" path="res://src/ui/main_menu_fire_front.gdshader" id="6_7dgld"]
-[ext_resource type="AudioStream" uid="uid://5vkxyqtg84de" path="res://assets/audio/music/Lead.wav" id="6_afpfj"]
+[ext_resource type="AudioStream" uid="uid://c4h8hlsgv52f8" path="res://assets/audio/music/Lead.wav" id="6_afpfj"]
 [ext_resource type="Script" path="res://src/ui/quest_tracker_ui/TutorialManager.gd" id="7_jtmnu"]
 [ext_resource type="PackedScene" uid="uid://c1st656vkl5t0" path="res://src/ui/level_ui.tscn" id="8_etn82"]
 [ext_resource type="PackedScene" uid="uid://def5ntq3woqan" path="res://src/ui/game_over_ui_screen.tscn" id="9_1p4l0"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://djn6tjrrvtmfm" path="res://assets/art/cave_wall_corner_2.png" id="16_vkwli"]
 [ext_resource type="Texture2D" uid="uid://pgdyxry4hqpt" path="res://assets/art/ground_tile_sheet_featuring_all_the_ground_tiles_wip.png" id="17_jdec5"]
 [ext_resource type="Shader" path="res://src/environment/background.gdshader" id="18_1opko"]
-[ext_resource type="Texture2D" uid="uid://d2b4jpplq6mos" path="res://assets/art/scrap_sprite.png" id="19_uc5hp"]
+[ext_resource type="Texture2D" uid="uid://c6sk0q2ipgv4d" path="res://assets/art/scrap_sprite.png" id="19_uc5hp"]
 [ext_resource type="Texture2D" uid="uid://binsxgaxudhe3" path="res://assets/art/icon-bot.png" id="20_xcpng"]
 [ext_resource type="PackedScene" uid="uid://78j5k0a24wsl" path="res://src/character/player_character.tscn" id="21_3yo60"]
 [ext_resource type="Script" path="res://src/maps/tutorial_container.gd" id="22_eyef4"]
@@ -864,7 +864,7 @@ text = "Menu"
 [node name="ReMapperButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryMenu"]
 layout_mode = 2
 toggle_mode = true
-text = "Pause| Joypad Button 6 (Start, Xbox Menu, Nintendo +)"
+text = "Pause| "
 script = ExtResource("3_sbfd8")
 action = "pause"
 
@@ -878,7 +878,7 @@ text = "X"
 [node name="ReMapperButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryX"]
 layout_mode = 2
 toggle_mode = true
-text = "Call| Joypad Button 2 (Left Action, Sony Square, Xbox X, Nintendo Y)"
+text = "Call| "
 script = ExtResource("3_sbfd8")
 action = "call"
 
@@ -892,7 +892,7 @@ text = "A"
 [node name="ReMapperButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryA"]
 layout_mode = 2
 toggle_mode = true
-text = "Throw| Joypad Button 0 (Bottom Action, Sony Cross, Xbox A, Nintendo B)"
+text = "Throw| "
 script = ExtResource("3_sbfd8")
 action = "throw"
 
@@ -906,7 +906,7 @@ text = "B"
 [node name="ReMapperButton" type="Button" parent="GameUI/MainMenu/Menu/ReMapperMenu/RemapperEntryB"]
 layout_mode = 2
 toggle_mode = true
-text = "Place| Joypad Button 1 (Right Action, Sony Circle, Xbox B, Nintendo A)"
+text = "Place| "
 script = ExtResource("3_sbfd8")
 action = "place"
 
@@ -919,14 +919,14 @@ process_mode = 2
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 focus_neighbor_top = NodePath("../RestartButton")
-focus_neighbor_bottom = NodePath("../RestartButton")
+focus_neighbor_bottom = NodePath("../SkipTutorial")
 text = "Play"
 
 [node name="SkipTutorial" type="Button" parent="GameUI/MainMenu/Menu"]
 process_mode = 2
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-focus_neighbor_top = NodePath("../RestartButton")
+focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_bottom = NodePath("../RestartButton")
 text = "Skip Tutorial"
 
@@ -945,7 +945,7 @@ process_mode = 2
 visible = false
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
-focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_top = NodePath("../SkipTutorial")
 focus_neighbor_bottom = NodePath("../PlayButton")
 text = "Restart
 "
