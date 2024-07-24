@@ -44,10 +44,10 @@
 [ext_resource type="AudioStream" uid="uid://d4ceyrcvkgma1" path="res://assets/audio/throw3.wav" id="42_gcf73"]
 [ext_resource type="AudioStream" uid="uid://dga457mlya4h" path="res://assets/audio/throw4.wav" id="43_yh131"]
 [ext_resource type="AudioStream" uid="uid://dbuxdutckxwmk" path="res://assets/audio/throw5.wav" id="44_5x6vl"]
-[ext_resource type="PackedScene" uid="uid://cnpjlg6u1fhrp" path="res://src/character/ghost.tscn" id="45_i7c1i"]
+[ext_resource type="PackedScene" path="res://src/character/ghost.tscn" id="45_i7c1i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bxck"]
-radius = 17.5
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ueshs"]
 radius = 400.0
@@ -73,8 +73,7 @@ sfx_manager = NodePath("SfxManager")
 [node name="HealthComponent" parent="." instance=ExtResource("2_3lrfi")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, -2.75)
+position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_1bxck")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
