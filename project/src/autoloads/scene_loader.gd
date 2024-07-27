@@ -23,6 +23,10 @@ func load_scene(level: Level):
     var scene = levels_dict[level]
     get_tree().change_scene_to_packed(scene)
 
+func restart_progress():
+    current_level = Level.TUTORIAL
+    load_scene(Level.TUTORIAL)
+
 func get_next_level():
     var final_level = levels[levels.size() - 1]
     if final_level == current_level:
