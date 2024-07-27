@@ -79,7 +79,8 @@ func play_level():
 func _on_restart_button_pressed():
     reset_dialog()
     ResourceManager.reset()
-    get_tree().reload_current_scene()
+    #get_tree().reload_current_scene()
+    SceneLoader.restart_progress()
 
 func _on_quit_button_pressed():
     get_tree().quit()
